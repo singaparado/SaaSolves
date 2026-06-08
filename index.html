@@ -857,23 +857,15 @@ The machine and the human exist as one. Let the conversation begin.</p>
     }
 
     // ── EXPANDABLE SERVICES TIERS ACCORDION FUNCTION ──
-function toggleCopy(button) {
-  // Find the next sibling that is a div
-  const content = button.nextElementSibling;
-  
-  // Ensure we are targeting the correct element before toggling
-  if (content && content.classList.contains('extended-tier-content')) {
-    content.classList.toggle('expanded');
-    
-    // Toggle the button text based on the presence of the 'expanded' class
-    if (content.classList.contains('expanded')) {
-      button.innerText = "CLICK HERE TO CLOSE ↑";
-    } else {
-      button.innerText = "SEE THE COPY ↓";
+    function toggleExtendedTier(button) {
+      const content = button.nextElementSibling;
+      content.classList.toggle('expanded');
+      if (content.classList.contains('expanded')) {
+        button.innerText = "click here to close tier breakdown ↑";
+      } else {
+        button.innerText = "discover what you'll get from this tier here ↓";
+      }
     }
-  }
-}
-
 
     // ── CORE TRANSFORMATION LOGIC WITH ALIGNED REGISTER ──
     function processSandboxTransformation() {
