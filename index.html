@@ -1,3 +1,5 @@
+Kontol Berurat
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +16,9 @@
     html, body { width:100%; overflow-x:hidden; position:relative; }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
-      --navy:    #0E1B2E;
-      --cobalt:  #14233C;
-      --deep:    #08101C;
+      --navy:    #050D1A;
+      --cobalt:  #0A1628;
+      --deep:    #030810;
       --aegean:  #3A6D94;
       --aegean-light: #528EB9;
       --ivory:   #F4F7FA;
@@ -32,6 +34,8 @@
       --border-thin: 1.5px solid #3A6D94;
       --shadow:  5px 5px 0px #08101C;
       --shadow-ae:   5px 5px 0px #3A6D94;
+      /* Add the gloss gradient variable */
+      --gloss-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%);
     }
     html { scroll-behavior:smooth }
     body {
@@ -284,6 +288,42 @@
     footer p, footer a { font-family:var(--mono); font-size:0.7rem; color:var(--ivory); text-decoration:none; text-transform:uppercase; letter-spacing:0.04em; }
     footer a:hover { color:var(--aegean-light); }
     .footer-links { display:flex; gap:20px; }
+        /* Apply gloss to hero and cards */
+    .hero, .sandbox-window, .tier, .work-card, .intelligence-cell {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after, .sandbox-window::after, .tier::after, .work-card::after, .intelligence-cell::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--gloss-gradient);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Subtle lift on hover */
+    .tier, .work-card, .sandbox-window {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .tier:hover, .work-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px var(--aegean);
+    }
+
+    /* Pulse animation */
+    @keyframes pulse-subtle {
+      0% { box-shadow: 0 0 0 0 rgba(58, 109, 148, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(58, 109, 148, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(58, 109, 148, 0); }
+    }
+
+    .btn-dark {
+      animation: pulse-subtle 3s infinite;
+    }
+
   </style>
 </head>
 <body>
@@ -332,7 +372,6 @@
     </div>
   </div>
 
-
 <!-- ══════════════ HOME VIEW ══════════════ -->
 <div id="view-home" class="view-panel active-view">
   <section class="hero" id="top">
@@ -362,13 +401,10 @@
 
              <div style="margin-top: 24px;">
                 <a onclick="navigateTo('about-us-page')" style="font-family: var(--mono); font-size: 0.8rem; color: var(--aegean-light); cursor: pointer; text-decoration: underline; display: inline-block;">[Explore Our Manifesto: SaaStories here]</a>
-             </div>
-           </div>
         </div>
       </div>
     </div>
   </section>
-</div>
 
         <div class="hero-window-wrap">
           <div class="sandbox-window">
@@ -382,7 +418,6 @@
             </div>
             <div class="sandbox-io">
               
-              <!-- SIMPLIFIED TEXT INPUT PANE -->
               <div class="sandbox-input-pane">
                 <label class="sandbox-label">Paste your complex builder / product copy here:</label>
                 <textarea id="user-copy" class="sandbox-textarea" placeholder="e.g., Our multi-tenant spatial API architecture enables synchronized geolocation cross-referencing..."></textarea>
@@ -392,72 +427,55 @@
                 </div>
               </div>
 
-              <!-- ACTION ROW -->
               <div class="sandbox-action-row">
                 <span class="sandbox-status" id="sandbox-status">Ready to capture mechanical noise...</span>
                 <button class="sandbox-btn" onclick="processSandboxTransformation()">Transform Infrastructure</button>
               </div>
 
-              <!-- OUTPUT DISPLAY -->
               <div class="sandbox-output-pane" id="output-pane">
                 <div class="sandbox-response" id="sandbox-output">
                   [Our linguistic engine deploys structured logic across your software touchpoints, actively removing cognitive friction to align your product narrative with the user’s intent in real-time.]
                 </div>
                 <div class="ontology-anchor">
                   <p>
-  <strong style="color: var(--ivory);">OPERATIONAL PRESTIGE:</strong>
-  <br>
-  We translate complex technical data into a unified narrative. By mapping deep customer psychology and linguistic patterns, we dissolve friction at the first touchpoint, transforming clinical interfaces into immediate market authority.
-</p>
-</div>
+                    <strong style="color: var(--ivory);">OPERATIONAL PRESTIGE:</strong><br>
+                    We translate complex technical data into a unified narrative. By mapping deep customer psychology and linguistic patterns, we dissolve friction at the first touchpoint, transforming clinical interfaces into immediate market authority.
+                  </p>
+                </div>
               </div>
-
             </div>
           </div>
+        </div>
+      </section>
 
+      <div class="ticker-wrap">
+        <div class="ticker-track">
+          <div class="ticker-item">High-Complexity Systems <span class="ticker-sep">✦</span></div>
+          <div class="ticker-item">Deep Technical Assets <span class="ticker-sep">✦</span></div>
+          <div class="ticker-item">AI Frontier Labs <span class="ticker-sep">✦</span></div>
+          <div class="ticker-item">Regenerative Networks <span class="ticker-sep">✦</span></div>
+          <div class="ticker-item">Cultural Strategy <span class="ticker-sep">✦</span></div>
+          <div class="ticker-item">Humanized Narrative Engine <span class="ticker-sep">✦</span></div>
+          <div class="ticker-item">Psychological Analysis Core <span class="ticker-sep">✦</span></div>
         </div>
       </div>
-    </section>
 
-    <div class="ticker-wrap">
-      <div class="ticker-track">
-        <div class="ticker-item">High-Complexity Systems <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Deep Technical Assets <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">AI Frontier Labs <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Regenerative Networks <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Cultural Strategy <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Humanized Narrative Engine <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Psychological Analysis Core <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">High-Complexity Systems <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Deep Technical Assets <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">AI Frontier Labs <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Regenerative Networks <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Cultural Strategy <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Humanized Narrative Engine <span class="ticker-sep">✦</span></div>
-        <div class="ticker-item">Psychological Analysis Core <span class="ticker-sep">✦</span></div>
-      </div>
-    </div>
+      <section class="intelligence-band" style="padding: 6vh 6vw; background: var(--deep); border-bottom: var(--border);">
+        <div class="intelligence-band-inner" style="max-width: 1200px; margin: 0 auto; display: block; border: var(--border);">
+          
+          <div class="intelligence-cell" style="padding: 32px 24px; border-bottom: var(--border); background: rgba(8,16,28,0.6);">
+            <div class="vtab-tag noise" style="display: inline-flex; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px; border: 1px solid var(--aegean); color: #E1E8F0; background: rgba(58,109,148,0.2);">Framework I // Discovery Methodology</div>
+            <div class="vtab-quote" style="font-family: var(--serif-title); font-size: 1.8rem; font-weight: 700; line-height: 1.3; margin-bottom: 16px; color: var(--ivory); font-style: normal;">"Recording and Analyzing Fundamental Unwritten Systems."</div>
+            <div class="vtab-note" style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); line-height: 1.7;">Every market possesses invisible organizational structures—symbolic economies and uncodified authority hierarchies—that govern buyer behavior before a single word of copy is written. Standard copy rules read surface signals; we map the underlying relational systems that generate them.</div>
+          </div>
 
-    <!-- RAFU + ASUKSHIRA INTELLIGENCE MATRIX BAND -->
-    <section class="intelligence-band" style="padding: 6vh 6vw; background: var(--deep); border-bottom: var(--border);">
-      <div class="intelligence-band-inner" style="max-width: 1200px; margin: 0 auto; display: block; border: var(--border);">
-        
-        <!-- TOP CELL: RAFU -->
-        <div class="intelligence-cell" style="padding: 32px 24px; border-bottom: var(--border); background: rgba(8,16,28,0.6);">
-          <div class="vtab-tag noise" style="display: inline-flex; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px; border: 1px solid var(--aegean); color: #E1E8F0; background: rgba(58,109,148,0.2);">Framework I // Discovery Methodology</div>
-          <div class="vtab-quote" style="font-family: var(--serif-title); font-size: 1.8rem; font-weight: 700; line-height: 1.3; margin-bottom: 16px; color: var(--ivory); font-style: normal;">"Recording and Analyzing Fundamental Unwritten Systems."</div>
-          <div class="vtab-note" style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); line-height: 1.7;">Every market possesses invisible organizational structures—symbolic economies and uncodified authority hierarchies—that govern buyer behavior before a single word of copy is written. Standard copy rules read surface signals; we map the underlying relational systems that generate them.</div>
+          <div class="intelligence-cell" style="padding: 32px 24px; background: var(--cobalt);">
+            <div class="vtab-tag translated" style="display: inline-flex; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px; border: 1px solid var(--aegean-light); color: var(--ivory); background: var(--sand);">Framework II // Operational Integration</div>
+            <div class="vtab-quote" style="font-family: var(--serif-title); font-size: 1.8rem; font-weight: 700; line-height: 1.3; margin-bottom: 16px; color: var(--ivory); font-style: normal;">"Adaptive Symbolic Ultra-Knowledge System."</div>
+            <div class="vtab-note" style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); line-height: 1.7;">Functioning as a precise cognitive operating system, we reconstruct those hidden layers natively. It moves fluidly across information lines into contextual significance, making your technical assets immediately irresistible to operators spending significant capital.</div>
+          </div>
         </div>
-
-        <!-- BOTTOM CELL: ASUKSHIRA -->
-        <div class="intelligence-cell" style="padding: 32px 24px; background: var(--cobalt);">
-          <div class="vtab-tag translated" style="display: inline-flex; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px; border: 1px solid var(--aegean-light); color: var(--ivory); background: var(--sand);">Framework II // Operational Integration</div>
-          <div class="vtab-quote" style="font-family: var(--serif-title); font-size: 1.8rem; font-weight: 700; line-height: 1.3; margin-bottom: 16px; color: var(--ivory); font-style: normal;">"Adaptive Symbolic Ultra-Knowledge System."</div>
-          <div class="vtab-note" style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); line-height: 1.7;">Functioning as a precise cognitive operating system, we reconstruct those hidden layers natively. It moves fluidly across information lines into contextual significance, making your technical assets immediately irresistible to operators spending significant capital.</div>
-        </div>
-
-      </div>
-    </section>
+      </section>
 
     <section class="vmatrix-section">
       <div class="vmatrix-inner">
@@ -959,4 +977,3 @@ The machine and the human exist as one. Let the conversation begin.</p>
   </script>
 </body>
 </html>
-
