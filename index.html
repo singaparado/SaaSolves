@@ -326,8 +326,33 @@
       100% { box-shadow: 0 0 0 0 rgba(58, 109, 148, 0); }
     }
 
-    .btn-dark {
+        .btn-dark {
       animation: pulse-subtle 3s infinite;
+    }
+
+    /* Responsive Grid Adjustments */
+    @media(max-width: 940px) {
+      .hero-container {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media(max-width: 880px) {
+      .tiers {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media(max-width: 760px) {
+      .intelligence-band-inner {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media(max-width: 700px) {
+      .work-grid {
+        grid-template-columns: 1fr !important;
+      }
     }
 
   </style>
