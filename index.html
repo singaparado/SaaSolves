@@ -99,14 +99,21 @@
     .logo-text { display:flex; flex-direction:column; line-height:1; }
     .logo-main { font-family:var(--display); font-size:1.2rem; font-weight:700; letter-spacing:-0.02em; color:var(--ivory); }
     .logo-sub { font-family:var(--mono); font-size:0.55rem; font-weight:400; letter-spacing:0.16em; text-transform:uppercase; color:var(--aegean); margin-top:4px; }
-    .nav-right { display:flex; align-items:center; gap:24px; }
+    
+    /* Desktop Nav Links Container */
+    .nav-links-desktop { display:flex; align-items:center; gap:24px; }
+    
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; background:none; border:none; }
     .hamburger span { display:block; width:24px; height:2px; background:var(--ivory); border-radius:2px; transition:all 0.3s; }
     .nav-link { font-family:var(--display); font-size:0.82rem; font-weight:500; text-transform:uppercase; letter-spacing:0.05em; color:var(--ivory); background:none; border:none; transition:color 0.2s; padding:0; cursor:pointer; }
     .nav-link:hover { color:var(--aegean-light); }
     .nav-cta { font-family:var(--display); font-size:0.8rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--ivory); background:var(--aegean); text-decoration:none; padding:10px 20px; border:var(--border-thin); box-shadow:3px 3px 0px var(--deep); transition:all 0.12s; cursor:pointer; }
-    .nav-cta:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0px var(--deep); }
-    @media(max-width:1080px) { .nav-right { display:none; } .hamburger { display:flex; } }
+    
+    /* Mobile Hide Logic */
+    @media(max-width: 900px) { 
+      .nav-links-desktop { display:none !important; } 
+      .hamburger { display:flex !important; } 
+    }
 
     /* MOBILE MENU */
     .mobile-menu { display:none; position:fixed; inset:0; background:var(--deep); z-index:999; flex-direction:column; padding:0; overflow-y:auto; }
@@ -391,11 +398,15 @@
         <span class="logo-sub">Linguistic Systems Engineering</span>
       </div>
     </a>
+    
+    <!-- This container is hidden on mobile via CSS -->
+    <div class="nav-links-desktop">
       <a class="nav-link" onclick="navigateTo('home', 'work')">Our Works</a>
       <a class="nav-link" onclick="navigateTo('about-us-page')">Our Manifesto</a>
       <a class="nav-link" onclick="navigateTo('our-approach-page')">Our Approach</a>
       <a onclick="navigateTo('home', 'contact')" class="nav-cta">Commission an Audit</a>
     </div>
+
     <button class="hamburger" onclick="openMobileMenu()" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
