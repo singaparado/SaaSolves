@@ -22,23 +22,28 @@
     html, body { width:100%; overflow-x:hidden; position:relative; }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
-      /* Adjusted for a warmer, less harsh base */
+      /* Primary Foundation */
       --navy:    #080F1C;
       --cobalt:  #0B182B;
       --deep:    #050A14;
-      /* Muted Aegean to reduce contrast intensity */
+      /* New Backgrounds for specific sections */
+      --void:    #04080F;
+      --ink:     #07101F;
+      /* Ornamental Aegean (For borders, lines, shadows) */
       --aegean:  #305B7C;
       --aegean-light: #4A7D9D;
+      /* UI and Text */
       --ivory:   #F4F7FA;
       --ivory2:  #E1E8F0;
       --sand:    #1F3556;
       --rust:    #B8440F;
+      /* Typography */
       --display: 'Space Grotesk', sans-serif;
       --serif-title: 'Fraunces', Georgia, serif;
       --serif-body: 'Source Serif 4', Times New Roman, serif;
       --mono:    'DM Mono', monospace;
       --sans:    'DM Sans', sans-serif;
-      /* Updated borders and shadows to match new Aegean tone */
+      /* Ornamental styling using Aegean */
       --border:  3px solid var(--aegean);
       --border-thin: 1.5px solid var(--aegean);
       --shadow:  5px 5px 0px #050A14;
@@ -577,34 +582,34 @@
       </div>
     </section>
   
-<section style="background-color: var(--aegean); padding: 60px 6vw; border-top: 2px solid var(--aegean-light);">
+<section style="background-color: var(--void); padding: 60px 6vw; border-top: var(--border);">
   <div style="max-width: 600px; margin: 0 auto;">
     
     <!-- 5s Metric -->
-    <div style="padding: 40px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
-      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: 'Fraunces', serif; font-weight: 700; line-height: 1; opacity: 0.85;">5s</h2>
-      <div style="display: inline-block; background: transparent; border: 1px solid var(--ivory); padding: 4px 8px; margin: 15px 0; font-family: monospace; font-size: 0.75rem; letter-spacing: 1px; color: var(--ivory); text-transform: uppercase;">
+    <div style="padding: 40px 0; border-bottom: var(--border-thin);">
+      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">5s</h2>
+      <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
         First Impression Window
       </div>
-      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory); margin: 0; opacity: 0.9;">Visitors decide whether to stay within five seconds of landing.</p>
+      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory2); margin: 0;">Visitors decide whether to stay within five seconds of landing.</p>
     </div>
 
     <!-- 74% Metric -->
-    <div style="padding: 40px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
-      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: 'Fraunces', serif; font-weight: 700; line-height: 1; opacity: 0.85;">74%</h2>
-      <div style="display: inline-block; background: transparent; border: 1px solid var(--ivory); padding: 4px 8px; margin: 15px 0; font-family: monospace; font-size: 0.75rem; letter-spacing: 1px; color: var(--ivory); text-transform: uppercase;">
+    <div style="padding: 40px 0; border-bottom: var(--border-thin);">
+      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">74%</h2>
+      <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
         Abandon After Confusion
       </div>
-      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory); margin: 0; opacity: 0.9;">Most visitors who can't immediately understand a product leave and never return.</p>
+      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory2); margin: 0;">Most visitors who can't immediately understand a product leave and never return.</p>
     </div>
 
     <!-- 1x Chance -->
     <div style="padding: 40px 0;">
-      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: 'Fraunces', serif; font-weight: 700; line-height: 1; opacity: 0.85;">1×</h2>
-      <div style="display: inline-block; background: transparent; border: 1px solid var(--ivory); padding: 4px 8px; margin: 15px 0; font-family: monospace; font-size: 0.75rem; letter-spacing: 1px; color: var(--ivory); text-transform: uppercase;">
+      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">1×</h2>
+      <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
         Chance at First Contact
       </div>
-      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory); margin: 0; opacity: 0.9;">One shot to make your product legible. SaaSolves makes sure that shot lands.</p>
+      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory2); margin: 0;">One shot to make your product legible. SaaSolves makes sure that shot lands.</p>
     </div>
     
   </div>
@@ -692,15 +697,15 @@
                 </p>
             </div>
 
-            <!-- After SaaSolves Block -->
-            <div style="background: var(--aegean); padding: 32px; border-left: 6px solid var(--rust);">
-                <div style="color: var(--ivory); font-family: var(--mono); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;">
+          <!-- After SaaSolves Block -->
+            <div style="background: var(--ink); padding: 32px; border: var(--border-thin); border-left: 6px solid var(--rust);">
+                <div style="color: var(--aegean-light); font-family: var(--mono); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;">
                     AFTER SAASOLVES
                 </div>
                 <p style="font-family: var(--serif-body); font-size: 1.2rem; font-weight: 600; line-height: 1.6; color: var(--ivory); margin-bottom: 20px;">
                     "Millions of hectares across emerging economies — particularly across Africa, where 60% of the world's uncultivated arable land resides — remain underutilized, disputed, or institutionally inaccessible. LandKnot transforms fragmented land systems into coordinated stewardship networks, functioning with the interconnected sophistication of the indigenous systems already operating within them."
                 </p>
-                <p style="font-family: var(--mono); font-size: 0.9rem; color: var(--ivory); font-style: italic; opacity: 0.9;">
+                <p style="font-family: var(--mono); font-size: 0.9rem; color: var(--ivory2); font-style: italic; opacity: 0.9;">
                     The data becomes context, not claim. Every stakeholder recognizes their entry point simultaneously.
                 </p>
             </div>
