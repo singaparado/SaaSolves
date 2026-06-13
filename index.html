@@ -22,11 +22,13 @@
     html, body { width:100%; overflow-x:hidden; position:relative; }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
-      --navy:    #050D1A;
-      --cobalt:  #0A1628;
-      --deep:    #030810;
-      --aegean:  #3A6D94;
-      --aegean-light: #528EB9;
+      /* Adjusted for a warmer, less harsh base */
+      --navy:    #080F1C;
+      --cobalt:  #0B182B;
+      --deep:    #050A14;
+      /* Muted Aegean to reduce contrast intensity */
+      --aegean:  #305B7C;
+      --aegean-light: #4A7D9D;
       --ivory:   #F4F7FA;
       --ivory2:  #E1E8F0;
       --sand:    #1F3556;
@@ -36,11 +38,12 @@
       --serif-body: 'Source Serif 4', Times New Roman, serif;
       --mono:    'DM Mono', monospace;
       --sans:    'DM Sans', sans-serif;
-      --border:  3px solid #3A6D94;
-      --border-thin: 1.5px solid #3A6D94;
-      --shadow:  5px 5px 0px #08101C;
-      --shadow-ae:   5px 5px 0px #3A6D94;
-      /* Add the gloss gradient variable */
+      /* Updated borders and shadows to match new Aegean tone */
+      --border:  3px solid var(--aegean);
+      --border-thin: 1.5px solid var(--aegean);
+      --shadow:  5px 5px 0px #050A14;
+      --shadow-ae:   5px 5px 0px var(--aegean);
+  /* Add the gloss gradient variable */
       --gloss-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%);
     }
     html { scroll-behavior:smooth }
