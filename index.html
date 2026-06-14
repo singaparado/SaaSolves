@@ -1078,35 +1078,47 @@ The machine and the human exist as one. Let the conversation begin.</p>
       <a href="mailto:saasolves@gmail.com">Secure Link</a>
     </div>
   </footer>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-
-  <script>
-    // 1. INITIALIZE AOS
+<script>
+    // 1. INITIALIZE AOS (Per official docs & stability settings)
     AOS.init({
-      disable: 'mobile',
+      disable: 'mobile',         
       startEvent: 'DOMContentLoaded',
-      throttleDelay: 160,
-      debounceDelay: 50,
-      once: true,
-      mirror: false,
+      once: true,                
+      mirror: false,             
       anchorPlacement: 'top-bottom'
     });
 
-    // 2. INITIALIZE LENIS
+    // 2. INITIALIZE LENIS (Smooth scroll)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      smooth: true,
-      smoothTouch: true,
-      touchMultiplier: 2,
+      smooth: true
     });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
 
-    // 3. SAMPLE COPIES
+    // 3. NAVIGATION (Integrated with AOS refresh)
+    function navigateTo(viewId, anchorId) {
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
+      const target = document.getElementById('view-' + viewId);
+      if (target) target.classList.add('active-view');
+      
+      // Forces AOS to re-calculate position of elements when they become visible
+      AOS.refresh(); 
+      
+      window.scrollTo(0, 0);
+      if (anchorId) {
+        setTimeout(() => {
+          const element = document.getElementById(anchorId);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+      }
+    }
+
+    // 4. SAMPLE COPIES
     const goldenCopies = [
       "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
       "A decentralized node-based client environment built to optimize personalized document productivity indexes."
@@ -1116,7 +1128,7 @@ The machine and the human exist as one. Let the conversation begin.</p>
       document.getElementById('sandbox-status').innerText = "Mechanical copy indexed. Ready to inject proprietary frameworks.";
     }
 
-    // 4. UI FUNCTIONS
+    // 5. UI FUNCTIONS
     function toggleExtendedTier(button) {
       const content = button.nextElementSibling;
       content.classList.toggle('expanded');
@@ -1155,23 +1167,6 @@ The machine and the human exist as one. Let the conversation begin.</p>
       }, 50);
     }
 
-    // 5. NAVIGATION & AOS REFRESH (Critical for your views)
-    function navigateTo(viewId, anchorId) {
-      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
-      const target = document.getElementById('view-' + viewId);
-      if (target) target.classList.add('active-view');
-      
-      try { AOS.refresh(); } catch (e) { console.warn("AOS refresh skipped"); }
-      
-      window.scrollTo(0, 0);
-      if (anchorId) {
-        setTimeout(() => {
-          const element = document.getElementById(anchorId);
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        }, 80);
-      }
-    }
-
     function goToAnchor(id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1187,7 +1182,8 @@ The machine and the human exist as one. Let the conversation begin.</p>
       document.getElementById('panel-' + target).classList.add('active');
     }
 
+    // Initialize state
     window.addEventListener('DOMContentLoaded', () => { AOS.refresh(); });
-  </script>
+</script>
 </body>
 </html>
