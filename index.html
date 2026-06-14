@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    html, body { width:100%; overflow-x:hidden; position:relative; }
+    html, body { width:100%; overflow-x:hidden; position:relative; touch-action: pan-y; }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
       /* Primary Foundation */
@@ -1166,10 +1166,17 @@ The machine and the human exist as one. Let the conversation begin.</p>
     requestAnimationFrame(raf);
   });
 
-  function goToAnchor(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function goToAnchor(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    lenis.scrollTo(el, {
+      offset: 0,
+      immediate: false,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
   }
+}
 
   function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); }
   function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
