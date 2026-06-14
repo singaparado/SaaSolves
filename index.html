@@ -51,7 +51,6 @@
   /* Add the gloss gradient variable */
       --gloss-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%);
     }
-    html { scroll-behavior:smooth }
     body {
       background: var(--navy) !important;
       color: var(--ivory);
@@ -393,7 +392,10 @@
     }
 
   </style>
-</head>
+   <!-- Lenis Smooth Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.css">
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+</head> 
 <body>
 
   <!-- TOAST NOTICE DOM CONTAINER -->
@@ -1164,6 +1166,21 @@ The machine and the human exist as one. Let the conversation begin.</p>
       document.getElementById('tab-' + target).classList.add('active');
       document.getElementById('panel-' + target).classList.add('active');
     }
+  <!-- Initialize Lenis -->
+  <script>
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
   </script>
 </body>
 </html>
