@@ -1079,101 +1079,84 @@ The machine and the human exist as one. Let the conversation begin.</p>
   </footer>
   
   <script>
-    // ── SAMPLE COPIES ──
-    const goldenCopies = [
-      "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
-      "A decentralized node-based client environment built to optimize personalized document productivity indexes."
-    ];
+      // ── SAMPLE COPIES ──
+  const goldenCopies = [
+    "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
+    "A decentralized node-based client environment built to optimize personalized document productivity indexes."
+  ];
 
-    function loadSampleCopy(index) {
-      document.getElementById('user-copy').value = goldenCopies[index];
-      document.getElementById('sandbox-status').innerText = "Mechanical copy indexed. Ready to inject proprietary frameworks.";
+  function loadSampleCopy(index) {
+    document.getElementById('user-copy').value = goldenCopies[index];
+    document.getElementById('sandbox-status').innerText = "Mechanical copy indexed. Ready to inject proprietary frameworks.";
+  }
+
+  // ── EXPANDABLE SERVICES TIERS ACCORDION FUNCTION ──
+  function toggleExtendedTier(button) {
+    const content = button.nextElementSibling;
+    content.classList.toggle('expanded');
+    if (content.classList.contains('expanded')) {
+      button.innerText = "click here to close tier breakdown ↑";
+    } else {
+      button.innerText = "discover what you'll get from this tier here ↓";
     }
+  }
 
-    // ── EXPANDABLE SERVICES TIERS ACCORDION FUNCTION ──
-    function toggleExtendedTier(button) {
-      const content = button.nextElementSibling;
-      content.classList.toggle('expanded');
-      if (content.classList.contains('expanded')) {
-        button.innerText = "click here to close tier breakdown ↑";
+  // ── CORE TRANSFORMATION LOGIC ──
+  function processSandboxTransformation() {
+    const text = document.getElementById('user-copy').value.trim();
+    const output = document.getElementById('sandbox-output');
+    const status = document.getElementById('sandbox-status');
+    
+    status.innerText = "Synchronizing architectural registers...";
+    
+    setTimeout(() => {
+      if (!text || text.includes("spatial")) {
+        output.innerHTML = `"Verify global land boundaries natively within your existing workflows before committing structural capital."`;
+      } else if (text.includes("node-based") || text.includes("document") || text.includes("backup")) {
+        output.innerHTML = `"The silent notebook that stays entirely out of your creative path, saving your words offline while you dream."`;
       } else {
-        button.innerText = "discover what you'll get from this tier here ↓";
+        output.innerHTML = `"Restructuring raw interface parameters into immediate, high-prestige authority using SaaSolves integrated linguistic methodology."`;
       }
+      status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
+    }, 600);
+  }
+
+  // ── FALLBACK COPY-TO-CLIPBOARD ──
+  function handleCtaClick(e) {
+    const email = "saasolves@gmail.com";
+    setTimeout(() => {
+      navigator.clipboard.writeText(email).then(() => {
+        const toast = document.getElementById("toast-notice");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2800);
+      }).catch(err => console.log('Clipboard exception captured'));
+    }, 50);
+  }
+
+  // ── NAVIGATION ──
+  function navigateTo(viewId, anchorId) {
+    document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
+    const target = document.getElementById('view-' + viewId);
+    if (target) target.classList.add('active-view');
+    window.scrollTo(0, 0);
+    if (anchorId) setTimeout(() => goToAnchor(anchorId), 80);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+    if(hash) {
+       const cleanId = hash.replace('#','');
+       goToAnchor(cleanId);
     }
-
-    // ── CORE TRANSFORMATION LOGIC WITH ALIGNED REGISTER ──
-    function processSandboxTransformation() {
-      const text = document.getElementById('user-copy').value.trim();
-      const output = document.getElementById('sandbox-output');
-      const status = document.getElementById('sandbox-status');
-      
-      status.innerText = "Synchronizing architectural registers...";
-      
-      setTimeout(() => {
-        if (!text || text.includes("spatial")) {
-          output.innerHTML = `"Verify global land boundaries natively within your existing workflows before committing structural capital."`;
-        } else if (text.includes("node-based") || text.includes("document") || text.includes("backup")) {
-          output.innerHTML = `"The silent notebook that stays entirely out of your creative path, saving your words offline while you dream."`;
-        } else {
-          output.innerHTML = `"Restructuring raw interface parameters into immediate, high-prestige authority using SaaSolves integrated linguistic methodology."`;
-        }
-        status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
-      }, 600);
-    }
-
-    // ── FALLBACK COPY-TO-CLIPBOARD FOR WEBVIEWS ──
-    function handleCtaClick(e) {
-      const email = "saasolves@gmail.com";
-      
-      setTimeout(() => {
-        navigator.clipboard.writeText(email).then(() => {
-          const toast = document.getElementById("toast-notice");
-          toast.classList.add("show");
-          setTimeout(() => toast.classList.remove("show"), 2800);
-        }).catch(err => console.log('Clipboard exception captured'));
-      }, 50);
-    }
-
-    // ── NAVIGATION ──
-    function navigateTo(viewId, anchorId) {
-      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
-      const target = document.getElementById('view-' + viewId);
-      if (target) target.classList.add('active-view');
-      window.scrollTo(0, 0);
-      if (anchorId) setTimeout(() => goToAnchor(anchorId), 80);
-    }
-
-    // ── ON NAV LOAD EXPANSION CHECKER LINKED TRANSITIONS ──
-    window.addEventListener('DOMContentLoaded', () => {
-      const hash = window.location.hash;
-      if(hash) {
-         const cleanId = hash.replace('#','');
-         goToAnchor(cleanId);
-      }
-    });
-
-    function goToAnchor(id) {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); }
-    function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
-
-    function switchVMatrix(target) {
-      document.querySelectorAll('.vmatrix-toggle').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.vtab-panel').forEach(p => p.classList.remove('active'));
-      document.getElementById('tab-' + target).classList.add('active');
-      document.getElementById('panel-' + target).classList.add('active');
-    }
-  <!-- Initialize Lenis -->
-  <script>
+    
+    // ── INITIALIZE LENIS ──
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       smooth: true,
-      smoothTouch: false,
+      smoothTouch: true, // Enabled for mobile
+      touchMultiplier: 2,
     });
 
     function raf(time) {
@@ -1181,6 +1164,22 @@ The machine and the human exist as one. Let the conversation begin.</p>
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+  });
+
+  function goToAnchor(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+  function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+  function switchVMatrix(target) {
+    document.querySelectorAll('.vmatrix-toggle').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.vtab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + target).classList.add('active');
+    document.getElementById('panel-' + target).classList.add('active');
+  }
   </script>
 </body>
 </html>
