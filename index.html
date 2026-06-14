@@ -1165,7 +1165,7 @@ The machine and the human exist as one. Let the conversation begin.</p>
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       smooth: true,
-      smoothTouch: true, // Enabled for mobile
+      smoothTouch: true,
       touchMultiplier: 2,
     });
 
@@ -1174,8 +1174,6 @@ The machine and the human exist as one. Let the conversation begin.</p>
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-  });
-
 
 function goToAnchor(id) {
       const el = document.getElementById(id);
