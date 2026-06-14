@@ -395,7 +395,7 @@
    <!-- Lenis Smooth Scroll -->
   <link rel="stylesheet" href="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.css">
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head> 
 <body>
 
@@ -1078,37 +1078,47 @@ The machine and the human exist as one. Let the conversation begin.</p>
       <a href="mailto:saasolves@gmail.com">Secure Link</a>
     </div>
   </footer>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 
-
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 
-  <script>
-    // 1. INITIALIZE AOS
-    AOS.init({
-      disable: 'mobile',
-      startEvent: 'DOMContentLoaded',
-      throttleDelay: 160,
-      debounceDelay: 50,
-      once: true,
-      mirror: false,
-      anchorPlacement: 'top-bottom'
-    });
+<script>
 
-    // 2. INITIALIZE LENIS
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      smooth: true,
-      smoothTouch: true,
-      touchMultiplier: 2,
-    });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+AOS.init({
+    duration: 900,
+    easing: 'ease-out-cubic',
+    once: false,
+    mirror: true,
+    offset: 100
+});
+
+window.addEventListener('load', () => {
+    AOS.refresh();
+});
+
+
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: 'vertical',
+    smooth: true,
+    smoothTouch: true,
+    touchMultiplier: 2
+});
+
+
+function raf(time) {
+    lenis.raf(time);
     requestAnimationFrame(raf);
+}
 
+requestAnimationFrame(raf);
+
+
+lenis.on('scroll', () => {
+    AOS.refresh();
+});
+  
     // 3. SAMPLE COPIES
     const goldenCopies = [
       "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
@@ -1190,7 +1200,6 @@ The machine and the human exist as one. Let the conversation begin.</p>
       document.getElementById('panel-' + target).classList.add('active');
     }
 
-    window.addEventListener('DOMContentLoaded', () => { AOS.refresh(); });
   </script>
 </body>
 </html>
