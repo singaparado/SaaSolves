@@ -1136,19 +1136,29 @@ The machine and the human exist as one. Let the conversation begin.</p>
 
   // ── NAVIGATION ──
   function navigateTo(viewId, anchorId) {
-    document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
-    const target = document.getElementById('view-' + viewId);
-    if (target) target.classList.add('active-view');
-    window.scrollTo(0, 0);
-    if (anchorId) setTimeout(() => goToAnchor(anchorId), 80);
+  // 1. Existing logic to switch views (Keep this exactly as it was)
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
+  const target = document.getElementById('view-' + viewId);
+  if (target) target.classList.add('active-view');
+  
+  // 2. Safely add AOS refresh
+  try {
+      if (typeof AOS !== 'undefined') {
+          AOS.refresh();
+      }
+  } catch (e) {
+      console.warn("AOS refresh skipped:", e);
   }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash;
-    if(hash) {
-       const cleanId = hash.replace('#','');
-       goToAnchor(cleanId);
-    }
+  
+  // 3. Existing scroll logic (Keep this exactly as it was)
+  window.scrollTo(0, 0);
+  if (anchorId) {
+      setTimeout(() => {
+          const element = document.getElementById(anchorId);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 80);
+  }
+}
     
     // ── INITIALIZE LENIS ──
     const lenis = new Lenis({
