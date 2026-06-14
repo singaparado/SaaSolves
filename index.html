@@ -395,6 +395,7 @@
    <!-- Lenis Smooth Scroll -->
   <link rel="stylesheet" href="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.css">
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
 <body>
 
@@ -1078,87 +1079,21 @@ The machine and the human exist as one. Let the conversation begin.</p>
     </div>
   </footer>
   
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
   <script>
-      // ── SAMPLE COPIES ──
-  const goldenCopies = [
-    "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
-    "A decentralized node-based client environment built to optimize personalized document productivity indexes."
-  ];
+    // ── INITIALIZE AOS ──
+    AOS.init({
+      disable: 'mobile',
+      startEvent: 'DOMContentLoaded',
+      throttleDelay: 160,
+      debounceDelay: 50,
+      once: true,
+      mirror: false,
+      anchorPlacement: 'top-bottom'
+    });
 
-  function loadSampleCopy(index) {
-    document.getElementById('user-copy').value = goldenCopies[index];
-    document.getElementById('sandbox-status').innerText = "Mechanical copy indexed. Ready to inject proprietary frameworks.";
-  }
-
-  // ── EXPANDABLE SERVICES TIERS ACCORDION FUNCTION ──
-  function toggleExtendedTier(button) {
-    const content = button.nextElementSibling;
-    content.classList.toggle('expanded');
-    if (content.classList.contains('expanded')) {
-      button.innerText = "click here to close tier breakdown ↑";
-    } else {
-      button.innerText = "discover what you'll get from this tier here ↓";
-    }
-  }
-
-  // ── CORE TRANSFORMATION LOGIC ──
-  function processSandboxTransformation() {
-    const text = document.getElementById('user-copy').value.trim();
-    const output = document.getElementById('sandbox-output');
-    const status = document.getElementById('sandbox-status');
-    
-    status.innerText = "Synchronizing architectural registers...";
-    
-    setTimeout(() => {
-      if (!text || text.includes("spatial")) {
-        output.innerHTML = `"Verify global land boundaries natively within your existing workflows before committing structural capital."`;
-      } else if (text.includes("node-based") || text.includes("document") || text.includes("backup")) {
-        output.innerHTML = `"The silent notebook that stays entirely out of your creative path, saving your words offline while you dream."`;
-      } else {
-        output.innerHTML = `"Restructuring raw interface parameters into immediate, high-prestige authority using SaaSolves integrated linguistic methodology."`;
-      }
-      status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
-    }, 600);
-  }
-
-  // ── FALLBACK COPY-TO-CLIPBOARD ──
-  function handleCtaClick(e) {
-    const email = "saasolves@gmail.com";
-    setTimeout(() => {
-      navigator.clipboard.writeText(email).then(() => {
-        const toast = document.getElementById("toast-notice");
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 2800);
-      }).catch(err => console.log('Clipboard exception captured'));
-    }, 50);
-  }
-
-  // ── NAVIGATION ──
-  function navigateTo(viewId, anchorId) {
-  // 1. Existing logic to switch views (Keep this exactly as it was)
-  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
-  const target = document.getElementById('view-' + viewId);
-  if (target) target.classList.add('active-view');
-  
-  // 2. Safely add AOS refresh
-  try {
-      if (typeof AOS !== 'undefined') {
-          AOS.refresh();
-      }
-  } catch (e) {
-      console.warn("AOS refresh skipped:", e);
-  }
-  
-  // 3. Existing scroll logic (Keep this exactly as it was)
-  window.scrollTo(0, 0);
-  if (anchorId) {
-      setTimeout(() => {
-          const element = document.getElementById(anchorId);
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 80);
-  }
-}
-    
     // ── INITIALIZE LENIS ──
     const lenis = new Lenis({
       duration: 1.2,
@@ -1175,7 +1110,74 @@ The machine and the human exist as one. Let the conversation begin.</p>
     }
     requestAnimationFrame(raf);
 
-function goToAnchor(id) {
+    // ── SAMPLE COPIES ──
+    const goldenCopies = [
+      "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
+      "A decentralized node-based client environment built to optimize personalized document productivity indexes."
+    ];
+
+    function loadSampleCopy(index) {
+      document.getElementById('user-copy').value = goldenCopies[index];
+      document.getElementById('sandbox-status').innerText = "Mechanical copy indexed. Ready to inject proprietary frameworks.";
+    }
+
+    function toggleExtendedTier(button) {
+      const content = button.nextElementSibling;
+      content.classList.toggle('expanded');
+      button.innerText = content.classList.contains('expanded') 
+        ? "click here to close tier breakdown ↑" 
+        : "discover what you'll get from this tier here ↓";
+    }
+
+    function processSandboxTransformation() {
+      const text = document.getElementById('user-copy').value.trim();
+      const output = document.getElementById('sandbox-output');
+      const status = document.getElementById('sandbox-status');
+      status.innerText = "Synchronizing architectural registers...";
+      
+      setTimeout(() => {
+        if (!text || text.includes("spatial")) {
+          output.innerHTML = `"Verify global land boundaries natively within your existing workflows before committing structural capital."`;
+        } else if (text.includes("node-based") || text.includes("document") || text.includes("backup")) {
+          output.innerHTML = `"The silent notebook that stays entirely out of your creative path, saving your words offline while you dream."`;
+        } else {
+          output.innerHTML = `"Restructuring raw interface parameters into immediate, high-prestige authority using SaaSolves integrated linguistic methodology."`;
+        }
+        status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
+      }, 600);
+    }
+
+    function handleCtaClick(e) {
+      const email = "saasolves@gmail.com";
+      setTimeout(() => {
+        navigator.clipboard.writeText(email).then(() => {
+          const toast = document.getElementById("toast-notice");
+          if(toast) {
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2800);
+          }
+        }).catch(err => console.log('Clipboard exception captured'));
+      }, 50);
+    }
+
+    // ── NAVIGATION & AOS REFRESH ──
+    function navigateTo(viewId, anchorId) {
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
+      const target = document.getElementById('view-' + viewId);
+      if (target) target.classList.add('active-view');
+      
+      try { AOS.refresh(); } catch (e) { console.warn("AOS refresh skipped"); }
+      
+      window.scrollTo(0, 0);
+      if (anchorId) {
+        setTimeout(() => {
+          const element = document.getElementById(anchorId);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+      }
+    }
+
+    function goToAnchor(id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -1183,16 +1185,16 @@ function goToAnchor(id) {
     function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); }
     function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
 
-  function switchVMatrix(target) {
-    document.querySelectorAll('.vmatrix-toggle').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.vtab-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('tab-' + target).classList.add('active');
-    document.getElementById('panel-' + target).classList.add('active');
-  }
-  </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
+    function switchVMatrix(target) {
+      document.querySelectorAll('.vmatrix-toggle').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.vtab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + target).classList.add('active');
+      document.getElementById('panel-' + target).classList.add('active');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        AOS.refresh();
+    });
   </script>
 </body>
 </html>
