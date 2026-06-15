@@ -410,8 +410,8 @@
     <!-- This container is hidden on mobile via CSS -->
     <div class="nav-links-desktop">
       <a class="nav-link" onclick="navigateTo('home', 'work')">Our Works</a>
-      <a class="nav-link" onclick="navigateTo('about-us-page')">Our Manifesto</a>
-      <a class="nav-link" onclick="navigateTo('our-approach-page')">Our Approach</a>
+      <a class="nav-link" href="about-us.html">Our Manifesto</a>
+      <a class="nav-link" href="our-approach.html">Our Approach</a>
       <a onclick="navigateTo('home', 'contact')" class="nav-cta">Commission an Audit</a>
     </div>
 
@@ -429,8 +429,8 @@
       <a onclick="navigateTo('home');closeMobileMenu()">Home</a>
       <a onclick="navigateTo('home','services');closeMobileMenu()">Execution Tiers</a>
       <a onclick="navigateTo('home','work');closeMobileMenu()">Our Works</a>
-      <a onclick="navigateTo('about-us-page');closeMobileMenu()">Our Manifesto</a>
-      <a onclick="navigateTo('our-approach-page');closeMobileMenu()">Our Approach</a>
+      <a href="about-us.html" onclick="closeMobileMenu()">Our Manifesto</a>
+      <a href="our-approach.html" onclick="closeMobileMenu()">Our Approach</a>
     </div>
     <div class="mobile-menu-cta">
       <a onclick="navigateTo('home','contact');closeMobileMenu()">Commission an Audit →</a>
@@ -1232,23 +1232,41 @@ window.addEventListener('load', () => {
       }, 50);
     }
 
-    // 4. NAVIGATION & AOS REFRESH (Critical for your views)
+    // 4. NAVIGATION & AOS REFRESH
     function navigateTo(viewId, anchorId) {
-      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
-      const target = document.getElementById('view-' + viewId);
-      if (target) target.classList.add('active-view');
-      
-      try { AOS.refresh(); } catch (e) { console.warn("AOS refresh skipped"); }
-      
-      window.scrollTo(0, 0);
-      if (anchorId) {
-        setTimeout(() => {
-          const element = document.getElementById(anchorId);
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        }, 80);
-      }
-    }
 
+  document.querySelectorAll('.view-panel')
+    .forEach(p => {
+      p.classList.remove('active-view');
+    });
+
+  const target = document.getElementById('view-' + viewId);
+
+  if (!target) {
+    console.log("View not found:", 'view-' + viewId);
+    return;
+  }
+
+  target.classList.add('active-view');
+
+  window.scrollTo(0, 0);
+
+  setTimeout(() => {
+    AOS.refreshHard();
+  }, 100);
+
+  if (anchorId) {
+    setTimeout(() => {
+      const element = document.getElementById(anchorId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    }, 150);
+  }
+}
+    
     function goToAnchor(id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
