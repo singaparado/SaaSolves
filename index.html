@@ -509,7 +509,16 @@
 </div>
       </section>
         
-        <div class="hero-window-wrap">
+          <div 
+            data-aos="fade-up"
+            data-aos-duration="1100"
+            class="hero-window-wrap">
+      
+          <div 
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            class="sandbox-window">
+            
           <div class="sandbox-window">
             <div class="sandbox-bar">
               <div class="sandbox-dots">
@@ -521,7 +530,10 @@
             </div>
             <div class="sandbox-io">
               
-              <div class="sandbox-input-pane">
+                <div 
+                  data-aos="fade-right"
+                  data-aos-delay="300"
+                  class="sandbox-input-pane">
                 <label class="sandbox-label">Paste your complex builder / product copy here:</label>
                 <textarea id="user-copy" class="sandbox-textarea" placeholder="e.g., Our multi-tenant spatial API architecture enables synchronized geolocation cross-referencing..."></textarea>
                 <div class="sample-cases-row">
@@ -530,12 +542,18 @@
                 </div>
               </div>
 
-              <div class="sandbox-action-row">
+                <div 
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                  class="sandbox-action-row">
                 <span class="sandbox-status" id="sandbox-status">Ready to capture mechanical noise...</span>
                 <button class="sandbox-btn" onclick="processSandboxTransformation()">Transform Infrastructure</button>
               </div>
 
-              <div class="sandbox-output-pane" id="output-pane">
+              <div 
+                data-aos="fade-left"
+                data-aos-delay="500"
+                class="sandbox-output-pane" id="output-pane">
                 <div class="sandbox-response" id="sandbox-output">
                   [Our linguistic engine deploys structured logic across your software touchpoints, actively removing cognitive friction to align your product narrative with the user’s intent in real-time.]
                 </div>
