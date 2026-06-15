@@ -1087,28 +1087,35 @@ The machine and the human exist as one. Let the conversation begin.</p>
 
   <script>
     // 1. INITIALIZE AOS
-    AOS.init({
-      disable: 'mobile',
-      startEvent: 'DOMContentLoaded',
-      throttleDelay: 160,
-      debounceDelay: 50,
-      once: true,
-      mirror: false,
-      anchorPlacement: 'top-bottom'
+AOS.init({
+    duration: 900,
+    easing: 'ease-out-cubic',
+    once: false,
+    mirror: true,
+    offset: 100
+});
+
+window.addEventListener('load', () => {
+    AOS.refresh();
+});
+
+        // 2. INITIALIZE LENIS
+    const lenis = new Lenis({
+    duration:1.2,
+    easing:(t)=>Math.min(1,1.001-Math.pow(2,-10*t)),
+    smooth:true
     });
 
-    // 2. INITIALIZE LENIS
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      smooth: true,
-      smoothTouch: true,
-      touchMultiplier: 2,
-    });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+
+    function raf(time){
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+    }
+
     requestAnimationFrame(raf);
 
+    lenis.on('scroll', AOS.refresh);
+    
     // 3. SAMPLE COPIES
     const goldenCopies = [
       "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
