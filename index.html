@@ -392,9 +392,6 @@
     }
 
   </style>
-   <!-- Lenis Smooth Scroll -->
-  <link rel="stylesheet" href="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.css">
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
 <body>
@@ -1080,11 +1077,6 @@ The machine and the human exist as one. Let the conversation begin.</p>
   </footer>
   
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-
-
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 
   <script>
     // 1. INITIALIZE AOS
@@ -1099,25 +1091,8 @@ AOS.init({
 window.addEventListener('load', () => {
     AOS.refresh();
 });
-
-        // 2. INITIALIZE LENIS
-    const lenis = new Lenis({
-    duration:1.2,
-    easing:(t)=>Math.min(1,1.001-Math.pow(2,-10*t)),
-    smooth:true
-    });
-
-
-    function raf(time){
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    lenis.on('scroll', AOS.refresh);
     
-    // 3. SAMPLE COPIES
+    // 2. SAMPLE COPIES
     const goldenCopies = [
       "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
       "A decentralized node-based client environment built to optimize personalized document productivity indexes."
@@ -1127,7 +1102,7 @@ window.addEventListener('load', () => {
       document.getElementById('sandbox-status').innerText = "Mechanical copy indexed. Ready to inject proprietary frameworks.";
     }
 
-    // 4. UI FUNCTIONS
+    // 3. UI FUNCTIONS
     function toggleExtendedTier(button) {
       const content = button.nextElementSibling;
       content.classList.toggle('expanded');
@@ -1166,7 +1141,7 @@ window.addEventListener('load', () => {
       }, 50);
     }
 
-    // 5. NAVIGATION & AOS REFRESH (Critical for your views)
+    // 4. NAVIGATION & AOS REFRESH (Critical for your views)
     function navigateTo(viewId, anchorId) {
       document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
       const target = document.getElementById('view-' + viewId);
