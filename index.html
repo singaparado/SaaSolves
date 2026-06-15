@@ -621,7 +621,7 @@
   <div style="max-width: 600px; margin: 0 auto;">
     
     <!-- 5s Metric -->
-    <div data-aos="zoom-in" style="padding: 40px 0; border-bottom: var(--border-thin);">
+    <div data-aos="fade-up" data-aos-delay="100" style="padding: 40px 0; border-bottom: var(--border-thin);">
       <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">5s</h2>
       <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
         First Impression Window
@@ -630,7 +630,7 @@
     </div>
 
     <!-- 74% Metric -->
-    <div data-aos="zoom-in" style="padding: 40px 0; border-bottom: var(--border-thin);">
+    <div data-aos="fade-up" data-aos-delay="250" style="padding: 40px 0; border-bottom: var(--border-thin);">
       <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">74%</h2>
       <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
         Abandon After Confusion
@@ -639,7 +639,7 @@
     </div>
 
     <!-- 1x Chance -->
-    <div data-aos="zoom-in" style="padding: 40px 0;">
+    <div data-aos="fade-up" data-aos-delay="400" style="padding: 40px 0;">
       <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">1×</h2>
       <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
         Chance at First Contact
@@ -1133,8 +1133,8 @@ The machine and the human exist as one. Let the conversation begin.</p>
 AOS.init({
     duration: 900,
     easing: 'ease-out-cubic',
-    once: true,
-    mirror: false,
+    once: false,
+    mirror: true,
     offset: 120
 });
 
