@@ -1846,165 +1846,319 @@ Return to Overview
   
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-  <script>
-    // 1. INITIALIZE AOS
-if(window.AOS){
-AOS.init({
-...
-});
-}
-    duration: 900,
-    easing: 'ease-out-cubic',
-    once: true,
-    mirror: false,
-    offset: 120
-});
+<script>
 
-window.addEventListener('load', () => {
-    if (window.AOS) AOS.refresh();
-});
-    
-    // 2. SAMPLE COPIES
-    const goldenCopies = [
-      "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
-      "A decentralized node-based client environment built to optimize personalized document productivity indexes."
-    ];
-    function loadSampleCopy(index) {
-      document.getElementById('user-copy').value = goldenCopies[index];
-      document.getElementById('sandbox-status').innerText = "Mechanical copy indexed. Ready to inject proprietary frameworks.";
-    }
+document.addEventListener("DOMContentLoaded", function(){
 
-    // 3. UI FUNCTIONS
-    function toggleExtendedTier(button) {
-      const content = button.nextElementSibling;
-      content.classList.toggle('expanded');
-      button.innerText = content.classList.contains('expanded') 
-        ? "click here to close tier breakdown ↑" 
-        : "discover what you'll get from this tier here ↓";
-    }
-
-    function processSandboxTransformation() {
-      const text = document.getElementById('user-copy').value.trim();
-      const output = document.getElementById('sandbox-output');
-      const status = document.getElementById('sandbox-status');
-      status.innerText = "Synchronizing architectural registers...";
-      setTimeout(() => {
-        if (!text || text.includes("spatial")) {
-          output.innerHTML = `"Verify global land boundaries natively within your existing workflows before committing structural capital."`;
-        } else if (text.includes("node-based") || text.includes("document") || text.includes("backup")) {
-          output.innerHTML = `"The silent notebook that stays entirely out of your creative path, saving your words offline while you dream."`;
-        } else {
-          output.innerHTML = `"Restructuring raw interface parameters into immediate, high-prestige authority using SaaSolves integrated linguistic methodology."`;
-        }
-        status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
-      }, 600);
-    }
-
-    function handleCtaClick(e) {
-      const email = "saasolves@gmail.com";
-      setTimeout(() => {
-        navigator.clipboard.writeText(email).then(() => {
-          const toast = document.getElementById("toast-notice");
-          if(toast) {
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2800);
-          }
-        }).catch(err => console.log('Clipboard exception captured'));
-      }, 50);
-    }
-
-    // 4. NAVIGATION & AOS REFRESH
-  function navigateTo(viewId, anchorId) {
-
-    const target = document.getElementById('view-' + viewId);
-
-    if (!target) {
-    console.log("View not found:", 'view-' + viewId);
-    return;
-    }
-
-  document.querySelectorAll('.view-panel')
-    .forEach(p => p.classList.remove('active-view'));
-
-  target.classList.add('active-view');
-
-  window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: "instant"
-});
-
-setTimeout(() => {
-    if (window.AOS) AOS.refresh();
-    document.querySelectorAll('[data-aos]').forEach(el => {
-        el.classList.add('aos-animate');
+  // 1. INITIALIZE AOS
+  if (window.AOS) {
+    AOS.init({
+      duration: 900,
+      easing: 'ease-out-cubic',
+      once: true,
+      mirror: false,
+      offset: 120
     });
-}, 100);
 
-  if (anchorId) {
-    setTimeout(() => {
-      const element = document.getElementById(anchorId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
-    }, 150);
+    AOS.refresh();
   }
-}
-    
-    function goToAnchor(id) {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+
+  // 2. SAMPLE COPIES
+  const goldenCopies = [
+    "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
+    "A decentralized node-based client environment built to optimize personalized document productivity indexes."
+  ];
+
+  window.loadSampleCopy = function(index) {
+    const input = document.getElementById('user-copy');
+    const status = document.getElementById('sandbox-status');
+
+    if(input) input.value = goldenCopies[index];
+
+    if(status){
+      status.innerText =
+      "Mechanical copy indexed. Ready to inject proprietary frameworks.";
+    }
+  };
+
+
+  // 3. UI FUNCTIONS
+
+  window.toggleExtendedTier = function(button) {
+
+    const content = button.nextElementSibling;
+
+    if(!content) return;
+
+    content.classList.toggle('expanded');
+
+    button.innerText =
+      content.classList.contains('expanded')
+      ? "click here to close tier breakdown ↑"
+      : "discover what you'll get from this tier here ↓";
+  };
+
+
+  window.processSandboxTransformation = function(){
+
+    const input = document.getElementById('user-copy');
+    const output = document.getElementById('sandbox-output');
+    const status = document.getElementById('sandbox-status');
+
+    if(!input || !output || !status) return;
+
+
+    const text = input.value.trim();
+
+    status.innerText =
+    "Synchronizing architectural registers...";
+
+
+    setTimeout(()=>{
+
+      if(!text || text.includes("spatial")) {
+
+        output.innerHTML =
+        `"Verify global land boundaries natively within your existing workflows before committing structural capital."`;
+
+      } else if(
+        text.includes("node-based") ||
+        text.includes("document") ||
+        text.includes("backup")
+      ){
+
+        output.innerHTML =
+        `"The silent notebook that stays entirely out of your creative path, saving your words offline while you dream."`;
+
+      } else {
+
+        output.innerHTML =
+        `"Restructuring raw interface parameters into immediate, high-prestige authority using SaaSolves integrated linguistic methodology."`;
+      }
+
+
+      status.innerText =
+      "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
+
+    },600);
+
+  };
+
+
+
+  window.handleCtaClick = function(){
+
+    const email="saasolves@gmail.com";
+
+    navigator.clipboard.writeText(email)
+    .then(()=>{
+
+      const toast=document.getElementById("toast-notice");
+
+      if(toast){
+
+        toast.classList.add("show");
+
+        setTimeout(()=>{
+          toast.classList.remove("show");
+        },2800);
+
+      }
+
+    })
+    .catch(()=>{});
+
+  };
+
+
+
+  // 4. NAVIGATION
+
+  window.navigateTo = function(viewId, anchorId){
+
+    const target =
+    document.getElementById('view-'+viewId);
+
+
+    if(!target){
+      console.log(
+      "View not found:",
+      'view-'+viewId
+      );
+      return;
     }
 
-    function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); }
-    function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
 
-    function switchVMatrix(target) {
-  document.querySelectorAll('.vmatrix-toggle').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.vtab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + target).classList.add('active');
-  document.getElementById('panel-' + target).classList.add('active');
-}
+    document
+    .querySelectorAll('.view-panel')
+    .forEach(panel=>{
+      panel.classList.remove('active-view');
+    });
 
 
-// 5. MANIFESTO READER
-
-function openManifestoReader(){
-  document.querySelector('.manifesto-cover').style.display="none";
-  document
-  .getElementById('full-manifesto')
-  .classList.add('active');
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
+    target.classList.add('active-view');
 
 
-function closeManifestoReader(){
-  document
-  .getElementById('full-manifesto')
-  .classList.remove('active');
-  document.querySelector('.manifesto-cover').style.display="block";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
+    window.scrollTo({
+      top:0,
+      left:0,
+      behavior:"instant"
+    });
 
 
-// DOM READY
-window.addEventListener('DOMContentLoaded', () => { 
-  if (window.AOS) AOS.refresh();
+    setTimeout(()=>{
+
+      if(window.AOS){
+        AOS.refresh();
+      }
+
+      document
+      .querySelectorAll('[data-aos]')
+      .forEach(el=>{
+        el.classList.add('aos-animate');
+      });
+
+    },100);
+
+
+
+    if(anchorId){
+
+      setTimeout(()=>{
+
+        const element =
+        document.getElementById(anchorId);
+
+        if(element){
+
+          element.scrollIntoView({
+            behavior:"smooth"
+          });
+
+        }
+
+      },150);
+
+    }
+
+  };
+
+
+
+  window.goToAnchor=function(id){
+
+    const el=document.getElementById(id);
+
+    if(el){
+
+      el.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    }
+
+  };
+
+
+
+  window.openMobileMenu=function(){
+
+    const menu=document.getElementById('mobile-menu');
+
+    if(menu)
+    menu.classList.add('open');
+
+  };
+
+
+  window.closeMobileMenu=function(){
+
+    const menu=document.getElementById('mobile-menu');
+
+    if(menu)
+    menu.classList.remove('open');
+
+  };
+
+
+
+  window.switchVMatrix=function(target){
+
+    document
+    .querySelectorAll('.vmatrix-toggle')
+    .forEach(b=>b.classList.remove('active'));
+
+
+    document
+    .querySelectorAll('.vtab-panel')
+    .forEach(p=>p.classList.remove('active'));
+
+
+    const tab=document.getElementById('tab-'+target);
+    const panel=document.getElementById('panel-'+target);
+
+
+    if(tab) tab.classList.add('active');
+    if(panel) panel.classList.add('active');
+
+  };
+
+
+
+  // 5. MANIFESTO READER
+
+  window.openManifestoReader=function(){
+
+    const cover =
+    document.querySelector('.manifesto-cover');
+
+    const reader =
+    document.getElementById('full-manifesto');
+
+
+    if(cover) cover.style.display="none";
+
+    if(reader)
+    reader.classList.add('active');
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  };
+
+
+
+  window.closeManifestoReader=function(){
+
+    const cover =
+    document.querySelector('.manifesto-cover');
+
+    const reader =
+    document.getElementById('full-manifesto');
+
+
+    if(reader)
+    reader.classList.remove('active');
+
+
+    if(cover)
+    cover.style.display="block";
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  };
+
+
+
 });
-    
-    window.addEventListener('DOMContentLoaded', () => { if (window.AOS) AOS.refresh();
-  </script>
-</body>
-</html>
+
+</script>
