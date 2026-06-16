@@ -2183,9 +2183,7 @@ setTimeout(() => {
 // 5. MANIFESTO READER
 
 function openManifestoReader(){
-
   document.querySelector('.manifesto-cover').style.display="none";
-
   document
   .getElementById('full-manifesto')
   .classList.add('active');
@@ -2199,11 +2197,9 @@ function openManifestoReader(){
 
 
 function closeManifestoReader(){
-
   document
   .getElementById('full-manifesto')
   .classList.remove('active');
-
   document.querySelector('.manifesto-cover').style.display="block";
 
   window.scrollTo({
