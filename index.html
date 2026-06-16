@@ -391,6 +391,515 @@
       }
     }
 
+/* ═══════════════════════════════════════
+   MANIFESTO EXPERIENCE SYSTEM
+   Landing + Reader Mode + AOS
+═══════════════════════════════════════ */
+
+
+/* ---------- HERO / COVER ---------- */
+
+.manifesto-cover {
+  padding: 8vh 0;
+}
+
+
+.manifesto-intro {
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(74,125,157,.22),
+  rgba(5,10,20,.85)
+  );
+
+  border:var(--border);
+  box-shadow:var(--shadow);
+
+  padding:48px;
+
+  position:relative;
+  overflow:hidden;
+
+}
+
+
+.manifesto-intro::after {
+
+content:"";
+position:absolute;
+inset:0;
+
+background:
+radial-gradient(
+circle at top right,
+rgba(74,125,157,.25),
+transparent 40%
+);
+
+pointer-events:none;
+
+}
+
+
+.manifesto-intro h1 {
+
+font-family:var(--serif-title);
+font-size:clamp(3rem,7vw,5.5rem);
+line-height:1;
+letter-spacing:-.03em;
+
+margin-bottom:25px;
+
+position:relative;
+z-index:1;
+
+}
+
+
+.manifesto-intro p {
+
+max-width:760px;
+
+font-size:1.2rem;
+line-height:1.8;
+
+position:relative;
+z-index:1;
+
+}
+
+
+
+/* ---------- CONCEPT CARDS ---------- */
+
+
+.manifesto-grid {
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:24px;
+
+margin:70px 0;
+
+}
+
+
+.manifesto-card {
+
+background:
+
+linear-gradient(
+145deg,
+rgba(48,91,124,.25),
+var(--cobalt)
+);
+
+
+border:1.5px solid var(--aegean);
+
+padding:32px;
+
+min-height:260px;
+
+transition:
+transform .25s ease,
+box-shadow .25s ease;
+
+position:relative;
+overflow:hidden;
+
+}
+
+
+.manifesto-card:hover {
+
+transform:translateY(-10px);
+
+box-shadow:
+0 20px 45px rgba(0,0,0,.35),
+0 0 0 1px var(--aegean-light);
+
+}
+
+
+
+.manifesto-card span {
+
+font-family:var(--mono);
+
+font-size:.7rem;
+
+letter-spacing:.2em;
+
+color:var(--aegean-light);
+
+}
+
+
+
+.manifesto-card h3 {
+
+font-family:var(--serif-title);
+
+font-size:1.7rem;
+
+margin:20px 0;
+
+}
+
+
+
+.manifesto-card p {
+
+font-size:.95rem;
+
+line-height:1.7;
+
+}
+
+
+
+/* ---------- SYSTEM MAP ---------- */
+
+
+.manifesto-system {
+
+margin:90px 0;
+
+background:var(--deep);
+
+border:var(--border);
+
+box-shadow:var(--shadow);
+
+padding:50px;
+
+}
+
+
+.manifesto-system h2 {
+
+font-family:var(--serif-title);
+
+font-size:2.5rem;
+
+margin-bottom:15px;
+
+}
+
+
+
+.system-flow {
+
+display:grid;
+
+grid-template-columns:
+1fr auto 1fr auto 1fr;
+
+align-items:center;
+
+gap:20px;
+
+margin-top:40px;
+
+}
+
+
+.system-node {
+
+background:var(--cobalt);
+
+border:1px solid var(--aegean);
+
+padding:30px;
+
+text-align:center;
+
+}
+
+
+
+.system-node h4 {
+
+font-family:var(--serif-title);
+
+margin-bottom:10px;
+
+}
+
+
+
+.system-arrow {
+
+font-family:var(--mono);
+
+font-size:2rem;
+
+color:var(--aegean-light);
+
+}
+
+
+
+/* ---------- AOS BLOCK ---------- */
+
+
+.aos-manifesto {
+
+margin:90px 0;
+
+padding:45px;
+
+
+background:
+
+radial-gradient(
+circle at top right,
+rgba(74,125,157,.3),
+transparent 40%
+),
+
+var(--cobalt);
+
+
+border:var(--border);
+
+box-shadow:var(--shadow);
+
+}
+
+
+
+.aos-title {
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:20px;
+
+margin-bottom:30px;
+
+}
+
+
+
+.aos-title h2 {
+
+font-family:var(--serif-title);
+
+font-size:2.3rem;
+
+}
+
+
+
+.aos-pill {
+
+font-family:var(--mono);
+
+font-size:.7rem;
+
+padding:8px 14px;
+
+border:1px solid var(--aegean);
+
+color:var(--aegean-light);
+
+}
+
+
+
+.aos-grid {
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:20px;
+
+}
+
+
+
+.aos-item {
+
+background:
+rgba(5,10,20,.65);
+
+border:1px solid var(--sand);
+
+padding:25px;
+
+}
+
+
+
+.aos-item h4 {
+
+color:var(--aegean-light);
+
+margin-bottom:10px;
+
+}
+
+
+
+.aos-item p {
+
+font-size:.9rem;
+
+}
+
+
+
+/* ---------- FULL MANIFESTO READER ---------- */
+
+
+.manifesto-reader {
+
+display:none;
+
+max-width:850px;
+
+margin:auto;
+
+padding:10vh 0;
+
+}
+
+
+
+.manifesto-reader.active {
+
+display:block;
+
+}
+
+
+
+.reader-header {
+
+border-bottom:var(--border);
+
+padding-bottom:35px;
+
+margin-bottom:70px;
+
+}
+
+
+
+.reader-header h1 {
+
+font-family:var(--serif-title);
+
+font-size:clamp(3rem,7vw,5rem);
+
+line-height:1;
+
+margin-bottom:20px;
+
+}
+
+
+
+.reader-chapter {
+
+margin-bottom:90px;
+
+}
+
+
+
+.reader-chapter h2 {
+
+font-family:var(--serif-title);
+
+font-size:2.4rem;
+
+color:var(--aegean-light);
+
+margin-bottom:25px;
+
+}
+
+
+
+.reader-chapter p {
+
+font-size:1.15rem;
+
+line-height:1.95;
+
+color:var(--ivory2);
+
+}
+
+
+
+/* ---------- BUTTON ---------- */
+
+
+.read-manifesto-btn {
+
+margin-top:40px;
+
+}
+
+
+
+/* ---------- MOBILE ---------- */
+
+
+@media(max-width:900px){
+
+
+.manifesto-grid {
+
+grid-template-columns:1fr;
+
+}
+
+
+.system-flow {
+
+grid-template-columns:1fr;
+
+}
+
+
+.system-arrow {
+
+transform:rotate(90deg);
+
+}
+
+
+.aos-grid {
+
+grid-template-columns:1fr;
+
+}
+
+
+.manifesto-intro,
+.manifesto-system,
+.aos-manifesto {
+
+padding:28px;
+
+}
+
+}
+    
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -1019,73 +1528,454 @@
 <!-- ══════════════ MANIFESTO RESTRUCTURED ══════════════ -->
 
 <div id="view-our-manifesto" class="view-panel">
-  <div class="cs-body">
-    <div class="services-head" style="margin-bottom: 40px;">
-      <h2>THE MANIFESTO: SAASTORIES</h2>
-    </div>
-   
-    <section class="about-section-wrapper">
-      <h3>FOUNDING PRINCIPLE</h3>
-      <p> No eminent quality happens by chance. It is crafted with meticulous precision. We refuse to raise brilliant technical visions on a diet of sterile corporate clickbait, as you cannot chart the stars from a map of the gutters. SaaSolves combines technical rigor with the humanities to map the true mechanics of human behavior. We believe technology is only as powerful as the narrative that houses it.</p>
-    </section>
 
-    <section class="about-section-wrapper">
-      <h3>THE CHASM OF VELOCITY</h3>
-      <p> The age of the fast ship has left a chasm where human connection used to reside. As velocity became the metric and automation became the method, in the pursuit of technical perfection, the heartbeat of your vision is obscured by the clinical dialect of the tools that constructed it.<br><br>
+<div class="cs-body">
 
-It was never due to the inadequate codes or poor software mechanics that you are shipping brilliance into an empty void. It is because the narrative that centers around it fails to possess the weight necessary to captivate the user's attention. We find ourselves submerged in rapid, shallow interfaces that regard the visitor merely as a data point to be collected rather than as an individual to be persuaded.<br><br>
 
-The aim of every feature you are selling is to persuade a stranger to alter their workflow based on your promise. When that promise resembles a technical manual, any victorious sale is bound by urgency, not dependency. It’s obvious enough to cut off sustainable, long-horizon reliance to your system.</p>
-    </section>
+<!-- MANIFESTO LANDING -->
 
-    <section class="about-section-wrapper">
-      <h3>THE BROKEN LINE</h3>
-      <p> Founders spend so much time inside a product that they eventually develop a private language around it. The structure becomes second nature. The jargon becomes clear. What once needed clarification begins to feel intuitively obvious. Then, one fateful day, that lexicon makes its way to the homepage.<br><br> 
+<section class="manifesto-cover">
 
-The founder reads the sentence and sees the entire system behind it. The visitor, however, reads the same sentence and comprehends almost nothing.<br><br> 
 
-We call this point of separation the Broken Line: the moment where comprehension falters, understanding loses momentum and communication begins speaking from the builder’s viewpoint rather than the audience’s reality.<br><br> 
+<div class="manifesto-intro" data-aos="fade-up">
 
-Any communication failures do not really emerge from poor writing. They arise from closeness.</p>
-    </section>
+<h1>
+THE MANIFESTO:
+<br>
+SAASTORIES
+</h1>
 
-    <section class="about-section-wrapper">
-      <h3>THE ANATOMY OF RECOGNITION</h3>
-      <p> When your audience encounters your product, they weren’t searching for a feature list. It is the recognition of an ache they have carried without a name. The tension underneath demand is always human: a frustration that existed before the product; a persistent failure that your architecture aims to resolve.<br><br> 
+<p>
+Technology is only as powerful as the narrative structure that allows humans to recognize its value.
+SaaSolves exists to reconstruct that bridge.
+</p>
 
-That origin story belongs at the surface of your communication. It rarely is.<br><br> 
+</div>
 
-Clarity tells visitors what a product does; recognition makes them feel the product was built specifically for the weight they’ve been carrying. Our observation shows that most products achieve clarity while almost none achieve recognition. The distance between those two states is where SaaSolves operates.<p>
-    </section>
 
-    <section class="about-section-wrapper">
-      <h3>THE DISCIPLINE OF DIAGNOSIS</h3>
-      <p> Our work is the meticulous synthesis of technical architecture and human sensibility. We reconstruct the Linguistic Infrastructure of your brand, weaving the raw intelligence of human psychology into the precision of your platform. We identify where attention collapses and where understanding loses momentum, replacing clinical builder jargon with narratives that resonate with the frequency of your audience’s deepest needs.<br><br> 
 
-We operate prior to copywriting: dismantling the friction across your homepage, onboarding, and interface language. By rebuilding the narrative layer that connects your technical power to the psychological reality of the people it was built for, we reassemble your voice with restrained clarity and structural authority.</p>
-    </section>
+<div class="manifesto-grid">
 
-    <section class="about-section-wrapper">
-      <h3>OUR STANCE</h3>
-      <p>We believe there is an infinite ceiling to the quality an interface can absorb. We integrate deeply within your product logic, map hidden cognitive friction points, and engineer language systems that transform baseline products into tangible, unforgettable human experiences. We calibrate how heavily your codebase commands its own worth on first touch.</p>
-    </section>
 
-    <section class="about-section-wrapper" style="border: none;">
-      <h3>WHO ARE WE</h3>
-      <p>SaaSolves functions as an elite diagnostic integration tier for high-complexity communication environments. We do not produce template language. We exceed mere sentences optimization by engineering Linguistic Infrastructure that aligns your technical vision with the hidden mechanics of human behavior and market desire.<br><br>
+<div class="manifesto-card" data-aos="fade-up">
 
-Led by brand strategist and author Mahdi Singaparado, our methodology ensures that as your technical architecture scales, its recognizability, directional clarity, and emotional presence remain absolute. We bridge the execution vacuum between raw software power and real human understanding.<p>
-    </section>
+<span>01</span>
 
-    <section class="about-section-wrapper" style="border: none;">
-      <h3>THE CONVERSION OF REALITY</h3>
-      <p> You are crafting the future. It is time your communication achieved the same level of sophistication. Together, we elevate the narrative until the cold, algorithmic output of the machine becomes indistinguishable from the warmth of human intuition—leaving the visitor not merely informed, but fundamentally altered.<br><br>
+<h3>
+Broken Line
+</h3>
 
-The machine and the human exist as one. Let the conversation begin.</p>
+<p>
+The separation between builder language and human understanding.
+Where product logic becomes invisible to the people it was built for.
+</p>
 
-      <a class="btn btn-outline" onclick="navigateTo('home')" style="margin-top: 40px;">Return to System Core</a>
-    </section>
-  </div>
+</div>
+
+
+
+<div class="manifesto-card" data-aos="fade-up">
+
+<span>02</span>
+
+<h3>
+Velocity Chasm
+</h3>
+
+<p>
+The acceleration of creation without equal acceleration of meaning.
+Systems move faster than recognition.
+</p>
+
+</div>
+
+
+
+<div class="manifesto-card" data-aos="fade-up">
+
+<span>03</span>
+
+<h3>
+Recognition Gap
+</h3>
+
+<p>
+The distance between explaining what something does and making someone feel it was made for them.
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<section class="manifesto-system" data-aos="fade-up">
+
+
+<h2>
+THE DISCIPLINE OF DIAGNOSIS
+</h2>
+
+
+<div class="system-flow">
+
+
+<div class="system-node">
+Technical Architecture
+</div>
+
+
+<div class="system-arrow">
+→
+</div>
+
+
+<div class="system-node">
+Linguistic Infrastructure
+</div>
+
+
+<div class="system-arrow">
+→
+</div>
+
+
+<div class="system-node">
+Human Recognition
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<section class="aos-manifesto" data-aos="fade-up">
+
+
+<div class="aos-title">
+
+<h2>
+AOS
+</h2>
+
+<span class="aos-pill">
+ADAPTIVE ONTOLOGY SYSTEM
+</span>
+
+</div>
+
+
+<p>
+A structural intelligence layer designed to observe how meaning, systems, and perception evolve together.
+</p>
+
+
+
+<div class="aos-grid">
+
+
+<div class="aos-item">
+<b>Ontology Mapping</b>
+<br><br>
+Mapping what the system truly represents beneath features and interfaces.
+</div>
+
+
+
+<div class="aos-item">
+<b>Meaning Translation</b>
+<br><br>
+Transforming internal complexity into external recognition.
+</div>
+
+
+
+<div class="aos-item">
+<b>Adaptive Positioning</b>
+<br><br>
+Maintaining relevance as environments and audiences shift.
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<button 
+class="btn btn-dark"
+onclick="openManifestoReader()">
+
+Read Full Manifesto →
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+<!-- FULL MANIFESTO READER -->
+
+
+<section id="full-manifesto" class="manifesto-reader">
+
+
+<div class="reader-header">
+
+<h1>
+The Full Manifesto
+</h1>
+
+<p>
+The complete SaaStories philosophy.
+</p>
+
+</div>
+
+
+
+
+<div class="reader-chapter">
+
+
+<h2>
+FOUNDING PRINCIPLE
+</h2>
+
+
+<p>
+
+No eminent quality happens by chance. It is crafted with meticulous precision.
+
+We refuse to raise brilliant technical visions on a diet of sterile corporate clickbait, because you cannot chart the stars from a map of the gutters.
+
+SaaSolves combines technical rigor with the humanities to map the true mechanics of human behavior.
+
+Technology is only as powerful as the narrative that houses it.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="reader-chapter">
+
+
+<h2>
+THE CHASM OF VELOCITY
+</h2>
+
+
+<p>
+
+The age of the fast ship has left a chasm where human connection used to reside.
+
+As velocity became the metric and automation became the method, the heartbeat of vision became obscured by the clinical dialect of the tools that constructed it.
+
+It was never due to inadequate code or poor software mechanics that brilliance disappears into an empty void.
+
+It happens because the narrative surrounding the product fails to possess the weight necessary to capture human attention.
+
+Every feature exists to persuade a stranger to alter their workflow based on a promise.
+
+When that promise resembles a technical manual, reliance becomes temporary rather than foundational.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="reader-chapter">
+
+
+<h2>
+THE BROKEN LINE
+</h2>
+
+
+<p>
+
+Founders spend so much time inside their product that they eventually develop a private language around it.
+
+The structure becomes second nature.
+The terminology becomes obvious.
+
+Then one day, that internal lexicon reaches the homepage.
+
+The founder reads the sentence and sees the entire system behind it.
+
+The visitor reads the same sentence and sees a wall.
+
+We call this separation the Broken Line.
+
+The moment comprehension loses momentum and communication begins speaking from the builder’s reality instead of the audience’s reality.
+
+Communication failures rarely emerge from poor writing.
+
+They emerge from proximity.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="reader-chapter">
+
+
+<h2>
+THE ANATOMY OF RECOGNITION
+</h2>
+
+
+<p>
+
+Your audience does not arrive searching for a feature list.
+
+They arrive carrying an unnamed tension.
+
+A frustration that existed before your product.
+A recurring failure your architecture was designed to resolve.
+
+That origin belongs at the surface.
+
+Clarity tells visitors what a product does.
+
+Recognition makes them feel the product understands why they needed it.
+
+The distance between those two states is where SaaSolves operates.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="reader-chapter">
+
+
+<h2>
+THE DISCIPLINE OF DIAGNOSIS
+</h2>
+
+
+<p>
+
+Our work exists before copywriting.
+
+We reconstruct Linguistic Infrastructure by identifying where attention collapses, where meaning becomes distorted, and where understanding loses momentum.
+
+We connect technical architecture with human psychology.
+
+We replace builder language with narrative systems capable of carrying the true intelligence of the product.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="reader-chapter">
+
+
+<h2>
+OUR STANCE
+</h2>
+
+
+<p>
+
+We believe every interface has an invisible ceiling.
+
+That ceiling is determined by how effectively its meaning can travel.
+
+We map hidden cognitive friction points and engineer language systems that transform software from something merely functional into something deeply recognizable.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="reader-chapter">
+
+
+<h2>
+THE CONVERSION OF REALITY
+</h2>
+
+
+<p>
+
+You are crafting the future.
+
+Your communication should possess the same sophistication as the system behind it.
+
+The machine and the human exist within the same conversation.
+
+Let the narrative carry the architecture.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<button 
+class="btn btn-outline back-manifesto"
+onclick="closeManifestoReader()">
+
+Return to Overview
+
+</button>
+
+
+
+</section>
+
+
+
+</div>
 </div>
 
 
@@ -1283,12 +2173,52 @@ setTimeout(() => {
     function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
 
     function switchVMatrix(target) {
-      document.querySelectorAll('.vmatrix-toggle').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.vtab-panel').forEach(p => p.classList.remove('active'));
-      document.getElementById('tab-' + target).classList.add('active');
-      document.getElementById('panel-' + target).classList.add('active');
-    }
+  document.querySelectorAll('.vmatrix-toggle').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.vtab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + target).classList.add('active');
+  document.getElementById('panel-' + target).classList.add('active');
+}
 
+
+// 5. MANIFESTO READER
+
+function openManifestoReader(){
+
+  document.querySelector('.manifesto-cover').style.display="none";
+
+  document
+  .getElementById('full-manifesto')
+  .classList.add('active');
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function closeManifestoReader(){
+
+  document
+  .getElementById('full-manifesto')
+  .classList.remove('active');
+
+  document.querySelector('.manifesto-cover').style.display="block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+// DOM READY
+window.addEventListener('DOMContentLoaded', () => { 
+  AOS.refresh(); 
+});
+    
     window.addEventListener('DOMContentLoaded', () => { AOS.refresh(); });
   </script>
 </body>
