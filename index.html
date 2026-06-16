@@ -58,17 +58,41 @@
       font-size: 17px;
       line-height: 1.7;
     }
+    
     body::before {
-      content:''; position:fixed; inset:0; z-index:9998; pointer-events:none; opacity:0.025;
+      content:''; 
+      position:fixed; 
+      inset:0; 
+      z-index:0; 
+      pointer-events:none; 
+      opacity:0.025;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size:200px 200px;
     }
-    .view-panel { display:none; }
-    .view-panel.active-view { display:block; }
-    h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; }
-    p { font-family: var(--serif-body); font-weight: 400; color: var(--ivory2); }
-    .mono-text { font-family: var(--mono); }
+    
+    nav,
+    .view-panel,
+    footer {
+      position:relative;
+      z-index:1;
+}
+    
+.view-panel {
+  display:none;
+  width:100%;
+  min-height:100vh;
+}
 
+.view-panel.active-view {
+  display:block;
+}
+
+#view-our-manifesto,
+#view-our-approach {
+  background:var(--navy);
+  color:var(--ivory);
+}
+    
     /* TOAST NOTICE FOR CLIPBOARD FALLBACK */
     .toast-notice {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
