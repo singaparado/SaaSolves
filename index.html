@@ -1850,6 +1850,22 @@ Return to Overview
 
 document.addEventListener("DOMContentLoaded", function(){
 
+
+  // FORCE VIEW STATE RESET
+  document.querySelectorAll(".view-panel").forEach(panel=>{
+    panel.style.display="none";
+    panel.classList.remove("active-view");
+  });
+
+
+  const home=document.getElementById("view-home");
+
+  if(home){
+    home.style.display="block";
+    home.classList.add("active-view");
+  }
+
+
   // 1. INITIALIZE AOS
   if (window.AOS) {
     AOS.init({
@@ -1974,75 +1990,64 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
   // 4. NAVIGATION
+window.navigateTo = function(viewId, anchorId){
 
-  window.navigateTo = function(viewId, anchorId){
+  const target = document.getElementById('view-' + viewId);
 
-    const target =
-    document.getElementById('view-'+viewId);
+  if(!target){
+    console.log("View not found:", 'view-' + viewId);
+    return;
+  }
+
+  const panels = document.querySelectorAll('.view-panel');
+
+  panels.forEach(panel => {
+    panel.classList.remove('active-view');
+    panel.style.display = "none";
+  });
+
+  target.classList.add('active-view');
+  target.style.display = "block";
 
 
-    if(!target){
-      console.log(
-      "View not found:",
-      'view-'+viewId
-      );
-      return;
+  window.scrollTo({
+    top:0,
+    left:0,
+    behavior:"instant"
+  });
+
+
+  setTimeout(()=>{
+
+    if(window.AOS){
+      AOS.refresh();
     }
 
-
-    document
-    .querySelectorAll('.view-panel')
-    .forEach(panel=>{
-      panel.classList.remove('active-view');
+    target.querySelectorAll('[data-aos]').forEach(el=>{
+      el.classList.add('aos-animate');
     });
 
+  },100);
 
-    target.classList.add('active-view');
 
 
-    window.scrollTo({
-      top:0,
-      left:0,
-      behavior:"instant"
-    });
-
+  if(anchorId){
 
     setTimeout(()=>{
 
-      if(window.AOS){
-        AOS.refresh();
+      const element=document.getElementById(anchorId);
+
+      if(element){
+        element.scrollIntoView({
+          behavior:"smooth"
+        });
       }
 
-      document
-      .querySelectorAll('[data-aos]')
-      .forEach(el=>{
-        el.classList.add('aos-animate');
-      });
+    },150);
 
-    },100);
+  }
 
-
-
-    if(anchorId){
-
-      setTimeout(()=>{
-
-        const element =
-        document.getElementById(anchorId);
-
-        if(element){
-
-          element.scrollIntoView({
-            behavior:"smooth"
-          });
-
-        }
-
-      },150);
-
-    }
-
-  };
+};
 
 
 
