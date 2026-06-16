@@ -64,7 +64,11 @@
       background-size:200px 200px;
     }
     .view-panel { display: none; }
-    .view-panel.active-view { display: block; }
+.view-panel.active-view {
+    display:block !important;
+    min-height:100vh !important;
+    background:var(--navy) !important;
+}
     h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; }
     p { font-family: var(--serif-body); font-weight: 400; color: var(--ivory2); }
     .mono-text { font-family: var(--mono); }
@@ -463,13 +467,10 @@ z-index:1;
 
 .manifesto-grid {
 display:grid;
-grid-template-columns:
-repeat(3,1fr);
+grid-template-columns:repeat(3,1fr);
 gap:24px;
 margin:70px 0;
-
-
-
+}
 
 .manifesto-card {
 background:
@@ -478,7 +479,6 @@ linear-gradient(
 rgba(48,91,124,.25),
 var(--cobalt)
 );
-
 
 border:1.5px solid var(--aegean);
 padding:32px;
@@ -490,15 +490,12 @@ position:relative;
 overflow:hidden;
 }
 
-
 .manifesto-card:hover {
 transform:translateY(-10px);
 box-shadow:
 0 20px 45px rgba(0,0,0,.35),
 0 0 0 1px var(--aegean-light);
 }
-
-
 
 .manifesto-card span {
 font-family:var(--mono);
@@ -507,20 +504,16 @@ letter-spacing:.2em;
 color:var(--aegean-light);
 }
 
-
-
 .manifesto-card h3 {
 font-family:var(--serif-title);
 font-size:1.7rem;
 margin:20px 0;
 }
 
-
 .manifesto-card p {
 font-size:.95rem;
 line-height:1.7;
 }
-
 
 
 /* ---------- SYSTEM MAP ---------- */
@@ -534,14 +527,11 @@ box-shadow:var(--shadow);
 padding:50px;
 }
 
-
 .manifesto-system h2 {
 font-family:var(--serif-title);
 font-size:2.5rem;
 margin-bottom:15px;
 }
-
-
 
 .system-flow {
 display:grid;
@@ -552,7 +542,6 @@ gap:20px;
 margin-top:40px;
 }
 
-
 .system-node {
 background:var(--cobalt);
 border:1px solid var(--aegean);
@@ -560,14 +549,10 @@ padding:30px;
 text-align:center;
 }
 
-
-
 .system-node h4 {
 font-family:var(--serif-title);
 margin-bottom:10px;
 }
-
-
 
 .system-arrow {
 font-family:var(--mono);
@@ -575,10 +560,7 @@ font-size:2rem;
 color:var(--aegean-light);
 }
 
-
-
 /* ---------- AOS BLOCK ---------- */
-
 
 .aos-manifesto {
 margin:90px 0;
@@ -596,8 +578,6 @@ border:var(--border);
 box-shadow:var(--shadow);
 }
 
-
-
 .aos-title {
 display:flex;
 justify-content:space-between;
@@ -606,14 +586,10 @@ gap:20px;
 margin-bottom:30px;
 }
 
-
-
 .aos-title h2 {
 font-family:var(--serif-title);
 font-size:2.3rem;
 }
-
-
 
 .aos-pill {
 font-family:var(--mono);
@@ -626,45 +602,28 @@ color:var(--aegean-light);
 
 
 .aos-grid {
-
 display:grid;
-
 grid-template-columns:
 repeat(3,1fr);
-
 gap:20px;
-
 }
-
 
 
 .aos-item {
-
 background:
 rgba(5,10,20,.65);
-
 border:1px solid var(--sand);
-
 padding:25px;
-
 }
-
 
 
 .aos-item h4 {
-
 color:var(--aegean-light);
-
 margin-bottom:10px;
-
 }
 
-
-
 .aos-item p {
-
 font-size:.9rem;
-
 }
 
 
@@ -719,8 +678,6 @@ color:var(--ivory2);
 
 
 /* ---------- BUTTON ---------- */
-
-
 .read-manifesto-btn {
 margin-top:40px;
 }
@@ -728,9 +685,7 @@ margin-top:40px;
 
 /* ---------- MOBILE ---------- */
 
-
 @media(max-width:900px){
-
 .manifesto-grid {
 grid-template-columns:1fr;
 }
@@ -1897,7 +1852,11 @@ Return to Overview
 
   <script>
     // 1. INITIALIZE AOS
+if(window.AOS){
 AOS.init({
+...
+});
+}
     duration: 900,
     easing: 'ease-out-cubic',
     once: true,
@@ -1906,7 +1865,7 @@ AOS.init({
 });
 
 window.addEventListener('load', () => {
-    AOS.refresh();
+    if (window.AOS) AOS.refresh();
 });
     
     // 2. SAMPLE COPIES
@@ -1959,19 +1918,17 @@ window.addEventListener('load', () => {
     }
 
     // 4. NAVIGATION & AOS REFRESH
-    function navigateTo(viewId, anchorId) {
+  function navigateTo(viewId, anchorId) {
 
-  document.querySelectorAll('.view-panel')
-    .forEach(p => {
-      p.classList.remove('active-view');
-    });
+    const target = document.getElementById('view-' + viewId);
 
-  const target = document.getElementById('view-' + viewId);
-
-  if (!target) {
+    if (!target) {
     console.log("View not found:", 'view-' + viewId);
     return;
-  }
+    }
+
+  document.querySelectorAll('.view-panel')
+    .forEach(p => p.classList.remove('active-view'));
 
   target.classList.add('active-view');
 
@@ -1982,7 +1939,7 @@ window.addEventListener('load', () => {
 });
 
 setTimeout(() => {
-    AOS.refresh();
+    if (window.AOS) AOS.refresh();
     document.querySelectorAll('[data-aos]').forEach(el => {
         el.classList.add('aos-animate');
     });
@@ -2048,10 +2005,10 @@ function closeManifestoReader(){
 
 // DOM READY
 window.addEventListener('DOMContentLoaded', () => { 
-  AOS.refresh(); 
+  if (window.AOS) AOS.refresh();
 });
     
-    window.addEventListener('DOMContentLoaded', () => { AOS.refresh(); });
+    window.addEventListener('DOMContentLoaded', () => { if (window.AOS) AOS.refresh();
   </script>
 </body>
 </html>
