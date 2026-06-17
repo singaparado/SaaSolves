@@ -2367,8 +2367,8 @@ a, a:visited, a:hover, a:active {
       <p style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); max-width: 400px; line-height: 1.7;">Every project below is a translation problem we resolved — from architectural opacity to immediate market recognition.</p>
     </div>
 
-    <!-- Work Cards: Stacked Full-Width on Mobile, Side-by-Side on Desktop -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+    <!-- Work Cards -->
+    <div class="work-grid" style="gap: 32px;">
 
       <!-- CARD: LandKnot -->
       <div data-aos="fade-up" data-aos-delay="100" style="background: var(--cobalt); border: var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column;">
@@ -2444,7 +2444,7 @@ a, a:visited, a:hover, a:active {
     <div style="border: var(--border); box-shadow: var(--shadow);">
 
       <!-- RAFU -->
-      <div data-aos="fade-up" data-aos-delay="100" style="display: grid; grid-template-columns: 180px 1fr; border-bottom: var(--border); background: rgba(8,16,28,0.6);">
+      <div data-aos="fade-up" data-aos-delay="100" class="framework-cell-grid" style="border-bottom: var(--border); background: rgba(8,16,28,0.6);">
         <div style="padding: 36px 28px; border-right: var(--border); display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; background: var(--void);">
           <span style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); display: block; margin-bottom: 12px;">Framework I</span>
           <span style="font-family: var(--serif-title); font-size: 2.4rem; font-weight: 700; color: var(--ivory); line-height: 1; font-style: italic;">RAFU</span>
@@ -2457,7 +2457,7 @@ a, a:visited, a:hover, a:active {
       </div>
 
       <!-- ASUKSHIRA -->
-      <div data-aos="fade-up" data-aos-delay="200" style="display: grid; grid-template-columns: 180px 1fr; background: var(--cobalt);">
+      <div data-aos="fade-up" data-aos-delay="200" class="framework-cell-grid" style="background: var(--cobalt);">
         <div style="padding: 36px 28px; border-right: var(--border); display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; background: var(--ink);">
           <span style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean-light); display: block; margin-bottom: 12px;">Framework II</span>
           <span style="font-family: var(--serif-title); font-size: 1.6rem; font-weight: 700; color: var(--ivory); line-height: 1.1; font-style: italic;">ASUK­SHIRA</span>
@@ -2973,7 +2973,8 @@ a, a:visited, a:hover, a:active {
       <!-- AOS SWIPEABLE CARD TRACK — scroll-snap, one card visible at a time on mobile -->
       <div class="approach-swipe-hint" data-aos="fade-up" data-aos-delay="140">← swipe to explore →</div>
 
-      <div class="approach-swipe-track" id="aos-cards" data-aos="fade-up" data-aos-delay="160">
+      <div class="approach-swipe-wrap" data-aos="fade-up" data-aos-delay="160">
+      <div class="approach-swipe-track" id="aos-cards">
 
         <div class="approach-swipe-card">
           <div class="approach-swipe-card-num">I</div>
@@ -3008,7 +3009,8 @@ a, a:visited, a:hover, a:active {
           </div>
         </div>
 
-      </div>
+      </div><!-- end .approach-swipe-track -->
+      </div><!-- end .approach-swipe-wrap -->
 
     </div>
   </section>
