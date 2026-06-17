@@ -755,6 +755,712 @@ padding:28px;
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════
+   GLOBAL AMBIENT VISUAL LAYER
+   ══════════════════════════════════════════════════════ */
+
+/* Gradient background base — navy with subtle aegean depth */
+body {
+  background: var(--navy);
+}
+
+/* Ambient glow orbs — fixed, behind everything */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(120px);
+  opacity: 0.07;
+  animation: orb-drift 18s ease-in-out infinite alternate;
+}
+body::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #3A6D94 0%, transparent 70%);
+  top: -10vh;
+  left: -10vw;
+  animation-delay: 0s;
+}
+body::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #1a4a2e 0%, transparent 70%);
+  bottom: 5vh;
+  right: -10vw;
+  animation-delay: -9s;
+}
+
+@keyframes orb-drift {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.06; }
+  50%  { transform: translate(4vw, 6vh) scale(1.12); opacity: 0.10; }
+  100% { transform: translate(-3vw, -4vh) scale(0.92); opacity: 0.07; }
+}
+
+/* Section backgrounds get a subtle grain texture via SVG */
+.view-panel > section {
+  position: relative;
+  isolation: isolate;
+}
+.view-panel > section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* Sandbox window — rotating border glow */
+.sandbox-window {
+  position: relative;
+}
+.sandbox-window::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 0deg,
+    #3A6D94 60deg,
+    #4ade80 120deg,
+    transparent 180deg,
+    transparent 360deg
+  );
+  z-index: -1;
+  animation: sandbox-spin 8s linear infinite;
+  opacity: 0.35;
+  filter: blur(6px);
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes sandbox-spin {
+  to { --angle: 360deg; }
+}
+
+/* Tier cards — hover lift with glow */
+.tier {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.tier:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(58, 109, 148, 0.18), 0 0 0 1px rgba(58,109,148,0.25);
+}
+
+/* Tier level badge */
+.tier-level-badge {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--aegean-light);
+  background: var(--void);
+  border: 1px solid var(--aegean);
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+/* Section border pulse — top border on key sections */
+.approach-section--deep,
+.approach-section--navy {
+  border-top: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ══════════════════════════════════════════════════════
+   OUR APPROACH PAGE — COMPONENT STYLES
+   All rules use .approach- prefix. Mobile-first.
+   ══════════════════════════════════════════════════════ */
+
+/* Hero */
+.approach-hero {
+  padding: 10vh 6vw 8vh;
+  background: var(--navy);
+  border-bottom: var(--border);
+}
+.approach-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.approach-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aegean);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.approach-eyebrow-rule {
+  display: inline-block;
+  width: 28px;
+  height: 1.5px;
+  background: var(--aegean);
+  flex-shrink: 0;
+}
+.approach-title-wrap {
+  border-left: 5px solid var(--aegean-light);
+  padding-left: 28px;
+  margin-bottom: 48px;
+}
+.approach-title {
+  font-family: var(--serif-title);
+  font-size: clamp(2.6rem, 10vw, 5.5rem);
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.approach-title-italic {
+  font-style: italic;
+  color: var(--aegean-light);
+}
+.approach-subtitle {
+  font-family: var(--serif-body);
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  line-height: 1.8;
+  color: var(--ivory2);
+  max-width: 580px;
+}
+
+/* Section nav strip — 2×2 on mobile, single row on desktop */
+.approach-nav-strip {
+  display: flex;
+  flex-wrap: wrap;
+  border: var(--border);
+  max-width: 720px;
+}
+.approach-nav-cell {
+  flex: 1 1 50%;
+  padding: 14px 16px;
+  border-right: var(--border-thin);
+  border-bottom: var(--border-thin);
+  background: var(--deep);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aegean-light);
+  box-sizing: border-box;
+}
+.approach-nav-cell:nth-child(even) {
+  background: var(--cobalt);
+}
+@media (min-width: 600px) {
+  .approach-nav-cell {
+    flex: 1 1 25%;
+    border-bottom: none;
+  }
+}
+
+/* Sections */
+.approach-section {
+  padding: 8vh 6vw;
+  border-bottom: var(--border);
+}
+.approach-section--deep  { background: var(--deep); }
+.approach-section--navy  { background: var(--navy); }
+.approach-section--void  { background: var(--void); }
+
+/* Chapter label */
+.approach-chapter-label {
+  margin-bottom: 32px;
+}
+.approach-tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--aegean);
+  background: var(--cobalt);
+  border: 1px solid var(--aegean);
+  padding: 5px 12px;
+  display: inline-block;
+}
+.approach-tag--light {
+  color: var(--aegean-light);
+  background: var(--deep);
+  border-color: var(--aegean-light);
+}
+
+/* Two-col layout — stacks on mobile */
+.approach-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+@media (min-width: 700px) {
+  .approach-two-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+/* Framework identity block */
+.approach-framework-ident {}
+.approach-framework-name {
+  font-family: var(--serif-title);
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 0.92;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.approach-framework-name--sm {
+  font-size: clamp(2rem, 6vw, 3.6rem);
+}
+.approach-framework-fullname {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aegean-light);
+  border-top: 1px solid var(--aegean);
+  padding-top: 12px;
+  line-height: 1.8;
+}
+.approach-framework-body p {
+  font-family: var(--serif-body);
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--ivory2);
+  margin-bottom: 16px;
+}
+
+/* Three cells — vertical stack always (no overflow) */
+.approach-three-stack {
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+}
+.approach-cell {
+  padding: 24px 22px;
+  border-bottom: var(--border-thin);
+}
+.approach-cell:last-child { border-bottom: none; }
+.approach-cell--dark { background: var(--void); }
+.approach-cell--mid  { background: var(--cobalt); }
+.approach-cell-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--aegean);
+  margin-bottom: 10px;
+}
+.approach-cell p {
+  font-family: var(--serif-body);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--ivory2);
+  margin: 0;
+}
+
+/* Sequence map — vertical on mobile, horizontal on desktop */
+.approach-sequence-wrap {
+  background: var(--cobalt);
+  border: var(--border);
+  padding: 28px 24px;
+}
+.approach-sequence-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--aegean-light);
+  margin-bottom: 20px;
+}
+.approach-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.approach-seq-arrow {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  color: var(--aegean-light);
+  text-align: center;
+  padding: 8px 0;
+  transform: rotate(90deg);
+}
+@media (min-width: 700px) {
+  .approach-sequence {
+    flex-direction: row;
+    align-items: center;
+  }
+  .approach-seq-arrow {
+    transform: none;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+  .approach-seq-step {
+    flex: 1;
+  }
+}
+.approach-seq-step {
+  padding: 20px 16px;
+  text-align: center;
+  border: var(--border-thin);
+}
+.approach-seq-step--void { background: var(--void); }
+.approach-seq-step--deep { background: var(--deep); }
+.approach-seq-step--green {
+  background: var(--ink);
+  border-left: 3px solid #4ade80;
+}
+.approach-seq-num {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--aegean);
+  margin-bottom: 8px;
+}
+.approach-seq-step--green .approach-seq-num { color: #4ade80; }
+.approach-seq-name {
+  font-family: var(--serif-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ivory);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.approach-seq-desc {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ivory2);
+}
+
+/* AOS section */
+.approach-aos-head {
+  margin-bottom: 24px;
+}
+.approach-aos-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.approach-aos-name {
+  font-family: var(--serif-title);
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 1;
+  font-style: italic;
+}
+.approach-aos-badge {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aegean-light);
+  background: var(--cobalt);
+  border: 1px solid var(--aegean);
+  padding: 4px 10px;
+}
+.approach-aos-intro {
+  font-family: var(--serif-body);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ivory2);
+  border-left: 4px solid var(--aegean);
+  padding-left: 18px;
+  max-width: 680px;
+  margin-bottom: 20px;
+}
+
+/* Swipe hint */
+.approach-swipe-hint {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aegean);
+  margin-bottom: 12px;
+}
+
+/* AOS swipeable card track */
+.approach-swipe-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 0;
+  border: var(--border);
+  border-radius: 12px;
+  overflow: hidden; /* clips corners */
+}
+.approach-swipe-track::-webkit-scrollbar { display: none; }
+
+.approach-swipe-card {
+  min-width: 85vw;
+  max-width: 340px;
+  scroll-snap-align: start;
+  padding: 32px 28px 28px;
+  box-sizing: border-box;
+  background: var(--cobalt);
+  border-right: var(--border-thin);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+@media (min-width: 700px) {
+  .approach-swipe-card {
+    min-width: 0;
+    max-width: none;
+    flex: 1;
+    scroll-snap-align: none;
+  }
+  .approach-swipe-track {
+    overflow-x: visible;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.approach-swipe-card--mid  { background: var(--void); }
+.approach-swipe-card--void { background: var(--deep); }
+
+.approach-swipe-card-num {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 16px;
+}
+.approach-swipe-card-title {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ivory);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+}
+.approach-swipe-card-body {
+  font-family: var(--serif-body);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--ivory2);
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+.approach-swipe-pip-row {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+@media (min-width: 700px) {
+  .approach-swipe-pip-row { display: none; }
+}
+.approach-pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--aegean);
+  opacity: 0.3;
+}
+.approach-pip--active {
+  opacity: 1;
+  background: var(--aegean-light);
+}
+
+/* Section head */
+.approach-section-head {
+  margin-bottom: 40px;
+  border-bottom: var(--border);
+  padding-bottom: 24px;
+}
+.approach-section-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--aegean);
+  margin-bottom: 10px;
+}
+.approach-section-title {
+  font-family: var(--serif-title);
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 1.1;
+}
+.approach-section-sub {
+  font-family: var(--serif-body);
+  font-size: 0.95rem;
+  color: var(--ivory2);
+  max-width: 540px;
+  line-height: 1.75;
+  margin-top: 10px;
+}
+
+/* Artifact grid — stacked on mobile, 2-col on desktop */
+.approach-artifact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 700px) {
+  .approach-artifact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+.approach-artifact-card {
+  background: var(--cobalt);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.approach-artifact-header {
+  background: var(--deep);
+  border-bottom: var(--border-thin);
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.approach-artifact-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aegean-light);
+}
+.approach-artifact-sector {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.approach-artifact-body {
+  padding: 28px 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.approach-artifact-name {
+  font-family: var(--serif-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ivory);
+  margin-bottom: 14px;
+}
+.approach-artifact-context {
+  font-family: var(--serif-body);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--aegean-light);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.approach-artifact-desc {
+  font-family: var(--serif-body);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--ivory2);
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+.approach-copy-btn {
+  background: none;
+  border: var(--border-thin);
+  color: var(--aegean-light);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 10px 16px;
+  cursor: pointer;
+  text-align: left;
+  margin-top: auto;
+  transition: background 0.15s;
+}
+.approach-copy-btn:hover {
+  background: rgba(58,109,148,0.1);
+}
+.approach-copy-expand {
+  margin-top: 18px;
+  border-top: var(--border-thin);
+  padding-top: 18px;
+}
+.approach-copy-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aegean-light);
+  margin-bottom: 14px;
+}
+.approach-copy-text {
+  font-family: var(--serif-body);
+  font-size: 0.85rem;
+  line-height: 1.85;
+  color: var(--ivory2);
+}
+
+/* CTA block */
+.approach-cta-block {
+  max-width: 680px;
+}
+.approach-cta-title {
+  font-family: var(--serif-title);
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.approach-cta-body {
+  font-family: var(--serif-body);
+  font-size: 1rem;
+  color: var(--ivory2);
+  line-height: 1.8;
+  max-width: 540px;
+  margin-bottom: 28px;
+}
+.approach-cta-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.approach-back-link {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ivory2);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--aegean);
+}
     
 /* ── SPA Navigation Safety Layer ─────────────────────── */
 
@@ -1294,140 +2000,160 @@ padding:28px;
         </section>
         
     <!-- EXECUTION TIERS WITH EXTENDED BULLET ROADMAPS -->
-    <section class="services" id="services">
-      <div class="services-head">
-        <h2>Available Execution Tiers</h2>
-      </div>
-      <div class="tiers">
-        
-        <!-- TIER 1: THE NARRATIVE SIGNAL SCAN -->
-        <div class="tier" data-aos="zoom-in">
-          <div class="tier-title">The Narrative Signal Scan</div>
-          <div class="tier-price">$399 <small>// Asynchronous</small></div>
-          <div class="tier-desc">
-            The diagnostic verdict for founders who feel the drift but cannot locate the leak.
-            <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 12px;">
-              <strong style="font-family: var(--display); font-size: 0.75rem; text-transform: uppercase; color: var(--ivory);">Deliverables:</strong>
-              <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 6px;">
-                <li>Signal Friction Report: A 3-page heatmap of your conversion failures.</li>
-                <li>Top 5 Narrative Failure Points: Identified psychological gaps between your build and your buyer.</li>
-                <li>Priority Conversion Recommendations: A list of tactical fixes to stop immediate trust erosion.</li>
-              </ul>
-            </div>
-            
-            <!-- EXTENDED DRILLDOWN ACCORDION BLOCK -->
-            <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">discover what you'll get from this tier here ↓</button>
-            <div class="extended-tier-content">
-              <p>A focused intelligence layer designed for rapid operational clarity:</p>
-              <ul>
-                <li>Forensic evaluation of your core messaging systems and positioning stance.</li>
-                <li>Identification of "sensory exhaustion" points—where visitors stop reading and start leaving.</li>
-                <li>Prioritized audit of communication leaks impacting your conversion rate.</li>
-                <li>Direct observation of audience interpretation versus your intended messaging.</li>
-                <li><strong>Outcome:</strong> A clear map of your narrative errors to guide your next move.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="tier-output">Delivery: 72 Hours // Diagnostic Release</div>
-          <a href="mailto:saasolves@gmail.com?subject=Initiating%20Narrative%20Signal%20Scan%20%E2%80%94%20SaaSolves&body=Hi%2C%20Mahdi.%0A%0AOur%20team%20would%20like%20to%20initiate%20a%20Narrative%20Signal%20Scan%20of%20our%20software's%20current%20messaging%20framework%20to%20uncover%20where%20we're%20losing%20user%20attention.%0A%0A-%20Our%20Product%20URL%3A%20%0A-%20The%20Core%20Feature%20Users%20Struggle%20To%20Understand%20Most%3A%20%0A%0AWe'd%20love%20to%20see%20where%20our%20narrative%20architecture%20is%20leaking%20pipeline%20velocity.%20%0A%0ABest%20regards%2C" onclick="handleCtaClick(event)" class="tier-link">Run Signal Scan →</a>
+<section class="services" id="services">
+  <div class="services-head" data-aos="fade-up">
+    <div style="font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); margin-bottom: 12px;">// Available Execution Tiers</div>
+    <h2>Choose Your Transformation Level</h2>
+    <p style="font-family: var(--serif-body); font-size: 1rem; color: var(--ivory2); max-width: 580px; margin: 16px auto 0; line-height: 1.75;">Every tier is a state transition — not a service purchase. You are not hiring a copywriter. You are installing the infrastructure that allows your market to understand what you built.</p>
+  </div>
+
+  <div class="tiers">
+
+    <!-- ── TIER 1: NARRATIVE SIGNAL SCAN ── -->
+    <div class="tier" data-aos="fade-up" data-aos-delay="80">
+      <div class="tier-level-badge">Level I // Awareness &amp; Discovery</div>
+      <div class="tier-title">The Narrative Signal Scan</div>
+      <div class="tier-price">$750 <small>// Asynchronous</small></div>
+      <div class="tier-desc">
+        <p style="margin-bottom: 16px;">The intelligence audit for founders who sense their product is being misunderstood — but cannot locate where the market perception breaks.</p>
+        <p style="font-family: var(--serif-body); font-size: 0.9rem; color: var(--aegean-light); font-style: italic; margin-bottom: 20px; border-left: 3px solid var(--aegean); padding-left: 12px;">"I know something is preventing my product from being fully understood. I just can't see where."</p>
+
+        <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 14px;">
+          <strong style="font-family: var(--display); font-size: 0.72rem; text-transform: uppercase; color: var(--ivory); letter-spacing: 0.06em;">Deliverables:</strong>
+          <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 8px; line-height: 1.75;">
+            <li><strong style="color: var(--ivory);">Market Perception Heatmap</strong> — a 3-page diagnostic showing exactly where your product loses clarity, trust, and emotional recognition.</li>
+            <li><strong style="color: var(--ivory);">Top 5 Narrative Friction Points</strong> — the hidden gaps between what your product delivers and what your audience actually understands.</li>
+            <li><strong style="color: var(--ivory);">Homepage Messaging Diagnosis</strong> — headline, subheadline, value proposition, feature explanation, and CTA flow reviewed for attention collapse.</li>
+            <li><strong style="color: var(--ivory);">Priority Narrative Corrections</strong> — immediate interventions designed to restore confidence, reduce hesitation, and stop invisible trust loss.</li>
+          </ul>
         </div>
 
-        <!-- TIER 2: THE CLARITY AUDIT -->
-        <div class="tier" data-aos="zoom-in">
-          <div class="tier-title">The Clarity Audit</div>
-          <div class="tier-price">$1,551 <small>// Asynchronous</small></div>
-          <div class="tier-desc">
-            The architectural blueprint for founders who need the repair, not just the diagnosis.
-            <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 12px;">
-              <strong style="font-family: var(--display); font-size: 0.75rem; text-transform: uppercase; color: var(--ivory);">Deliverables:</strong>
-              <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 6px;">
-                <li>Annotated UI Teardown Map: A visual breakdown of your interface’s structural weaknesses.</li>
-                <li>3 Alternative Core Value Propositions: Production-ready hooks crafted for immediate A/B testing.</li>
-                <li>Strategic Matrix Document: The "Why" and "How" behind your new positioning architecture.</li>
-              </ul>
-            </div>
-            
-            <!-- EXTENDED DRILLDOWN ACCORDION BLOCK -->
-            <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">discover what you'll get from this tier here ↓</button>
-            <div class="extended-tier-content">
-              <p>A full positioning re-alignment blueprint mapping your software against market desire:</p>
-              <ul>
-                <li>Total audit of interface friction, tracking how your jargon kills procurement loops.</li>
-                <li>Strategic translation of complex multi-tenant or protocol-level jargon into high-credibility narrative.</li>
-                <li>Delivers a ready-to-deploy hero messaging blueprint—you get the exact words to replace your current copy.</li>
-                <li>Direct behavioral mapping explaining how to neutralize enterprise skepticism.</li>
-                <li><strong>Outcome:</strong> You receive the exact repair kit to transform your site’s conversion narrative.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="tier-output">Delivery: 7 Days // Secure Digital Transmission</div>
-          <a href="mailto:saasolves@gmail.com?subject=Initiating%20Clarity%20Audit%20%E2%80%94%20SaaSolves&body=Hi%2C%20Mahdi.%0A%0AOur%20team%20would%20like%20to%20secure%20a%20Clarity%20Audit%20of%20our%20software's%20current%20messaging%20framework%20to%20uncover%20where%20we're%20losing%20user%20attention.%0A%0A-%20Our%20Product%20URL%3A%20%0A-%20The%20Core%20Feature%20Users%20Struggle%20To%20Understand%20Most%3A%20%0A%0AWe'd%20love%20to%20see%20where%20our%20narrative%20architecture%20is%20leaking%20pipeline%20velocity.%20%0A%0ABest%20regards%2C" onclick="handleCtaClick(event)" class="tier-link">Secure Audit Slot →</a>
-        </div>
-        
-        <!-- TIER 3: FULL STRUCTURAL OVERHAUL -->
-          <div class="tier" data-aos="zoom-in" style="border-color: var(--aegean-light);">
-          <div class="tier-title">Full Structural Overhaul</div>
-          <div class="tier-price">$7,000 <small>// Immersive</small></div>
-          <div class="tier-desc">
-            The full deployment for founders who need their primary positioning rewritten and reconstructed from top to bottom.
-            <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 12px;">
-              <strong style="font-family: var(--display); font-size: 0.75rem; text-transform: uppercase; color: var(--ivory);">Deliverables:</strong>
-              <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 6px;">
-                <li>Production-Ready Copy Deck: A complete rewrite of your primary positioning infrastructure.</li>
-                <li>Complete Hero & CTA Flow Restructuring: Optimized sequences engineered to capture intent.</li>
-                <li>1-on-1 Alignment Engine Call: A deep-dive session to synchronize your brand and behavioral intent.</li>
-              </ul>
-            </div>
-            
-            <!-- EXTENDED DRILLDOWN ACCORDION BLOCK -->
-            <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">discover what you'll get from this tier here ↓</button>
-            <div class="extended-tier-content">
-              <p>A comprehensive re-engineering roadmap replacing your narrative with premium market authority:</p>
-              <ul>
-                <li>Top-to-bottom re-engineering of your primary homepage infrastructure.</li>
-                <li>Full implementation of core architectural analysis into polished, production-ready text.</li>
-                <li>Structured feature-mapping into high-converting blocks and narrative sequences.</li>
-                <li>One immersive, deep-dive alignment session tracking your buyer’s behavioral intent.</li>
-                <li>UX micro-copy optimization ensuring users feel entirely seen through your word arrangement.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="tier-output">Delivery: 21 Days // High-Touch Production Release</div>
-          <a href="mailto:saasolves@gmail.com?subject=Requesting%20Full%20Structural%20Overhaul%20%E2%80%94%20SaaSolves&body=Hi%2C%20Mahdi.%0A%0AI%20am%20ready%20to%20deploy%20the%20Full%20Structural%20Overhaul%20for%20our%20platform.%20Here%20are%20our%20details%3A%0A%0A-%20Our%20Current%20Platform%20URL%3A%20%0A-%20Our%20Primary%20Target%20Audience%3A%20%0A-%20The%20Biggest%20Communication%20Bottleneck%20We%20Face%20Right%20Now%3A%20%0A%0APlease%20let%20me%20know%20your%20earliest%20availability%20to%20review%20our%20architecture.%0A%0ABest%20regards%2C" onclick="handleCtaClick(event)" class="tier-link">Initiate Engine Call →</a>
-        </div>
-        
-        <!-- TIER 4: LONG-HORIZON RETAINER -->
-        <div class="tier" data-aos="zoom-in">
-          <div class="tier-title">Long-Horizon Retainer</div>
-          <div class="tier-price">$3,500 <small>// Monthly</small></div>
-          <div class="tier-desc">
-            Operational linguistic defense for agile squads.
-            <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 12px;">
-              <strong style="font-family: var(--display); font-size: 0.75rem; text-transform: uppercase; color: var(--ivory);">Deliverables:</strong>
-              <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 6px;">
-                <li>Dedicated Slack/Discord structural line: Instant asynchronous access to your narrative architect.</li>
-                <li>Bi-weekly UX/Landing page checks: Proactive messaging integrity audits.</li>
-                <li>Continuous messaging protection: Real-time auditing for every new deployment.</li>
-              </ul>
-            </div>
-            
-            <!-- EXTENDED DRILLDOWN ACCORDION BLOCK -->
-            <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">discover what you'll get from this tier here ↓</button>
-            <div class="extended-tier-content">
-              <p>Continuous operational defense for high-velocity engineering squads:</p>
-              <ul>
-                <li>Real-time copy auditing for subsequent feature rollouts, product layers, and documentation hooks.</li>
-                <li>Proactive mitigation of messaging fragmentation across expanding horizons and enterprise shifts.</li>
-                <li>Bi-weekly alignment loops securing unshakeable market distinction and high-prestige visibility.</li>
-                <li>Maintains absolute narrative consistency as your product scales.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="tier-output">Ongoing Deployment // Priority Execution Queue</div>
-          <a href="mailto:saasolves@gmail.com?subject=Securing%20Long-Horizon%20Retainer%20%E2%80%94%20SaaSolves&body=Hi%2C%20Mahdi.%0A%0AI'm%20reaching%20out%20to%20discuss%20securing%20the%20Long-Horizon%20Retainer%20for%20our%20scaling%20infrastructure.%20We%20need%20continuous%20linguistic%20alignment%20as%20we%20roll%20out%20new%20features.%0A%0A-%20Our%20Platform%20URL%3A%20%0A-%20Expected%20Feature%20Updates%20%2F%20Product%20Roadmap%20Focus%3A%20%0A-%20Current%20Monthly%20Traffic%20%2F%20User%20Volume%3A%20%0A%0ALet's%20schedule%20a%20deep-dive%20briefing%20call%20to%20align%20our%20engineering%20and%20narrative%20timelines.%0A%0ABest%20regards%2C" onclick="handleCtaClick(event)" class="tier-link">Connect Systems →</a>
+        <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">Expand tier breakdown ↓</button>
+        <div class="extended-tier-content">
+          <p>A focused perception intelligence layer built for founders who need visibility before making their next move:</p>
+          <ul>
+            <li>Forensic analysis of your core messaging architecture, identifying where your product's true value becomes diluted.</li>
+            <li>Detection of "attention collapse points" — the exact moments where potential customers stop understanding, stop believing, and leave.</li>
+            <li>Analysis of founder intent versus customer interpretation, revealing where meaning is lost between product and audience.</li>
+            <li>Identification of the emotional disconnects preventing visitors from feeling: "This was built for me."</li>
+            <li><strong>Outcome:</strong> A precise map of where your market perception is weakening — and the first interventions required to restore alignment.</li>
+          </ul>
         </div>
       </div>
-    </section>
+      <div class="tier-output">Delivery: 72 Hours // Diagnostic Release</div>
+      <a href="mailto:saasolves@gmail.com?subject=Initiating%20Narrative%20Signal%20Scan%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Run Signal Scan →</a>
+    </div>
+
+    <!-- ── TIER 2: NARRATIVE BLUEPRINT ── -->
+    <div class="tier" data-aos="fade-up" data-aos-delay="160">
+      <div class="tier-level-badge">Level II // Repair &amp; Reconstruction</div>
+      <div class="tier-title">The Narrative Blueprint</div>
+      <div class="tier-price">$3,500 <small>// Asynchronous</small></div>
+      <div class="tier-desc">
+        <p style="margin-bottom: 16px;">The complete reconstruction framework for founders who know their product deserves stronger market recognition — and need more than a diagnosis.</p>
+        <p style="font-family: var(--serif-body); font-size: 0.9rem; color: var(--aegean-light); font-style: italic; margin-bottom: 20px; border-left: 3px solid var(--aegean); padding-left: 12px;">"My product is stronger than how the market perceives it. I need the bridge rebuilt."</p>
+
+        <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 14px;">
+          <strong style="font-family: var(--display); font-size: 0.72rem; text-transform: uppercase; color: var(--ivory); letter-spacing: 0.06em;">Deliverables:</strong>
+          <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 8px; line-height: 1.75;">
+            <li><strong style="color: var(--ivory);">Complete Homepage Rewrite</strong> — production-ready copy for hero, subheadline, value proposition, problem framing, feature translation, and CTA messaging.</li>
+            <li><strong style="color: var(--ivory);">Buyer Psychology Map</strong> — a document identifying what customers need to feel, where objections live, and what triggers confidence versus hesitation.</li>
+            <li><strong style="color: var(--ivory);">Annotated UX Messaging Teardown</strong> — page-by-page breakdown of confusing sections, missing trust signals, and weak emotional transitions.</li>
+            <li><strong style="color: var(--ivory);">3 Alternative Conversion Angles</strong> — three distinct narrative directions built around buyer motivation: urgency, security, transformation.</li>
+            <li><strong style="color: var(--ivory);">Strategic Messaging Architecture Document</strong> — the complete logic behind your new communication system, ready to guide every future deployment.</li>
+          </ul>
+        </div>
+
+        <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">Expand tier breakdown ↓</button>
+        <div class="extended-tier-content">
+          <p>A complete market alignment system rebuilding the bridge between your product reality and customer understanding:</p>
+          <ul>
+            <li>Full analysis of interface friction, removing moments where complexity overwhelms confidence.</li>
+            <li>Translation of technical capabilities into human outcomes customers immediately recognize.</li>
+            <li>Behavioral mapping showing how potential customers interpret your company, where skepticism appears, and where confidence is built.</li>
+            <li>A messaging foundation designed to make your product feel as sophisticated as it actually is.</li>
+            <li><strong>Outcome:</strong> Your company transforms from "interesting" into unmistakably understood.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-output">Delivery: 7 Days // Secure Digital Transmission</div>
+      <a href="mailto:saasolves@gmail.com?subject=Initiating%20Narrative%20Blueprint%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Secure Blueprint Slot →</a>
+    </div>
+
+    <!-- ── TIER 3: STRUCTURAL OVERHAUL ── -->
+    <div class="tier" data-aos="fade-up" data-aos-delay="240" style="border-color: var(--aegean-light);">
+      <div class="tier-level-badge" style="background: var(--aegean); color: var(--navy);">Level III // Authority &amp; Market Alignment</div>
+      <div class="tier-title">Structural Overhaul: The SaaStories Imprint</div>
+      <div class="tier-price">$10,000 <small>// Immersive</small></div>
+      <div class="tier-desc">
+        <p style="margin-bottom: 16px;">The full narrative transformation for founders who need their company presence to match the ambition, intelligence, and potential of their product. We reconstruct the communication system that carries your company into the market.</p>
+        <p style="font-family: var(--serif-body); font-size: 0.9rem; color: var(--aegean-light); font-style: italic; margin-bottom: 20px; border-left: 3px solid var(--aegean-light); padding-left: 12px;">"We need our entire company presence to match what we actually built."</p>
+
+        <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 14px;">
+          <strong style="font-family: var(--display); font-size: 0.72rem; text-transform: uppercase; color: var(--ivory); letter-spacing: 0.06em;">Deliverables:</strong>
+          <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 8px; line-height: 1.75;">
+            <li><strong style="color: var(--ivory);">Full Website Copy Reconstruction</strong> — complete rewrite of homepage, product pages, feature sections, about/company narrative, and CTA ecosystem.</li>
+            <li><strong style="color: var(--ivory);">Customer Journey Messaging Architecture</strong> — a redesigned communication flow mapping visitor attention → understanding → trust → confidence → action.</li>
+            <li><strong style="color: var(--ivory);">Complete UI Copy System</strong> — production-ready microcopy including buttons, tooltips, onboarding messages, empty states, and product explanations.</li>
+            <li><strong style="color: var(--ivory);">Conversion Experience Blueprint</strong> — structural redesign of page hierarchy, information sequence, emotional progression, and decision-making moments.</li>
+            <li><strong style="color: var(--ivory);">Founder Alignment Session</strong> — a deep strategic session aligning product ambition, customer perception, and market interpretation.</li>
+          </ul>
+        </div>
+
+        <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">Expand tier breakdown ↓</button>
+        <div class="extended-tier-content">
+          <p>A complete customer perception reconstruction process:</p>
+          <ul>
+            <li>Rebuild the entire communication infrastructure around how buyers actually evaluate decisions.</li>
+            <li>Transform the website from a product explanation into a trust-building environment.</li>
+            <li>Convert complex innovation into a story customers can immediately recognize themselves inside.</li>
+            <li>Engineer every interaction point to reduce uncertainty and strengthen confidence.</li>
+            <li>Create a company narrative capable of supporting fundraising, sales conversations, and market expansion.</li>
+            <li><strong>Outcome:</strong> The outside world finally experiences the strength that already exists inside your product.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-output">Delivery: 21 Days // High-Touch Transformation Release</div>
+      <a href="mailto:saasolves@gmail.com?subject=Requesting%20Structural%20Overhaul%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Initiate Transformation →</a>
+    </div>
+
+    <!-- ── TIER 4: NARRATIVE CONTINUITY RETAINER ── -->
+    <div class="tier" data-aos="fade-up" data-aos-delay="320">
+      <div class="tier-level-badge">Level IV // Continuous Protection</div>
+      <div class="tier-title">Narrative Continuity Retainer</div>
+      <div class="tier-price">$5,000 <small>// Monthly</small></div>
+      <div class="tier-desc">
+        <p style="margin-bottom: 16px;">Continuous narrative protection for companies scaling faster than their communication system can evolve. As your product grows, its meaning must grow with it — without fragmenting.</p>
+        <p style="font-family: var(--serif-body); font-size: 0.9rem; color: var(--aegean-light); font-style: italic; margin-bottom: 20px; border-left: 3px solid var(--aegean); padding-left: 12px;">"We are scaling and cannot afford our meaning to fragment."</p>
+
+        <div style="margin-top: 16px; border-top: 1px solid var(--sand); padding-top: 14px;">
+          <strong style="font-family: var(--display); font-size: 0.72rem; text-transform: uppercase; color: var(--ivory); letter-spacing: 0.06em;">Deliverables:</strong>
+          <ul style="font-family: var(--sans); font-size: 0.85rem; color: var(--ivory2); margin-left: 16px; margin-top: 8px; line-height: 1.75;">
+            <li><strong style="color: var(--ivory);">Ongoing Website &amp; Messaging Audits</strong> — regular review of new pages, feature launches, campaigns, and positioning shifts.</li>
+            <li><strong style="color: var(--ivory);">Continuous Copy Refinement</strong> — iteration support for landing pages, product announcements, investor materials, and sales communication.</li>
+            <li><strong style="color: var(--ivory);">Narrative Consistency Monitoring</strong> — detection of messaging fragmentation, unclear expansion paths, and customer confusion points before they cause damage.</li>
+            <li><strong style="color: var(--ivory);">Priority Strategy Access</strong> — dedicated asynchronous line for communication decisions, with guaranteed 24-hour response SLA.</li>
+          </ul>
+        </div>
+
+        <button class="extended-tier-trigger" onclick="toggleExtendedTier(this)">Expand tier breakdown ↓</button>
+        <div class="extended-tier-content">
+          <p>A long-term narrative intelligence layer protecting your company as it grows:</p>
+          <ul>
+            <li>Maintain clarity as products become more complex and audiences expand.</li>
+            <li>Prevent new features from creating customer confusion by aligning every launch with your core narrative.</li>
+            <li>Preserve trust as the company enters larger markets and higher-stakes conversations.</li>
+            <li>Ensure every communication layer reflects the same underlying value — from homepage to pitch deck.</li>
+            <li><strong>Outcome:</strong> Your company maintains a stable, recognizable, and trusted market identity while continuously evolving.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-output">Ongoing Deployment // Priority Execution Queue</div>
+      <a href="mailto:saasolves@gmail.com?subject=Securing%20Narrative%20Continuity%20Retainer%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Connect Systems →</a>
+    </div>
+
+  </div><!-- end .tiers -->
+</section>
           
 <section id="work" style="padding: 10vh 6vw; background: var(--navy); border-top: var(--border);">
   <div style="max-width: 1200px; margin: 0 auto;">
@@ -1730,192 +2456,218 @@ padding:28px;
 <!-- ══════════════ OUR APPROACH: INTELLIGENCE FOUNDATION ══════════════ -->
 <div id="view-our-approach" class="view-panel">
 
-  <!-- ── HERO ──────────────────────────────────────────── -->
-  <section style="padding: 10vh 6vw 8vh; background: var(--navy); border-bottom: var(--border);">
-    <div style="max-width: 1200px; margin: 0 auto;">
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <section class="approach-hero">
+    <div class="approach-inner">
 
-      <div data-aos="fade-down" style="font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aegean); margin-bottom: 28px; display: flex; align-items: center; gap: 12px;">
-        <span style="display: inline-block; width: 32px; height: 1.5px; background: var(--aegean);"></span>
+      <div class="approach-eyebrow" data-aos="fade-down">
+        <span class="approach-eyebrow-rule"></span>
         SaaSolves // The Operational Method
       </div>
 
-      <div data-aos="fade-up" data-aos-delay="80" style="border-left: 6px solid var(--aegean-light); padding-left: 36px; margin-bottom: 56px;">
-        <h1 style="font-family: var(--serif-title); font-size: clamp(2.6rem, 7vw, 5.5rem); font-weight: 700; color: var(--ivory); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 24px;">
-          OUR<br><span style="font-style: italic; color: var(--aegean-light);">APPROACH</span>
-        </h1>
-        <p style="font-family: var(--serif-body); font-size: 1.1rem; line-height: 1.8; color: var(--ivory2); max-width: 580px;">SaaSolves operates fully within its own proprietary linguistic methodology. What follows is the architecture behind every engagement — the frameworks, the sequence, and the artifacts that prove they work.</p>
+      <div class="approach-title-wrap" data-aos="fade-up" data-aos-delay="80">
+        <h1 class="approach-title">OUR<br><span class="approach-title-italic">APPROACH</span></h1>
+        <p class="approach-subtitle">SaaSolves operates fully within its own proprietary linguistic methodology. What follows is the architecture behind every engagement — the frameworks, the sequence, and the artifacts that prove they work.</p>
       </div>
 
-      <!-- Section navigation mini-map -->
-      <div data-aos="fade-up" data-aos-delay="150" style="display: flex; gap: 0; border: var(--border); max-width: 720px;">
-        <div style="padding: 16px 20px; border-right: var(--border-thin); background: var(--deep); font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean-light);">I — RAFU</div>
-        <div style="padding: 16px 20px; border-right: var(--border-thin); background: var(--cobalt); font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean-light);">II — ASUKSHIRA</div>
-        <div style="padding: 16px 20px; border-right: var(--border-thin); background: var(--deep); font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean-light);">III — AOS</div>
-        <div style="padding: 16px 20px; background: var(--cobalt); font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean-light);">IV — Artifacts</div>
+      <!-- Section nav — wraps to 2x2 on mobile -->
+      <div class="approach-nav-strip" data-aos="fade-up" data-aos-delay="150">
+        <div class="approach-nav-cell">I — RAFU</div>
+        <div class="approach-nav-cell">II — ASUKSHIRA</div>
+        <div class="approach-nav-cell">III — AOS</div>
+        <div class="approach-nav-cell">IV — Artifacts</div>
       </div>
 
     </div>
   </section>
 
-  <!-- ── FRAMEWORK I: RAFU ───────────────────────────── -->
-  <section style="padding: 8vh 6vw; background: var(--deep); border-bottom: var(--border);">
-    <div style="max-width: 1200px; margin: 0 auto;">
+  <!-- ══ FRAMEWORK I: RAFU ══════════════════════════════ -->
+  <section class="approach-section approach-section--deep">
+    <div class="approach-inner">
 
-      <div data-aos="fade-up" style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap;">
-        <span style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); background: var(--cobalt); border: 1px solid var(--aegean); padding: 5px 12px; white-space: nowrap;">Framework I // Discovery Methodology</span>
+      <div class="approach-chapter-label" data-aos="fade-up">
+        <span class="approach-tag">Framework I // Discovery Methodology</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-        <div data-aos="fade-up" data-aos-delay="80">
-          <h2 style="font-family: var(--serif-title); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: var(--ivory); line-height: 0.92; font-style: italic; margin-bottom: 20px;">RAFU</h2>
-          <div style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--aegean-light); text-transform: uppercase; border-top: 1px solid var(--aegean); padding-top: 14px; line-height: 1.8;">Recording and Analyzing<br>Fundamental Unwritten Systems</div>
+      <!-- Two-col on desktop, stacked on mobile -->
+      <div class="approach-two-col" data-aos="fade-up" data-aos-delay="80">
+        <div class="approach-framework-ident">
+          <h2 class="approach-framework-name">RAFU</h2>
+          <div class="approach-framework-fullname">Recording and Analyzing<br>Fundamental Unwritten Systems</div>
         </div>
-        <div data-aos="fade-up" data-aos-delay="140">
-          <p style="font-family: var(--serif-body); font-size: 1.05rem; line-height: 1.9; color: var(--ivory2); margin-bottom: 20px;">Every market generates invisible organizational structures — symbolic economies, uncodified authority hierarchies, relational friction maps that govern buyer behavior before a single word of copy is written.</p>
-          <p style="font-family: var(--serif-body); font-size: 1.05rem; line-height: 1.9; color: var(--ivory2);">Standard copy rules read surface signals. RAFU maps the underlying relational systems that generate them. Human structures continuously produce complex organizational vectors that guide collective behavior without ever becoming formally codified — and those vectors are precisely where narrative leverage lives.</p>
-        </div>
-      </div>
-
-      <!-- What RAFU locates — three cells -->
-      <div data-aos="fade-up" data-aos-delay="180" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: var(--border); margin-top: 40px;">
-        <div style="padding: 28px 24px; border-right: var(--border); background: var(--void);">
-          <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean); margin-bottom: 12px;">RAFU locates →</div>
-          <p style="font-family: var(--serif-body); font-size: 0.9rem; line-height: 1.7; color: var(--ivory2); margin: 0;">Uncodified authority hierarchies shaping procurement decisions before RFP stage.</p>
-        </div>
-        <div style="padding: 28px 24px; border-right: var(--border); background: var(--cobalt);">
-          <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean); margin-bottom: 12px;">RAFU locates →</div>
-          <p style="font-family: var(--serif-body); font-size: 0.9rem; line-height: 1.7; color: var(--ivory2); margin: 0;">Systemic relational friction points where trust erodes between product and audience.</p>
-        </div>
-        <div style="padding: 28px 24px; background: var(--void);">
-          <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean); margin-bottom: 12px;">RAFU locates →</div>
-          <p style="font-family: var(--serif-body); font-size: 0.9rem; line-height: 1.7; color: var(--ivory2); margin: 0;">Hidden symbolic subcultures that determine whether a message lands as authoritative or alienating.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FRAMEWORK II: ASUKSHIRA ─────────────────────── -->
-  <section style="padding: 8vh 6vw; background: var(--navy); border-bottom: var(--border);">
-    <div style="max-width: 1200px; margin: 0 auto;">
-
-      <div data-aos="fade-up" style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap;">
-        <span style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean-light); background: var(--deep); border: 1px solid var(--aegean-light); padding: 5px 12px; white-space: nowrap;">Framework II // Operational Integration</span>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-        <div data-aos="fade-up" data-aos-delay="80">
-          <h2 style="font-family: var(--serif-title); font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 700; color: var(--ivory); line-height: 0.95; font-style: italic; margin-bottom: 20px;">ASUK­SHIRA</h2>
-          <div style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--aegean-light); text-transform: uppercase; border-top: 1px solid var(--aegean); padding-top: 14px; line-height: 1.8;">Adaptive Symbolic<br>Ultra-Knowledge System</div>
-        </div>
-        <div data-aos="fade-up" data-aos-delay="140">
-          <p style="font-family: var(--serif-body); font-size: 1.05rem; line-height: 1.9; color: var(--ivory2); margin-bottom: 20px;">Once structural mechanics are decoded via RAFU, they must be programmatically injected into the user interface. ASUKSHIRA functions as an active linguistic operating system that acts directly upon raw technical data layers.</p>
-          <p style="font-family: var(--serif-body); font-size: 1.05rem; line-height: 1.9; color: var(--ivory2);">It moves fluidly across information lines into contextual significance — shifting complex digital infrastructures into immediate, irresistible relevance for the operators and buyers who hold the capital.</p>
+        <div class="approach-framework-body">
+          <p>Every market generates invisible organizational structures — symbolic economies, uncodified authority hierarchies, relational friction maps that govern buyer behavior before a single word of copy is written.</p>
+          <p>Standard copy rules read surface signals. RAFU maps the underlying relational systems that generate them. Human structures continuously produce complex organizational vectors that guide collective behavior without ever becoming formally codified — and those vectors are precisely where narrative leverage lives.</p>
         </div>
       </div>
 
-      <!-- RAFU → ASUKSHIRA sequence map -->
-      <div data-aos="fade-up" data-aos-delay="180" style="margin-top: 40px; background: var(--cobalt); border: var(--border); padding: 32px;">
-        <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 20px;">The Operational Sequence</div>
-        <div style="display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: center; gap: 0;">
-          <div style="background: var(--void); border: var(--border-thin); padding: 20px 16px; text-align: center;">
-            <div style="font-family: var(--mono); font-size: 0.6rem; color: var(--aegean); text-transform: uppercase; margin-bottom: 8px;">Step 01</div>
-            <div style="font-family: var(--serif-title); font-size: 1rem; font-weight: 700; color: var(--ivory); font-style: italic;">RAFU</div>
-            <div style="font-family: var(--mono); font-size: 0.58rem; color: var(--ivory2); margin-top: 6px; text-transform: uppercase;">Maps hidden structures</div>
-          </div>
-          <div style="text-align: center; font-family: var(--mono); font-size: 1.2rem; color: var(--aegean-light);">→</div>
-          <div style="background: var(--deep); border: var(--border-thin); padding: 20px 16px; text-align: center;">
-            <div style="font-family: var(--mono); font-size: 0.6rem; color: var(--aegean-light); text-transform: uppercase; margin-bottom: 8px;">Step 02</div>
-            <div style="font-family: var(--serif-title); font-size: 1rem; font-weight: 700; color: var(--ivory); font-style: italic;">ASUKSHIRA</div>
-            <div style="font-family: var(--mono); font-size: 0.58rem; color: var(--ivory2); margin-top: 6px; text-transform: uppercase;">Injects into interface</div>
-          </div>
-          <div style="text-align: center; font-family: var(--mono); font-size: 1.2rem; color: var(--aegean-light);">→</div>
-          <div style="background: var(--ink); border: var(--border-thin); border-left: 4px solid #4ade80; padding: 20px 16px; text-align: center;">
-            <div style="font-family: var(--mono); font-size: 0.6rem; color: #4ade80; text-transform: uppercase; margin-bottom: 8px;">Output</div>
-            <div style="font-family: var(--serif-title); font-size: 1rem; font-weight: 700; color: var(--ivory);">Recognition</div>
-            <div style="font-family: var(--mono); font-size: 0.58rem; color: var(--ivory2); margin-top: 6px; text-transform: uppercase;">Buyer sees themselves</div>
-          </div>
+      <!-- Three cells: stacked on mobile -->
+      <div class="approach-three-stack" data-aos="fade-up" data-aos-delay="160">
+        <div class="approach-cell approach-cell--dark">
+          <div class="approach-cell-label">RAFU locates →</div>
+          <p>Uncodified authority hierarchies shaping procurement decisions before the RFP stage.</p>
+        </div>
+        <div class="approach-cell approach-cell--mid">
+          <div class="approach-cell-label">RAFU locates →</div>
+          <p>Systemic relational friction points where trust erodes between product and audience.</p>
+        </div>
+        <div class="approach-cell approach-cell--dark">
+          <div class="approach-cell-label">RAFU locates →</div>
+          <p>Hidden symbolic subcultures that determine whether a message lands as authoritative or alienating.</p>
         </div>
       </div>
 
     </div>
   </section>
 
-<!-- ── FRAMEWORK III: AOS ─────────────────────────── -->
-  <section style="padding: 8vh 6vw; background: var(--deep); border-bottom: var(--border);">
-    <div style="max-width: 1200px; margin: 0 auto;">
+  <!-- ══ FRAMEWORK II: ASUKSHIRA ════════════════════════ -->
+  <section class="approach-section approach-section--navy">
+    <div class="approach-inner">
 
-      <div data-aos="fade-up" style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap;">
-        <span style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); background: var(--cobalt); border: 1px solid var(--aegean); padding: 5px 12px; white-space: nowrap;">Framework III // Structural Intelligence</span>
+      <div class="approach-chapter-label" data-aos="fade-up">
+        <span class="approach-tag approach-tag--light">Framework II // Operational Integration</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-bottom: 40px;">
-        <div data-aos="fade-up" data-aos-delay="80">
-          <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
-            <h2 style="font-family: var(--serif-title); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; color: var(--ivory); line-height: 1; font-style: italic;">AOS</h2>
-            <span style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean-light); background: var(--cobalt); border: 1px solid var(--aegean); padding: 4px 10px;">Adaptive Ontology System</span>
+      <div class="approach-two-col" data-aos="fade-up" data-aos-delay="80">
+        <div class="approach-framework-ident">
+          <h2 class="approach-framework-name approach-framework-name--sm">ASUK­SHIRA</h2>
+          <div class="approach-framework-fullname">Adaptive Symbolic<br>Ultra-Knowledge System</div>
+        </div>
+        <div class="approach-framework-body">
+          <p>Once structural mechanics are decoded via RAFU, they must be programmatically injected into the user interface. ASUKSHIRA functions as an active linguistic operating system that acts directly upon raw technical data layers.</p>
+          <p>It moves fluidly across information lines into contextual significance — shifting complex digital infrastructures into immediate, irresistible relevance for the operators and buyers who hold the capital.</p>
+        </div>
+      </div>
+
+      <!-- Sequence Map — vertical on mobile, horizontal on desktop -->
+      <div class="approach-sequence-wrap" data-aos="fade-up" data-aos-delay="160">
+        <div class="approach-sequence-label">The Operational Sequence</div>
+        <div class="approach-sequence">
+
+          <div class="approach-seq-step approach-seq-step--void">
+            <div class="approach-seq-num">Step 01</div>
+            <div class="approach-seq-name">RAFU</div>
+            <div class="approach-seq-desc">Maps hidden structures</div>
           </div>
-          <div style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--aegean-light); text-transform: uppercase; border-top: 1px solid var(--aegean); padding-top: 14px; line-height: 1.8;">Structural intelligence layer<br>for evolving systems</div>
-        </div>
-        <div data-aos="fade-up" data-aos-delay="140">
-          <p style="font-family: var(--serif-body); font-size: 1.05rem; line-height: 1.9; color: var(--ivory2); border-left: 4px solid var(--aegean); padding-left: 20px;">A structural intelligence layer designed to observe how meaning, systems, and perception evolve together — and synchronize all three into a single, coherent linguistic output that maintains its precision as the product scales.</p>
-        </div>
-      </div>
 
-      <!-- Three AOS pillars -->
-      <div data-aos="fade-up" data-aos-delay="160" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: var(--border);">
-        <div style="padding: 32px 24px; border-right: var(--border); background: var(--void);">
-          <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 16px;">I</div>
-          <h4 style="font-family: var(--display); font-size: 0.95rem; font-weight: 700; color: var(--ivory); margin-bottom: 12px; text-transform: uppercase;">Ontology Mapping</h4>
-          <p style="font-family: var(--serif-body); font-size: 0.88rem; color: var(--ivory2); line-height: 1.75;">Mapping what the system truly represents beneath features and interfaces — the actual value, not the described function.</p>
-        </div>
-        <div style="padding: 32px 24px; border-right: var(--border); background: var(--cobalt);">
-          <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 16px;">II</div>
-          <h4 style="font-family: var(--display); font-size: 0.95rem; font-weight: 700; color: var(--ivory); margin-bottom: 12px; text-transform: uppercase;">Meaning Translation</h4>
-          <p style="font-family: var(--serif-body); font-size: 0.88rem; color: var(--ivory2); line-height: 1.75;">Transforming internal complexity into external recognition — not simplification, but clarification at depth.</p>
-        </div>
-        <div style="padding: 32px 24px; background: var(--void);">
-          <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean); margin-bottom: 16px;">III</div>
-          <h4 style="font-family: var(--display); font-size: 0.95rem; font-weight: 700; color: var(--ivory); margin-bottom: 12px; text-transform: uppercase;">Adaptive Positioning</h4>
-          <p style="font-family: var(--serif-body); font-size: 0.88rem; color: var(--ivory2); line-height: 1.75;">Maintaining relevance as environments and audiences shift — structural positioning, not reactive rewording.</p>
+          <div class="approach-seq-arrow">→</div>
+
+          <div class="approach-seq-step approach-seq-step--deep">
+            <div class="approach-seq-num">Step 02</div>
+            <div class="approach-seq-name">ASUKSHIRA</div>
+            <div class="approach-seq-desc">Injects into interface</div>
+          </div>
+
+          <div class="approach-seq-arrow">→</div>
+
+          <div class="approach-seq-step approach-seq-step--green">
+            <div class="approach-seq-num">Output</div>
+            <div class="approach-seq-name">Recognition</div>
+            <div class="approach-seq-desc">Buyer sees themselves</div>
+          </div>
+
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ── PROJECT ARTIFACTS ─────────────────────────────── -->
-  <section style="padding: 8vh 6vw; background: var(--navy); border-bottom: var(--border);">
-    <div style="max-width: 1200px; margin: 0 auto;">
+  <!-- ══ FRAMEWORK III: AOS ═════════════════════════════ -->
+  <section class="approach-section approach-section--deep">
+    <div class="approach-inner">
 
-      <div data-aos="fade-up" style="margin-bottom: 48px; border-bottom: var(--border); padding-bottom: 24px;">
-        <div style="font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); margin-bottom: 10px;">// The Frameworks Applied</div>
-        <h2 style="font-family: var(--serif-title); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--ivory); line-height: 1.1;">Project Artifacts</h2>
-        <p style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); margin-top: 12px; max-width: 540px; line-height: 1.75;">These are the actual linguistic outputs produced through the RAFU–ASUKSHIRA–AOS methodology. Different sectors, same architectural precision.</p>
+      <div class="approach-chapter-label" data-aos="fade-up">
+        <span class="approach-tag">Framework III // Structural Intelligence</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+      <!-- AOS header -->
+      <div class="approach-aos-head" data-aos="fade-up" data-aos-delay="80">
+        <div class="approach-aos-title-row">
+          <h2 class="approach-aos-name">AOS</h2>
+          <span class="approach-aos-badge">Adaptive Ontology System</span>
+        </div>
+        <div class="approach-framework-fullname">Structural intelligence layer<br>for evolving systems</div>
+      </div>
 
-        <!-- PROJECT I: ALRAYA -->
-        <div data-aos="fade-up" data-aos-delay="80" style="background: var(--cobalt); border: var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column;">
-          <div style="background: var(--deep); border-bottom: var(--border-thin); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean-light);">Project I // Consumer Psychology</span>
-            <span style="font-family: var(--mono); font-size: 0.62rem; color: var(--rust); text-transform: uppercase;">F&amp;B</span>
+      <p class="approach-aos-intro" data-aos="fade-up" data-aos-delay="120">A structural intelligence layer designed to observe how meaning, systems, and perception evolve together — and synchronize all three into a single, coherent linguistic output that maintains its precision as the product scales.</p>
+
+      <!-- AOS SWIPEABLE CARD TRACK — scroll-snap, one card visible at a time on mobile -->
+      <div class="approach-swipe-hint" data-aos="fade-up" data-aos-delay="140">← swipe to explore →</div>
+
+      <div class="approach-swipe-track" id="aos-cards" data-aos="fade-up" data-aos-delay="160">
+
+        <div class="approach-swipe-card">
+          <div class="approach-swipe-card-num">I</div>
+          <h4 class="approach-swipe-card-title">Ontology Mapping</h4>
+          <p class="approach-swipe-card-body">Mapping what the system truly represents beneath features and interfaces — the actual value, not the described function. This is where the distance between what a product does and what a product means first becomes visible.</p>
+          <div class="approach-swipe-pip-row">
+            <span class="approach-pip approach-pip--active"></span>
+            <span class="approach-pip"></span>
+            <span class="approach-pip"></span>
           </div>
-          <div style="padding: 32px 28px; flex-grow: 1; display: flex; flex-direction: column;">
-            <h3 style="font-family: var(--serif-title); font-size: 1.8rem; font-weight: 700; color: var(--ivory); margin-bottom: 16px;">Alraya Resto</h3>
-            <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.75; color: var(--aegean-light); font-style: italic; margin-bottom: 16px;">"A genuinely extraordinary experience — a coastal aquaculture farm, a private gazebo dining experience, a kitchen drawing from Waworada Bay. It didn't have a narrative with enough gravity to make a stranger feel it before they arrived."</p>
-            <p style="font-family: var(--serif-body); font-size: 0.9rem; line-height: 1.75; color: var(--ivory2); flex-grow: 1; margin-bottom: 24px;">The communication work built an emotional architecture around the experience — warmth, gathering, coastal memory — making the dining feel inevitable before the reservation.</p>
-            <!-- Fixed button phrasing -->
-            <button
-              onclick="this.textContent = this.textContent.includes('Read') ? 'Close the Copy ↑' : 'Read the Copy ↓'; this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';"
-              style="background: none; border: var(--border-thin); color: var(--aegean-light); font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 16px; cursor: pointer; text-align: left; margin-top: auto;">
-              Read the Copy ↓
-            </button>
-            <div style="display: none; margin-top: 20px; border-top: var(--border-thin); padding-top: 20px;">
-              <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 16px;">Alraya Master Copy</div>
-              <div style="font-family: var(--serif-body); font-size: 0.88rem; line-height: 1.85; color: var(--ivory2);">
-                <strong style="color: var(--ivory); display: block; margin-bottom: 8px;">THE OCEAN, ON YOUR PLATE</strong>
-                <strong style="color: var(--ivory2); display: block; margin-bottom: 12px; font-size: 0.82rem;">A Seaside Harvest Without the Sea</strong>
+        </div>
+
+        <div class="approach-swipe-card approach-swipe-card--mid">
+          <div class="approach-swipe-card-num" style="color: var(--aegean-light);">II</div>
+          <h4 class="approach-swipe-card-title">Meaning Translation</h4>
+          <p class="approach-swipe-card-body">Transforming internal complexity into external recognition — not simplification, but clarification at depth. The product's intelligence stays intact; what changes is the bridge between that intelligence and the person who needs to understand it.</p>
+          <div class="approach-swipe-pip-row">
+            <span class="approach-pip"></span>
+            <span class="approach-pip approach-pip--active"></span>
+            <span class="approach-pip"></span>
+          </div>
+        </div>
+
+        <div class="approach-swipe-card approach-swipe-card--void">
+          <div class="approach-swipe-card-num" style="color: var(--aegean);">III</div>
+          <h4 class="approach-swipe-card-title">Adaptive Positioning</h4>
+          <p class="approach-swipe-card-body">Maintaining relevance as environments and audiences shift — structural positioning, not reactive rewording. As the product scales and the market evolves, the communication system moves with it without losing coherence or authority.</p>
+          <div class="approach-swipe-pip-row">
+            <span class="approach-pip"></span>
+            <span class="approach-pip"></span>
+            <span class="approach-pip approach-pip--active"></span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ PROJECT ARTIFACTS ══════════════════════════════ -->
+  <section class="approach-section approach-section--navy">
+    <div class="approach-inner">
+
+      <div class="approach-section-head" data-aos="fade-up">
+        <div class="approach-section-eyebrow">// The Frameworks Applied</div>
+        <h2 class="approach-section-title">Project Artifacts</h2>
+        <p class="approach-section-sub">These are the actual linguistic outputs produced through the RAFU–ASUKSHIRA–AOS methodology. Different sectors, same architectural precision.</p>
+      </div>
+
+      <!-- Artifact cards — stacked on mobile -->
+      <div class="approach-artifact-grid">
+
+        <!-- Alraya -->
+        <div class="approach-artifact-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="approach-artifact-header">
+            <span class="approach-artifact-tag">Project I // Consumer Psychology</span>
+            <span class="approach-artifact-sector" style="color: var(--rust);">F&amp;B</span>
+          </div>
+          <div class="approach-artifact-body">
+            <h3 class="approach-artifact-name">Alraya Resto</h3>
+            <p class="approach-artifact-context">"A genuinely extraordinary experience — a coastal aquaculture farm, a private gazebo dining experience, a kitchen drawing from Waworada Bay. It didn't have a narrative with enough gravity to make a stranger feel it before they arrived."</p>
+            <p class="approach-artifact-desc">The communication work built an emotional architecture around the experience — warmth, gathering, coastal memory — making the dining feel inevitable before the reservation.</p>
+            <button class="approach-copy-btn" onclick="
+              var next = this.nextElementSibling;
+              var open = next.style.display === 'block';
+              next.style.display = open ? 'none' : 'block';
+              this.textContent = open ? 'Read the Copy ↓' : 'Close the Copy ↑';
+            ">Read the Copy ↓</button>
+            <div class="approach-copy-expand" style="display:none;">
+              <div class="approach-copy-label">Alraya Master Copy</div>
+              <div class="approach-copy-text">
+                <strong>THE OCEAN, ON YOUR PLATE</strong><br><br>
+                <em>A Seaside Harvest Without the Sea</em><br><br>
                 Fishing in the vast ocean for fresh catches? That sounds stressful. The sun is burning over your head as saltwater dries sticky on your skin.<br><br>
                 We recognize your desire for a self-sufficient food source. Alraya's aquaculture farm provides all the organic seafood you could ever want, delivered straight to our live tank. From Barramundi and Giant Trevally, to Lobster and King Crab, you're free to choose your catch while staying comfortably under shelter.<br><br>
                 Nestled among serene rice fields, Alraya's tropical modern settings offers a succulent dining escape. Whether beneath the shade of lush bamboo trees or overlooking the calm Japanese koi pond, find your perfect spot and settle in. It's all yours.<br><br>
@@ -1926,49 +2678,49 @@ padding:28px;
           </div>
         </div>
 
-        <!-- PROJECT II: KANINIFI -->
-        <div data-aos="fade-up" data-aos-delay="160" style="background: var(--cobalt); border: var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column;">
-          <div style="background: var(--deep); border-bottom: var(--border-thin); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean-light);">Project II // High-Prestige Narrative</span>
-            <span style="font-family: var(--mono); font-size: 0.62rem; color: var(--aegean); text-transform: uppercase;">Editorial</span>
+        <!-- Kaninifi -->
+        <div class="approach-artifact-card" data-aos="fade-up" data-aos-delay="160">
+          <div class="approach-artifact-header">
+            <span class="approach-artifact-tag">Project II // High-Prestige Narrative</span>
+            <span class="approach-artifact-sector" style="color: var(--aegean);">Editorial</span>
           </div>
-          <div style="padding: 32px 28px; flex-grow: 1; display: flex; flex-direction: column;">
-            <h3 style="font-family: var(--serif-title); font-size: 1.8rem; font-weight: 700; color: var(--ivory); margin-bottom: 16px;">Kaninifi</h3>
-            <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.75; color: var(--aegean-light); font-style: italic; margin-bottom: 16px;">"Indonesian cultural life had been waiting for a publication willing to take it at its full weight — the textiles, the ceremonies, the regional dress traditions — without a magazine willing to treat it the way Vogue treats a Paris collection."</p>
-            <p style="font-family: var(--serif-body); font-size: 0.9rem; line-height: 1.75; color: var(--ivory2); flex-grow: 1; margin-bottom: 24px;">The editorial language built for Kaninifi treated heritage as a living system — active in the present tense, worked out, worn out, figured out in real time.</p>
-            <!-- Fixed button phrasing -->
-            <button
-              onclick="this.textContent = this.textContent.includes('Read') ? 'Close the Copy ↑' : 'Read the Copy ↓'; this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';"
-              style="background: none; border: var(--border-thin); color: var(--aegean-light); font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 16px; cursor: pointer; text-align: left; margin-top: auto;">
-              Read the Copy ↓
-            </button>
-            <div style="display: none; margin-top: 20px; border-top: var(--border-thin); padding-top: 20px;">
-              <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 16px;">Selected Artifact // Editorial Integrity</div>
-              <div style="font-family: var(--serif-body); font-size: 0.88rem; line-height: 1.85; color: var(--ivory2);">
-                <strong style="color: var(--ivory); display: block; margin-bottom: 12px;">The Present Tense Is Where the Culture Lives</strong>
+          <div class="approach-artifact-body">
+            <h3 class="approach-artifact-name">Kaninifi</h3>
+            <p class="approach-artifact-context">"Indonesian cultural life had been waiting for a publication willing to take it at its full weight — the textiles, the ceremonies, the regional dress traditions — without a magazine willing to treat it the way Vogue treats a Paris collection."</p>
+            <p class="approach-artifact-desc">The editorial language built for Kaninifi treated heritage as a living system — active in the present tense, worked out, worn out, figured out in real time.</p>
+            <button class="approach-copy-btn" onclick="
+              var next = this.nextElementSibling;
+              var open = next.style.display === 'block';
+              next.style.display = open ? 'none' : 'block';
+              this.textContent = open ? 'Read the Copy ↓' : 'Close the Copy ↑';
+            ">Read the Copy ↓</button>
+            <div class="approach-copy-expand" style="display:none;">
+              <div class="approach-copy-label">Selected Artifact // Editorial Integrity</div>
+              <div class="approach-copy-text">
+                <strong>The Present Tense Is Where the Culture Lives</strong><br><br>
                 Nostalgia looks backward with longing. KANINIFI looks at the present and finds the culture already there. Dressing itself this morning, making decisions, alive in ways that no archive fully captures. Indonesian heritage, in these pages, was never a subject from the past brought forward for appreciation. It is the living context inside which contemporary Indonesian identity is being worked out, worn out, figured out, right now.<br><br>
-                <strong style="color: var(--ivory); display: block; margin-top: 16px; margin-bottom: 12px;">A Publication the Culture Had Been Waiting For</strong>
+                <strong>A Publication the Culture Had Been Waiting For</strong><br><br>
                 The magazine began in 2022, out of Bima, from a conviction that Indonesian cultural life had been waiting for a publication that would take it at its full weight. The textiles. The ceremonies. The regional dress traditions carried forward by hands that learned them young and kept practicing. The aesthetic intelligence that has been alive and specific and evolving across the archipelago for centuries, largely without a magazine willing to treat it the way Vogue treats a Paris collection. With attention, with rigor, with the assumption that the reader is sophisticated enough to meet it. KANINIFI is that magazine.
               </div>
             </div>
           </div>
         </div>
 
-      </div><!-- end grid -->
+      </div>
     </div>
   </section>
 
-  <!-- ── CLOSING CTA ────────────────────────────────────── -->
-  <section style="padding: 8vh 6vw; background: var(--void); border-top: var(--border);">
-    <div style="max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 24px;">
-      <div data-aos="fade-up">
-        <div style="font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); margin-bottom: 14px;">// Ready to run diagnostics?</div>
-        <h2 style="font-family: var(--serif-title); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--ivory); line-height: 1.15; margin-bottom: 16px;">Let's stabilize your narrative.</h2>
-        <p style="font-family: var(--serif-body); font-size: 1rem; color: var(--ivory2); line-height: 1.8; max-width: 560px;">If something in your gut told you your homepage isn't working — you're right. Send the URL. Every incoming audit is personally run and articulated by Mahdi Singaparado.</p>
-      </div>
-      <div data-aos="fade-up" data-aos-delay="100" style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
-        <a class="btn btn-dark" href="mailto:saasolves@gmail.com?subject=Direct%20Founder%20Inquiry%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)">Connect Directly With Mahdi →</a>
-        <a onclick="navigateTo('home')" style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ivory2); text-decoration: none; cursor: pointer; padding: 8px 0; border-bottom: 1px solid var(--aegean);">← Return to Homepage</a>
+  <!-- ══ CLOSING CTA ════════════════════════════════════ -->
+  <section class="approach-section approach-section--void">
+    <div class="approach-inner">
+      <div class="approach-cta-block" data-aos="fade-up">
+        <div class="approach-section-eyebrow">// Ready to run diagnostics?</div>
+        <h2 class="approach-cta-title">Let's stabilize your narrative.</h2>
+        <p class="approach-cta-body">If something in your gut told you your homepage isn't working — you're right. Send the URL. Every incoming audit is personally run and articulated by Mahdi Singaparado.</p>
+        <div class="approach-cta-row">
+          <a class="btn btn-dark" href="mailto:saasolves@gmail.com?subject=Direct%20Founder%20Inquiry%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)">Connect Directly With Mahdi →</a>
+          <a class="approach-back-link" onclick="navigateTo('home')">← Return to Homepage</a>
+        </div>
       </div>
     </div>
   </section>
@@ -2234,6 +2986,45 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 });
+  
+// ── AMBIENT VISUAL: rotating sandbox glow ─────────────
+// Fallback for browsers that don't support @property
+(function() {
+  var angle = 0;
+  var sandboxEl = document.querySelector('.sandbox-window');
+  if (!sandboxEl) return;
+
+  // Only apply JS fallback if @property is not supported
+  var supportsAt = CSS && CSS.supports && CSS.supports('(--angle: 0deg)');
+  if (supportsAt) return;
+
+  function tick() {
+    angle = (angle + 0.5) % 360;
+    sandboxEl.style.setProperty('--angle', angle + 'deg');
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+// ── APPROACH PAGE: AOS swipe pip sync ──────────────────
+(function() {
+  var track = document.getElementById('aos-cards');
+  if (!track) return;
+
+  track.addEventListener('scroll', function() {
+    var cards = track.querySelectorAll('.approach-swipe-card');
+    var trackW = track.offsetWidth;
+    var scrollX = track.scrollLeft;
+    var activeIdx = Math.round(scrollX / (trackW * 0.85));
+
+    cards.forEach(function(card, i) {
+      var pips = card.querySelectorAll('.approach-pip');
+      pips.forEach(function(pip, j) {
+        pip.classList.toggle('approach-pip--active', j === activeIdx);
+      });
+    });
+  }, { passive: true });
+})();
 
 </script>
 </body>
