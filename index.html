@@ -1475,7 +1475,33 @@ body::after {
 .view-panel {
   -webkit-overflow-scrolling: touch;
 }
-    
+
+/* ── Status bar responsive ──────────────────────────── */
+#status-bar {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Email capture input focus ──────────────────────── */
+#capture-email:focus {
+  border-color: var(--aegean-light);
+  background: var(--deep);
+}
+#capture-email::placeholder {
+  color: var(--ivory2);
+  opacity: 0.5;
+}
+
+/* ── Tier delivery output flex fix ─────────────────── */
+.tier-output {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -1504,7 +1530,7 @@ body::after {
       <span></span><span></span><span></span>
     </button>
   </nav>
-
+  
   <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true">
     <div class="mobile-menu-header">
       <div class="logo-text"><span class="logo-main">SaaSolves</span></div>
@@ -1521,6 +1547,61 @@ body::after {
       <a onclick="navigateTo('home','contact');closeMobileMenu()">Commission an Audit →</a>
     </div>
   </div>
+  
+<!-- ── STATUS BAR ───────────────────────────────────── -->
+<div id="status-bar" style="
+  background: var(--void);
+  border-bottom: 1px solid rgba(58,109,148,0.3);
+  padding: 8px 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+">
+  <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+    <span style="
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4ade80;
+    ">
+      <span style="
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: #4ade80;
+        animation: pulse-dot 2s ease-in-out infinite;
+        flex-shrink: 0;
+      "></span>
+      Live Diagnostic Engagements Active
+    </span>
+    <span style="
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--ivory2);
+      text-transform: uppercase;
+    ">// GovTech · Cultural Strategy</span>
+  </div>
+  <span style="
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--aegean-light);
+    text-transform: uppercase;
+  ">First Public Case Study: Q3 2025</span>
+</div>
+
+<style>
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+</style>
 
 <!-- ══════════════ HOME VIEW ══════════════ -->
 <div id="view-home" class="view-panel active-view">
@@ -1538,6 +1619,39 @@ body::after {
         
         <h1 data-aos="fade-up" data-aos-delay="100">
         You built a masterpiece of engineering. Don't let it be silenced by a <span class="ae">dead machine</span>.</h1>
+
+       <!-- Founder provenance line — visible before the CTA -->
+       <div
+          data-aos="fade-up"
+          data-aos-delay="200"
+          style="
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+          ">
+          <span style="
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ivory2);
+          ">Mahdi Singaparado · Bima, Indonesia</span>
+          <span style="
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            background: var(--aegean);
+          "></span>
+          <span style="
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--aegean-light);
+          ">Founder · Brand Strategist · Linguistic Architect</span>
+        </div>
 
        <div 
           data-aos="fade-up"
@@ -1598,11 +1712,35 @@ body::after {
                 <h4>The Human Injection</h4>
                 <p>We inject elite human intelligence and the rhythm of literature into your interface, ensuring it touches immediate psychological state of the buyer.</p>
             </div>
+
+            <!-- AI DISTINCTION STATEMENT -->
+            <div data-aos="fade-up" data-aos-delay="600" style="
+              margin-top: 8px;
+              padding: 20px 22px;
+              border: 1px solid rgba(74,222,128,0.25);
+              border-left: 4px solid #4ade80;
+              background: rgba(26, 74, 46, 0.12);
+            ">
+              <div style="
+                font-family: var(--mono);
+                font-size: 0.58rem;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: #4ade80;
+                margin-bottom: 10px;
+              ">// The Distinction</div>
+              <p style="
+                font-family: var(--serif-body);
+                font-size: 0.92rem;
+                line-height: 1.75;
+                color: var(--ivory);
+                margin: 0;
+              ">Every AI assistant your competitor used this week ran on the same training data. Their copy sounds like yours. We don't generate language. We diagnose the system that produces it — and rebuild it from the architecture up.</p>
+            </div>
         </div> 
-      </div> 
     </div> 
-  </div> 
-</section>
+     </div> 
+  </section>
         
           <div 
             data-aos="fade-up"
@@ -2040,8 +2178,18 @@ body::after {
           </ul>
         </div>
       </div>
-      <div class="tier-output">Delivery: 72 Hours // Diagnostic Release</div>
-      <a href="mailto:saasolves@gmail.com?subject=Initiating%20Narrative%20Signal%20Scan%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Run Signal Scan →</a>
+      <div class="tier-output" style="display: flex; flex-direction: column; gap: 6px;">
+        <span>Delivery: 72 Hours // Guaranteed</span>
+        <span style="
+          font-family: var(--mono);
+          font-size: 0.6rem;
+          color: #4ade80;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        ">⬤ Accepting 5 scans per month · <span id="scan-slots">3 slots remaining</span></span>
+      </div>
+      <a href="mailto:saasolves@gmail.com?subject=Initiating%20Narrative%20Signal%20Scan%20%E2%80%94%20SaaSolves
+
     </div>
 
     <!-- ── TIER 2: NARRATIVE BLUEPRINT ── -->
@@ -2076,9 +2224,18 @@ body::after {
           </ul>
         </div>
       </div>
-      <div class="tier-output">Delivery: 7 Days // Secure Digital Transmission</div>
-      <a href="mailto:saasolves@gmail.com?subject=Initiating%20Narrative%20Blueprint%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Secure Blueprint Slot →</a>
-    </div>
+          <div class="tier-output" style="display: flex; flex-direction: column; gap: 6px;">
+        <span>Delivery: 7 Days // Secure Digital Transmission</span>
+        <span style="
+          font-family: var(--mono);
+          font-size: 0.6rem;
+          color: var(--ivory2);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        ">Includes one revision cycle within 72 hours of delivery</span>
+      </div>
+      <a href="mailto:saasolves@gmail.com?subject=Initiating%20Narrative%20Blueprint%20%E2%80%94%20SaaSolves
+  </div>
 
     <!-- ── TIER 3: STRUCTURAL OVERHAUL ── -->
     <div class="tier" data-aos="fade-up" data-aos-delay="240" style="border-color: var(--aegean-light);">
@@ -2113,8 +2270,17 @@ body::after {
           </ul>
         </div>
       </div>
-      <div class="tier-output">Delivery: 21 Days // High-Touch Transformation Release</div>
-      <a href="mailto:saasolves@gmail.com?subject=Requesting%20Structural%20Overhaul%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Initiate Transformation →</a>
+       <div class="tier-output" style="display: flex; flex-direction: column; gap: 6px;">
+        <span>Delivery: 21 Days // High-Touch Transformation Release</span>
+        <span style="
+          font-family: var(--mono);
+          font-size: 0.6rem;
+          color: var(--ivory2);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        ">Two revision cycles included · Founder Alignment Session scheduled within 48hrs of deposit</span>
+      </div>
+      <a href="mailto:saasolves@gmail.com?subject=Requesting%20Structural%20Overhaul%20%E2%80%94%20SaaSolves
     </div>
 
     <!-- ── TIER 4: NARRATIVE CONTINUITY RETAINER ── -->
@@ -2148,9 +2314,18 @@ body::after {
           </ul>
         </div>
       </div>
-      <div class="tier-output">Ongoing Deployment // Priority Execution Queue</div>
-      <a href="mailto:saasolves@gmail.com?subject=Securing%20Narrative%20Continuity%20Retainer%20%E2%80%94%20SaaSolves" onclick="handleCtaClick(event)" class="tier-link">Connect Systems →</a>
-    </div>
+      <div class="tier-output" style="display: flex; flex-direction: column; gap: 6px;">
+        <span>Ongoing Deployment // Priority Execution Queue</span>
+        <span style="
+          font-family: var(--mono);
+          font-size: 0.6rem;
+          color: #4ade80;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        ">⬤ Maximum 4 active retainer partners · <span id="retainer-slots">2 slots remaining</span></span>
+      </div>
+      <a href="mailto:saasolves@gmail.com?subject=Securing%20Narrative%20Continuity%20Retainer%20%E2%80%94%20SaaSolves
+   </div>
 
   </div><!-- end .tiers -->
 </section>
@@ -2276,9 +2451,117 @@ body::after {
       <p style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); max-width: 480px; line-height: 1.7; font-style: italic;">These two frameworks are not rhetorical — they are the actual operational method behind every project artifact we produce.</p>
       <a onclick="navigateTo('our-approach')" style="font-family: var(--display); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ivory); background: var(--aegean); padding: 14px 28px; border: var(--border-thin); box-shadow: var(--shadow); cursor: pointer; transition: all 0.12s; text-decoration: none; display: inline-block;">Explore Our Full Approach →</a>
     </div>
-
   </div>
 </section>
+
+<!-- ── ABOUT THE ARCHITECT ──────────────────────────── -->
+<section style="
+  padding: 8vh 6vw;
+  background: var(--cobalt);
+  border-top: var(--border);
+  border-bottom: var(--border);
+">
+  <div style="max-width: 1000px; margin: 0 auto;">
+
+    <div data-aos="fade-up" style="
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    " class="architect-grid">
+
+      <!-- Left: identity -->
+      <div>
+        <div style="
+          font-family: var(--mono);
+          font-size: 0.65rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--aegean);
+          margin-bottom: 16px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        ">
+          <span style="display:inline-block;width:24px;height:1px;background:var(--aegean);"></span>
+          The Architect
+        </div>
+        <h2 style="
+          font-family: var(--serif-title);
+          font-size: clamp(1.8rem, 5vw, 2.8rem);
+          font-weight: 700;
+          color: var(--ivory);
+          line-height: 1.1;
+          margin-bottom: 16px;
+        ">Mahdi Singaparado</h2>
+        <div style="
+          font-family: var(--mono);
+          font-size: 0.65rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--aegean-light);
+          line-height: 2;
+          margin-bottom: 24px;
+        ">
+          Brand Strategist · Linguistic Architect<br>
+          Founder, Waysoroh · Founder, KANINIFI<br>
+          Bima, West Nusa Tenggara, Indonesia
+        </div>
+        <p style="
+          font-family: var(--serif-body);
+          font-size: 0.95rem;
+          line-height: 1.85;
+          color: var(--ivory2);
+          border-left: 4px solid var(--aegean);
+          padding-left: 18px;
+        ">Every audit that enters SaaSolves is personally run, diagnosed, and articulated by Mahdi. No automated pipelines. No anonymous agency layer. The same intelligence behind Waysoroh's cultural strategy practice and KANINIFI's editorial architecture is the same intelligence applied to your product narrative.</p>
+      </div>
+
+      <!-- Right: credential markers -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+
+        <div style="
+          background: var(--deep);
+          border: var(--border-thin);
+          border-left: 4px solid var(--rust);
+          padding: 20px 20px;
+        ">
+          <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 8px;">Waysoroh</div>
+          <p style="font-family: var(--serif-body); font-size: 0.88rem; line-height: 1.7; color: var(--ivory2); margin: 0;">Cultural strategy and communication management practice. Develops proprietary frameworks — RAFU and ASUKSHIRA — for mapping uncodified organizational structures into coherent market language.</p>
+        </div>
+
+        <div style="
+          background: var(--deep);
+          border: var(--border-thin);
+          border-left: 4px solid var(--aegean);
+          padding: 20px 20px;
+        ">
+          <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 8px;">KANINIFI</div>
+          <p style="font-family: var(--serif-body); font-size: 0.88rem; line-height: 1.7; color: var(--ivory2); margin: 0;">Indonesian fashion and cultural magazine rooted in Bimanese heritage. Built the editorial identity, voice architecture, and positioning from zero — treating cultural heritage as a living system, not a historical artifact.</p>
+        </div>
+
+        <div style="
+          background: var(--deep);
+          border: var(--border-thin);
+          border-left: 4px solid #4ade80;
+          padding: 20px 20px;
+        ">
+          <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: #4ade80; margin-bottom: 8px;">Active Engagements</div>
+          <p style="font-family: var(--serif-body); font-size: 0.88rem; line-height: 1.7; color: var(--ivory2); margin: 0;">Currently in active diagnostic engagement across GovTech and Cultural Strategy sectors. First named case study releasing Q3 2025. Accepting limited new diagnostic work now.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@media (min-width: 700px) {
+  .architect-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+</style>
+
         
     <section class="contact" id="contact">
       <div class="contact-inner">
@@ -2290,9 +2573,80 @@ body::after {
           <p>Every incoming interface audit is personally run and articulated by Mahdi Singaparado—not an automated script, not an anonymous agency layer.</p>
           <!-- CHANGED: REPLACED WITH AN ARCHITECTURE-SPECIFIC DIRECT PERSONAL LINK -->
           <a class="btn btn-dark" href="mailto:saasolves@gmail.com?subject=Direct%20Founder%20Inquiry%20%E2%80%94%20SaaSolves&body=Hi%2C%20Mahdi.%0A%0AI'm%20the%20founder%20of%20the%20platform%20below.%20My%20gut%20tells%20me%20our%20current%20messaging%20isn't%20hitting%20the%20mark.%20Show%20me%20where%20the%20dissonance%20is.%0A%0A-%20Our%20Platform%20URL%3A%20%0A-%20What%20we%20built%20vs.%20what%20people%20think%20we%20built%3A%20%0A%0ALet's%20fix%20this%20narrative%20leak.%0A%0ABest%20regards%2C" onclick="handleCtaClick(event)">Connect Directly With Mahdi →</a>
+
+          <!-- EMAIL CAPTURE — T3 retention layer -->
+          <div style="
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(58,109,148,0.25);
+          ">
+            <p style="
+              font-family: var(--mono);
+              font-size: 0.62rem;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: var(--aegean-light);
+              margin-bottom: 10px;
+            ">Not ready to run diagnostics yet?</p>
+            <p style="
+              font-family: var(--serif-body);
+              font-size: 0.88rem;
+              line-height: 1.7;
+              color: var(--ivory2);
+              margin-bottom: 18px;
+            ">Once a month, one founder-facing communication teardown — no pitch, no cadence, no filler. Just a real diagnostic published openly.</p>
+
+            <div id="capture-form" style="display: flex; gap: 0; max-width: 440px; flex-wrap: wrap;">
+              <input
+                type="email"
+                id="capture-email"
+                placeholder="your@company.com"
+                style="
+                  flex: 1 1 200px;
+                  background: var(--void);
+                  border: 1px solid var(--aegean);
+                  border-right: none;
+                  padding: 11px 16px;
+                  font-family: var(--mono);
+                  font-size: 0.75rem;
+                  color: var(--ivory);
+                  outline: none;
+                  min-width: 0;
+                "
+              />
+              <button
+                onclick="handleEmailCapture()"
+                style="
+                  background: var(--aegean);
+                  border: 1px solid var(--aegean);
+                  color: var(--ivory);
+                  font-family: var(--mono);
+                  font-size: 0.68rem;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                  padding: 11px 18px;
+                  cursor: pointer;
+                  white-space: nowrap;
+                  flex-shrink: 0;
+                  transition: background 0.15s;
+                "
+              >Subscribe →</button>
+            </div>
+            <div id="capture-confirm" style="
+              display: none;
+              font-family: var(--mono);
+              font-size: 0.68rem;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: #4ade80;
+              margin-top: 12px;
+            ">// Dispatch registered. First teardown arriving soon.</div>
+          </div>
+
         </div>
       </div>
     </section>
+
           
     <section class="system-audit-trigger">
       <h3>MESSAGE COGNITION STATUS: CRITICAL NOISE DETECTED</h3>
@@ -3026,6 +3380,23 @@ document.addEventListener("DOMContentLoaded", function(){
   }, { passive: true });
 })();
 
+window.handleEmailCapture = function() {
+  var emailEl = document.getElementById('capture-email');
+  var confirmEl = document.getElementById('capture-confirm');
+  var formEl = document.getElementById('capture-form');
+  if (!emailEl || !emailEl.value || !emailEl.value.includes('@')) {
+    emailEl.style.borderColor = 'var(--rust)';
+    setTimeout(function() { emailEl.style.borderColor = 'var(--aegean)'; }, 1800);
+    return;
+  }
+  // Send to mailto as a simple bridge until a proper list is set up
+  var subject = encodeURIComponent('Diagnostic Dispatch Subscription — SaaSolves');
+  var body = encodeURIComponent('Please add me to the diagnostic dispatch list.\n\nEmail: ' + emailEl.value);
+  window.location.href = 'mailto:saasolves@gmail.com?subject=' + subject + '&body=' + body;
+  if (formEl) formEl.style.display = 'none';
+  if (confirmEl) confirmEl.style.display = 'block';
+};
+  
 </script>
 </body>
 </html>
