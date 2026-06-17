@@ -53,7 +53,7 @@
       /* ── Typography ────────────────────────────────── */
       --display:      'Plus Jakarta Sans', sans-serif;
       --serif-title:  'Instrument Serif', Georgia, serif;
-      --serif-body:   'Instrument Serif', Georgia, serif;
+      --serif-body:   'Source Serif 4', Georgia, serif;
       --mono:         'JetBrains Mono', monospace;
       --sans:         'Plus Jakarta Sans', sans-serif;
 
@@ -1919,6 +1919,174 @@ a, a:visited, a:hover, a:active {
   gap: 6px;
 }
 
+    /* ── Ambient background glow ─────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,79,207,0.06) 0%, transparent 70%);
+      top: -10vh;
+      right: -15vw;
+      pointer-events: none;
+      z-index: 0;
+      animation: orb-drift 20s ease-in-out infinite alternate;
+    }
+    @keyframes orb-drift {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(-4vw, 8vh); }
+    }
+
+    /* ── Narrative cards — updated ───────────────────── */
+    .narrative-card {
+      background: var(--surface-gradient);
+      border: var(--border-thin);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .narrative-card:hover { border-color: var(--violet-dim); }
+    .narrative-card h4 {
+      font-family: var(--serif-title);
+      font-size: 1.1rem;
+      color: var(--violet-light);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .narrative-card p {
+      font-family: var(--display);
+      font-size: 0.92rem;
+      color: var(--ivory2);
+      line-height: 1.7;
+    }
+
+    /* ── Intelligence band — updated ─────────────────── */
+    .intelligence-band { padding: 6vh 6vw; background: var(--deep); border-bottom: var(--border-thin); }
+    .intelligence-band-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: var(--radius-lg); border: var(--border-thin); overflow: hidden; }
+    @media(max-width:760px) { .intelligence-band-inner { grid-template-columns: 1fr; } }
+    .intelligence-cell { padding: 36px 32px; background: var(--surface-gradient); }
+    .intelligence-cell:first-child { border-right: var(--border-thin); }
+    @media(max-width:760px) { .intelligence-cell:first-child { border-right: none; border-bottom: var(--border-thin); } }
+
+    /* ── Sandbox — updated ───────────────────────────── */
+    .sandbox-window {
+      border-radius: var(--radius-lg);
+      border: var(--border-thin);
+      box-shadow: var(--shadow-violet);
+      overflow: hidden;
+    }
+    .sandbox-bar {
+      border-bottom: var(--border-thin);
+      border-radius: 0;
+    }
+    .sandbox-btn {
+      background: var(--violet);
+      border-radius: var(--radius-sm);
+      border: none;
+      transition: background 0.2s;
+    }
+    .sandbox-btn:hover { background: var(--violet-light); }
+    .sandbox-textarea {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--sand);
+    }
+    .sandbox-textarea:focus { border-color: var(--violet-dim); }
+
+    /* ── Status bar ──────────────────────────────────── */
+    #status-bar {
+      position: relative;
+      z-index: 1;
+      background: rgba(7,9,26,0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: var(--border-thin);
+    }
+
+    /* ── Tier level badge ────────────────────────────── */
+    .tier-level-badge {
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet-light);
+      background: var(--violet-glow);
+      border: var(--border-violet);
+      padding: 4px 12px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    /* ── Mobile menu — updated ───────────────────────── */
+    .mobile-menu-cta a {
+      border-radius: var(--radius);
+      background: var(--violet);
+    }
+
+    /* ── Framework cell grid (mobile-safe) ───────────── */
+    .framework-cell-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+    }
+    @media (max-width: 700px) {
+      .framework-cell-grid {
+        grid-template-columns: 1fr;
+      }
+      .framework-cell-grid > div:first-child {
+        border-right: none !important;
+        border-bottom: var(--border-thin);
+      }
+    }
+
+    /* ── Contact section ─────────────────────────────── */
+    .contact { border-top: var(--border-thin); }
+
+    /* ── System audit trigger ────────────────────────── */
+    .system-audit-trigger {
+      background: var(--surface-gradient);
+      border-radius: var(--radius-lg);
+      border: var(--border-thin);
+      box-shadow: var(--shadow);
+    }
+
+    /* ── AOS swipe wrap (Our Approach) ───────────────── */
+    .approach-swipe-wrap {
+      border-radius: var(--radius-lg);
+      border: var(--border-thin);
+      overflow: hidden;
+    }
+    .approach-swipe-track {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .approach-swipe-track::-webkit-scrollbar { display: none; }
+    .approach-swipe-card {
+      min-width: 80vw;
+      max-width: 320px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+    @media (min-width: 700px) {
+      .approach-swipe-card {
+        min-width: 0;
+        max-width: none;
+        flex: 1;
+        scroll-snap-align: none;
+      }
+      .approach-swipe-track {
+        overflow-x: visible;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -2010,7 +2178,7 @@ a, a:visited, a:hover, a:active {
     letter-spacing: 0.08em;
     color: var(--aegean-light);
     text-transform: uppercase;
-  ">First Public Case Study: Q3 2025</span>
+  ">First Public Case Study: July 2026</span>
 </div>
 
 <style>
@@ -2493,7 +2661,7 @@ a, a:visited, a:hover, a:active {
                     <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.5; text-align: right;">01 / 03</div>
                   </div>
 
-                  <!-- SLIDE 2: Problem / Infrastructure Copy -->
+     <!-- SLIDE 2: Infrastructure -->
                   <div style="
                     min-width: 100%;
                     scroll-snap-align: start;
@@ -2501,23 +2669,17 @@ a, a:visited, a:hover, a:active {
                     box-sizing: border-box;
                     background: #0a1f12;
                   ">
-                    <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 14px;">The Problem We Solve</div>
-                    <div style="font-family: var(--serif-title); font-size: clamp(1rem, 3vw, 1.35rem); font-weight: 700; color: var(--ivory); line-height: 1.3; margin-bottom: 16px;">
+                    <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 14px;">The Architecture</div>
+                    <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.25rem); font-weight: 400; color: var(--ivory); line-height: 1.55; margin-bottom: 16px; font-style: italic;">
                       LandKnot installs the infrastructure for structural peace.
                     </div>
-                    <div style="font-family: var(--serif-body); font-size: 0.82rem; color: var(--ivory2); line-height: 1.75; margin-bottom: 20px;">
-                      We weave together fragmented stakeholders and extractive corridors through a governance-tech architecture that mirrors the spider-web intelligence of indigenous stewardship. Disconnected, disputed territories become coordinated, living networks of sustainable growth.
-                    </div>
-                    <!-- Three feature pills -->
-                    <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;">
-                      <div style="background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.3); padding: 10px 8px; font-family: var(--mono); font-size: 0.6rem; color: #4ade80; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4;">Stakeholder Alignment</div>
-                      <div style="background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.3); padding: 10px 8px; font-family: var(--mono); font-size: 0.6rem; color: #4ade80; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4;">Governance Architecture</div>
-                      <div style="background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.3); padding: 10px 8px; font-family: var(--mono); font-size: 0.6rem; color: #4ade80; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4;">Regenerative Networks</div>
+                    <div style="font-family: var(--display); font-size: 0.88rem; color: var(--ivory2); line-height: 1.8;">
+                      We weave together fragmented stakeholders and extractive corridors through a governance-tech architecture whose function mirrors the spider-web intelligence of the indigenous stewardship. One amplified another.
                     </div>
                     <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.5; text-align: right;">02 / 03</div>
                   </div>
-
-                  <!-- SLIDE 3: Closing Statement -->
+                  
+       <!-- SLIDE 3: Closing Copy -->
                   <div style="
                     min-width: 100%;
                     scroll-snap-align: start;
@@ -2530,21 +2692,17 @@ a, a:visited, a:hover, a:active {
                     min-height: 260px;
                   ">
                     <div>
-                      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 20px;">The Transformation</div>
-                      <div style="font-family: var(--serif-title); font-size: clamp(1.2rem, 4vw, 1.9rem); font-weight: 700; color: var(--ivory); line-height: 1.25; font-style: italic; border-left: 4px solid #4ade80; padding-left: 20px; margin-bottom: 20px;">
-                        "The data becomes context, not claim. Every stakeholder recognizes their entry point simultaneously."
-                      </div>
-                      <div style="font-family: var(--serif-body); font-size: 0.82rem; color: var(--ivory2); line-height: 1.7;">
-                        Three audiences — institutional, investor, community — reading one coherent recognition event. No signal lost. No stakeholder alienated.
+                      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 16px;">The Living System</div>
+                      <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.2rem); font-weight: 400; color: var(--ivory); line-height: 1.6; font-style: italic; margin-bottom: 16px;">
+                        By bridging disputed territories into a coordinated land system, we catalyze the everlasting harmony that excels beyond mere protocol into a living knot of sustainable growth.
                       </div>
                     </div>
-                    <!-- Bottom simulated footer bar -->
                     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #1a4a2e; display: flex; justify-content: space-between; align-items: center;">
                       <div style="font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.7;">landknot.io</div>
                       <div style="font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.5; text-align: right;">03 / 03</div>
                     </div>
                   </div>
-
+                  
                 </div><!-- end slides track -->
 
                 <!-- Scroll indicator dots -->
@@ -2557,12 +2715,35 @@ a, a:visited, a:hover, a:active {
               </div><!-- end viewport -->
             </div><!-- end browser chrome -->
 
-            <!-- Caption below mockup -->
+ <!-- Caption below mockup -->
             <p style="font-family: var(--mono); font-size: 0.72rem; color: var(--ivory2); font-style: italic; margin-top: 16px; padding-left: 4px; opacity: 0.8;">
-              The data becomes context, not claim. Every stakeholder recognizes their entry point simultaneously.
+              Three slides. One reorientation.
             </p>
 
           </div><!-- end After SaaSolves -->
+
+          <!-- THE TRANSFORMATION CARD -->
+          <div data-aos="fade-up" style="
+            margin-top: 32px;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--cobalt) 100%);
+            border-radius: var(--radius-lg);
+            border: var(--border-thin);
+            box-shadow: var(--shadow);
+            padding: 32px 28px;
+            max-width: 720px;
+          ">
+            <div style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: #4ade80; display: inline-block;"></span>
+              The Transformation
+            </div>
+            <p style="font-family: var(--serif-title); font-size: clamp(1rem, 3vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--ivory); line-height: 1.6; margin-bottom: 16px; border-left: 3px solid #4ade80; padding-left: 18px;">
+              "The data becomes context, not claim. Every stakeholder recognizes their entry point simultaneously."
+            </p>
+            <p style="font-family: var(--display); font-size: 0.9rem; color: var(--ivory2); line-height: 1.75;">
+              Three audiences — institutional, investor, community — reading one coherent recognition event. It completely removes signal lost and prevents stakeholder alienation.
+            </p>
+          </div>
+
         </section>
         
 <!-- ══════════════ EXECUTION TIERS ══════════════ -->
