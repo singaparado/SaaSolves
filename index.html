@@ -276,8 +276,22 @@
     .services, .work, .contact, .cs-body { padding:10vh 6vw; max-width:1200px; margin:0 auto; }
     .services-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; border-bottom:var(--border); padding-bottom:20px; }
     .services-head h2 { font-family:var(--serif-title); font-size:clamp(1.8rem,4vw,2.8rem); font-weight:700; }
-    .tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-    @media(max-width:880px) { .tiers { grid-template-columns:1fr; } }
+        .tiers { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+    @media(max-width:760px) { .tiers { grid-template-columns:1fr; } }
+    .tier-level-badge {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--aegean-light);
+      background: var(--void);
+      border: 1px solid var(--aegean);
+      padding: 4px 10px;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .tier { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .tier:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(48,91,124,0.16), 0 0 0 1px rgba(74,125,157,0.2); }
     .tier { background:var(--cobalt); padding:40px 30px; display:flex; flex-direction:column; border:var(--border); box-shadow:var(--shadow); }
     .tier-title { font-family:var(--display); font-size:1.3rem; font-weight:700; margin-bottom:6px; }
     .tier-price { font-family:var(--display); font-size:2.5rem; font-weight:700; margin-bottom:20px; border-bottom:2px dashed var(--sand); padding-bottom:14px; }
@@ -755,6 +769,20 @@ padding:28px;
     grid-template-columns: 1fr !important;
   }
 }
+/* Framework cells — label + body, mobile safe */
+.framework-cell-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+}
+@media (max-width: 700px) {
+  .framework-cell-grid {
+    grid-template-columns: 1fr;
+  }
+  .framework-cell-grid > div:first-child {
+    border-right: none !important;
+    border-bottom: var(--border);
+  }
+}
 
 /* ══════════════════════════════════════════════════════
    GLOBAL AMBIENT VISUAL LAYER
@@ -1198,18 +1226,23 @@ body::after {
   margin-bottom: 12px;
 }
 
-/* AOS swipeable card track */
+/* AOS swipeable card track wrapper — handles border-radius clipping */
+.approach-swipe-wrap {
+  border: var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+/* AOS swipeable card track — scroll only, no overflow:hidden */
 .approach-swipe-track {
   display: flex;
   overflow-x: auto;
+  overflow-y: visible;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
   gap: 0;
-  border: var(--border);
-  border-radius: 12px;
-  overflow: hidden; /* clips corners */
+  /* NO overflow:hidden here — it blocks iOS touch scroll */
 }
 .approach-swipe-track::-webkit-scrollbar { display: none; }
 
@@ -1476,13 +1509,24 @@ body::after {
   -webkit-overflow-scrolling: touch;
 }
 
-/* ── Status bar responsive ──────────────────────────── */
+/* Prevent Safari link inheritance from leaking into non-link content */
+a, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+.tier-link {
+  text-decoration: none !important;
+}
+/* Ensure body text inside tiers/cards is never underlined */
+.tier p, .tier li, .tier div,
+.work-card p, .work-card h3, .work-card div {
+  text-decoration: none;
+}
+    
+/* ── Status bar ─────────────────────────────────────── */
 #status-bar {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 1;
+  background: var(--void);
 }
 
 /* ── Email capture input focus ──────────────────────── */
