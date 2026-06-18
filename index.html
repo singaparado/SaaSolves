@@ -501,37 +501,38 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--violet-dim), transparent);
+      background: linear-gradient(90deg, transparent, var(--amber-dim), transparent);
     }
     .tier:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
     }
     .tier-level-badge {
       font-family: var(--mono);
-      font-size: 0.58rem;
+      font-size: 0.56rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--violet-light);
-      background: var(--violet-glow);
-      border: var(--border-violet);
-      padding: 4px 10px;
+      color: var(--amber-light);
+      background: var(--amber-glow);
+      border: 1px solid rgba(201,148,58,0.2);
+      padding: 4px 12px;
       border-radius: 100px;
       display: inline-block;
       margin-bottom: 16px;
     }
     .tier-title {
       font-family: var(--serif-title);
-      font-size: 1.35rem;
-      font-weight: 400;
+      font-size: 1.3rem;
+      font-weight: 500;
       margin-bottom: 6px;
       color: var(--ivory);
       letter-spacing: -0.01em;
+      line-height: 1.2;
     }
     .tier-price {
-      font-family: var(--display);
-      font-size: 2.4rem;
-      font-weight: 700;
+      font-family: var(--serif-title);
+      font-size: 2.2rem;
+      font-weight: 600;
       margin-bottom: 20px;
       color: var(--ivory);
       padding-bottom: 16px;
@@ -540,60 +541,60 @@
     }
     .tier-price small {
       font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--violet-light);
+      font-size: 0.68rem;
+      color: var(--amber-light);
       font-weight: 400;
       letter-spacing: 0.04em;
     }
     .tier-desc {
-      font-family: var(--display);
+      font-family: var(--serif-body);
       font-size: 0.9rem;
-      line-height: 1.75;
+      line-height: 1.8;
       margin-bottom: 22px;
       flex-grow: 1;
       color: var(--ivory2);
     }
     .tier-output {
       font-family: var(--mono);
-      font-size: 0.72rem;
-      background: rgba(0,0,0,0.2);
+      font-size: 0.68rem;
+      background: rgba(0,0,0,0.25);
       padding: 10px 14px;
       border-radius: var(--radius-sm);
       border: var(--border-thin);
       margin-bottom: 20px;
       color: var(--ivory2);
+      line-height: 1.6;
     }
     .tier-link {
       display: block;
       text-align: center;
-      font-family: var(--display);
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       text-decoration: none;
-      color: var(--ivory);
-      background: var(--violet);
+      color: var(--navy);
+      background: var(--amber);
       padding: 13px 16px;
       border-radius: var(--radius);
-      border: var(--border-violet);
-      box-shadow: var(--shadow-violet);
-      transition: all 0.2s ease;
+      border: var(--border-amber);
+      box-shadow: var(--shadow-amber);
+      transition: all 0.22s ease;
       margin-top: auto;
     }
     .tier-link:hover {
-      background: var(--violet-light);
+      background: var(--amber-light);
       transform: translateY(-1px);
       box-shadow: var(--shadow-hover);
     }
-    /* ── Extended tier trigger ─────────────────────── */
     .extended-tier-trigger {
       font-family: var(--mono);
-      font-size: 0.7rem;
-      font-weight: 500;
+      font-size: 0.68rem;
+      font-weight: 400;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--violet-light);
+      letter-spacing: 0.08em;
+      color: var(--amber);
       background: none;
       border: none;
       cursor: pointer;
@@ -604,7 +605,8 @@
       margin-top: 12px;
       transition: color 0.2s;
     }
-    .extended-tier-trigger:hover { color: var(--ivory); }
+    .extended-tier-trigger:hover { color: var(--amber-light); }
+
     .extended-tier-content {
       display: none;
       margin-top: 14px;
