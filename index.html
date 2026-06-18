@@ -21,66 +21,130 @@
   <style>
     html, body { width:100%; overflow-x:hidden; position:relative; touch-action: pan-y; }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    :root {
-      /* ── Base Surfaces — warm navy, not cold cobalt ── */
-      --navy:         #002147;   /* the warmest navy background*/
-      --cobalt:       #0D0B1A;   /* card background — warm aubergine-navy */
-      --deep:         #0A192F;   /* section alternate — very deep */
-      --void:         #131025;   /* mid-tone surface — warm purple-navy */
-      --ink:          #1C1832;   /* elevated surface */
-      --surface:      #171430;   /* general card surface */
+:root {
+  /* ── Base Surfaces — Oxford Blue foundation ───────────── */
+  --navy:         #002147;   /* Oxford Blue — primary identity */
+  --cobalt:       #071B33;   /* elevated navy surface */
+  --deep:         #00152E;   /* deep shadow layer */
+  --void:         #0B223F;   /* mid navy surface */
+  --ink:          #102B4A;   /* card elevation */
+  --surface:      #0A1F38;   /* general card surface */
 
-      /* ── Amber-Bronze Ornament — the "human warmth" accent ── */
-      --amber:        #C9943A;   /* primary ornamental — warm amber-bronze */
-      --amber-light:  #DFB060;   /* lighter amber for hover states */
-      --amber-dim:    #4A3518;   /* very muted amber for borders */
-      --amber-glow:   rgba(201,148,58,0.10);  /* soft amber glow backgrounds */
 
-      /* ── Violet — secondary depth accent ──────────── */
-      --violet:       #6B5FA8;   /* muted indigo-violet */
-      --violet-light: #8B7EC8;   /* lighter violet */
-      --violet-dim:   rgba(107,95,168,0.25);
-      --violet-glow:  rgba(107,95,168,0.08);
+  /* ── Cream / Ivory Paper System ──────────────────────── */
+  --ivory:        #F7F1E3;   /* warm paper white */
+  --ivory2:       #D8CCB8;   /* aged parchment text */
+  --cream:        #EDE2CC;   /* soft cream highlight */
+  --paper:        #FFF8EA;   /* brightest paper tone */
+  --muted:        #8D877D;   /* quiet secondary text */
 
-      /* ── Aegean — kept for structural/border use ─── */
-      --aegean:       #2A3F5C;
-      --aegean-light: #3D5A7A;
-      --sand:         #1E1A2E;   /* subtle divider — warm dark */
 
-      /* ── Text ──────────────────────────────────────── */
-      --ivory:        #F5F0E8;   /* warm cream, not cold white */
-      --ivory2:       #C4BBAA;   /* warm secondary — aged paper tone */
-      --muted:        #6B6358;   /* tertiary/placeholder — warm grey */
+  /* ── Antique Gold Ornament ───────────────────────────── */
+  --gold:         #C8A45D;   /* refined classical gold */
+  --gold-light:   #E2C98C;   /* highlight gold */
+  --gold-dim:     #5A4826;   /* muted gold border */
+  --gold-glow:    rgba(200,164,93,0.12);
 
-      /* ── Utility ───────────────────────────────────── */
-      --rust:         #B85C3A;   /* warm rust for alerts */
 
-      /* ── Typography ────────────────────────────────── */
-      --display:      'Newsreader', Georgia, serif;
-      --serif-title:  'Newsreader', Georgia, serif;
-      --serif-body:   'Source Serif 4', Georgia, serif;
-      --mono:         'DM Mono', 'Courier New', monospace;
-      --sans:         'Source Serif 4', Georgia, serif; /* no cold sans */
+  /* ── Structural Blue Accent ──────────────────────────── */
+  --aegean:       #274C77;
+  --aegean-light: #416B9A;
+  --sand:         #24364B;
 
-      /* ── Borders — soft, warm, not neobrutalist ────── */
-      --radius-sm:    6px;
-      --radius:       12px;
-      --radius-lg:    18px;
-      --border:       1px solid rgba(201,148,58,0.18);
-      --border-thin:  1px solid rgba(201,148,58,0.12);
-      --border-amber: 1px solid var(--amber);
 
-      /* ── Shadows — warm depth, not cold offset ─────── */
-      --shadow:        0 4px 28px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3);
-      --shadow-amber:  0 0 0 1px var(--amber-dim), 0 8px 32px rgba(201,148,58,0.08);
-      --shadow-hover:  0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,148,58,0.3);
-      --shadow-ae:     0 4px 20px rgba(42,63,92,0.2);
+  /* ── Utility ─────────────────────────────────────────── */
+  --rust:         #B8643E;
 
-      /* ── Gradient — warm brown-navy ────────────────── */
-      --gloss-gradient: linear-gradient(135deg, rgba(255,248,235,0.03) 0%, rgba(255,255,255,0) 60%);
-      --surface-gradient: linear-gradient(160deg, var(--ink) 0%, var(--cobalt) 100%);
-      --warm-gradient: linear-gradient(135deg, #0D0B1A 0%, #07060F 100%);
-    }
+  /* ── Typography ─────────────────────────────────────── */
+
+  --display:
+    'Newsreader',
+    Georgia,
+    serif;
+
+  --serif-title:
+    'Newsreader',
+    Georgia,
+    serif;
+
+  --serif-body:
+    'Proza Libre',
+    'Caudex',
+    Georgia,
+    serif;
+
+  --serif-alt:
+    'Caudex',
+    'Proza Libre',
+    Georgia,
+    serif;
+
+  --mono:
+    'DM Mono',
+    'Courier New',
+    monospace;
+
+  --sans:
+    'Proza Libre',
+    Arial,
+    sans-serif;
+
+  /* ── Borders — paper + gold logic ───────────────────── */
+  --radius-sm:    6px;
+  --radius:       12px;
+  --radius-lg:    18px;
+
+  --border:
+    1px solid rgba(200,164,93,0.22);
+
+  --border-thin:
+    1px solid rgba(247,241,227,0.12);
+
+  --border-gold:
+    1px solid var(--gold);
+
+
+  /* ── Shadows — deep Oxford depth ────────────────────── */
+  --shadow:
+    0 4px 28px rgba(0,0,0,0.45),
+    0 1px 4px rgba(0,0,0,0.25);
+
+  --shadow-gold:
+    0 0 0 1px var(--gold-dim),
+    0 12px 36px rgba(200,164,93,0.12);
+
+  --shadow-hover:
+    0 18px 48px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(200,164,93,0.35);
+
+  --shadow-ae:
+    0 4px 20px rgba(39,76,119,0.25);
+
+
+  /* ── Gradients — Oxford Blue + paper glow ───────────── */
+  --gloss-gradient:
+    linear-gradient(
+      135deg,
+      rgba(255,248,234,0.06) 0%,
+      rgba(255,255,255,0) 60%
+    );
+
+
+  --surface-gradient:
+    linear-gradient(
+      160deg,
+      var(--ink) 0%,
+      var(--cobalt) 100%
+    );
+
+
+  --warm-gradient:
+    linear-gradient(
+      135deg,
+      #002147 0%,
+      #00152E 100%
+    );
+}
 
     body {
       background: var(--navy);
