@@ -3816,23 +3816,12 @@ document.addEventListener("DOMContentLoaded", function(){
     }, 600);
   };
 
+// 5. CTA HANDLER
 
-  // 5. CTA HANDLER
-
-  window.handleCtaClick = function(e) {
-    if (e) e.preventDefault();
-    const email = "saasolves@gmail.com";
-    navigator.clipboard.writeText(email)
-      .then(() => {
-        const toast = document.getElementById("toast-notice");
-        if (toast) {
-          toast.classList.add("show");
-          setTimeout(() => toast.classList.remove("show"), 2800);
-        }
-      })
-      .catch(() => {});
-  };
-
+window.handleCtaClick = function(e) {
+  // Allow mailto link to work normally
+  return true;
+};
 
   // 6. NAVIGATION
   // Fixed: behavior "instant" → "auto" for iOS Safari compatibility
