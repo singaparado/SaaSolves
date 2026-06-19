@@ -55,37 +55,22 @@
   /* ── Utility ─────────────────────────────────────────── */
   --rust:         #B8643E;
 
-  /* ── Typography ─────────────────────────────────────── */
-
-  --display:
-    'Newsreader',
-    Georgia,
-    serif;
-
-  --serif-title:
-    'Newsreader',
-    Georgia,
-    serif;
+  /* ── Typography (The Global Override) ─────────── */
   
-  --serif-body:
-    'Proza Libre',
-    Georgia,
-    sans-serif;
+  /* 1. Newsreader for Titles (Display) */
+  --display: 'Newsreader', Georgia, serif;
+  --serif-title: 'Newsreader', Georgia, serif;
 
-  --serif-alt:
-    'Caudex',
-    Georgia,
-    serif;
+  /* 2. Proza Libre for EVERYTHING ELSE (Including the 63 instances of --serif-body) */
+  --serif-body: 'Proza Libre', Arial, sans-serif;
 
-  --mono:
-    'DM Mono',
-    'Courier New',
-    monospace;
+  /* 3. Caudex for special accents */
+  --serif-alt: 'Caudex', Georgia, serif;
 
-  --sans:
-    'Proza Libre',
-    Arial,
-    sans-serif;
+  /* 4. Mono */
+  --mono: 'DM Mono', 'Courier New', monospace;
+  --sans: 'Proza Libre', Arial, sans-serif;
+
 
   /* ── Borders — paper + gold logic ───────────────────── */
   --radius-sm:    6px;
@@ -2124,22 +2109,6 @@ a, a:visited, a:hover, a:active {
     padding-right: 0 !important;
   }
 }
-
-    /* FORCE PROZA LIBRE GLOBALLY */
-body, body *, .hero-body, .narrative-card p, .tier-desc {
-  font-family: 'Proza Libre', Arial, sans-serif !important;
-}
-
-/* FORCE NEWSREADER HEADINGS */
-h1, h2, h3, h4, h5, h6, .hero-title, .display-text {
-  font-family: 'Newsreader', Georgia, serif !important;
-}
-
-/* FORCE CAUDEX TIERS */
-.execution-tier {
-  font-family: 'Caudex', Georgia, serif !important;
-}
-
     
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
