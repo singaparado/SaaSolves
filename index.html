@@ -66,7 +66,9 @@
     'Newsreader',
     Georgia,
     serif;
-
+  
+  /* The body text (FORCE THIS) This forces every class that uses 'var(--serif-body)' 
+     to use Proza Libre instead of a serif font */
   --serif-body:
     'Proza Libre',
     Georgia,
@@ -493,7 +495,7 @@
     .vtab-tag { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px; border: 1px solid; }
     .vtab-tag.noise { color: #E1E8F0; border-color: var(--aegean); background: rgba(58,109,148,0.2); }
     .vtab-tag.translated { color: var(--ivory); border-color: var(--aegean-light); background: var(--sand); }
-    .vtab-quote { font-family: var(--sans); font-size: 1.1rem; font-weight: 400; line-height: 1.6; margin-bottom: 12px; color: var(--ivory); }
+    .vtab-quote { font-family: var(--serif-body); font-size: 1.1rem; font-weight: 400; line-height: 1.6; margin-bottom: 12px; color: var(--ivory); }
     .vtab-note { font-family: var(--mono); font-size: 0.78rem; color: var(--ivory2); line-height: 1.55; }
 
     /* ── SERVICES ───────────────────────────────────── */
