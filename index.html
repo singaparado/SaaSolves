@@ -55,39 +55,16 @@
   /* ── Utility ─────────────────────────────────────────── */
   --rust:         #B8643E;
 
-  /* ── Typography ─────────────────────────────────────── */
+  /* ── Typography (Refined) ── */
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body:    'Proza Libre', Arial, sans-serif;
+  --font-accent:  'Caudex', Georgia, serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
 
-  --display:
-    'Newsreader',
-    Georgia,
-    serif;
-
-  --serif-title:
-    'Newsreader',
-    Georgia,
-    serif;
-  
-  /* The body text (FORCE THIS) This forces every class that uses 'var(--serif-body)' 
-     to use Proza Libre instead of a serif font */
-  --serif-body:
-    'Proza Libre',
-    Georgia,
-    sans-serif;
-
-  --serif-alt:
-    'Caudex',
-    Georgia,
-    serif;
-
-  --mono:
-    'DM Mono',
-    'Courier New',
-    monospace;
-
-  --sans:
-    'Proza Libre',
-    Arial,
-    sans-serif;
+  /* Aliases to prevent breaking existing classes */
+  --serif-body: var(--font-body);
+  --serif-alt:  var(--font-accent);
+  --sans:       var(--font-body);
 
   /* ── Borders — paper + gold logic ───────────────────── */
   --radius-sm:    6px;
@@ -151,14 +128,26 @@
     );
 }
 
-    body {
+        body {
       background: var(--navy);
       color: var(--ivory);
-      font-family: var(--serif-body);
+      font-family: var(--font-body) !important;
       font-size: 17px;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Force Headings to Newsreader */
+    h1, h2, h3, h4, h5, h6, .hero-title, .hero-kicker, .display-text {
+      font-family: var(--font-display) !important;
+    }
+
+    /* Force Tiers to Caudex */
+    .execution-tier, 
+    .tier-desc, 
+    .approach-pip {
+      font-family: var(--font-accent) !important;
     }
     
     body::before {
