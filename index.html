@@ -55,9 +55,9 @@
   /* ── Utility ─────────────────────────────────────────── */
   --rust:         #B8643E;
 
-  /* ── Typography (Refined) ── */
+  /* ── Typography ─────────────────────────────────────── */
 
-    --display:
+  --display:
     'Newsreader',
     Georgia,
     serif;
@@ -88,11 +88,6 @@
     'Proza Libre',
     Arial,
     sans-serif;
-
-  /* Aliases to prevent breaking existing classes */
-  --serif-body: var(--font-body);
-  --serif-alt:  var(--font-accent);
-  --sans:       var(--font-body);
 
   /* ── Borders — paper + gold logic ───────────────────── */
   --radius-sm:    6px;
@@ -159,23 +154,11 @@
     body {
       background: var(--navy);
       color: var(--ivory);
-      font-family: 'Proza Libre', Arial, sans-serif !important;
+      font-family: var(--serif-body);
       font-size: 17px;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Force Headings to Newsreader */
-    h1, h2, h3, h4, h5, h6, .hero-title, .hero-kicker, .display-text {
-      font-family: var(--font-display) !important;
-    }
-
-    /* Force Tiers to Caudex */
-    .execution-tier, 
-    .tier-desc, 
-    .approach-pip {
-      font-family: var(--font-accent) !important;
     }
     
     body::before {
