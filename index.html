@@ -55,37 +55,39 @@
   /* ── Utility ─────────────────────────────────────────── */
   --rust:         #B8643E;
 
-  /* ── Typography ─────────────────────────────────────── */
+/* ── Typography ─────────────────────────────────────── */
 
-  --display:
-    'Newsreader',
-    Georgia,
-    serif;
+--display:
+  'Newsreader',
+  Georgia,
+  serif;
 
-  --serif-title:
-    'Newsreader',
-    Georgia,
-    serif;
+--serif-title:
+  'Newsreader',
+  Georgia,
+  serif;
 
-  --serif-body:
-    'Proza Libre',
-    Georgia,
-    sans-serif;
+/* CHANGE THIS VARIABLE TO PROZA LIBRE */
+--serif-body:
+  'Proza Libre',
+  Arial,
+  sans-serif;
 
-  --serif-alt:
-    'Caudex',
-    Georgia,
-    serif;
+/* Keep this for special "Ancient/Caudex" moments only */
+--body-alt:
+  'Caudex',
+  Georgia,
+  serif;
 
-  --mono:
-    'DM Mono',
-    'Courier New',
-    monospace;
+--mono:
+  'DM Mono',
+  'Courier New',
+  monospace;
 
-  --sans:
-    'Proza Libre',
-    Arial,
-    sans-serif;
+--body:
+  'Proza Libre',
+  Arial,
+  sans-serif;
 
   /* ── Borders — paper + gold logic ───────────────────── */
   --radius-sm:    6px;
@@ -2107,6 +2109,35 @@ a, a:visited, a:hover, a:active {
         grid-template-columns: repeat(3, 1fr);
       }
     }
+
+/* --- DESKTOP CONTAINMENT --- */
+@media screen and (min-width: 1024px) {
+  /* This prevents the "blown up" stretched look */
+  /* We only target the sections that are currently breaking */
+  .services, 
+  .hero-container, 
+  .narrative-bridge,
+  #view-our-manifesto,
+  #view-approach { 
+    max-width: 1200px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* --- TYPOGRAPHY NORMALIZATION --- */
+/* Forces your chosen font to apply everywhere, ignoring the accidental serif overrides */
+body, p, li, span, button, input, textarea, h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* Re-apply serif ONLY to intended titles, not the body text */
+h1, h2, .tier-title, .narrative-card h4 {
+  font-family: 'Fraunces', serif !important;
+}
+
     
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
