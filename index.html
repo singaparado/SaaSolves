@@ -56,10 +56,38 @@
   --rust:         #B8643E;
 
   /* ── Typography (Refined) ── */
-  --font-display: 'Newsreader', Georgia, serif;
-  --font-body:    'Proza Libre', Arial, sans-serif;
-  --font-accent:  'Caudex', Georgia, serif;
-  --font-mono:    'DM Mono', 'Courier New', monospace;
+
+    --display:
+    'Newsreader',
+    Georgia,
+    serif;
+
+  --serif-title:
+    'Newsreader',
+    Georgia,
+    serif;
+  
+  /* The body text (FORCE THIS) This forces every class that uses 'var(--serif-body)' 
+     to use Proza Libre instead of a serif font */
+  --serif-body:
+    'Proza Libre',
+    Georgia,
+    sans-serif;
+
+  --serif-alt:
+    'Caudex',
+    Georgia,
+    serif;
+
+  --mono:
+    'DM Mono',
+    'Courier New',
+    monospace;
+
+  --sans:
+    'Proza Libre',
+    Arial,
+    sans-serif;
 
   /* Aliases to prevent breaking existing classes */
   --serif-body: var(--font-body);
