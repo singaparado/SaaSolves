@@ -120,6 +120,11 @@
   --shadow-ae:
     0 4px 20px rgba(39,76,119,0.25);
 
+  /* alias: shadow-violet kept for legacy sandbox reference */
+  --shadow-violet:
+    0 0 0 1px var(--gold-dim),
+    0 8px 28px rgba(200,164,93,0.10);
+
 
   /* ── Gradients — Oxford Blue + paper glow ───────────── */
   --gloss-gradient:
@@ -157,14 +162,17 @@
     }
     
     body::before {
-      content:''; 
-      position:fixed; 
-      inset:0; 
-      z-index:0; 
-      pointer-events:none; 
-      opacity:0.025;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size:200px 200px;
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      border-radius: 0;
+      filter: none;
+      animation: none;
     }
     
     nav,
@@ -855,31 +863,6 @@
       animation: pulse-subtle 3s infinite;
     }
 
-    /* Responsive Grid Adjustments */
-    @media(max-width: 940px) {
-      .hero-container {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
-    @media(max-width: 880px) {
-      .tiers {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
-    @media(max-width: 760px) {
-      .intelligence-band-inner {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
-    @media(max-width: 700px) {
-      .work-grid {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
 /* ═══════════════════════════════════════
    MANIFESTO EXPERIENCE SYSTEM
    Landing + Reader Mode + AOS
@@ -1194,32 +1177,23 @@ padding:28px;
 }
 }
 
-/* Manifesto thesis cards — stack on mobile */
-@media (max-width: 760px) {
-  /* Three-column thesis grid */
+/* Mobile-only stacking for inline-grid sections */
+@media (max-width: 700px) {
+  /* Three-column thesis grid in manifesto */
   #view-our-manifesto [style*="repeat(3, 1fr)"] {
     grid-template-columns: 1fr !important;
   }
-  /* System flow map */
-  #view-our-manifesto [style*="1fr 48px 1fr 48px 1fr"] {
+  /* Two-column layouts in manifesto chapters */
+  #view-our-manifesto [style*="1fr 1fr"] {
     grid-template-columns: 1fr !important;
+    gap: 24px !important;
   }
-  /* Framework band (RAFU/ASUKSHIRA) label column collapses */
-  section [style*="180px 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
-  section [style*="180px 1fr"] > div:first-child {
-    border-right: none !important;
-    border-bottom: var(--border) !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 16px !important;
-  }
-  /* Work cards */
-  section [style*="grid-template-columns: 1fr 1fr"] {
+  /* System flow map in manifesto */
+  #view-our-manifesto [style*="1fr 48px"] {
     grid-template-columns: 1fr !important;
   }
 }
+
 /* Framework cells — label + body, mobile safe */
 .framework-cell-grid {
   display: grid;
@@ -1242,41 +1216,6 @@ padding:28px;
 /* Gradient background base — navy with subtle aegean depth */
 body {
   background: var(--navy);
-}
-
-/* Ambient glow orbs — fixed, behind everything */
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(120px);
-  opacity: 0.07;
-  animation: orb-drift 18s ease-in-out infinite alternate;
-}
-body::before {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, #3A6D94 0%, transparent 70%);
-  top: -10vh;
-  left: -10vw;
-  animation-delay: 0s;
-}
-body::after {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, #1a4a2e 0%, transparent 70%);
-  bottom: 5vh;
-  right: -10vw;
-  animation-delay: -9s;
-}
-
-@keyframes orb-drift {
-  0%   { transform: translate(0, 0) scale(1); opacity: 0.06; }
-  50%  { transform: translate(4vw, 6vh) scale(1.12); opacity: 0.10; }
-  100% { transform: translate(-3vw, -4vh) scale(0.92); opacity: 0.07; }
 }
 
 /* Section backgrounds get a subtle grain texture via SVG */
@@ -2001,29 +1940,25 @@ a, a:visited, a:hover, a:active {
     body::after {
       content: '';
       position: fixed;
-      width: 700px;
-      height: 700px;
+      width: 600px;
+      height: 600px;
       border-radius: 50%;
       background: radial-gradient(circle,
-        rgba(201,148,58,0.04) 0%,
-        rgba(107,95,168,0.03) 40%,
+        rgba(200,164,93,0.05) 0%,
+        rgba(39,76,119,0.03) 50%,
         transparent 70%
       );
-      top: -15vh;
-      right: -20vw;
+      top: -10vh;
+      right: -15vw;
       pointer-events: none;
       z-index: 0;
-      animation: orb-drift 22s ease-in-out infinite alternate;
-    }
-    /* Second warm orb — bottom left */
-    body::before {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-      opacity: 0.018;
+      filter: blur(80px);
+      opacity: 1;
+      animation: orb-drift 20s ease-in-out infinite alternate;
     }
     @keyframes orb-drift {
-      0%   { transform: translate(0, 0); }
-      100% { transform: translate(-4vw, 8vh); }
+      0%   { transform: translate(0, 0); opacity: 0.8; }
+      100% { transform: translate(-3vw, 6vh); opacity: 1; }
     }
 
     /* ── Narrative cards — updated ───────────────────── */
@@ -2429,7 +2364,8 @@ a, a:visited, a:hover, a:active {
           <div 
             data-aos="fade-up"
             data-aos-duration="1100"
-            class="hero-window-wrap">
+            class="hero-window-wrap"
+            style="max-width: 1200px; margin: 0 auto; padding: 0 6vw;">
           <div 
             data-aos="zoom-in"
             data-aos-delay="200"
@@ -2642,8 +2578,10 @@ a, a:visited, a:hover, a:active {
     </div>
 </section>
         
-                <!-- DIAGNOSTIC BREAKDOWN -->
-        <div style="display: flex; flex-direction: column; gap: 24px; max-width: 720px;">
+<!-- DIAGNOSTIC BREAKDOWN -->
+<section style="padding: 6vh 6vw 0; background: var(--navy);">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <div style="display: flex; flex-direction: column; gap: 24px; max-width: 720px;">
             
             <!-- Extractive Framing -->
             <div data-aos="fade-right" data-aos-delay="100" style="border: 2px solid var(--aegean); padding: 24px; background: var(--cobalt);">
@@ -2686,29 +2624,29 @@ a, a:visited, a:hover, a:active {
               <div style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ivory); background: #1a4a2e; padding: 4px 12px; border: 2px solid #4ade80;">
                 AFTER SAASOLVES
               </div>
-              <div style="font-family: var(--mono); font-size: 0.65rem; color: #4ade80; letter-spacing: 0.08em; text-transform: uppercase;">← swipe to read →</div>
+              <div style="font-family: var(--mono); font-size: 0.65rem; color: #5C9E7A; letter-spacing: 0.08em; text-transform: uppercase;">← swipe to read →</div>
             </div>
 
             <!-- Browser Chrome -->
-            <div style="background: var(--deep); border: 4px solid #4ade80; box-shadow: 8px 8px 0px 0px #1a4a2e;">
+            <div style="background: var(--deep); border: 4px solid #5C9E7A; box-shadow: 8px 8px 0px 0px #1a4a2e;">
 
               <!-- Chrome Bar -->
               <div style="background: #0d2b1a; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #4ade80;">
-                <div style="width: 10px; height: 10px; border-radius: 50%; background: #4ade80;"></div>
-                <div style="width: 10px; height: 10px; border-radius: 50%; background: #4ade80; opacity: 0.5;"></div>
-                <div style="width: 10px; height: 10px; border-radius: 50%; background: #4ade80; opacity: 0.25;"></div>
-                <span style="font-family: var(--mono); font-size: 0.72rem; color: #4ade80; margin-left: 12px;">landknot.io — hero copy, post-SaaSolves</span>
+                <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A;"></div>
+                <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A; opacity: 0.5;"></div>
+                <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A; opacity: 0.25;"></div>
+                <span style="font-family: var(--mono); font-size: 0.72rem; color: #5C9E7A; margin-left: 12px;">landknot.io — hero copy, post-SaaSolves</span>
               </div>
 
               <!-- Mock Nav Bar -->
               <div style="background: #0a1f12; padding: 10px 20px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #1a4a2e;">
-                <div style="width: 56px; height: 10px; background: #4ade80; opacity: 0.8;"></div>
+                <div style="width: 56px; height: 10px; background: #5C9E7A; opacity: 0.8;"></div>
                 <div style="display: flex; gap: 10px; margin-left: auto;">
-                  <span style="width: 40px; height: 7px; background: #1a4a2e;"></span>
-                  <span style="width: 40px; height: 7px; background: #1a4a2e;"></span>
-                  <span style="width: 40px; height: 7px; background: #1a4a2e;"></span>
+                  <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
+                  <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
+                  <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
                 </div>
-                <div style="width: 64px; height: 22px; background: #4ade80; opacity: 0.9;"></div>
+                <div style="width: 64px; height: 22px; background: #5C9E7A; opacity: 0.9;"></div>
               </div>
 
               <!-- Swipeable Slide Viewport -->
@@ -2733,20 +2671,20 @@ a, a:visited, a:hover, a:active {
                     background: var(--deep);
                   ">
                     <!-- Simulated headline -->
-                    <div style="font-family: var(--serif-title); font-size: 0.8rem; font-weight: 700; color: #4ade80; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; line-height: 1;">LANDKNOT</div>
+                    <div style="font-family: var(--serif-title); font-size: 0.8rem; font-weight: 700; color: #5C9E7A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; line-height: 1;">LANDKNOT</div>
                     <div style="font-family: var(--serif-title); font-size: clamp(1.1rem, 3.5vw, 1.6rem); font-weight: 700; color: var(--ivory); line-height: 1.2; margin-bottom: 16px;">
-                      Billions of hectares lie dormant.<br>
-                      <span style="color: #4ade80;">We are knotting the living.</span>
+                      As three billions hectares of global rangeland lie dormant,<br>
+                      <span style="color: #5C9E7A; ">We weave them into constellation, knotting the living.</span>
                     </div>
-                    <div style="font-family: var(--serif-body); font-size: 0.82rem; color: var(--ivory2); line-height: 1.7; border-left: 3px solid #4ade80; padding-left: 14px; margin-bottom: 20px;">
-                      Across emerging economies — with 60% of the world's uncultivated arable land cradled in Africa — vast territories sit trapped in a cycle of dispute and institutional silence.
+                    <div style="font-family: var(--serif-body); font-size: 0.82rem; color: var(--ivory2); line-height: 1.7; border-left: 3px solid #5C9E7A; padding-left: 14px; margin-bottom: 20px;">
+                      Across emerging economies — with 60% of the world's uncultivated arable land cradled in Africa — vast territories sit trapped in a cycle of contention and institutional intricate bureaucracy.
                     </div>
                     <!-- Simulated CTA row -->
                     <div style="display: flex; gap: 10px; align-items: center;">
-                      <div style="background: #4ade80; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; font-weight: 700; color: #0a1f12; letter-spacing: 0.06em;">Enter the Network →</div>
-                      <div style="border: 1px solid #9DC183; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; color: #4ade80; letter-spacing: 0.06em;">Our Approach</div>
+                      <div style="background: #5C9E7A; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; font-weight: 700; color: #122B1E; letter-spacing: 0.06em;">Enter the Network →</div>
+                      <div style="border: 1px solid #9DC183; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; color: #5C9E7A; letter-spacing: 0.06em;">Our Approach</div>
                     </div>
-                    <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.5; text-align: right;">01 / 03</div>
+                    <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">01 / 03</div>
                   </div>
 
      <!-- SLIDE 2: Infrastructure -->
@@ -2755,16 +2693,16 @@ a, a:visited, a:hover, a:active {
                     scroll-snap-align: start;
                     padding: 32px 24px;
                     box-sizing: border-box;
-                    background: #0a1f12;
+                    background: #122B1E;
                   ">
-                    <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 14px;">The Architecture</div>
+                    <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 14px;">The Architecture</div>
                     <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.25rem); font-weight: 400; color: var(--ivory); line-height: 1.55; margin-bottom: 16px; font-style: italic;">
                       LandKnot installs the infrastructure for structural peace.
                     </div>
                     <div style="font-family: var(--display); font-size: 0.88rem; color: var(--ivory2); line-height: 1.8;">
                       We weave together fragmented stakeholders and extractive corridors through a governance-tech architecture whose function mirrors the spider-web intelligence of the indigenous stewardship. One amplified another.
                     </div>
-                    <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.5; text-align: right;">02 / 03</div>
+                    <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">02 / 03</div>
                   </div>
                   
        <!-- SLIDE 3: Closing Copy -->
@@ -2780,24 +2718,24 @@ a, a:visited, a:hover, a:active {
                     min-height: 260px;
                   ">
                     <div>
-                      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 16px;">The Living System</div>
+                      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 16px;">The Living System</div>
                       <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.2rem); font-weight: 400; color: var(--ivory); line-height: 1.6; font-style: italic; margin-bottom: 16px;">
                         By bridging disputed territories into a coordinated land system, we catalyze the everlasting harmony that excels beyond mere protocol into a living knot of sustainable growth.
                       </div>
                     </div>
-                    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #1a4a2e; display: flex; justify-content: space-between; align-items: center;">
-                      <div style="font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.7;">landknot.io</div>
-                      <div style="font-family: var(--mono); font-size: 0.6rem; color: #4ade80; opacity: 0.5; text-align: right;">03 / 03</div>
+                    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #1A3D2E; display: flex; justify-content: space-between; align-items: center;">
+                      <div style="font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.7;">landknot.io</div>
+                      <div style="font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">03 / 03</div>
                     </div>
                   </div>
                   
                 </div><!-- end slides track -->
 
                 <!-- Scroll indicator dots -->
-                <div style="display: flex; justify-content: center; gap: 8px; padding: 14px 0; background: #0a1f12; border-top: 1px solid #1a4a2e;">
-                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #4ade80;"></div>
-                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #4ade80; opacity: 0.35;"></div>
-                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #4ade80; opacity: 0.35;"></div>
+                <div style="display: flex; justify-content: center; gap: 8px; padding: 14px 0; background: #122B1E; border-top: 1px solid #1a4a2e;">
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A;"></div>
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35;"></div>
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35;"></div>
                 </div>
 
               </div><!-- end viewport -->
@@ -2820,11 +2758,11 @@ a, a:visited, a:hover, a:active {
             padding: 32px 28px;
             max-width: 720px;
           ">
-            <div style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4ade80; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-              <span style="width: 6px; height: 6px; border-radius: 50%; background: #4ade80; display: inline-block;"></span>
+            <div style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; display: inline-block;"></span>
               The Transformation
             </div>
-            <p style="font-family: var(--serif-title); font-size: clamp(1rem, 3vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--ivory); line-height: 1.6; margin-bottom: 16px; border-left: 3px solid #4ade80; padding-left: 18px;">
+            <p style="font-family: var(--serif-title); font-size: clamp(1rem, 3vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--ivory); line-height: 1.6; margin-bottom: 16px; border-left: 3px solid #5C9E7A; padding-left: 18px;">
               "The data becomes context, not claim. Every stakeholder recognizes their entry point simultaneously."
             </p>
             <p style="font-family: var(--display); font-size: 0.9rem; color: var(--ivory2); line-height: 1.75;">
@@ -2832,7 +2770,8 @@ a, a:visited, a:hover, a:active {
             </p>
           </div>
 
-        </section>
+    </div><!-- end inner max-width -->
+  </section><!-- end diagnostic breakdown section -->
         
 <!-- ══════════════ EXECUTION TIERS ══════════════ -->
 <section class="services" id="services">
@@ -3000,12 +2939,10 @@ a, a:visited, a:hover, a:active {
   <div style="max-width: 1200px; margin: 0 auto;">
 
     <!-- Section Header -->
-    <div data-aos="fade-up" style="margin-bottom: 56px; border-bottom: var(--border); padding-bottom: 24px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-      <div>
-        <div style="font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); margin-bottom: 10px;">// Active Client Portfolio</div>
-        <h2 style="font-family: var(--serif-title); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--ivory); line-height: 1.1;">Our Works</h2>
-      </div>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); max-width: 400px; line-height: 1.7;">Every project below is a translation problem we resolved — from architectural opacity to immediate market recognition.</p>
+    <div data-aos="fade-up" style="margin-bottom: 48px; border-bottom: var(--border); padding-bottom: 24px;">
+      <div style="font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aegean); margin-bottom: 10px;">// Active Client Portfolio</div>
+      <h2 style="font-family: var(--serif-title); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--ivory); line-height: 1.1; margin-bottom: 14px;">Our Works</h2>
+      <p style="font-family: var(--serif-body); font-size: 0.95rem; color: var(--ivory2); max-width: 560px; line-height: 1.75;">Every project below is a translation problem we resolved — from architectural opacity to immediate market recognition.</p>
     </div>
 
     <!-- Work Cards -->
