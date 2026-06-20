@@ -2517,50 +2517,165 @@ a, a:visited, a:hover, a:active {
   </div>
 </section>
 
-<section class="hero-window-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 6vw;">
+<section 
+  class="hero-window-wrap"
+  data-aos="fade-up"
+  data-aos-duration="900"
+  style="max-width: 1200px; margin: 0 auto; padding: 0 6vw;">
+
   <!-- Narrative Header -->
-  <div class="sandbox-narrative-wrapper" style="margin-bottom: 24px;">
-    <h3 style="font-family: var(--serif-title); color: var(--gold-light); font-size: 1.8rem; margin-bottom: 12px;">NARRATIVE ARCHIVE // V5</h3>
-    <p style="font-family: var(--serif-body); color: var(--ivory); margin-bottom: 8px;">Technical data is the skeleton. We provide the architecture of human intent.</p>
-    <p style="font-family: var(--mono); font-size: 0.8rem; color: var(--aegean-light); text-transform: uppercase;">Select a case study to observe the transformation of mechanical noise into visceral clarity.</p>
+  <div 
+    class="sandbox-narrative-wrapper"
+    data-aos="fade-right"
+    data-aos-duration="900"
+    data-aos-delay="100"
+    style="margin-bottom: 24px;">
+
+    <h3 
+      data-aos="fade-up"
+      data-aos-delay="200"
+      style="font-family: var(--serif-title); color: var(--gold-light); font-size: 1.8rem; margin-bottom: 12px;">
+      NARRATIVE ARCHIVE // V5
+    </h3>
+    <p 
+      data-aos="fade-up"
+      data-aos-delay="300"
+      style="font-family: var(--serif-body); color: var(--ivory); margin-bottom: 8px;">
+      Technical data is the skeleton. We provide the architecture of human intent.
+    </p>
+    
+    <p 
+      data-aos="fade-up"
+      data-aos-delay="400"
+      style="font-family: var(--mono); font-size: 0.8rem; color: var(--aegean-light); text-transform: uppercase;">
+      Select a case study to observe the transformation of mechanical noise into visceral clarity.
+    </p>
   </div>
-    
-  <div class="sandbox-window" data-aos="zoom-in" data-aos-delay="200">
-    <div class="sandbox-bar">
-      <div class="sandbox-dots"><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div></div>
-      <div class="sandbox-title">// LINGUISTIC ARCHIVE: CASE STUDY SELECTOR</div>
+  <div 
+    class="sandbox-window"
+    data-aos="zoom-in"
+    data-aos-duration="1000"
+    data-aos-delay="500">
+    <div 
+      class="sandbox-bar"
+      data-aos="fade-down"
+      data-aos-delay="600">
+      <div class="sandbox-dots">
+        <div class="s-dot active"></div>
+        <div class="s-dot"></div>
+        <div class="s-dot"></div>
+      </div>
+
+      <div class="sandbox-title">
+        // LINGUISTIC ARCHIVE: CASE STUDY SELECTOR
+      </div>
     </div>
-    
+
     <div class="sandbox-io">
-      <div class="sandbox-input-pane">
-        <label class="sandbox-label">Selected Case Context:</label>
-        <div id="case-display" class="sandbox-textarea" style="padding: 1rem; border: 1px solid var(--gold-light); min-height: 100px; overflow-y: auto;">
+      <div 
+        class="sandbox-input-pane"
+        data-aos="fade-right"
+        data-aos-delay="700">
+        <label class="sandbox-label">
+          Selected Case Context:
+        </label>
+
+        <div 
+          id="case-display"
+          class="sandbox-textarea"
+          data-aos="fade-up"
+          data-aos-delay="800"
+          style="padding: 1rem; border: 1px solid var(--gold-light); min-height: 100px; overflow-y: auto;">
           Select a case below to initiate the narrative shift.
         </div>
-        
-        <!-- Corrected: Only one container for the pills with wrap applied -->
-        <div class="sample-cases-row" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
-          <span class="sample-case-pill" onclick="loadArchive('workflow')">Workflow Orchestration</span>
-          <span class="sample-case-pill" onclick="loadArchive('habit')">Habit Gamification</span>
-          <span class="sample-case-pill" onclick="loadArchive('notebook')">Notebook</span>
-          <span class="sample-case-pill" onclick="loadArchive('cloud-backup')">Cloud Backup</span>
-          <span class="sample-case-pill" onclick="loadArchive('ui-friction')">UI Friction</span>
-          <span class="sample-case-pill" onclick="loadArchive('asset-management')">Asset Management</span>
+
+        <div 
+          class="sample-cases-row"
+          data-aos="fade-up"
+          data-aos-delay="900"
+          style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+
+          <span 
+            class="sample-case-pill"
+            data-aos="fade-up"
+            data-aos-delay="950"
+            onclick="loadArchive('workflow')">
+            Workflow Orchestration
+          </span>
+
+          <span 
+            class="sample-case-pill"
+            data-aos="fade-up"
+            data-aos-delay="1000"
+            onclick="loadArchive('habit')">
+            Habit Gamification
+          </span>
+
+          <span 
+            class="sample-case-pill"
+            data-aos="fade-up"
+            data-aos-delay="1050"
+            onclick="loadArchive('notebook')">
+            Notebook
+          </span>
+
+          <span 
+            class="sample-case-pill"
+            data-aos="fade-up"
+            data-aos-delay="1100"
+            onclick="loadArchive('cloud-backup')">
+            Cloud Backup
+          </span>
+
+          <span 
+            class="sample-case-pill"
+            data-aos="fade-up"
+            data-aos-delay="1150"
+            onclick="loadArchive('ui-friction')">
+            UI Friction
+          </span>
+
+          <span 
+            class="sample-case-pill"
+            data-aos="fade-up"
+            data-aos-delay="1200"
+            onclick="loadArchive('asset-management')">
+            Asset Management
+          </span>
         </div>
       </div>
-      
-      <!-- The rest of your action row and output pane goes here... -->
-    </div>
-  </div>
-</section>
 
-      <div class="sandbox-action-row">
-        <span class="sandbox-status" id="sandbox-status">Archive idle. Select a case study to begin.</span>
-        <button class="sandbox-btn" onclick="revealNarrative()">Reveal Narrative Shift</button>
+      <div 
+        class="sandbox-action-row"
+        data-aos="fade-up"
+        data-aos-delay="1250">
+
+        <span 
+          class="sandbox-status"
+          id="sandbox-status">
+          Archive idle. Select a case study to begin.
+        </span>
+
+
+        <button 
+          class="sandbox-btn"
+          data-aos="zoom-in"
+          data-aos-delay="1350"
+          onclick="revealNarrative()">
+          Reveal Narrative Shift
+        </button>
       </div>
 
-      <div class="sandbox-output-pane" id="output-pane">
-        <div class="sandbox-response" id="sandbox-output">
+      <div 
+        class="sandbox-output-pane"
+        id="output-pane"
+        data-aos="fade-left"
+        data-aos-delay="1400">
+        <div 
+          class="sandbox-response"
+          id="sandbox-output"
+          data-aos="fade-in"
+          data-aos-delay="1500">
           // Awaiting selection...
         </div>
       </div>
@@ -2568,20 +2683,50 @@ a, a:visited, a:hover, a:active {
   </div>
 </section>
 
-<section style="max-width: 1200px; margin: 40px auto; padding: 0 6vw;">
-  <h3 style="color: var(--gold); font-family: var(--mono); margin-bottom: 20px;">THE ARCHITECTURAL CONSTRAINTS</h3>
-  <div class="sandbox-detection-grid">
-    <div class="detection-cell">
+
+<section 
+  data-aos="fade-up"
+  data-aos-duration="900"
+  style="max-width: 1200px; margin: 40px auto; padding: 0 6vw;">
+  <h3 
+    data-aos="fade-right"
+    data-aos-delay="200"
+    style="color: var(--gold); font-family: var(--mono); margin-bottom: 20px;">
+    THE ARCHITECTURAL CONSTRAINTS
+  </h3>
+
+  <div 
+    class="sandbox-detection-grid"
+    data-aos="zoom-in"
+    data-aos-delay="300">
+    <div 
+      class="detection-cell"
+      data-aos="fade-up"
+      data-aos-delay="400">
       <h4>Visceral Anchor</h4>
-      <p>We prioritize the physical reality of the creator over the abstract utility of the platform.</p>
+      <p>
+      We prioritize the physical reality of the creator over the abstract utility of the platform.
+      </p>
     </div>
-    <div class="detection-cell">
+
+    <div 
+      class="detection-cell"
+      data-aos="fade-up"
+      data-aos-delay="500">
       <h4>Inherited Rhythm</h4>
-      <p>We translate technical complexity into the cadence of ancestral memory and human pulse.</p>
+      <p>
+      We translate technical complexity into the cadence of ancestral memory and human pulse.
+      </p>
     </div>
-    <div class="detection-cell">
+
+    <div 
+      class="detection-cell"
+      data-aos="fade-up"
+      data-aos-delay="600">
       <h4>Spatial Continuity</h4>
-      <p>We treat software not as a destination, but as a living territory built for sustained thought.</p>
+      <p>
+      We treat software not as a destination, but as a living territory built for sustained thought.
+      </p>
     </div>
   </div>
 </section>
