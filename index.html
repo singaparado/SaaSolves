@@ -458,6 +458,51 @@ code, pre, kbd, samp {
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
+    .hero-thesis {
+  max-width: 720px;
+  margin: 28px 0 38px;
+}
+
+.hero-thesis-context {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: var(--ivory2);
+  opacity: 0.85;
+  margin-bottom: 18px;
+}
+
+.hero-thesis-break {
+  font-family: var(--serif-title);
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  line-height: 1.45;
+  color: var(--ivory);
+  margin-bottom: 18px;
+}
+
+.hero-thesis-break span {
+  color: var(--aegean-light);
+}
+
+.hero-thesis-solution {
+  font-family: var(--alt-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  line-height: 1.8;
+  color: var(--aegean-light);
+}
+
+    .hero-cta-note {
+  margin-top: 14px;
+  font-family: var(--serif);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--ivory2);
+  opacity: 0.7;
+}
+    
         /* NARRATIVE CARDS */
     .narrative-card {
         background: var(--cobalt);
@@ -2309,47 +2354,54 @@ a, a:visited, a:hover, a:active {
         <h1 data-aos="fade-up" data-aos-delay="100">
         You built a masterpiece of engineering. But the hardest part is <span class="ae">making the market agree.</span></h1>
 
-       <!-- SaaSolves emphasis line — visible before the CTA -->
-       <div
-          data-aos="fade-up"
-          data-aos-delay="200"
-          style="
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-          ">
-          <span style="
-            font-family: var(--serif);
-            font-size: 0.6rem;
-            letter-spacing: 0.12em;
-            color: var(--ivory2);
-          ">The sophistication of your architecture is undeniable, but your customers are making decisions in seconds</span>
-          <span style="
-            font-family: var(--serif);
-            font-size: 0.6rem;
-            letter-spacing: 0.12em;
-            color: var(--ivory2);
-          ">Between those two realities, exists a silent failure point: the narrative layer</span>
-          <span style="
-            font-family: var(--alt-serif);
-            font-size: 0.6rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--aegean-light);
-          ">SaaSolves finds where your product loses meaning — and rebuilds the bridge</span>
-        </div>
+       <!-- SaaSolves hero thesis — visible before the CTA -->
+<div 
+  class="hero-thesis"
+  data-aos="fade-up"
+  data-aos-delay="200">
 
-       <div 
-          data-aos="fade-up"
-          data-aos-delay="250"
-          class="hero-actions"
-          style="margin-bottom: 40px;">
-          <a onclick="goToAnchor('contact');return false;" href="#contact" class="btn btn-dark">Submit Your Interface →</a>
-          <a data-aos="fade-up"
-          data-aos-delay="250"
-          class="btn btn-outline" onclick="goToAnchor('services');return false;">Review Tiers</a>
+  <p class="hero-thesis-context">
+    The sophistication of your architecture is undeniable.
+    But your customers are making decisions in seconds.
+  </p>
+
+  <p class="hero-thesis-break">
+    Between those two realities exists a silent failure point:
+    <span>the narrative layer.</span>
+  </p>
+
+  <p class="hero-thesis-solution">
+    SaaSolves finds where your product loses meaning —
+    and rebuilds the bridge.
+  </p>
+</div>
+
+<div 
+  data-aos="fade-up"
+  data-aos-delay="250"
+  class="hero-actions"
+  style="margin-bottom: 20px;">
+
+  <a onclick="goToAnchor('contact');return false;" 
+     href="#contact" 
+     class="btn btn-dark">
+     Submit Your Interface →
+  </a>
+
+  <a data-aos="fade-up"
+     data-aos-delay="250"
+     class="btn btn-outline"
+     onclick="goToAnchor('services');return false;">
+     Review Tiers
+  </a>
+</div>
+
+<p 
+  class="hero-cta-note"
+  data-aos="fade-up"
+  data-aos-delay="350">
+  Before your competitors explain the problem better than you do.
+</p>
         </div>
       </div>
     </div> 
