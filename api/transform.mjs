@@ -34,8 +34,6 @@ export default async function handler(req, res) {
         body: JSON.stringify({
 
           model: "claude-3-5-sonnet-20240620",
-,
-
           max_tokens: 1000,
 
           system:
