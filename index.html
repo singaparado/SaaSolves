@@ -147,6 +147,78 @@
     );
 }
 
+/* ══════════════════════════════════════════════════
+   TYPOGRAPHY HIERARCHY — Nuclear Establishment
+   Proza Libre = body/reading layer (dominant)
+   Newsreader  = title/voice layer (editorial)
+   Caudex      = soul/manifesto layer (selective)
+   DM Mono     = system/label layer (structural)
+   ══════════════════════════════════════════════════ */
+
+/* 1. Global default: Proza Libre owns ALL text */
+html {
+  font-family: 'Proza Libre', Georgia, sans-serif;
+}
+
+/* 2. Headings: Newsreader takes over for h1–h3 */
+h1, h2, h3 {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+/* 3. Paragraphs inherit Proza Libre from html */
+p, li, td, th, label, input, textarea, select {
+  font-family: 'Proza Libre', Georgia, sans-serif;
+}
+
+/* 4. Code/labels stay mono */
+code, pre, kbd, samp {
+  font-family: 'DM Mono', 'Courier New', monospace;
+}
+
+/* 5. Force Proza Libre on body-level prose classes 
+   where --serif-body is used but may fall back */
+.tier-desc,
+.hero-body,
+.narrative-card p,
+.work-card p,
+.vtab-quote,
+.extended-tier-content p,
+.approach-framework-body p,
+.approach-swipe-card-body,
+.approach-section-sub,
+.approach-cta-body,
+.approach-copy-text,
+.approach-artifact-desc,
+.approach-artifact-context,
+.intelligence-cell p,
+.contact-right p,
+.reader-chapter p,
+.manifesto-card p,
+.cs-core-text p {
+  font-family: 'Proza Libre', Georgia, sans-serif !important;
+}
+
+/* 6. Newsreader stays for editorial titles where --display is set */
+.tier-title,
+.tier-price,
+.manifesto-intro h1,
+.reader-header h1,
+.reader-chapter h2,
+.approach-title,
+.approach-framework-name,
+.approach-aos-name,
+.approach-artifact-name,
+.approach-cta-title,
+.teaser-quote {
+  font-family: 'Newsreader', Georgia, serif !important;
+}
+
+/* 7. Caudex for execution tier quotes only */
+.tier-desc [style*="font-style: italic"],
+.tier-desc p[style*="italic"] {
+  font-family: 'Caudex', Georgia, serif;
+}
+    
     body {
       background: var(--navy);
       color: var(--ivory);
@@ -1974,11 +2046,11 @@ a, a:visited, a:hover, a:active {
       margin-bottom: 10px;
       font-style: italic;
     }
+    /* font-family intentionally omitted — inherits Proza Libre from nuclear override */
     .narrative-card p {
-      font-family: var(--display);
       font-size: 0.92rem;
       color: var(--ivory2);
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     /* ── Intelligence band — updated ─────────────────── */
@@ -2432,6 +2504,55 @@ a, a:visited, a:hover, a:active {
         </div>
       </section>
 
+<!-- ══ WHY IT MATTERS: THE COMPLEXITY TAX ══════════ -->
+<section style="padding: 8vh 6vw; background: var(--deep); border-bottom: var(--border);">
+  <div style="max-width: 860px; margin: 0 auto;">
+
+    <div data-aos="fade-up" style="
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    ">
+      <span style="display:inline-block;width:24px;height:1px;background:var(--gold-dim);"></span>
+      The Complexity Tax
+    </div>
+
+    <h2 data-aos="fade-up" data-aos-delay="60" style="
+      font-family: var(--serif-title);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 500;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    ">As complex software scales, messaging begins fracturing.</h2>
+
+    <p data-aos="fade-up" data-aos-delay="100" style="
+      font-family: 'Proza Libre', Georgia, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--ivory2);
+      margin-bottom: 24px;
+      border-left: 3px solid var(--gold-dim);
+      padding-left: 20px;
+    ">The homepage describes one reality. The onboarding delivers another. The interface presents a third. The company built one product — but the market experiences disconnected pieces, each one eroding trust in the others.</p>
+
+    <p data-aos="fade-up" data-aos-delay="130" style="
+      font-family: 'Proza Libre', Georgia, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--ivory2);
+    ">SaaSolves reconstructs the narrative architecture so every interaction reinforces the same undeniable understanding. The product your buyer experiences becomes identical to the product you built.</p>
+
+  </div>
+</section>
+  
       <div class="ticker-wrap">
         <div class="ticker-track">
           <div class="ticker-item">High-Complexity Systems <span class="ticker-sep">✦</span></div>
@@ -2496,39 +2617,6 @@ a, a:visited, a:hover, a:active {
           </div>
         </div>
       </div>
-</section>
-  
-<section style="background-color: var(--void); padding: 60px 6vw; border-top: var(--border);">
-  <div style="max-width: 600px; margin: 0 auto;">
-    
-    <!-- 5s Metric -->
-    <div data-aos="fade-up" data-aos-delay="100" style="padding: 40px 0; border-bottom: var(--border-thin);">
-      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">5s</h2>
-      <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
-        First Impression Window
-      </div>
-      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory2); margin: 0;">Visitors decide whether to stay within five seconds of landing.</p>
-    </div>
-
-    <!-- 74% Metric -->
-    <div data-aos="fade-up" data-aos-delay="250" style="padding: 40px 0; border-bottom: var(--border-thin);">
-      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">74%</h2>
-      <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
-        Abandon After Confusion
-      </div>
-      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory2); margin: 0;">Most visitors who can't immediately understand a product leave and never return.</p>
-    </div>
-
-    <!-- 1x Chance -->
-    <div data-aos="fade-up" data-aos-delay="400" style="padding: 40px 0;">
-      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">1×</h2>
-      <div style="display: inline-block; background: transparent; border: 1px solid var(--aegean); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--aegean-light); text-transform: uppercase;">
-        Chance at First Contact
-      </div>
-      <p style="font-size: 1.1rem; line-height: 1.5; color: var(--ivory2); margin: 0;">One shot to make your product legible. SaaSolves makes sure that shot lands.</p>
-    </div>
-    
-  </div>
 </section>
 
     <section style="padding: 12vh 6vw; background: var(--navy); color: var(--navy);">
@@ -2687,10 +2775,10 @@ a, a:visited, a:hover, a:active {
                     <div style="font-family: var(--serif-title); font-size: 0.8rem; font-weight: 700; color: #5C9E7A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; line-height: 1;">LANDKNOT</div>
                     <div style="font-family: var(--serif-title); font-size: clamp(1.1rem, 3.5vw, 1.6rem); font-weight: 700; color: var(--ivory); line-height: 1.2; margin-bottom: 16px;">
                       As three billions hectares of global rangeland lie dormant,<br>
-                      <span style="color: #5C9E7A; ">We weave them into constellation, knotting the living.</span>
+                      <span style="color: #5C9E7A; ">LandKnot weave them into constellation. We relinquish the knotty, and knotting the living.</span>
                     </div>
                     <div style="font-family: var(--serif-body); font-size: 0.82rem; color: var(--ivory2); line-height: 1.7; border-left: 3px solid #5C9E7A; padding-left: 14px; margin-bottom: 20px;">
-                      Across emerging economies — with 60% of the world's uncultivated arable land cradled in Africa — vast territories sit trapped in a cycle of contention and institutional intricate bureaucracy.
+                      Across emerging economies — with 60% of the world's uncultivated arable land cradled in Africa — vast territories sit trapped in a cycle of contention and paradoxical institutional bureaucracy.
                     </div>
                     <!-- Simulated CTA row -->
                     <div style="display: flex; gap: 10px; align-items: center;">
@@ -2733,7 +2821,7 @@ a, a:visited, a:hover, a:active {
                     <div>
                       <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 16px;">The Living System</div>
                       <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.2rem); font-weight: 400; color: var(--ivory); line-height: 1.6; font-style: italic; margin-bottom: 16px;">
-                        By bridging disputed territories into a coordinated land system, we catalyze the everlasting harmony that excels beyond mere protocol into a living knot of sustainable growth.
+                        By bridging disputed territories into a coordinated land system, we catalyze everlasting harmony that excels beyond mere administrative protocol into a living knot of sustainable growth.
                       </div>
                     </div>
                     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #1A3D2E; display: flex; justify-content: space-between; align-items: center;">
@@ -2776,7 +2864,7 @@ a, a:visited, a:hover, a:active {
               The Transformation
             </div>
             <p style="font-family: var(--serif-title); font-size: clamp(1rem, 3vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--ivory); line-height: 1.6; margin-bottom: 16px; border-left: 3px solid #5C9E7A; padding-left: 18px;">
-              "The data becomes context, not claim. Every stakeholder recognizes their entry point simultaneously."
+              "As every stakeholder recognizes their entry point simultaneously, the data becomes context that exceed mere claim."
             </p>
             <p style="font-family: var(--display); font-size: 0.9rem; color: var(--ivory2); line-height: 1.75;">
               Three audiences — institutional, investor, community — reading one coherent recognition event. It completely removes signal lost and prevents stakeholder alienation.
@@ -2785,14 +2873,71 @@ a, a:visited, a:hover, a:active {
 
     </div><!-- end inner max-width -->
   </section><!-- end diagnostic breakdown section -->
-        
+
+  <!-- ══ FIRST CONTACT WINDOW: THE INTERPRETATION COST ══ -->
+<section style="background-color: var(--void); padding: 8vh 6vw; border-top: var(--border); border-bottom: var(--border);">
+  <div style="max-width: 680px; margin: 0 auto;">
+
+    <div data-aos="fade-up" style="
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    ">
+      <span style="display:inline-block;width:24px;height:1px;background:var(--gold-dim);"></span>
+      The Interpretation Window
+    </div>
+
+    <p data-aos="fade-up" data-aos-delay="60" style="
+      font-family: 'Proza Libre', Georgia, sans-serif;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--ivory2);
+      margin-bottom: 40px;
+    ">These are the measurable cost of a structural narrative failure — the price paid when a product's communication cannot carry its own weight at first contact.</p>
+
+    <!-- 5s Metric -->
+    <div data-aos="fade-up" data-aos-delay="100" style="padding: 40px 0; border-bottom: var(--border-thin);">
+      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">5s</h2>
+      <div style="display: inline-block; background: transparent; border: 1px solid var(--gold-dim); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--gold-light); text-transform: uppercase;">
+        First Impression Window
+      </div>
+      <p style="font-size: 1.05rem; line-height: 1.6; color: var(--ivory); margin: 0; font-family: 'Proza Libre', Georgia, sans-serif;">Visitors decide whether to stay within five seconds of landing. Not whether to buy, not yet, but whether to lingers of being seen.</p>
+    </div>
+
+    <!-- 74% Metric -->
+    <div data-aos="fade-up" data-aos-delay="200" style="padding: 40px 0; border-bottom: var(--border-thin);">
+      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">74%</h2>
+      <div style="display: inline-block; background: transparent; border: 1px solid var(--gold-dim); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--gold-light); text-transform: uppercase;">
+        Abandon After Confusion
+      </div>
+      <p style="font-size: 1.05rem; line-height: 1.6; color: var(--ivory); margin: 0; font-family: 'Proza Libre', Georgia, sans-serif;">Visitors who cannot immediately understand a product leave to find alternative product with easier comprehensibility to solve their problem.</p>
+    </div>
+
+    <!-- 1x Chance -->
+    <div data-aos="fade-up" data-aos-delay="350" style="padding: 40px 0;">
+      <h2 style="font-size: 4rem; color: var(--ivory); margin: 0; font-family: var(--serif-title); font-weight: 700; line-height: 1;">1×</h2>
+      <div style="display: inline-block; background: transparent; border: 1px solid var(--gold-dim); padding: 4px 8px; margin: 15px 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--gold-light); text-transform: uppercase;">
+        Chance at First Contact
+      </div>
+      <p style="font-size: 1.05rem; line-height: 1.6; color: var(--ivory); margin: 0; font-family: 'Proza Libre', Georgia, sans-serif;">One shot to make your product legible. SaaSolves makes sure that shot lands — not by rewriting sentences, but by reconstructing the architecture that produces them.</p>
+    </div>
+
+  </div>
+</section>
+  
 <!-- ══════════════ EXECUTION TIERS ══════════════ -->
 <section class="services" id="services">
 
   <div class="services-head" data-aos="fade-up">
     <div style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px;">// Available Execution Tiers</div>
     <h2>Choose Your<br>Transformation Level</h2>
-    <p>Every tier is a state transition — not a service purchase. You are not hiring a copywriter. You are installing the infrastructure that allows your market to understand what you built.</p>
+    <p>Every tier is a state transition that exceed a service purchase. You are installing the infrastructure that allows your market to understand what you built.</p>
   </div>
 
   <div class="tiers">
