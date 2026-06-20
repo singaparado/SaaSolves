@@ -40,8 +40,18 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
+        const data = await response.json();
+
+    // Add this line to debug
+    console.log("Anthropic Raw Data:", JSON.stringify(data, null, 2));
+
+    // Update the result logic to capture errors from the API
+    if (data.error) {
+        return res.status(500).json({ error: data.error.message });
+    }
+
     res.status(200).json({
-      result: data.content?.[0]?.text || "No output"
+      result: data.content?.[0]?.text || "No output found in response body"
     });
 
   } catch (error) {
