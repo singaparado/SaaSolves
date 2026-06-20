@@ -2516,90 +2516,63 @@ a, a:visited, a:hover, a:active {
   </div>
 </section>
 
-  <section class="hero-window-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 6vw;">
+<section class="hero-window-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 6vw;">
   <!-- Narrative Header -->
   <div class="sandbox-narrative-wrapper" style="margin-bottom: 24px;">
-    <h3 style="font-family: var(--serif-title); color: var(--gold-light); font-size: 1.8rem; margin-bottom: 12px;">RUN THE TRANSLATION ENGINE</h3>
-    <p style="font-family: var(--serif-body); color: var(--ivory); margin-bottom: 8px;">Your product already contains the intelligence. The problem is that your audience are reading signal instead of architecture.</p>
-    <p style="font-family: var(--mono); font-size: 0.8rem; color: var(--aegean-light); text-transform: uppercase;">The sandbox functions as a short glimpse to our deeper diagnosis approach.</p>
+    <h3 style="font-family: var(--serif-title); color: var(--gold-light); font-size: 1.8rem; margin-bottom: 12px;">NARRATIVE ARCHIVE // V5</h3>
+    <p style="font-family: var(--serif-body); color: var(--ivory); margin-bottom: 8px;">Technical data is the skeleton. We provide the architecture of human intent.</p>
+    <p style="font-family: var(--mono); font-size: 0.8rem; color: var(--aegean-light); text-transform: uppercase;">Select a case study to observe the transformation of mechanical noise into visceral clarity.</p>
   </div>
     
-          <div 
-            data-aos="fade-up"
-            data-aos-duration="1100"
-            class="hero-window-wrap"
-            style="max-width: 1200px; margin: 0 auto; padding: 0 6vw;">
-          <div 
-            data-aos="zoom-in"
-            data-aos-delay="200"
-            class="sandbox-window">
-            <div class="sandbox-bar">
-              <div class="sandbox-dots">
-                <div class="s-dot active"></div>
-                <div class="s-dot"></div>
-                <div class="s-dot"></div>
-              </div>
-              <div class="sandbox-title">// LINGUISTIC TRANSFORMATION INTERFACE V5</div>
-            </div>
-            <div class="sandbox-io">
-              
-                <div 
-                  data-aos="fade-right"
-                  data-aos-delay="300"
-                  class="sandbox-input-pane">
-                <label class="sandbox-label">Paste your complex builder / product copy here:</label>
-                <textarea id="user-copy" class="sandbox-textarea" placeholder="e.g., Our multi-tenant spatial API architecture enables synchronized geolocation cross-referencing..."></textarea>
-                <div class="sample-cases-row">
-                  <span class="sample-case-pill" onclick="loadSampleCopy(0)">Case A: Workflow Orchestration</span>
-                  <span class="sample-case-pill" onclick="loadSampleCopy(1)">Case B: Gamified Habit</span>
-                </div>
-              </div>
-
-                <div 
-                  data-aos="fade-up"
-                  data-aos-delay="400"
-                  class="sandbox-action-row">
-                <span class="sandbox-status" id="sandbox-status">Ready to capture mechanical noise...</span>
-                <button class="sandbox-btn" onclick="processSandboxTransformation()">Transform Infrastructure</button>
-              </div>
-
-              <div 
-                data-aos="fade-left"
-                data-aos-delay="500"
-                class="sandbox-output-pane" id="output-pane">
-                <div class="sandbox-response" id="sandbox-output">
-                  [Our linguistic engine deploys structured logic across your software touchpoints, actively removing cognitive friction to align your product narrative with the user’s intent in real-time.]
-                </div>
-                <div class="ontology-anchor">
-                  <p>
-                    <strong style="color: var(--ivory);">OPERATIONAL PRESTIGE:</strong><br>
-                    We translate complex technical data into a unified narrative. By mapping deep customer psychology and linguistic patterns, we dissolve friction at the first touchpoint, transforming clinical interfaces into immediate market authority.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="sandbox-window" data-aos="zoom-in" data-aos-delay="200">
+    <div class="sandbox-bar">
+      <div class="sandbox-dots"><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div></div>
+      <div class="sandbox-title">// LINGUISTIC ARCHIVE: CASE STUDY SELECTOR</div>
+    </div>
+    <div class="sandbox-io">
+      <div class="sandbox-input-pane">
+        <label class="sandbox-label">Selected Case Context:</label>
+        <!-- This now acts as a display area, not just a raw input -->
+        <div id="case-display" class="sandbox-textarea" style="padding: 1rem; border: 1px solid var(--gold-light); min-height: 100px;">
+          Select a case below to initiate the narrative shift.
         </div>
-      </section>
+        <div class="sample-cases-row">
+          <span class="sample-case-pill" onclick="loadArchive('workflow')">Case A: Workflow Orchestration</span>
+          <span class="sample-case-pill" onclick="loadArchive('habit')">Case B: Gamified Habit</span>
+        </div>
+      </div>
 
-  <section style="max-width: 1200px; margin: 40px auto; padding: 0 6vw;">
-  <h3 style="color: var(--gold); font-family: var(--mono); margin-bottom: 20px;">WHAT THE ENGINE DETECTS</h3>
-  <div class="sandbox-detection-grid">
-    <div class="detection-cell">
-      <h4>Mechanical Noise</h4>
-      <p>When a product describes its internal machinery before establishing why the machine matters.</p>
-    </div>
-    <div class="detection-cell">
-      <h4>Cognitive Distance</h4>
-      <p>When users must translate your language before they can recognize themselves.</p>
-    </div>
-    <div class="detection-cell">
-      <h4>Narrative Leakage</h4>
-      <p>When valuable product meaning disappears between what you built and what buyers perceive.</p>
+      <div class="sandbox-action-row">
+        <span class="sandbox-status" id="sandbox-status">Archive idle. Select a case study to begin.</span>
+        <button class="sandbox-btn" onclick="revealNarrative()">Reveal Narrative Shift</button>
+      </div>
+
+      <div class="sandbox-output-pane" id="output-pane">
+        <div class="sandbox-response" id="sandbox-output">
+          // Awaiting selection...
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<section style="max-width: 1200px; margin: 40px auto; padding: 0 6vw;">
+  <h3 style="color: var(--gold); font-family: var(--mono); margin-bottom: 20px;">// THE ARCHITECTURAL CONSTRAINTS</h3>
+  <div class="sandbox-detection-grid">
+    <div class="detection-cell">
+      <h4>Visceral Anchor</h4>
+      <p>We prioritize the physical reality of the creator over the abstract utility of the platform.</p>
+    </div>
+    <div class="detection-cell">
+      <h4>Inherited Rhythm</h4>
+      <p>We translate technical complexity into the cadence of ancestral memory and human pulse.</p>
+    </div>
+    <div class="detection-cell">
+      <h4>Spatial Continuity</h4>
+      <p>We treat software not as a destination, but as a living territory built for sustained thought.</p>
+    </div>
+  </div>
+</section>
   
 <!-- ══ WHY IT MATTERS: THE COMPLEXITY TAX ══════════ -->
 <section style="padding: 8vh 6vw; background: var(--deep); border-bottom: var(--border);">
@@ -4029,69 +4002,58 @@ document.addEventListener("DOMContentLoaded", function(){
   };
 
 
-// 4. SANDBOX TRANSFORMATION
-const sampleData = [
-  {
+// 1. YOUR EXPANDED NARRATIVE ARCHIVE
+const archive = {
+  "workflow": {
     before: "Our AI-native, multi-tenant infrastructure with sub-10ms latency enables cross-functional workflow orchestration.",
     after: "Your team keeps dropping things between meetings. We make sure nothing gets lost again."
   },
-  {
+  "habit": {
     before: "Leveraging advanced behavioral gamification topologies and social graphs to optimize personal contextual milestones.",
     after: "Build better daily habits alongside your friends as you spend time leisuring. No streaks to maintain, just salute your milestones!"
-  }
-];
-
-window.loadSampleCopy = function(index) {
-  const input = document.getElementById('user-copy');
-  const output = document.getElementById('sandbox-output');
-  const status = document.getElementById('sandbox-status');
-  const ontology = document.querySelector('.ontology-anchor');
-
-  if (sampleData[index]) {
-    input.value = sampleData[index].before;
-    output.innerText = sampleData[index].after;
-    status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
-    
-    if (ontology) ontology.style.display = 'none';
+  },
+  "notebook": {
+    before: "Premium leather-bound journal with high-GSM paper and durable binding.",
+    after: "A grainy, suede-based daybook to shift your memoir into chronicles. It’s not slim, nor light; those 365 pages transform your daily burden into epiphany as you scratch your soulful stories into it."
+  },
+  "cloud-backup": {
+    before: "Robust cloud backup architecture with redundant sync and low-latency recovery.",
+    after: "When the city goes dark or the WiFi fails in the middle of your travel, The Pocket acts as a sanctuary. It stores your manuscripts, sketches, and analogue memories safely while you sleep—so your work remains as vivid as the moment you created it."
+  },
+  "ui-friction": {
+    before: "The platform optimizes user interface friction to improve task completion rates.",
+    after: "Imagine an arena where the walls emerge from nowhere and the road tears itself apart while you’re walking on it. That is user interface friction: a screen that keeps reinventing new ways to consume your attention when it should be helping you reach your destination."
+  },
+  "asset-management": {
+    before: "Enterprise-grade asset management system with centralized data validation and automated permission hierarchies.",
+    after: "What appears as a database is, in practice, a living territory. Imagine the buzzing streets of Marrakech: assets inhabit their own districts, histories accumulate like downtown flea markets, and verification systems patrol established corridors like inspectors preserving order. It is a living ecosystem organized around continuity."
   }
 };
 
-window.processSandboxTransformation = function() {
-  const input = document.getElementById('user-copy');
-  const output = document.getElementById('sandbox-output');
-  const status = document.getElementById('sandbox-status');
-  const btn = document.querySelector('.sandbox-btn');
-  const ontology = document.querySelector('.ontology-anchor');
+// 2. THE INTERFACE CONTROLLERS
+let currentSelection = null;
 
-  if (!input || !output || !status) return;
-  const userCopy = input.value.trim();
-  
-  if (!userCopy) {
-    status.innerText = "// INPUT FIELD EMPTY — PASTE YOUR COPY TO BEGIN";
+window.loadArchive = function(id) {
+  currentSelection = archive[id];
+  document.getElementById('case-display').innerText = currentSelection.before;
+  document.getElementById('sandbox-output').innerText = "// Ready to reveal narrative shift.";
+  document.getElementById('sandbox-status').innerText = "Case loaded: " + id.toUpperCase();
+};
+
+window.revealNarrative = function() {
+  if (!currentSelection) {
+    alert("Please select a case study first.");
     return;
   }
-
-  if (btn) btn.disabled = true;
-  if (ontology) ontology.style.display = 'none';
-  status.innerText = "// ANALYZING ARCHITECTURAL SIGNAL...";
-
-  fetch("/api/transform", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ copy: userCopy })
-  })
-  .then(res => res.json())
-  .then(data => {
-    output.innerText = data.result || "[Transformation error.]";
-  })
-.catch(err => {
-  console.error(err);
-  output.innerText = "Error: Check browser console logs";
-})
-  .finally(() => {
-    if (btn) btn.disabled = false;
-    status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
-  });
+  
+  const output = document.getElementById('sandbox-output');
+  output.style.opacity = 0;
+  
+  setTimeout(() => {
+    output.innerText = currentSelection.after;
+    output.style.opacity = 1;
+    document.getElementById('sandbox-status').innerText = "Transformation integrated.";
+  }, 300);
 };
 
 // 5. CTA HANDLER
