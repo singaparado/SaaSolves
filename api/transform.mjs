@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   const { copy } = req.body;
 
-
+ 
   if (!copy) {
     return res.status(400).json({
       error: "No copy provided"
