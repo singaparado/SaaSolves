@@ -496,9 +496,10 @@ code, pre, kbd, samp {
 
     .hero-cta-note {
   margin-top: 14px;
-  font-family: var(--serif);
+  font-family: var(--mono);
   font-size: 0.65rem;
   letter-spacing: 0.12em;
+  text-transform: uppercase;    
   color: var(--ivory2);
   opacity: 0.7;
 }
@@ -2355,26 +2356,38 @@ a, a:visited, a:hover, a:active {
         You built a masterpiece of engineering. But the hardest part is <span class="ae">making the market agree.</span></h1>
 
        <!-- SaaSolves hero thesis — visible before the CTA -->
-<div 
-  class="hero-thesis"
-  data-aos="fade-up"
-  data-aos-delay="200">
-
-  <p class="hero-thesis-context">
-    The sophistication of your architecture is undeniable.
-    But your customers are making decisions in seconds.
-  </p>
-
-  <p class="hero-thesis-break">
-    Between those two realities exists a silent failure point:
-    <span>the narrative layer.</span>
-  </p>
-
-  <p class="hero-thesis-solution">
-    SaaSolves finds where your product loses meaning —
-    and rebuilds the bridge.
-  </p>
-</div>
+       <!-- Founder provenance line — visible before the CTA -->
+       <div
+          data-aos="fade-up"
+          data-aos-delay="200"
+          style="
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+          ">
+          <span style="
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ivory2);
+          ">The customers are impatient; they decide in seconds to see whether your product speaks for them. They need to see themselves in it.</span>
+          <span style="
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            background: var(--aegean);
+          "></span>
+          <span style="
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--aegean-light);
+          ">That gap is why SaaSolves emerged. We rebuild the narrative bridge.</span>
+        </div>
 
 <div 
   data-aos="fade-up"
