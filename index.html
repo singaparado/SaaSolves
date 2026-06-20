@@ -2532,8 +2532,8 @@ a, a:visited, a:hover, a:active {
                 <label class="sandbox-label">Paste your complex builder / product copy here:</label>
                 <textarea id="user-copy" class="sandbox-textarea" placeholder="e.g., Our multi-tenant spatial API architecture enables synchronized geolocation cross-referencing..."></textarea>
                 <div class="sample-cases-row">
-                  <span class="sample-case-pill" onclick="loadSampleCopy(0)">Case A: Spatial B2B</span>
-                  <span class="sample-case-pill" onclick="loadSampleCopy(1)">Case B: Cloud Backup</span>
+                  <span class="sample-case-pill" onclick="loadSampleCopy(0)">Case A: Workflow Orchestration</span>
+                  <span class="sample-case-pill" onclick="loadSampleCopy(1)">Case B: Gamified Habit</span>
                 </div>
               </div>
 
@@ -3992,59 +3992,69 @@ document.addEventListener("DOMContentLoaded", function(){
   };
 
 
-  // 4. SANDBOX TRANSFORMATION
-
-  window.processSandboxTransformation = function() {
-    const input = document.getElementById('user-copy');
-    const output = document.getElementById('sandbox-output');
-    const status = document.getElementById('sandbox-status');
-    const btn = document.querySelector('.sandbox-btn');
-
-    if (!input || !output || !status) return;
-
-    const userCopy = input.value.trim();
-    if (!userCopy) {
-      status.innerText = "// INPUT FIELD EMPTY — PASTE YOUR COPY TO BEGIN";
-      return;
-    }
-
-    if (btn) btn.disabled = true;
-    status.innerText = "// ANALYZING ARCHITECTURAL SIGNAL...";
-
-    setTimeout(() => {
-      output.innerText = "Processing linguistic infrastructure...";
-      status.innerText = "// DEPLOYING PROPRIETARY FRAMEWORKS...";
-    }, 400);
-
-    setTimeout(async () => {
-      try {
-        const response = await fetch("/api/transform", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
+// 4. SANDBOX TRANSFORMATION
+const sampleData = [
+  {
+    before: "Our AI-native, multi-tenant infrastructure with sub-10ms latency enables cross-functional workflow orchestration.",
+    after: "Your team keeps dropping things between meetings. We make sure nothing gets lost again."
   },
-  body: JSON.stringify({
-    copy: userCopy
+  {
+    before: "Leveraging advanced behavioral gamification topologies and social graphs to optimize personal contextual milestones.",
+    after: "Build better daily habits alongside your friends as you spend time leisuring. No streaks to maintain, just salute your milestones!"
+  }
+];
+
+window.loadSampleCopy = function(index) {
+  const input = document.getElementById('user-copy');
+  const output = document.getElementById('sandbox-output');
+  const status = document.getElementById('sandbox-status');
+  const ontology = document.querySelector('.ontology-anchor');
+
+  if (sampleData[index]) {
+    input.value = sampleData[index].before;
+    output.innerHTML = `<strong>Before:</strong> ${sampleData[index].before}<br><br><strong>After:</strong> <em>${sampleData[index].after}</em>`;
+    status.innerText = "// SAMPLE CASE LOADED — READY";
+    if (ontology) ontology.style.display = 'none';
+  }
+};
+
+window.processSandboxTransformation = function() {
+  const input = document.getElementById('user-copy');
+  const output = document.getElementById('sandbox-output');
+  const status = document.getElementById('sandbox-status');
+  const btn = document.querySelector('.sandbox-btn');
+  const ontology = document.querySelector('.ontology-anchor');
+
+  if (!input || !output || !status) return;
+  const userCopy = input.value.trim();
+  
+  if (!userCopy) {
+    status.innerText = "// INPUT FIELD EMPTY — PASTE YOUR COPY TO BEGIN";
+    return;
+  }
+
+  if (btn) btn.disabled = true;
+  if (ontology) ontology.style.display = 'none';
+  status.innerText = "// ANALYZING ARCHITECTURAL SIGNAL...";
+
+  fetch("/api/transform", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ copy: userCopy })
   })
-});
-
-const data = await response.json();
-
-if (data.result) {
-  output.innerText = data.result;
-} else {
-          output.innerText = "[Transformation engine returned an unexpected response. Please try again.]";
-        }
-      } catch (err) {
-        output.innerText = "[Connection interrupted. Ensure network access is available and retry.]";
-        console.error("Sandbox error:", err);
-      }
-
-      if (btn) btn.disabled = false;
-      status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
-
-    }, 600);
-  };
+  .then(res => res.json())
+  .then(data => {
+    output.innerText = data.result || "[Transformation error.]";
+  })
+  .catch(err => {
+    output.innerText = "[Connection interrupted. Ensure Vercel environment variables are set.]";
+    console.error(err);
+  })
+  .finally(() => {
+    if (btn) btn.disabled = false;
+    status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
+  });
+};
 
 // 5. CTA HANDLER
 
