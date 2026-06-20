@@ -4086,9 +4086,10 @@ window.processSandboxTransformation = function() {
   .then(data => {
     output.innerText = data.result || "[Transformation error.]";
   })
-  .catch(err => {
-    output.innerText = "[Connection interrupted. Ensure Vercel environment variables are set.]";
-  })
+.catch(err => {
+  console.error(err);
+  output.innerText = "Error: Check browser console logs";
+})
   .finally(() => {
     if (btn) btn.disabled = false;
     status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
