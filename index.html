@@ -57,32 +57,26 @@
 
   --display:
     'Newsreader',
-    Georgia,
     serif;
 
   --serif-title:
     'Newsreader',
-    Georgia,
     serif;
   
   --serif-body:
     'Proza Libre',
-    Georgia,
     sans-serif;
 
   --serif-alt:
     'Caudex',
-    Georgia,
     serif;
 
   --mono:
     'DM Mono',
-    'Courier New',
     monospace;
 
   --sans:
     'Proza Libre',
-    Arial,
     sans-serif;
 
   /* ── Borders — paper + gold logic ───────────────────── */
@@ -157,22 +151,22 @@
 
 /* 1. Global default: Proza Libre owns ALL text */
 html {
-  font-family: 'Proza Libre', Georgia, sans-serif;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 /* 2. Headings: Newsreader takes over for h1–h3 */
 h1, h2, h3 {
-  font-family: 'Newsreader', Georgia, serif;
+  font-family: 'Newsreader', serif;
 }
 
 /* 3. Paragraphs inherit Proza Libre from html */
 p, li, td, th, label, input, textarea, select {
-  font-family: 'Proza Libre', Georgia, sans-serif;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 /* 4. Code/labels stay mono */
 code, pre, kbd, samp {
-  font-family: 'DM Mono', 'Courier New', monospace;
+  font-family: 'DM Mono', monospace;
 }
 
 /* 5. Force Proza Libre on body-level prose classes 
@@ -210,13 +204,13 @@ code, pre, kbd, samp {
 .approach-artifact-name,
 .approach-cta-title,
 .teaser-quote {
-  font-family: 'Newsreader', Georgia, serif !important;
+  font-family: 'Newsreader', serif !important;
 }
 
 /* 7. Caudex for execution tier quotes only */
 .tier-desc [style*="font-style: italic"],
 .tier-desc p[style*="italic"] {
-  font-family: 'Caudex', Georgia, serif;
+  font-family: 'Caudex', serif;
 }
     
     body {
