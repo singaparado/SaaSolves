@@ -4012,8 +4012,9 @@ window.loadSampleCopy = function(index) {
 
   if (sampleData[index]) {
     input.value = sampleData[index].before;
-    output.innerHTML = `<strong>Before:</strong> ${sampleData[index].before}<br><br><strong>After:</strong> <em>${sampleData[index].after}</em>`;
-    status.innerText = "// SAMPLE CASE LOADED — READY";
+    output.innerText = sampleData[index].after;
+    status.innerText = "TRANSFORMATION COMPLETED // NARRATIVE INTEGRATED";
+    
     if (ontology) ontology.style.display = 'none';
   }
 };
@@ -4048,7 +4049,6 @@ window.processSandboxTransformation = function() {
   })
   .catch(err => {
     output.innerText = "[Connection interrupted. Ensure Vercel environment variables are set.]";
-    console.error(err);
   })
   .finally(() => {
     if (btn) btn.disabled = false;
