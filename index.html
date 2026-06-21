@@ -2277,6 +2277,195 @@ a, a:visited, a:hover, a:active {
     }
 }
 
+    /* =====================================================
+   SAASOLVES HERO LIVING ATMOSPHERE
+   Desktop: cursor-responsive field
+   Mobile: automatic breathing animation
+   ===================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+
+/* ambient intelligence field */
+
+.hero-atmosphere {
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at var(--glow-x, 30%) var(--glow-y, 30%),
+      rgba(58,109,148,0.30),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 75% 65%,
+      rgba(184,100,62,0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255,255,255,0.04),
+      transparent 45%
+    );
+
+  filter: blur(70px);
+
+  opacity: .75;
+
+  transform:
+    translate3d(0,0,0)
+    scale(1);
+
+  animation:
+    heroAtmospherePulse 14s ease-in-out infinite;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* slow breathing */
+
+@keyframes heroAtmospherePulse {
+
+  0%,
+  100% {
+
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+    opacity:
+      .65;
+  }
+
+
+  50% {
+
+    transform:
+      translate3d(2%,-2%,0)
+      scale(1.12);
+
+    opacity:
+      1;
+  }
+
+}
+
+
+
+/* subtle moving light wave */
+
+.hero-atmosphere::after {
+
+  content:"";
+
+  position:absolute;
+
+  inset:-50%;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(58,109,148,.12),
+      transparent
+    );
+
+
+  transform:
+    rotate(-15deg);
+
+
+  animation:
+    heroWave 18s ease-in-out infinite;
+
+}
+
+
+
+@keyframes heroWave {
+
+  0% {
+    transform:
+      translateX(-10%)
+      rotate(-15deg);
+  }
+
+  50% {
+    transform:
+      translateX(10%)
+      rotate(-15deg);
+  }
+
+  100% {
+    transform:
+      translateX(-10%)
+      rotate(-15deg);
+  }
+
+}
+
+
+
+/* =====================================================
+   DESKTOP ONLY
+   Mouse influences atmosphere
+   ===================================================== */
+
+@media (hover:hover) and (pointer:fine) {
+
+  .hero-atmosphere {
+
+    transition:
+      background-position .35s ease,
+      transform .35s ease;
+
+  }
+
+}
+
+
+
+/* =====================================================
+   MOBILE FALLBACK
+   No hover dependency.
+   CSS owns the movement.
+   ===================================================== */
+
+
+@media(max-width:768px){
+
+  .hero {
+
+    overflow:hidden;
+
+  }
+
+
+  .hero-atmosphere {
+
+    inset:-10%;
+
+    filter:
+      blur(45px);
+
+    animation-duration:
+      18s;
+
+  }
+
+
+}
+
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -2380,8 +2569,9 @@ a, a:visited, a:hover, a:active {
 
 <!-- ══════════════ HOME VIEW ══════════════ -->
 <div id="view-home" class="view-panel active-view">
-  <section class="hero" id="top">
-    <div class="hero-container">
+<section class="hero" id="top">
+  <div class="hero-atmosphere" aria-hidden="true"></div>
+  <div class="hero-container">
       <div class="hero-inner">
         
         <div 
@@ -4277,7 +4467,79 @@ document.addEventListener("DOMContentLoaded", function(){
     AOS.refresh();
   }
 
+/* =====================================================
+   HERO ATMOSPHERE CURSOR DRIVER
 
+   Desktop:
+   cursor gently moves the field
+
+   Mobile:
+   does nothing
+   CSS animation takes over
+   ===================================================== */
+
+(function(){
+
+const hero =
+document.querySelector(".hero");
+
+const atmosphere =
+document.querySelector(".hero-atmosphere");
+
+
+if(
+ !hero ||
+ !atmosphere
+) return;
+
+
+
+if(
+ window.matchMedia(
+ "(hover:hover) and (pointer:fine)"
+ ).matches
+){
+
+hero.addEventListener(
+"mousemove",
+(e)=>{
+
+
+const rect =
+hero.getBoundingClientRect();
+
+
+const x =
+((e.clientX - rect.left) /
+ rect.width) * 100;
+
+
+const y =
+((e.clientY - rect.top) /
+ rect.height) * 100;
+
+
+
+atmosphere.style.setProperty(
+"--glow-x",
+x + "%"
+);
+
+
+atmosphere.style.setProperty(
+"--glow-y",
+y + "%"
+);
+
+
+});
+
+
+}
+
+
+})();
+  
   // 2. SAMPLE COPIES
   const goldenCopies = [
     "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
