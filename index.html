@@ -394,12 +394,13 @@ code, pre, kbd, samp {
       position: relative;
     }
     .hero-container {
-      max-width: 1200px;
+      max-width: 1150px;
       margin: 0 auto;
+      padding: 0 40px;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 56px;
-      align-items: start;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px;
+      align-items: center;
     }
     @media(max-width:940px) {
       .hero-container { grid-template-columns: 1fr; gap: 40px; }
@@ -458,9 +459,11 @@ code, pre, kbd, samp {
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    .hero-thesis {
-  max-width: 720px;
-  margin: 28px 0 38px;
+.hero-thesis {
+    max-width: 600px;
+    margin: 32px 0;
+    padding-left: 24px;
+    border-left: 1px solid rgba(255,255,255,0.1);
 }
 
 .hero-thesis-context {
@@ -475,10 +478,10 @@ code, pre, kbd, samp {
 
 .hero-thesis-break {
   font-family: var(--serif-title);
-  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   line-height: 1.45;
   color: var(--ivory);
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .hero-thesis-break span {
@@ -504,28 +507,28 @@ code, pre, kbd, samp {
   opacity: 0.7;
 }
     
-        /* NARRATIVE CARDS */
-    .narrative-card {
-        background: var(--cobalt);
-        border: 1.5px solid var(--aegean);
-        border-radius: 12px;
-        padding: 24px;
-        margin-bottom: 20px;
-    }
+.narrative-card {
+    background: rgba(255, 255, 255, 0.03); /* Lighter, more translucent base */
+    border: 1px solid rgba(150, 180, 200, 0.2); /* Softer, thinner border */
+    border-radius: 20px; /* Softer, more modern corners */
+    padding: 40px; /* More room inside makes the text feel more luxurious */
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+}
 
-    .narrative-card h4 {
-      font-family: var(--sans);
-      font-size: 1.1rem;
-      color: var(--gold-light);
-      margin-bottom: 10px;
-      font-style: italic;
-    }
-    .narrative-card p {
-      font-family: var(--sans);
-      font-size: 0.95rem;
-      color: var(--ivory2);
-      line-height: 1.8;
-    }
+.narrative-card h4 {
+    font-family: var(--serif-title); /* Changed to serif for editorial flair */
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+}
+
+.narrative-card p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.8); /* Slightly softer than pure ivory2 */
+}
 
     /* SANDBOX WINDOW */
     .sandbox-window { border:var(--border); background:var(--cobalt); box-shadow:var(--shadow); display:flex; flex-direction:column; border-radius: 4px; }
