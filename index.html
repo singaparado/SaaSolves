@@ -2251,7 +2251,32 @@ a, a:visited, a:hover, a:active {
     padding-right: 0 !important;
   }
 }
+
+    @media (max-width: 768px) {
+    /* 1. Reset container constraints for mobile */
+    .hero-container, .bridge-section {
+        max-width: 100% !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* 2. Adjust typography for smaller screens */
+    .hero h1 {
+        font-size: 2.2rem !important; /* Smaller than desktop to prevent awkward wrapping */
+    }
+
+    /* 3. Ensure full-width buttons */
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
     
+    .hero-actions a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
