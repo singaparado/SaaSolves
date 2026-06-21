@@ -2131,28 +2131,110 @@ a, a:visited, a:hover, a:active {
       100% { transform: translate(-3vw, 6vh); opacity: 1; }
     }
 
-    /* ── Narrative cards — updated ───────────────────── */
-    .narrative-card {
-      background: var(--surface-gradient);
-      border: var(--border-thin);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin-bottom: 16px;
-      transition: border-color 0.2s;
+    /* ── Narrative Carousel (Walrus-style) ──────────── */
+
+    /* TRACK — the scrollable container */
+    .narrative-carousel-track {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      gap: 16px;
+      padding: 8px 0 24px 0;
     }
-    .narrative-card:hover { border-color: var(--gold-dim); }
+    .narrative-carousel-track::-webkit-scrollbar { display: none; }
+
+    /* CARD — 80vw on mobile, 44% on desktop (Walrus behavior) */
+    .narrative-card {
+      min-width: 80vw;
+      max-width: 80vw;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      background: rgba(7, 26, 51, 0.55);
+      border: 1px solid rgba(200, 164, 93, 0.14);
+      border-radius: 28px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+      will-change: transform;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .narrative-card:hover {
+      border-color: rgba(200, 164, 93, 0.35);
+      transform: translateY(-3px);
+    }
+
+    /* CARD CONTENT */
     .narrative-card h4 {
       font-family: var(--serif-title);
-      font-size: 1.1rem;
+      font-size: 1.25rem;
+      font-weight: 500;
       color: var(--gold-light);
-      margin-bottom: 10px;
       font-style: italic;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin: 0;
     }
-    /* font-family intentionally omitted — inherits Proza Libre from nuclear override */
     .narrative-card p {
-      font-size: 0.92rem;
-      color: var(--ivory2);
-      line-height: 1.75;
+      font-size: 0.97rem;
+      color: rgba(248, 241, 227, 0.82);
+      line-height: 1.85;
+      margin: 0;
+    }
+
+    /* PEEK INDICATOR — subtle gradient on right edge showing there's more */
+    .narrative-carousel-wrap {
+      position: relative;
+    }
+    .narrative-carousel-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 24px;
+      width: 60px;
+      background: linear-gradient(to right, transparent, var(--navy));
+      pointer-events: none;
+      border-radius: 0 28px 28px 0;
+    }
+
+    /* DOT INDICATORS */
+    .narrative-pip-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      padding-left: 2px;
+    }
+    .narrative-pip {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(200, 164, 93, 0.25);
+      transition: background 0.2s, width 0.2s;
+      cursor: pointer;
+    }
+    .narrative-pip.active {
+      background: var(--gold);
+      width: 18px;
+      border-radius: 4px;
+    }
+
+    /* DESKTOP: show 2 cards at once, wider */
+    @media (min-width: 900px) {
+      .narrative-card {
+        min-width: 44%;
+        max-width: 44%;
+      }
+      /* Remove the fade-out peek effect on desktop */
+      .narrative-carousel-wrap::after {
+        display: none;
+      }
     }
 
     /* ── Intelligence band — updated ─────────────────── */
@@ -2695,55 +2777,76 @@ a, a:visited, a:hover, a:active {
   </section>
   
 <!-- RESTRUCTURED BRIDGE SECTION -->
-<section style="padding: 0 6vw; background: var(--navy);"> 
-  <div style="max-width: 1200px; margin: 0 auto;"> 
-    <div style="max-width: 600px;"> 
-      
-  <div data-aos="zoom-in" 
-     data-aos-delay="350" 
-     style="padding-top: 32px; margin-top: 32px;">
-  
-        <h2 style="font-family: 'Newsreader', serif; font-size: 1.8rem; margin-bottom: 32px; color: var(--ivory);">
-          Why your product feels invisible.
-        </h2>
+<section style="padding: 8vh 6vw; background: var(--navy);">
+  <div style="max-width: 1200px; margin: 0 auto;">
 
-        <!-- MODULAR CARD GRID -->
-        <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 32px;">
-            
-            <!-- CARD 1 -->
-            <div data-aos="fade-up" data-aos-delay="100" class="narrative-card">
-                <h4>The Language Barrier</h4>
-                <p>Your quest for perfection created a wall. The way you describe your system is now the very barrier keeping customers from seeing its value.</p>
-            </div>
+    <!-- Header -->
+    <div data-aos="fade-up" style="margin-bottom: 40px;">
+      <div style="
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      ">
+        <span style="display:inline-block;width:20px;height:1px;background:var(--gold-dim);"></span>
+        The Invisible Failure
+      </div>
+      <h2 style="
+        font-family: 'Newsreader', serif;
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        font-weight: 500;
+        color: var(--ivory);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      ">Why your product feels invisible.</h2>
+    </div>
 
-            <!-- CARD 2 -->
-            <div data-aos="fade-up" data-aos-delay="200" class="narrative-card">
-                <h4>The Intelligence Trap</h4>
-                <p>As your product grows more sophisticated, you risk trapping your message inside a "builder’s perspective"—where technical precision suffocates human significance.</p>
-            </div>
+    <!-- Walrus-style card carousel -->
+    <div class="narrative-carousel-wrap">
+      <div class="narrative-carousel-track" id="narrative-track">
 
-            <!-- CARD 3 -->
-            <div data-aos="fade-up" data-aos-delay="300" class="narrative-card">
-                <h4>The Robotic Hum</h4>
-                <p>While you speak the language of the machine, your audience hears only a sterile, robotic hum. You are communicating complexity instead of impact.</p>
-            </div>
+        <!-- CARD 1 -->
+        <div class="narrative-card" data-aos="fade-up" data-aos-delay="60">
+          <h4>The Language Barrier</h4>
+          <p>Your quest for perfection created a wall. The way you describe your system is now the very barrier keeping customers from seeing its value.</p>
+        </div>
 
-            <!-- CARD 4 -->
-            <div data-aos="fade-up" data-aos-delay="400" class="narrative-card">
-                <h4>The Sales Leak</h4>
-                <p>The widening gap between your high-tech genius and the customer’s immediate need is exactly where your sales are leaking value.</p>
-            </div>
+        <!-- CARD 2 -->
+        <div class="narrative-card" data-aos="fade-up" data-aos-delay="120">
+          <h4>The Intelligence Trap</h4>
+          <p>As your product grows more sophisticated, your messaging remains trapped in a "builder's perspective"—where technical precision suffocates the human significance that actually drives a purchase.</p>
+        </div>
 
-            <!-- CARD 5 -->
-            <div data-aos="fade-up" data-aos-delay="500" class="narrative-card">
-                <h4>The Human Injection</h4>
-                <p>SaaSolves bridges that distance. We translate cold architecture into a narrative rhythm that hits the buyer’s psychological state the moment they arrive.</p>
-            </div>
+        <!-- CARD 3 -->
+        <div class="narrative-card" data-aos="fade-up" data-aos-delay="180">
+          <h4>The Sales Leak</h4>
+          <p>While you speak the language of the machine, your audience hears only a sterile hum. This widening gap between your high-tech genius and the customer's immediate need is exactly where your sales are leaking value.</p>
+        </div>
 
-           </div> 
-    </div> 
-     </div> 
-  </section>
+        <!-- CARD 4 -->
+        <div class="narrative-card" data-aos="fade-up" data-aos-delay="240">
+          <h4>The Human Injection</h4>
+          <p>SaaSolves bridges that distance. We translate cold architecture into a narrative rhythm that hits the buyer's psychological state the moment they arrive.</p>
+        </div>
+
+      </div>
+
+      <!-- Dot indicators -->
+      <div class="narrative-pip-row" id="narrative-pips">
+        <div class="narrative-pip active" onclick="scrollToCard(0)"></div>
+        <div class="narrative-pip" onclick="scrollToCard(1)"></div>
+        <div class="narrative-pip" onclick="scrollToCard(2)"></div>
+        <div class="narrative-pip" onclick="scrollToCard(3)"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- ── AI DISTINCTION — between bridge section and sandbox ── -->
 <section 
@@ -4576,15 +4679,36 @@ atmosphere.style.setProperty(
 y + "%"
 );
 
-
 });
-
-
 }
-
-
 })();
-  
+
+    // ── Narrative carousel pip sync ──────────────────────
+  window.scrollToCard = function(index) {
+    var track = document.getElementById('narrative-track');
+    if (!track) return;
+    var cards = track.querySelectorAll('.narrative-card');
+    if (!cards[index]) return;
+    cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  };
+
+  (function() {
+    var track = document.getElementById('narrative-track');
+    var pips = document.querySelectorAll('#narrative-pips .narrative-pip');
+    if (!track || !pips.length) return;
+
+    track.addEventListener('scroll', function() {
+      var cards = track.querySelectorAll('.narrative-card');
+      var scrollLeft = track.scrollLeft;
+      var cardWidth = cards[0] ? cards[0].offsetWidth + 16 : 1; // 16 = gap
+      var activeIndex = Math.round(scrollLeft / cardWidth);
+      activeIndex = Math.max(0, Math.min(activeIndex, pips.length - 1));
+      pips.forEach(function(p, i) {
+        p.classList.toggle('active', i === activeIndex);
+      });
+    }, { passive: true });
+  })();
+
   // 2. SAMPLE COPIES
   const goldenCopies = [
     "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
