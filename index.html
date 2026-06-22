@@ -3370,7 +3370,7 @@ a, a:visited, a:hover, a:active {
     <!-- 2-COL: Before mock LEFT, Diagnosis cards RIGHT -->
     <div style="
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0,1.15fr) minmax(320px,0.85fr);
       gap: 32px;
       margin-bottom: 48px;
       align-items: start;
@@ -3576,35 +3576,68 @@ a, a:visited, a:hover, a:active {
  <!-- Caption below mockup -->
             <p style="font-family: var(--mono); font-size: 0.72rem; color: var(--ivory2); font-style: italic; margin-top: 16px; padding-left: 4px; opacity: 0.8;"> Three slides. One reorientation.
             </p>
-          </div>
-          </div><!-- end After SaaSolves -->
-
-<!-- THE TRANSFORMATION CARD SECTION -->
-<section style="padding-bottom: 80px;"> <!-- Added bottom padding here -->
-  <div style="max-width: 720px; margin: 0 auto;">
-    
+    </div>
+    <!-- THE TRANSFORMATION CARD -->
     <div data-aos="fade-up" style="
-      margin-top: 32px;
+      max-width: 900px;
+      margin: 64px auto 0;
       background: linear-gradient(135deg, var(--ink) 0%, var(--cobalt) 100%);
       border-radius: var(--radius-lg);
       border: var(--border-thin);
       box-shadow: var(--shadow);
-      padding: 32px 28px;
+      padding: clamp(28px,5vw,56px);
     ">
-      <div style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-        <span style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; display: inline-block;"></span>
+
+      <div style="
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color:#5C9E7A;
+        margin-bottom:16px;
+        display:flex;
+        align-items:center;
+        gap:8px;
+      ">
+        <span style="
+          width:6px;
+          height:6px;
+          border-radius:50%;
+          background:#5C9E7A;
+          display:inline-block;
+        "></span>
         The Transformation
       </div>
-      <p style="font-family: var(--serif-title); font-size: clamp(1rem, 3vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--ivory); line-height: 1.6; margin-bottom: 16px; border-left: 3px solid #5C9E7A; padding-left: 18px;">
+
+
+      <p style="
+        font-family:var(--serif-title);
+        font-size:clamp(1.1rem,3vw,1.5rem);
+        font-style:italic;
+        color:var(--ivory);
+        line-height:1.6;
+        border-left:3px solid #5C9E7A;
+        padding-left:18px;
+        margin-bottom:20px;
+      ">
         "As every stakeholder recognizes their entry point simultaneously, the data becomes context that exceed mere claim."
       </p>
-      <p style="font-family: var(--display); font-size: 0.9rem; color: var(--ivory2); line-height: 1.75;">
+
+
+      <p style="
+        font-family:var(--display);
+        font-size:0.95rem;
+        color:var(--ivory2);
+        line-height:1.75;
+        margin:0;
+      ">
         Three audiences — institutional, investor, community — reading one coherent recognition event. It completely removes signal lost and prevents stakeholder alienation.
       </p>
+
     </div>
 
-  </div><!-- end inner max-width -->
-</section><!-- end diagnostic breakdown section -->
+  </div>
+</section>
 
   <!-- THIS IS THE SPACER DIV TO PREVENT GLUING -->
   <div style="height: 60px;"></div>
