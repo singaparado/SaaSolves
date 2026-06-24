@@ -408,21 +408,52 @@ footer {
     .mobile-menu-cta a { display:block; background:var(--aegean); color:var(--ivory); font-family:var(--display); font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; padding:18px 24px; text-align:center; cursor:pointer; }
 
     /* ── HERO ───────────────────────────────────────── */
-    .hero {
-      padding: 12vh 6vw 10vh;
-      border-bottom: var(--border-thin);
-      background: var(--navy);
-      position: relative;
-    }
-    .hero-container {
-      max-width: 1150px;
-      margin: 0 auto;
-      padding: 0 40px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 80px;
-      align-items: center;
-    }
+.hero {
+  padding: 12vh 6vw 10vh;
+  border-bottom: var(--border-thin);
+  background: var(--navy);
+  position: relative;
+  isolation: isolate;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.hero-container {
+
+  max-width:1150px;
+  margin:0 auto;
+  padding:0 40px;
+
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:80px;
+  align-items:center;
+
+  position:relative;
+  z-index:5;
+
+}
+.hero-container::before {
+
+content:"";
+
+position:absolute;
+
+inset:-30px;
+
+background:
+rgba(2,6,18,.45);
+
+filter:
+blur(25px);
+
+border-radius:32px;
+
+z-index:-1;
+
+pointer-events:none;
+
+}
     @media(max-width:940px) {
       .hero-container { grid-template-columns: 1fr; gap: 40px; }
     }
@@ -461,6 +492,15 @@ footer {
       letter-spacing: -0.02em;
       color: var(--ivory);
       margin-bottom: 24px;
+    }
+    .hero h1,
+    .hero p,
+    .hero span,
+    .hero button,
+    .hero-thesis {
+
+      position:relative;
+      z-index:6;
     }
     .hero h1 .ae {
       color: var(--gold-light);
@@ -548,7 +588,7 @@ footer {
 .hero-atmosphere {
 
   position:absolute;
-  inset:-40%;
+  inset:-45%;
 
   z-index:-1;
   pointer-events:none;
@@ -556,61 +596,70 @@ footer {
 
   background:
 
-    radial-gradient(
-      ellipse 55% 90% at 50% 120%,
-      rgba(72,255,170,.55),
-      transparent 60%
-    ),
 
-    radial-gradient(
-      ellipse 45% 75% at 20% 90%,
-      rgba(70,180,255,.45),
-      transparent 55%
-    ),
-
-    radial-gradient(
-      ellipse 45% 80% at 80% 85%,
-      rgba(180,80,255,.35),
-      transparent 55%
-    ),
-
-    radial-gradient(
-      ellipse 35% 55% at var(--glow-x,50%) var(--glow-y,40%),
-      rgba(255,210,120,.35),
-      transparent 55%
-    ),
+  /* MAIN AURORA CORE */
+  radial-gradient(
+    ellipse 70% 65% at 50% 110%,
+    rgba(70,220,180,.45),
+    transparent 60%
+  ),
 
 
-    linear-gradient(
-      180deg,
-      #020612,
-      #061b2b
-    );
+  /* OXFORD BLUE LIGHT FIELD */
+  radial-gradient(
+    ellipse 55% 70% at 20% 85%,
+    rgba(58,109,148,.55),
+    transparent 60%
+  ),
 
 
-  opacity:.95;
+  /* AURORA GOLD MEMORY */
+  radial-gradient(
+    ellipse 45% 55% at 80% 90%,
+    rgba(184,150,80,.35),
+    transparent 65%
+  ),
 
 
-  filter:
-
-    blur(35px)
-    saturate(180%);
-
-
-  transform:
-    translate3d(0,0,0)
-    scale(1.15);
+  /* CURSOR ENERGY */
+  radial-gradient(
+    circle at var(--glow-x,50%) var(--glow-y,40%),
+    rgba(100,200,255,.35),
+    transparent 45%
+  ),
 
 
-  animation:
+  linear-gradient(
+    180deg,
+    #020612,
+    #061426
+  );
 
-    auroraMain 14s ease-in-out infinite;
 
 
-  will-change:
-    transform,
-    filter,
-    opacity;
+filter:
+
+blur(45px)
+saturate(150%);
+
+
+
+opacity:.95;
+
+
+transform:
+translate3d(0,0,0)
+scale(1.25);
+
+
+animation:
+auroraMain 16s ease-in-out infinite;
+
+
+will-change:
+transform,
+filter,
+opacity;
 
 }
 
@@ -634,60 +683,51 @@ inset:-50%;
 background:
 
 
-/* green curtain */
-
 linear-gradient(
-115deg,
-transparent 15%,
-rgba(90,255,190,.45),
-rgba(40,200,150,.15),
-transparent 45%
-),
-
-
-/* blue curtain */
-
-linear-gradient(
-145deg,
-transparent 35%,
-rgba(80,170,255,.35),
+120deg,
+transparent 20%,
+rgba(80,255,190,.45),
+rgba(58,109,148,.35),
 transparent 70%
 ),
 
 
-/* violet curtain */
+linear-gradient(
+150deg,
+transparent 25%,
+rgba(120,180,255,.35),
+transparent 65%
+),
+
 
 linear-gradient(
-80deg,
+90deg,
 transparent 30%,
-rgba(220,100,255,.25),
-transparent 65%
+rgba(220,170,90,.22),
+transparent 75%
 );
 
 
 
 filter:
+blur(35px);
 
-blur(25px);
+
+
+opacity:1;
+
 
 
 transform:
-rotate(-12deg)
+rotate(-15deg)
 translateX(-25%);
 
 
+
 animation:
-
-auroraCurtain 16s ease-in-out infinite;
-
-
-opacity:
-
-1;
+auroraCurtain 18s ease-in-out infinite;
 
 }
-
-
 
 
 /* =====================================================
@@ -888,25 +928,18 @@ scaleX(.9);
 
 
 /* =====================================================
-   DESKTOP CURSOR FIELD
+   DESKTOP INTERACTION
+   Unified mouse-influence transitions
    ===================================================== */
 
-@media (hover:hover) and (pointer:fine){
-
-
-.hero-atmosphere {
-
-transition:
-
-transform .3s ease,
-filter .3s ease;
-
+  @media (hover:hover) and (pointer:fine) {
+  .hero-atmosphere {
+    transition: 
+      transform .3s ease, 
+      filter .3s ease, 
+      background-position .35s ease;
+  }
 }
-
-
-}
-
-
 
 /* =====================================================
    MOBILE
@@ -957,6 +990,23 @@ height:100%;
 
 }
 
+
+}
+
+    /* =====================================================
+   HERO TO NEXT SECTION TRANSITION
+   ===================================================== */
+
+.bridge-section {
+
+background:
+linear-gradient(
+180deg,
+#061426 0%,
+var(--navy) 35%
+);
+
+position:relative;
 
 }
     
@@ -2836,55 +2886,6 @@ a, a:visited, a:hover, a:active {
     }
 }
 
-/* =====================================================
-   DESKTOP ONLY
-   Mouse influences atmosphere
-   ===================================================== */
-
-@media (hover:hover) and (pointer:fine) {
-
-  .hero-atmosphere {
-
-    transition:
-      background-position .35s ease,
-      transform .35s ease;
-
-  }
-
-}
-
-
-
-/* =====================================================
-   MOBILE FALLBACK
-   No hover dependency.
-   CSS owns the movement.
-   ===================================================== */
-
-
-@media(max-width:768px){
-
-  .hero {
-
-    overflow:hidden;
-
-  }
-
-
-  .hero-atmosphere {
-
-    inset:-10%;
-
-    filter:
-      blur(45px);
-
-    animation-duration:
-      18s;
-
-  }
-
-
-}
 
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
