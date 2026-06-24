@@ -4900,6 +4900,86 @@ y + "%"
 }
 })();
 
+/* =====================================================
+   HERO AURORA FLOW DRIVER
+
+   Creates continuous moving light curtains.
+   Similar logic to Sandbox rotating glow,
+   but adapted into organic aurora movement.
+   ===================================================== */
+
+(function(){
+
+const atmosphere =
+document.querySelector(".hero-atmosphere");
+
+if(!atmosphere) return;
+
+
+let phase = 0;
+
+
+function animateAurora(){
+
+
+phase += 0.0035;
+
+
+/*
+  Creates slow organic oscillation
+*/
+
+const x =
+Math.sin(phase) * 8;
+
+
+const y =
+Math.cos(phase * .7) * 5;
+
+
+
+const scale =
+1 +
+(Math.sin(phase * 1.3) * 0.04);
+
+
+
+const rotate =
+Math.sin(phase) * 3;
+
+
+
+atmosphere.style.transform = `
+
+translate3d(
+${x}%,
+${y}%,
+0
+)
+
+scale(${scale})
+
+rotate(${rotate}deg)
+
+`;
+
+
+
+requestAnimationFrame(
+animateAurora
+);
+
+}
+
+
+requestAnimationFrame(
+animateAurora
+);
+
+
+})();
+
+  
     // ── Narrative carousel pip sync ──────────────────────
   window.scrollToCard = function(index) {
     var track = document.getElementById('narrative-track');
