@@ -411,93 +411,9 @@ footer {
     .hero {
       padding: 12vh 6vw 10vh;
       border-bottom: var(--border-thin);
-      background: transparent;
+      background: var(--navy);
       position: relative;
-      overflow: hidden;
     }
-        /* ── HERO AURORA BACKGROUND ─────────────────────── */
-    .hero-atmosphere {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      background: #020B18; /* near-black with navy hint */
-    }
-
-    /* Star field */
-    .hero-atmosphere::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 72% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 38% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 25% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 10% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 65% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 45% 55%, rgba(255,255,255,0.5) 0%, transparent 100%);
-      animation: starfield-drift 60s linear infinite;
-    }
-
-    /* Aurora curtains */
-    .hero-atmosphere::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      left: -20%;
-      right: -20%;
-      height: 90%;
-      background:
-        radial-gradient(ellipse 60% 40% at 20% 100%, rgba(200,164,93,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 35% at 45% 95%, rgba(219,180,131,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 55% 45% at 70% 100%, rgba(72,199,142,0.14) 0%, transparent 55%),
-        radial-gradient(ellipse 45% 35% at 88% 90%, rgba(130,220,200,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 30% at 10% 90%, rgba(220,160,100,0.10) 0%, transparent 45%);
-      animation: aurora-shift 18s ease-in-out infinite alternate;
-      filter: blur(28px);
-      opacity: 0.85;
-    }
-
-    @keyframes aurora-shift {
-      0% {
-        transform: translateX(-8%) scaleY(0.9);
-        opacity: 0.7;
-      }
-      33% {
-        transform: translateX(4%) scaleY(1.1);
-        opacity: 0.9;
-      }
-      66% {
-        transform: translateX(-4%) scaleY(0.95);
-        opacity: 0.75;
-      }
-      100% {
-        transform: translateX(6%) scaleY(1.05);
-        opacity: 0.85;
-      }
-    }
-
-    @keyframes starfield-drift {
-      0%   { transform: translateY(0); }
-      100% { transform: translateY(-8px); }
-    }
-
-    /* Ensure hero content sits above atmosphere */
-    .hero-container,
-    .hero-inner,
-    .hero-kicker,
-    .hero h1,
-    .hero-body,
-    .hero-actions,
-    .hero-cta-note {
-      position: relative;
-      z-index: 2;
-    }
-    
     .hero-container {
       max-width: 1150px;
       margin: 0 auto;
@@ -612,141 +528,28 @@ footer {
   opacity: 0.7;
 }
     
-    /* ── NARRATIVE CAROUSEL TRACK ───────────────────── */
-    .narrative-carousel-wrap { position: relative; }
-    .narrative-carousel-track {
-      display: flex;
-      overflow-x: auto;
-      overflow-y: visible;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      gap: 16px;
-      padding: 16px 0 28px 0;
-    }
-    .narrative-carousel-track::-webkit-scrollbar { display: none; }
+.narrative-card {
+    background: rgba(255, 255, 255, 0.03); /* Lighter, more translucent base */
+    border: 1px solid rgba(150, 180, 200, 0.2); /* Softer, thinner border */
+    border-radius: 20px; /* Softer, more modern corners */
+    padding: 40px; /* More room inside makes the text feel more luxurious */
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+}
 
-    /* ── NARRATIVE CARD — Walrus style + color per card ── */
-    .narrative-card {
-      min-width: 80vw;
-      max-width: 80vw;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      border-radius: 24px;
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-      cursor: grab;
-    }
-    .narrative-card:active { cursor: grabbing; }
+.narrative-card h4 {
+    font-family: var(--serif-title); /* Changed to serif for editorial flair */
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+}
 
-    /* Individual card color personalities */
-    .narrative-card:nth-child(1) {
-      background: linear-gradient(145deg, rgba(200,164,93,0.08) 0%, rgba(7,27,51,0.6) 60%);
-      border: 1px solid rgba(200,164,93,0.22);
-      box-shadow: 0 0 0 0 rgba(200,164,93,0), inset 0 1px 0 rgba(200,164,93,0.12);
-      animation: card-pulse-gold 6s ease-in-out infinite;
-    }
-    .narrative-card:nth-child(2) {
-      background: linear-gradient(145deg, rgba(65,107,154,0.12) 0%, rgba(7,27,51,0.6) 60%);
-      border: 1px solid rgba(65,107,154,0.25);
-      box-shadow: 0 0 0 0 rgba(65,107,154,0), inset 0 1px 0 rgba(65,107,154,0.12);
-      animation: card-pulse-aegean 6s ease-in-out 2s infinite;
-    }
-    .narrative-card:nth-child(3) {
-      background: linear-gradient(145deg, rgba(184,100,62,0.1) 0%, rgba(7,27,51,0.6) 60%);
-      border: 1px solid rgba(184,100,62,0.22);
-      box-shadow: 0 0 0 0 rgba(184,100,62,0), inset 0 1px 0 rgba(184,100,62,0.10);
-      animation: card-pulse-rust 6s ease-in-out 4s infinite;
-    }
-    .narrative-card:nth-child(4) {
-      background: linear-gradient(145deg, rgba(72,199,142,0.08) 0%, rgba(7,27,51,0.6) 60%);
-      border: 1px solid rgba(72,199,142,0.18);
-      box-shadow: 0 0 0 0 rgba(72,199,142,0), inset 0 1px 0 rgba(72,199,142,0.10);
-      animation: card-pulse-green 6s ease-in-out 1s infinite;
-    }
-
-    @keyframes card-pulse-gold {
-      0%, 100% { box-shadow: 0 0 12px rgba(200,164,93,0.06), inset 0 1px 0 rgba(200,164,93,0.12); }
-      50%       { box-shadow: 0 0 28px rgba(200,164,93,0.14), inset 0 1px 0 rgba(200,164,93,0.20); }
-    }
-    @keyframes card-pulse-aegean {
-      0%, 100% { box-shadow: 0 0 12px rgba(65,107,154,0.06), inset 0 1px 0 rgba(65,107,154,0.12); }
-      50%       { box-shadow: 0 0 28px rgba(65,107,154,0.14), inset 0 1px 0 rgba(65,107,154,0.20); }
-    }
-    @keyframes card-pulse-rust {
-      0%, 100% { box-shadow: 0 0 12px rgba(184,100,62,0.06), inset 0 1px 0 rgba(184,100,62,0.10); }
-      50%       { box-shadow: 0 0 28px rgba(184,100,62,0.14), inset 0 1px 0 rgba(184,100,62,0.16); }
-    }
-    @keyframes card-pulse-green {
-      0%, 100% { box-shadow: 0 0 12px rgba(72,199,142,0.05), inset 0 1px 0 rgba(72,199,142,0.10); }
-      50%       { box-shadow: 0 0 28px rgba(72,199,142,0.12), inset 0 1px 0 rgba(72,199,142,0.18); }
-    }
-
-    .narrative-card h4 {
-      font-family: var(--serif-title);
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin-bottom: 0;
-      letter-spacing: -0.01em;
-      color: var(--ivory);
-    }
-    .narrative-card:nth-child(1) h4 { color: var(--gold-light); }
-    .narrative-card:nth-child(2) h4 { color: var(--aegean-light); }
-    .narrative-card:nth-child(3) h4 { color: #D4855A; }
-    .narrative-card:nth-child(4) h4 { color: #5CC49A; }
-
-    .narrative-card p {
-      font-size: 0.97rem;
-      line-height: 1.9;
-      color: rgba(247,241,227,0.78);
-      margin: 0;
-    }
-
-    /* Pip indicators */
-    .narrative-pip-row {
-      display: flex;
-      gap: 6px;
-      padding-left: 2px;
-      margin-top: 4px;
-    }
-    .narrative-pip {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: rgba(200,164,93,0.2);
-      transition: background 0.2s, width 0.2s;
-      cursor: pointer;
-    }
-    .narrative-pip.active {
-      background: var(--gold);
-      width: 18px;
-      border-radius: 4px;
-    }
-
-    /* Right edge fade — shows more cards exist */
-    .narrative-carousel-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 28px;
-      width: 60px;
-      background: linear-gradient(to right, transparent, var(--navy));
-      pointer-events: none;
-    }
-
-    /* Desktop: 2 cards visible at once */
-    @media (min-width: 900px) {
-      .narrative-card {
-        min-width: 44%;
-        max-width: 44%;
-      }
-      .narrative-carousel-wrap::after { display: none; }
-    }
-
+.narrative-card p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.8); /* Slightly softer than pure ivory2 */
+}
 
     /* SANDBOX WINDOW */
     .sandbox-window { border:var(--border); background:var(--cobalt); box-shadow:var(--shadow); display:flex; flex-direction:column; border-radius: 4px; }
@@ -2787,15 +2590,8 @@ a, a:visited, a:hover, a:active {
 
   }
 
-}
 
-      @media (min-width: 900px) {
-    #arch-track .arch-card {
-      min-width: 30%;
-      max-width: 30%;
-    }
-    #arch-pips { display: none; }
-  }
+}
 
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
@@ -3438,80 +3234,41 @@ a, a:visited, a:hover, a:active {
     THE ANATOMY BEHIND OUR CASE STUDIES
   </h3>
 
-<!-- ARCHITECTURE CARDS: Infinite swipe carousel with bounce -->
-<div style="position: relative; margin-top: 32px;" id="arch-carousel-wrap">
-
-  <div id="arch-track" style="
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    gap: 16px;
-    padding-bottom: 20px;
-    cursor: grab;
-  ">
-
-    <!-- CARD 1 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(200,164,93,0.09), rgba(7,27,51,0.7));
-      border: 1px solid rgba(200,164,93,0.2);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">01 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: var(--gold-light); margin-bottom: 14px; font-style: italic;">The Tangible Anchor</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We center every narrative on the user’s immediate reality. By anchoring your product in tangible outcomes, we bypass abstract utility and connect directly to the user’s core objective.</p>
+  <div 
+    class="sandbox-detection-grid"
+    data-aos="zoom-in"
+    data-aos-delay="300">
+    <div 
+      class="detection-cell"
+      data-aos="fade-up"
+      data-aos-delay="400">
+      <h4>The Tangible Anchor</h4>
+      <p>
+      We center every narrative on the user’s immediate reality. By anchoring your product in tangible outcomes, we bypass abstract utility and connect directly to the user’s core objective.
+      </p>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(65,107,154,0.12), rgba(7,27,51,0.7));
-      border: 1px solid rgba(65,107,154,0.22);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 16px;">02 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: var(--aegean-light); margin-bottom: 14px; font-style: italic;">The Human Rhythm</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We translate technical complexity into the cadence of natural thought. Replacing machine-led jargon with a narrative pulse makes your software feel intuitive the moment it is encountered.</p>
+    <div 
+      class="detection-cell"
+      data-aos="fade-up"
+      data-aos-delay="500">
+      <h4>The Human Rhythm</h4>
+      <p>
+      We translate technical complexity into the cadence of natural thought. Replacing machine-led jargon with a narrative pulse makes your software feel intuitive the moment it is encountered.
+      </p>
     </div>
 
-    <!-- CARD 3 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(72,199,142,0.08), rgba(7,27,51,0.7));
-      border: 1px solid rgba(72,199,142,0.16);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: #5CC49A; margin-bottom: 16px;">03 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: #5CC49A; margin-bottom: 14px; font-style: italic;">The Spatial Context</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We frame software as a dynamic environment for sustained work. Shifting the focus from a static destination to a living territory ensures your product integrates as a permanent fixture in the buyer’s professional life.</p>
+    <div 
+      class="detection-cell"
+      data-aos="fade-up"
+      data-aos-delay="600">
+      <h4>The Spatial Context</h4>
+      <p>
+      We frame software as a dynamic environment for sustained work. Shifting the focus from a static destination to a living territory ensures your product integrates as a permanent fixture in the buyer’s professional life.
+      </p>
     </div>
-
   </div>
-
-  <!-- Pip indicators -->
-  <div style="display: flex; gap: 6px; margin-top: 8px;" id="arch-pips">
-    <div class="narrative-pip active" onclick="scrollToArchCard(0)"></div>
-    <div class="narrative-pip" onclick="scrollToArchCard(1)"></div>
-    <div class="narrative-pip" onclick="scrollToArchCard(2)"></div>
-  </div>
-
-</div>
-
+</section>
   
 <!-- ══ WHY IT MATTERS: THE COMPLEXITY TAX ══════════ -->
 <section id="work" style="padding: 10vh 6vw; background: var(--navy); border-top: var(--border);">
@@ -3819,50 +3576,11 @@ a, a:visited, a:hover, a:active {
 
             </div><!-- end slides track -->
 
-                <!-- Slide controls — dots + prev/next buttons -->
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #122B1E; border-top: 1px solid #1a4a2e;">
-
-                  <!-- Prev button -->
-                  <button onclick="lkSlide(-1)" style="
-                    background: rgba(92,158,122,0.15);
-                    border: 1px solid rgba(92,158,122,0.35);
-                    color: #5C9E7A;
-                    font-family: var(--mono);
-                    font-size: 0.7rem;
-                    letter-spacing: 0.06em;
-                    text-transform: uppercase;
-                    padding: 6px 14px;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    transition: background 0.2s;
-                  " onmouseover="this.style.background='rgba(92,158,122,0.25)'" onmouseout="this.style.background='rgba(92,158,122,0.15)'">
-                    ← Prev
-                  </button>
-
-                  <!-- Dots -->
-                  <div style="display: flex; gap: 8px; align-items: center;" id="lk-dots">
-                    <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; transition: opacity 0.2s;" data-idx="0"></div>
-                    <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35; transition: opacity 0.2s;" data-idx="1"></div>
-                    <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35; transition: opacity 0.2s;" data-idx="2"></div>
-                  </div>
-
-                  <!-- Next button -->
-                  <button onclick="lkSlide(1)" style="
-                    background: rgba(92,158,122,0.15);
-                    border: 1px solid rgba(92,158,122,0.35);
-                    color: #5C9E7A;
-                    font-family: var(--mono);
-                    font-size: 0.7rem;
-                    letter-spacing: 0.06em;
-                    text-transform: uppercase;
-                    padding: 6px 14px;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    transition: background 0.2s;
-                  " onmouseover="this.style.background='rgba(92,158,122,0.25)'" onmouseout="this.style.background='rgba(92,158,122,0.15)'">
-                    Next →
-                  </button>
-
+                <!-- Scroll indicator dots -->
+                <div style="display: flex; justify-content: center; gap: 8px; padding: 14px 0; background: #122B1E; border-top: 1px solid #1a4a2e;">
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A;"></div>
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35;"></div>
+                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35;"></div>
                 </div>
 
               </div><!-- end viewport -->
@@ -4385,7 +4103,7 @@ a, a:visited, a:hover, a:active {
 
           
     <section class="system-audit-trigger">
-      <button class="btn btn-dark" onclick="goToAnchor('top')">Back to the Aurora</button>
+      <button class="btn btn-dark" onclick="goToAnchor('top')">Back to Olympus</button>
     </section>
   </div>
 </div><!-- END #view-home -->
@@ -5135,39 +4853,8 @@ window.handleCtaClick = function(e) {
     if (panel) panel.classList.add('active');
   };
 
-  // 10. LANDKNOT SLIDE NAVIGATION (DESKTOP) ──────────────
-  var lkCurrentSlide = 0;
-  var lkTotalSlides = 3;
 
-  window.lkSlide = function(dir) {
-    var track = document.getElementById('lk-slides');
-    if (!track) return;
-    lkCurrentSlide = (lkCurrentSlide + dir + lkTotalSlides) % lkTotalSlides;
-    var slideWidth = track.offsetWidth;
-    track.scrollTo({ left: lkCurrentSlide * slideWidth, behavior: 'smooth' });
-    // Update dots
-    var dots = document.querySelectorAll('#lk-dots [data-idx]');
-    dots.forEach(function(d) {
-      d.style.opacity = parseInt(d.getAttribute('data-idx')) === lkCurrentSlide ? '1' : '0.35';
-    });
-  };
-
-  // Sync dots on swipe (mobile)
-  (function() {
-    var track = document.getElementById('lk-slides');
-    if (!track) return;
-    track.addEventListener('scroll', function() {
-      var slideWidth = track.offsetWidth;
-      var idx = Math.round(track.scrollLeft / slideWidth);
-      lkCurrentSlide = idx;
-      var dots = document.querySelectorAll('#lk-dots [data-idx]');
-      dots.forEach(function(d) {
-        d.style.opacity = parseInt(d.getAttribute('data-idx')) === idx ? '1' : '0.35';
-      });
-    }, { passive: true });
-  })();
-
-  // 11. MANIFESTO READER (within view-our-manifesto)
+  // 10. MANIFESTO READER (within view-our-manifesto)
 
   window.openManifestoReader = function() {
     const cover = document.querySelector('.manifesto-cover');
@@ -5206,57 +4893,6 @@ window.handleCtaClick = function(e) {
   }
   requestAnimationFrame(tick);
 })();
-
-    // ── Arch carousel pip sync + bounce ──────────────────
-  window.scrollToArchCard = function(index) {
-    var track = document.getElementById('arch-track');
-    if (!track) return;
-    var cards = track.querySelectorAll('.arch-card');
-    if (!cards[index]) return;
-    cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-  };
-
-  (function() {
-    var track = document.getElementById('arch-track');
-    var pips = document.querySelectorAll('#arch-pips .narrative-pip');
-    if (!track || !pips.length) return;
-
-    // Bounce effect on scroll end
-    var bounceTimer;
-    track.addEventListener('scroll', function() {
-      var cards = track.querySelectorAll('.arch-card');
-      var cardWidth = cards[0] ? cards[0].offsetWidth + 16 : 1;
-      var activeIndex = Math.round(track.scrollLeft / cardWidth);
-      activeIndex = Math.max(0, Math.min(activeIndex, pips.length - 1));
-
-      pips.forEach(function(p, i) {
-        p.classList.toggle('active', i === activeIndex);
-      });
-
-      // Bounce: scale the active card slightly
-      clearTimeout(bounceTimer);
-      bounceTimer = setTimeout(function() {
-        cards.forEach(function(c, i) {
-          c.style.transform = i === activeIndex ? 'scale(1.015)' : 'scale(1)';
-        });
-        setTimeout(function() {
-          cards.forEach(function(c) { c.style.transform = 'scale(1)'; });
-        }, 250);
-      }, 80);
-    }, { passive: true });
-
-    // Loop: when reaching last card, loop back after pause
-    track.addEventListener('scrollend', function() {
-      var cards = track.querySelectorAll('.arch-card');
-      var cardWidth = cards[0] ? cards[0].offsetWidth + 16 : 1;
-      var atEnd = track.scrollLeft >= (cardWidth * (cards.length - 1)) - 10;
-      if (atEnd) {
-        setTimeout(function() {
-          track.scrollTo({ left: 0, behavior: 'smooth' });
-        }, 1800);
-      }
-    });
-  })();
 
 // ── APPROACH PAGE: AOS swipe pip sync ──────────────────
 (function() {
