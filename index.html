@@ -507,6 +507,13 @@ pointer-events:none;
       font-style: italic;
       font-weight: 400;
     }
+    
+    .hero h1, .hero-body {
+  text-rendering: optimizeLegibility;
+  /* Add a tiny, dark drop-shadow to make text 'pop' off the light background */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+}
+
 .hero-body {
   font-family: var(--serif-body);
   font-size: 1.05rem;
@@ -597,7 +604,7 @@ pointer-events:none;
 .hero-atmosphere {
 
   position:absolute;
-  inset:-45%;
+  inset:-60%;
 
   z-index:-1;
   pointer-events:none;
@@ -797,7 +804,17 @@ auroraWave 12s ease-in-out infinite;
 
 }
 
-
+/* =====================================================
+   HERO ATMOSPHERE DIMMER
+   ===================================================== */
+    
+.hero-atmosphere-dimmer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(2, 6, 18, 0.4) 0%, rgba(2, 6, 18, 0.8) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
 
 /* =====================================================
    MAIN MOTION
@@ -2999,9 +3016,13 @@ a, a:visited, a:hover, a:active {
 
 <!-- ══════════════ HOME VIEW ══════════════ -->
 <div id="view-home" class="view-panel active-view">
-<section class="hero" id="top">
-  <div class="hero-atmosphere" aria-hidden="true"></div>
-  <div class="hero-container">
+  <section class="hero" id="top">
+    
+    <div class="hero-atmosphere" aria-hidden="true"></div>
+    
+    <div class="hero-atmosphere-dimmer" aria-hidden="true"></div> 
+    
+    <div class="hero-container">
       <div class="hero-inner">
         
         <div 
