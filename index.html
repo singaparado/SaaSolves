@@ -528,15 +528,11 @@ footer {
   opacity: 0.7;
 }
 
-    /* =====================================================
-   SAASOLVES HERO LIVING AURORA FIELD
-   Hybrid:
-   - ChatGPT spatial atmosphere system
-   - Claude aurora depth + color layering
-   Desktop: cursor-responsive intelligence field
-   Mobile: autonomous breathing atmosphere
+/* =====================================================
+   SAASOLVES HERO — AURORA AUSTRALIS FIELD
+   Visible atmospheric light system
+   Desktop + Mobile active
    ===================================================== */
-
 
 .hero {
   position: relative;
@@ -546,184 +542,344 @@ footer {
 
 
 /* =====================================================
-   CORE ATMOSPHERIC FIELD
+   BASE NIGHT SKY
    ===================================================== */
 
 .hero-atmosphere {
 
-  position: absolute;
+  position:absolute;
+  inset:-40%;
 
-  /*
-    oversized field:
-    allows light to bleed beyond viewport
-    and prevents boxed appearance
-  */
-  inset: -35%;
-
-  z-index: -1;
-
-  pointer-events: none;
+  z-index:-1;
+  pointer-events:none;
 
 
   background:
 
-
-    /* Aurora lift from below */
     radial-gradient(
-      ellipse 55% 45% at 50% 110%,
-      rgba(200,164,93,0.24),
-      transparent 65%
+      ellipse 55% 90% at 50% 120%,
+      rgba(72,255,170,.55),
+      transparent 60%
+    ),
+
+    radial-gradient(
+      ellipse 45% 75% at 20% 90%,
+      rgba(70,180,255,.45),
+      transparent 55%
+    ),
+
+    radial-gradient(
+      ellipse 45% 80% at 80% 85%,
+      rgba(180,80,255,.35),
+      transparent 55%
+    ),
+
+    radial-gradient(
+      ellipse 35% 55% at var(--glow-x,50%) var(--glow-y,40%),
+      rgba(255,210,120,.35),
+      transparent 55%
     ),
 
 
-    /* Living green intelligence layer */
-    radial-gradient(
-      ellipse 45% 40% at 75% 85%,
-      rgba(72,199,142,0.16),
-      transparent 65%
-    ),
-
-
-    /* Rust narrative warmth */
-    radial-gradient(
-      ellipse 40% 35% at 25% 70%,
-      rgba(184,100,62,0.16),
-      transparent 65%
-    ),
-
-
-    /* Cursor reactive blue intelligence field */
-    radial-gradient(
-      circle at var(--glow-x, 35%) var(--glow-y, 30%),
-      rgba(58,109,148,0.32),
-      transparent 38%
-    ),
-
-
-    /* Deep spatial base */
     linear-gradient(
       180deg,
-      #020B18 0%,
-      #061426 100%
+      #020612,
+      #061b2b
     );
 
 
-filter:
-blur(55px)
-saturate(150%);
+  opacity:.95;
 
 
-  opacity:
-    .88;
+  filter:
+
+    blur(35px)
+    saturate(180%);
 
 
   transform:
     translate3d(0,0,0)
-    scale(1);
+    scale(1.15);
 
 
-.hero-atmosphere {
+  animation:
 
-transition:
-filter .8s ease,
-opacity .8s ease;
-
-}
+    auroraMain 14s ease-in-out infinite;
 
 
   will-change:
     transform,
-    opacity,
-    filter;
+    filter,
+    opacity;
+
 }
 
 
 
 /* =====================================================
-   AURORA LIGHT VEIL
-   Claude-inspired but restrained
+   LIGHT CURTAINS
    ===================================================== */
 
 
 .hero-atmosphere::before {
 
-  content:"";
 
-  position:absolute;
+content:"";
 
-  inset:-45%;
+position:absolute;
 
-
-  background:
-
-    linear-gradient(
-      120deg,
-      transparent 25%,
-      rgba(200,164,93,0.18),
-      rgba(72,199,142,0.08),
-      transparent 75%
-    );
+inset:-50%;
 
 
-  transform:
-    rotate(-18deg)
-    translateX(-12%);
+background:
 
 
-  animation:
-    auroraVeilMove 22s ease-in-out infinite;
+/* green curtain */
+
+linear-gradient(
+115deg,
+transparent 15%,
+rgba(90,255,190,.45),
+rgba(40,200,150,.15),
+transparent 45%
+),
 
 
-  opacity:
-    .9;
+/* blue curtain */
+
+linear-gradient(
+145deg,
+transparent 35%,
+rgba(80,170,255,.35),
+transparent 70%
+),
+
+
+/* violet curtain */
+
+linear-gradient(
+80deg,
+transparent 30%,
+rgba(220,100,255,.25),
+transparent 65%
+);
+
+
+
+filter:
+
+blur(25px);
+
+
+transform:
+rotate(-12deg)
+translateX(-25%);
+
+
+animation:
+
+auroraCurtain 16s ease-in-out infinite;
+
+
+opacity:
+
+1;
 
 }
 
 
 
+
 /* =====================================================
-   SUBTLE PARTICLE MEMORY
-   No starfield.
-   Keeps luxury / infrastructure feeling.
+   AURORA RIBBON CORE
+   gives visible streaks
    ===================================================== */
 
 
 .hero-atmosphere::after {
 
-  content:"";
 
-  position:absolute;
+content:"";
 
-  inset:0;
-
-
-  background:
-
-    radial-gradient(
-      1px 1px at 20% 25%,
-      rgba(255,255,255,.28),
-      transparent
-    ),
-
-    radial-gradient(
-      1px 1px at 75% 30%,
-      rgba(255,255,255,.22),
-      transparent
-    ),
-
-    radial-gradient(
-      1px 1px at 60% 75%,
-      rgba(255,255,255,.18),
-      transparent
-    );
+position:absolute;
 
 
-  opacity:
-    .45;
+left:-20%;
+right:-20%;
+bottom:-10%;
+
+height:80%;
 
 
-  animation:
-    particleDrift 35s linear infinite;
+background:
+
+
+radial-gradient(
+ellipse at 30% 100%,
+rgba(70,255,180,.55),
+transparent 45%
+),
+
+
+radial-gradient(
+ellipse at 65% 100%,
+rgba(80,180,255,.45),
+transparent 45%
+),
+
+
+radial-gradient(
+ellipse at 50% 90%,
+rgba(220,120,255,.35),
+transparent 40%
+);
+
+
+
+filter:
+
+blur(22px);
+
+
+animation:
+
+auroraWave 12s ease-in-out infinite;
+
+
+}
+
+
+
+/* =====================================================
+   MAIN MOTION
+   ===================================================== */
+
+
+@keyframes auroraMain {
+
+
+0% {
+
+transform:
+translate3d(-5%,2%,0)
+scale(1.15);
+
+
+filter:
+blur(35px)
+saturate(160%);
+
+opacity:.75;
+
+}
+
+
+50% {
+
+
+transform:
+translate3d(8%,-5%,0)
+scale(1.28);
+
+
+filter:
+blur(42px)
+saturate(220%);
+
+opacity:1;
+
+}
+
+
+
+100% {
+
+
+transform:
+translate3d(-5%,2%,0)
+scale(1.15);
+
+
+filter:
+blur(35px)
+saturate(160%);
+
+opacity:.75;
+
+}
+
+
+}
+
+
+
+/* moving curtains */
+
+@keyframes auroraCurtain {
+
+
+0% {
+
+transform:
+rotate(-12deg)
+translateX(-30%)
+scaleY(.9);
+
+}
+
+
+50% {
+
+transform:
+rotate(-12deg)
+translateX(20%)
+scaleY(1.15);
+
+}
+
+
+100% {
+
+transform:
+rotate(-12deg)
+translateX(-30%)
+scaleY(.9);
+
+}
+
+}
+
+
+
+
+@keyframes auroraWave {
+
+
+0% {
+
+transform:
+translateX(-15%)
+scaleX(.9);
+
+}
+
+
+50% {
+
+transform:
+translateX(15%)
+scaleX(1.15);
+
+}
+
+
+100% {
+
+transform:
+translateX(-15%)
+scaleX(.9);
+
+}
 
 }
 
@@ -732,199 +888,74 @@ opacity .8s ease;
 
 
 /* =====================================================
-   MAIN BREATHING SYSTEM
+   DESKTOP CURSOR FIELD
    ===================================================== */
 
-
-@keyframes heroAuroraBreath {
-
-
-  0%,
-  100% {
+@media (hover:hover) and (pointer:fine){
 
 
-    transform:
+.hero-atmosphere {
 
-      translate3d(
-        -1%,
-        0,
-        0
-      )
+transition:
 
-      scale(1);
-
-
-    opacity:
-      .72;
-
-
-    filter:
-
-      blur(78px)
-      saturate(130%);
-
-  }
-
-
-
-  50% {
-
-
-    transform:
-
-      translate3d(
-        3%,
-        -3%,
-        0
-      )
-
-      scale(1.12);
-
-
-
-    opacity:
-      1;
-
-
-
-    filter:
-
-      blur(92px)
-      saturate(160%);
-
-  }
+transform .3s ease,
+filter .3s ease;
 
 }
 
 
-
-
-/* =====================================================
-   LIGHT CURTAIN MOTION
-   ===================================================== */
-
-
-@keyframes auroraVeilMove {
-
-
-  0% {
-
-
-    transform:
-
-      rotate(-18deg)
-      translateX(-15%);
-
-  }
-
-
-  50% {
-
-
-    transform:
-
-      rotate(-18deg)
-      translateX(15%);
-
-  }
-
-
-  100% {
-
-
-    transform:
-
-      rotate(-18deg)
-      translateX(-15%);
-
-  }
-
 }
-
-
-
-
-@keyframes particleDrift {
-
-
-  from {
-
-    transform:
-      translateY(0);
-
-  }
-
-
-  to {
-
-    transform:
-      translateY(-20px);
-
-  }
-
-}
-
-
-
-
-/* =====================================================
-   DESKTOP CURSOR RESPONSE
-   ===================================================== */
-
-
-@media (hover:hover) and (pointer:fine) {
-
-
-  .hero-atmosphere {
-
-    transition:
-
-      background-position .35s ease,
-      transform .35s ease;
-
-  }
-
-}
-
 
 
 
 /* =====================================================
    MOBILE
-   Remove excess blur pressure
+   KEEP THE AURORA VISIBLE
    ===================================================== */
 
 
 @media(max-width:768px){
 
 
-  .hero {
-
-    overflow:hidden;
-
-  }
+.hero-atmosphere {
 
 
-  .hero-atmosphere {
+inset:-45%;
 
 
-    inset:
-      -20%;
+filter:
 
-
-    filter:
-
-      blur(55px)
-      saturate(125%);
+blur(28px)
+saturate(190%);
 
 
 
-    animation-duration:
+animation-duration:
 
-      20s;
+12s;
 
 
-  }
+}
+
+
+.hero-atmosphere::before {
+
+
+animation-duration:
+
+13s;
+
+
+}
+
+
+
+.hero-atmosphere::after {
+
+
+height:100%;
+
+}
 
 
 }
@@ -4895,11 +4926,13 @@ atmosphere.style.setProperty(
 x + "%"
 );
 
-
 atmosphere.style.setProperty(
 "--glow-y",
 y + "%"
 );
+
+atmosphere.style.transform =
+`translate(${(x-50)/20}px, ${(y-50)/20}px)`;
 
 });
 }
