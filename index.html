@@ -3019,6 +3019,56 @@ a, a:visited, a:hover, a:active {
     justify-content:center !important;
   }
 }
+
+    /* ── LANDKNOT SLIDE CONTROLS ───────────── */
+
+.lk-controls {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 18px;
+  background:#122B1E;
+  border-bottom:1px solid #1a4a2e;
+}
+
+.lk-controls button {
+  width:34px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid rgba(92,158,122,.45);
+  background:rgba(92,158,122,.12);
+  color:#5C9E7A;
+
+  font-family:var(--mono);
+  font-size:.8rem;
+
+  cursor:pointer;
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
+
+.lk-controls button:hover {
+  background:rgba(92,158,122,.28);
+  transform:translateY(-2px);
+}
+
+.lk-control-label {
+  font-family:var(--mono);
+  font-size:.58rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#5C9E7A;
+  opacity:.7;
+}
+
+
+/* Hide on mobile because swipe already works */
+@media(max-width:899px){
+  .lk-controls {
+    display:none;
+  }
+}
     
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
@@ -3926,6 +3976,23 @@ a, a:visited, a:hover, a:active {
             <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
           </div>
           <div style="width: 64px; height: 22px; background: #5C9E7A; opacity: 0.9;"></div>
+        </div>
+
+           <!-- LANDKNOT DESKTOP CONTROLS -->
+         <div class="lk-controls">
+
+          <button id="lk-prev" aria-label="Previous slide">
+            ←
+          </button>
+
+          <div class="lk-control-label">
+            LandKnot Sequence
+          </div>
+
+          <button id="lk-next" aria-label="Next slide">
+            →
+          </button>
+
         </div>
 
         <!-- KEEP ALL THREE EXISTING SLIDES EXACTLY AS THEY ARE -->
@@ -5535,6 +5602,34 @@ if(lkTrack && lkPrev && lkNext){
     {passive:true}
   );
 }
+
+  // ── LANDKNOT DESKTOP ARROWS ─────────────
+
+(function(){
+
+const track = document.getElementById("lk-slides");
+const prev = document.getElementById("lk-prev");
+const next = document.getElementById("lk-next");
+
+if(!track || !prev || !next) return;
+
+
+prev.onclick = function(){
+  track.scrollBy({
+    left:-track.offsetWidth,
+    behavior:"smooth"
+  });
+};
+
+
+next.onclick = function(){
+  track.scrollBy({
+    left:track.offsetWidth,
+    behavior:"smooth"
+  });
+};
+
+})();
   
   // 11. MANIFESTO READER (within view-our-manifesto)
 
