@@ -1172,7 +1172,7 @@ opacity:.8;
     .sandbox-textarea { min-height: 120px; height: auto; overflow-y: auto; padding: 1rem; background: transparent; color: var(--ivory); border: 1px solid var(--gold-light); width: 100%; box-sizing: border-box; }
     .sandbox-action-row { padding:12px 20px; background:var(--deep); display:flex; justify-content:space-between; align-items:center; }
     .sandbox-status { font-family:var(--mono); font-size:0.7rem; color:rgba(244,247,250,0.6); }
-    .sandbox-btn { background:var(--aegean); border:none; color:var(--cobalt); font-family:var(--display); font-size:0.75rem; font-weight:600; text-transform:uppercase; padding:8px 16px; cursor:pointer; border-radius: 2px; transition: background 0.2s; }
+    .sandbox-btn { background:var(--aegean); border:none; color:var(--cobalt); font-family:var(--serif-alt); font-size:0.75rem; font-weight:600; text-transform:uppercase; padding:8px 16px; cursor:pointer; border-radius: 2px; transition: background 0.2s; }
     .sandbox-btn:hover { background:var(--aegean-light); }
     .sandbox-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .sandbox-output-pane { padding:24px 20px; background:var(--cobalt); min-height:140px; position:relative; }
@@ -3020,9 +3020,9 @@ a, a:visited, a:hover, a:active {
   }
 }
 
-    /* ── LANDKNOT SLIDE CONTROLS ───────────── */
+/* ── LANDKNOT SLIDE CONTROLS ───────────── */
 
-.lk-controls {
+#lk-controls {
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -3031,7 +3031,7 @@ a, a:visited, a:hover, a:active {
   border-bottom:1px solid #1a4a2e;
 }
 
-.lk-controls button {
+#lk-controls button {
   width:34px;
   height:28px;
   border-radius:8px;
@@ -3048,12 +3048,13 @@ a, a:visited, a:hover, a:active {
     transform .2s ease;
 }
 
-.lk-controls button:hover {
+#lk-controls button:hover {
   background:rgba(92,158,122,.28);
   transform:translateY(-2px);
 }
 
-.lk-control-label {
+
+#lk-control-label {
   font-family:var(--mono);
   font-size:.58rem;
   letter-spacing:.14em;
@@ -3065,7 +3066,7 @@ a, a:visited, a:hover, a:active {
 
 /* Hide on mobile because swipe already works */
 @media(max-width:899px){
-  .lk-controls {
+  #lk-controls {
     display:none;
   }
 }
@@ -3712,7 +3713,7 @@ a, a:visited, a:hover, a:active {
     data-aos="fade-right"
     data-aos-delay="200"
     style="color: var(--gold); font-family: var(--mono); margin-bottom: 20px;">
-    THE ANATOMY BEHIND OUR CASE STUDIES
+    THE PRINCIPLE BEHIND OUR TRANSLATION
   </h3>
 
   <div 
@@ -3723,7 +3724,7 @@ a, a:visited, a:hover, a:active {
       class="detection-cell"
       data-aos="fade-up"
       data-aos-delay="400">
-      <h4>The Tangible Anchor</h4>
+      <h4>Tangibility</h4>
       <p>
       We center every narrative on the user’s immediate reality. By anchoring your product in tangible outcomes, we bypass abstract utility and connect directly to the user’s core objective.
       </p>
@@ -3733,9 +3734,9 @@ a, a:visited, a:hover, a:active {
       class="detection-cell"
       data-aos="fade-up"
       data-aos-delay="500">
-      <h4>The Human Rhythm</h4>
+      <h4>Human Tendency</h4>
       <p>
-      We translate technical complexity into the cadence of natural thought. Replacing machine-led jargon with a narrative pulse makes your software feel intuitive the moment it is encountered.
+      We translate technical complexity into the measurement of natural thought. Replacing machine-led jargon with a narrative pulse makes your software feel intuitive the moment it is encountered.
       </p>
     </div>
 
@@ -3743,7 +3744,7 @@ a, a:visited, a:hover, a:active {
       class="detection-cell"
       data-aos="fade-up"
       data-aos-delay="600">
-      <h4>The Spatial Context</h4>
+      <h4>Contextuality</h4>
       <p>
       We frame software as a dynamic environment for sustained work. Shifting the focus from a static destination to a living territory ensures your product integrates as a permanent fixture in the buyer’s professional life.
       </p>
@@ -3978,23 +3979,6 @@ a, a:visited, a:hover, a:active {
           <div style="width: 64px; height: 22px; background: #5C9E7A; opacity: 0.9;"></div>
         </div>
 
-           <!-- LANDKNOT DESKTOP CONTROLS -->
-         <div class="lk-controls">
-
-          <button id="lk-prev" aria-label="Previous slide">
-            ←
-          </button>
-
-          <div class="lk-control-label">
-            LandKnot Sequence
-          </div>
-
-          <button id="lk-next" aria-label="Next slide">
-            →
-          </button>
-
-        </div>
-
         <!-- KEEP ALL THREE EXISTING SLIDES EXACTLY AS THEY ARE -->
         <div style="overflow: hidden; position: relative;">
           <div id="lk-slides" style="
@@ -4078,14 +4062,7 @@ a, a:visited, a:hover, a:active {
 </div>
 
 <!-- LANDKNOT DESKTOP CONTROLS -->
-<div id="lk-controls" style="
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  background: #122B1E;
-  border-top: 1px solid #1a4a2e;
-">
+ <div id="lk-controls">
 
   <button id="lk-prev" style="
     background: rgba(92,158,122,0.15);
@@ -5533,50 +5510,27 @@ window.handleCtaClick = function(e) {
   };
 
 
-  // 10. LANDKNOT SLIDES
+// 10. LANDKNOT SLIDES
 
-  const lk =
-document.getElementById("lk-slides");
-
-document
-.getElementById("lk-next")
-.onclick=()=>{
-
-lk.scrollBy({
-left:lk.offsetWidth,
-behavior:"smooth"
-});
-
-};
-
-
-document
-.getElementById("lk-prev")
-.onclick=()=>{
-
-lk.scrollBy({
-left:-lk.offsetWidth,
-behavior:"smooth"
-});
-
-};
-
-
-  const lkTrack = document.getElementById("lk-slides");
+const lkTrack = document.getElementById("lk-slides");
 const lkPrev = document.getElementById("lk-prev");
 const lkNext = document.getElementById("lk-next");
 
 if(lkTrack && lkPrev && lkNext){
 
   function updateLKDots(){
+
     const index = Math.round(
       lkTrack.scrollLeft / lkTrack.offsetWidth
     );
 
-    document.querySelectorAll("#lk-dots [data-idx]")
+    document
+    .querySelectorAll("#lk-dots [data-idx]")
     .forEach((dot,i)=>{
-      dot.style.opacity = i === index ? "1" : "0.35";
+      dot.style.opacity =
+      i === index ? "1" : "0.35";
     });
+
   }
 
 
@@ -5601,35 +5555,8 @@ if(lkTrack && lkPrev && lkNext){
     updateLKDots,
     {passive:true}
   );
+
 }
-
-  // ── LANDKNOT DESKTOP ARROWS ─────────────
-
-(function(){
-
-const track = document.getElementById("lk-slides");
-const prev = document.getElementById("lk-prev");
-const next = document.getElementById("lk-next");
-
-if(!track || !prev || !next) return;
-
-
-prev.onclick = function(){
-  track.scrollBy({
-    left:-track.offsetWidth,
-    behavior:"smooth"
-  });
-};
-
-
-next.onclick = function(){
-  track.scrollBy({
-    left:track.offsetWidth,
-    behavior:"smooth"
-  });
-};
-
-})();
   
   // 11. MANIFESTO READER (within view-our-manifesto)
 
