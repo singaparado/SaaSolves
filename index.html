@@ -584,466 +584,268 @@ pointer-events:none;
   opacity: 0.7;
 }
 
-/* =====================================================
-   SAASOLVES HERO — AURORA AUSTRALIS FIELD
-   Visible atmospheric light system
-   Desktop + Mobile active
-   ===================================================== */
+/* ═══════════════════════════════════════════════════
+   HERO AURORA AUSTRALIS — Complete rebuild
+   Architecture:
+   hero-bg        = near-black base sky
+   hero-aurora-*  = colored light veils (left/right/bottom)
+   hero-stars     = small bright dots
+   hero-stars-2   = larger dim dots (depth)
+   hero-veil      = center clearing for text legibility
+   ═══════════════════════════════════════════════════ */
 
 .hero {
   position: relative;
   overflow: hidden;
+  padding: 12vh 6vw 10vh;
+  border-bottom: var(--border-thin);
+  background: transparent; /* CRITICAL: transparent, not navy */
   isolation: isolate;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* =====================================================
-   BASE NIGHT SKY
-   ===================================================== */
-
- .hero-atmosphere {
-  position:absolute;
-  inset:-45% -40% -25%;
-  z-index:-1;
-  pointer-events:none;
-  background:
-  /* MAIN AURORA CORE */
-  radial-gradient(
-  ellipse 70% 65% at 50% 110%,
-  rgba(70,220,180,.45),
-  transparent 60%
-  ),
-  /* OXFORD BLUE LIGHT FIELD */
-  radial-gradient(
-  ellipse 55% 70% at 20% 85%,
-  rgba(58,109,148,.55),
-  transparent 60%
-  ),
-
-  /* AURORA GOLD MEMORY */
-  radial-gradient(
-    ellipse 45% 55% at 80% 90%,
-    rgba(184,150,80,.35),
-    transparent 65%
-  ),
-
-  /* CURSOR ENERGY */
-  radial-gradient(
-    circle at var(--glow-x,50%) var(--glow-y,40%),
-    rgba(100,200,255,.35),
-    transparent 45%
-  ),
-
-  linear-gradient(
+/* ── BASE SKY ─────────────────────────────────────── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
     180deg,
-    #020612,
-    #061426
+    #010509 0%,
+    #020B18 40%,
+    #040E1F 70%,
+    #061526 100%
   );
-
-
-
-filter:
-blur(45px)
-saturate(150%);
-opacity:.95;
-transform:
-translate3d(0,0,0)
-scale(1.25);
-animation:
-auroraMain 16s ease-in-out infinite;
-will-change:
-transform,
-filter,
-opacity;
+  pointer-events: none;
 }
 
-
-
-/* =====================================================
-   LIGHT CURTAINS
-   ===================================================== */
-
-
-.hero-atmosphere::before {
-content:"";
-position:absolute;
-inset:-50%;
-background:
-linear-gradient(
-120deg,
-transparent 20%,
-rgba(80,255,190,.45),
-rgba(58,109,148,.35),
-transparent 70%
-),
-
-linear-gradient(
-150deg,
-transparent 25%,
-rgba(120,180,255,.35),
-transparent 65%
-),
-
-linear-gradient(
-90deg,
-transparent 30%,
-rgba(220,170,90,.22),
-transparent 75%
-);
-filter:
-blur(35px);
-opacity:1;
-transform:
-rotate(-15deg)
-translateX(-25%);
-animation:
-auroraCurtain 18s ease-in-out infinite;
-
+/* ── AURORA LEFT VEIL ─────────────────────────────── */
+/* Teal-cyan-green band rising from bottom-left */
+.hero-aurora-left {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  bottom: -30%;
+  left: -20%;
+  width: 65%;
+  height: 110%;
+  background: radial-gradient(
+    ellipse 60% 80% at 20% 100%,
+    rgba(30, 200, 140, 0.32) 0%,
+    rgba(20, 160, 200, 0.22) 30%,
+    rgba(60, 100, 200, 0.12) 55%,
+    transparent 72%
+  );
+  filter: blur(38px);
+  animation: aurora-left 20s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
-
-/* =====================================================
-   AURORA RIBBON CORE
-   gives visible streaks
-   ===================================================== */
-
-
-.hero-atmosphere::after {
-
-
-content:"";
-
-position:absolute;
-
-
-left:-20%;
-right:-20%;
-bottom:-10%;
-
-height:80%;
-
-
-background:
-
-
-radial-gradient(
-ellipse at 30% 100%,
-rgba(70,255,180,.55),
-transparent 45%
-),
-
-
-radial-gradient(
-ellipse at 65% 100%,
-rgba(80,180,255,.45),
-transparent 45%
-),
-
-
-radial-gradient(
-ellipse at 50% 90%,
-rgba(220,120,255,.35),
-transparent 40%
-);
-
-
-
-filter:
-
-blur(22px);
-
-
-animation:
-
-auroraWave 12s ease-in-out infinite;
-
-
+@keyframes aurora-left {
+  0%   { transform: translateX(-8%) translateY(4%) scaleY(0.9); opacity: 0.75; }
+  35%  { transform: translateX(4%) translateY(-3%) scaleY(1.08); opacity: 1; }
+  70%  { transform: translateX(-4%) translateY(2%) scaleY(0.95); opacity: 0.85; }
+  100% { transform: translateX(6%) translateY(-5%) scaleY(1.1); opacity: 0.9; }
 }
 
-/* =====================================================
-   HERO ATMOSPHERE DIMMER
-   ===================================================== */
-    
-.hero-atmosphere-dimmer {
-position:absolute;
-inset:0;
-z-index:0;
-pointer-events:none;
-background:
-radial-gradient(
-circle at 25% 45%,
-rgba(2,6,18,.75),
-rgba(2,6,18,.25) 55%,
-transparent 80%
-);
-
+/* ── AURORA RIGHT VEIL ────────────────────────────── */
+/* Gold-amber-green band rising from bottom-right */
+.hero-aurora-right {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  bottom: -25%;
+  right: -25%;
+  width: 60%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse 55% 75% at 80% 100%,
+    rgba(200, 164, 60, 0.25) 0%,
+    rgba(140, 200, 100, 0.20) 30%,
+    rgba(60, 180, 160, 0.14) 55%,
+    transparent 72%
+  );
+  filter: blur(42px);
+  animation: aurora-right 24s ease-in-out infinite alternate;
+  animation-delay: -8s;
+  will-change: transform, opacity;
 }
 
-/* =====================================================
-   MAIN MOTION
-   ===================================================== */
-
-
-@keyframes auroraMain {
-
-
-0% {
-
-transform:
-translate3d(-5%,2%,0)
-scale(1.15);
-
-
-filter:
-blur(35px)
-saturate(160%);
-
-opacity:.75;
-
+@keyframes aurora-right {
+  0%   { transform: translateX(6%) translateY(2%) scaleY(1.05); opacity: 0.8; }
+  40%  { transform: translateX(-5%) translateY(-4%) scaleY(0.92); opacity: 1; }
+  80%  { transform: translateX(8%) translateY(3%) scaleY(1.12); opacity: 0.78; }
+  100% { transform: translateX(-3%) translateY(-2%) scaleY(0.98); opacity: 0.92; }
 }
 
-
-50% {
-
-
-transform:
-translate3d(8%,-5%,0)
-scale(1.28);
-
-
-filter:
-blur(42px)
-saturate(220%);
-
-opacity:1;
-
+/* ── AURORA BOTTOM BAND ───────────────────────────── */
+/* The bright horizon glow — where aurora meets earth */
+.hero-aurora-bottom {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  bottom: -10%;
+  left: -10%;
+  right: -10%;
+  height: 55%;
+  background:
+    radial-gradient(ellipse 35% 50% at 15% 100%, rgba(50, 220, 160, 0.40) 0%, transparent 55%),
+    radial-gradient(ellipse 30% 45% at 40% 100%, rgba(80, 200, 120, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 55% at 65% 100%, rgba(120, 220, 200, 0.32) 0%, transparent 55%),
+    radial-gradient(ellipse 28% 40% at 85% 100%, rgba(200, 160, 80, 0.24) 0%, transparent 48%);
+  filter: blur(28px);
+  animation: aurora-bottom 16s ease-in-out infinite alternate;
+  animation-delay: -4s;
+  will-change: transform;
 }
 
-
-
-100% {
-
-
-transform:
-translate3d(-5%,2%,0)
-scale(1.15);
-
-
-filter:
-blur(35px)
-saturate(160%);
-
-opacity:.75;
-
+@keyframes aurora-bottom {
+  0%   { transform: scaleX(0.92) translateX(-4%); opacity: 0.85; }
+  50%  { transform: scaleX(1.06) translateX(3%); opacity: 1; }
+  100% { transform: scaleX(0.96) translateX(-2%); opacity: 0.88; }
 }
 
-
-}
-
-
-
-/* moving curtains */
-
-@keyframes auroraCurtain {
-
-
-0% {
-
-transform:
-rotate(-12deg)
-translateX(-30%)
-scaleY(.9);
-
-}
-
-
-50% {
-
-transform:
-rotate(-12deg)
-translateX(20%)
-scaleY(1.15);
-
-}
-
-
-100% {
-
-transform:
-rotate(-12deg)
-translateX(-30%)
-scaleY(.9);
-
-}
-
-}
-
-
-
-
-@keyframes auroraWave {
-
-
-0% {
-
-transform:
-translateX(-15%)
-scaleX(.9);
-
-}
-
-
-50% {
-
-transform:
-translateX(15%)
-scaleX(1.15);
-
-}
-
-
-100% {
-
-transform:
-translateX(-15%)
-scaleX(.9);
-
-}
-
-}
-
-
-/* =====================================================
-   STAR PARTICLE FIELD
-   ===================================================== */
-
+/* ── STAR FIELD — small bright points ────────────── */
 .hero-stars {
-
-position:absolute;
-inset:0;
-
-z-index:1;
-
-pointer-events:none;
-
-background-image:
-radial-gradient(
-circle,
-rgba(255,255,255,.95) 1px,
-transparent 1.5px
-),
-radial-gradient(
-circle,
-rgba(255,255,255,.65) .7px,
-transparent 1.2px
-),
-radial-gradient(
-circle,
-rgba(180,230,255,.8) .8px,
-transparent 1.4px
-);
-
-
-background-size:
-
-90px 90px,
-150px 150px,
-220px 220px;
-
-
-background-position:
-
-0 0,
-40px 80px,
-100px 20px;
-
-
-opacity:.35;
-
-
-animation:
-
-starsDrift 30s linear infinite;
-
-
-mix-blend-mode:
-screen;
-
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image:
+    /* cluster 1 — upper area */
+    radial-gradient(circle, rgba(255,255,255,0.92) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,255,255,0.70) 0.8px, transparent 1.2px),
+    radial-gradient(circle, rgba(220,240,255,0.85) 0.9px, transparent 1.4px),
+    radial-gradient(circle, rgba(255,255,255,0.60) 0.7px, transparent 1.1px),
+    /* cluster 2 — spread */
+    radial-gradient(circle, rgba(255,255,255,0.80) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(200,230,255,0.75) 0.8px, transparent 1.3px);
+  background-size:
+    88px 92px,
+    140px 148px,
+    72px 96px,
+    200px 180px,
+    160px 120px,
+    240px 200px;
+  background-position:
+    12px 18px,
+    55px 42px,
+    30px 75px,
+    110px 25px,
+    80px 110px,
+    190px 60px;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  animation: stars-drift 45s linear infinite;
 }
 
-
-
-@keyframes starsDrift {
-
-
-0% {
-
-transform:
-translateY(0);
-
+/* ── STAR FIELD 2 — larger dim points for depth ──── */
+.hero-stars-2 {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.45) 1.5px, transparent 2px),
+    radial-gradient(circle, rgba(180,220,255,0.35) 1.2px, transparent 1.8px),
+    radial-gradient(circle, rgba(255,255,255,0.30) 1px, transparent 1.6px);
+  background-size:
+    260px 240px,
+    310px 280px,
+    180px 200px;
+  background-position:
+    40px 30px,
+    150px 85px,
+    220px 140px;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  animation: stars-drift 65s linear infinite reverse;
 }
 
-
-100% {
-
-transform:
-translateY(-120px);
-
+@keyframes stars-drift {
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(-100px); }
 }
 
-
+/* ── CENTER VEIL — clears text area ──────────────── */
+/* Creates the "opening" in the center where text lives */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  /* On mobile: strong center clearing */
+  background: radial-gradient(
+    ellipse 55% 60% at 50% 48%,
+    rgba(1, 8, 22, 0.72) 0%,
+    rgba(1, 8, 22, 0.45) 40%,
+    rgba(1, 8, 22, 0.15) 65%,
+    transparent 80%
+  );
 }
 
+/* ── HERO CONTENT — above all layers ─────────────── */
+.hero-container,
+.hero-inner,
+.hero-kicker,
+.hero h1,
+.hero-body,
+.hero-actions,
+.hero-cta-note,
+.hero-thesis {
+  position: relative;
+  z-index: 10;
+}
 
-/* =====================================================
-   DESKTOP INTERACTION
-   Unified mouse-influence transitions
-   ===================================================== */
+/* ── DESKTOP ADJUSTMENTS ──────────────────────────── */
+/* On desktop: text is on the left, aurora fills right side more */
+@media (min-width: 900px) {
+  .hero-veil {
+    background: radial-gradient(
+      ellipse 45% 75% at 30% 50%,
+      rgba(1, 8, 22, 0.78) 0%,
+      rgba(1, 8, 22, 0.50) 40%,
+      rgba(1, 8, 22, 0.18) 65%,
+      transparent 80%
+    );
+  }
 
-  @media (hover:hover) and (pointer:fine) {
-  .hero-atmosphere {
-    transition: 
-      transform .3s ease, 
-      filter .3s ease, 
-      background-position .35s ease;
+  .hero-aurora-right {
+    width: 70%;
+    right: -15%;
+    opacity: 1.1;
   }
 }
 
-/* =====================================================
-   MOBILE
-   KEEP THE AURORA VISIBLE
-   ===================================================== */
+/* ── MOBILE ADJUSTMENTS ───────────────────────────── */
+@media (max-width: 768px) {
+  .hero-aurora-left {
+    width: 85%;
+    left: -30%;
+    filter: blur(30px);
+  }
 
-@media(max-width:768px){
+  .hero-aurora-right {
+    width: 75%;
+    right: -30%;
+    filter: blur(35px);
+  }
 
-.hero-atmosphere {
-  inset:-35% -80% -20%;
-  filter:
-  blur(32px)
-  saturate(150%);
-  animation-duration:
-  12s;
-}
+  .hero-stars {
+    opacity: 0.65; /* brighter stars on mobile */
+  }
 
-
-.hero-stars {
-  opacity:.45;
-  background-size:
-  70px 70px,
-  130px 130px,
-  190px 190px;
-}
-
-
-.hero-atmosphere::before {
-  animation-duration:
-  13s;
-}
-
-
-.hero-atmosphere::after {
-  height:100%;
-}
+  .hero-veil {
+    /* Stronger center clearing on mobile — aurora stays at edges */
+    background: radial-gradient(
+      ellipse 62% 55% at 50% 45%,
+      rgba(1, 8, 22, 0.82) 0%,
+      rgba(1, 8, 22, 0.50) 45%,
+      rgba(1, 8, 22, 0.12) 68%,
+      transparent 82%
+    );
+  }
 }
     
     /* =====================================================
@@ -3255,13 +3057,16 @@ a, a:visited, a:hover, a:active {
 </style>
 
 <!-- ══════════════ HOME VIEW ══════════════ -->
-<div id="view-home" class="view-panel active-view">
   <section class="hero" id="top">
-    
-    <div class="hero-atmosphere" aria-hidden="true"></div>
-    
-    <div class="hero-atmosphere-dimmer" aria-hidden="true"></div> 
-    
+
+    <!-- AURORA LAYER STACK — order matters -->
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-aurora-left" aria-hidden="true"></div>
+    <div class="hero-aurora-right" aria-hidden="true"></div>
+    <div class="hero-aurora-bottom" aria-hidden="true"></div>
+    <div class="hero-stars" aria-hidden="true"></div>
+    <div class="hero-stars-2" aria-hidden="true"></div>
+    <div class="hero-veil" aria-hidden="true"></div>
     <div class="hero-container">
       <div class="hero-inner">
         
@@ -3341,8 +3146,26 @@ a, a:visited, a:hover, a:active {
   </section>
   
 <!-- RESTRUCTURED BRIDGE SECTION -->
-<section style="padding: 8vh 6vw; background: var(--navy);">
-  <div style="max-width: 1200px; margin: 0 auto;">
+<section style="padding: 8vh 6vw; background: transparent; position: relative; overflow: hidden;">
+
+  <!-- Star continuation from hero -->
+  <div aria-hidden="true" style="
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, #061526 0%, var(--navy) 40%, var(--navy) 100%),
+      /* continuing stars */
+      radial-gradient(circle, rgba(255,255,255,0.70) 1px, transparent 1.5px),
+      radial-gradient(circle, rgba(220,240,255,0.55) 0.8px, transparent 1.2px),
+      radial-gradient(circle, rgba(255,255,255,0.45) 0.9px, transparent 1.4px);
+    background-size: auto, 110px 100px, 180px 160px, 250px 220px;
+    background-position: 0 0, 25px 15px, 90px 55px, 170px 30px;
+    background-blend-mode: normal, screen, screen, screen;
+    opacity: 0.7;
+  "></div>
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
 
     <!-- Header -->
     <div data-aos="fade-up" style="margin-bottom: 40px;">
