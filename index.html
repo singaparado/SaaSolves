@@ -1073,6 +1073,90 @@ position:relative;
     color: rgba(255, 255, 255, 0.8); /* Slightly softer than pure ivory2 */
 }
 
+    #narrative-track {
+
+display:flex;
+overflow-x:auto;
+gap:24px;
+
+scroll-snap-type:x mandatory;
+
+padding-bottom:30px;
+
+scrollbar-width:none;
+
+}
+
+.narrative-card {
+
+min-width:
+min(420px,85vw);
+
+scroll-snap-align:start;
+
+transition:
+transform .35s ease,
+opacity .35s ease;
+
+}
+
+.narrative-card:hover {
+
+transform:
+translateY(-12px)
+scale(1.02);
+
+}
+
+
+    .bridge-card {
+
+position:relative;
+overflow:hidden;
+
+}
+
+
+.bridge-card::before {
+
+content:"";
+
+position:absolute;
+
+width:250px;
+height:250px;
+
+background:
+radial-gradient(
+circle,
+rgba(223,176,96,.35),
+transparent 70%
+);
+
+top:-80px;
+right:-80px;
+
+filter:blur(20px);
+
+animation:
+goldPulse 8s infinite;
+
+}
+
+
+@keyframes goldPulse {
+
+50% {
+
+transform:
+scale(1.4);
+
+opacity:.8;
+
+}
+
+}
+    
     /* SANDBOX WINDOW */
     .sandbox-window { border:var(--border); background:var(--cobalt); box-shadow:var(--shadow); display:flex; flex-direction:column; border-radius: 4px; }
     .sandbox-bar { display:flex; align-items:center; justify-content:space-between; padding:12px 18px; border-bottom:var(--border-thin); background:var(--deep); }
@@ -2926,7 +3010,16 @@ a, a:visited, a:hover, a:active {
     }
 }
 
+@media (max-width:899px){
+  #lk-controls button{
+    display:none;
+  }
 
+  #lk-controls{
+    justify-content:center !important;
+  }
+}
+    
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -3914,13 +4007,81 @@ a, a:visited, a:hover, a:active {
 
             </div><!-- end slides track -->
 
-                <!-- Scroll indicator dots -->
-                <div style="display: flex; justify-content: center; gap: 8px; padding: 14px 0; background: #122B1E; border-top: 1px solid #1a4a2e;">
-                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A;"></div>
-                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35;"></div>
-                  <div style="width: 6px; height: 6px; border-radius: 50%; background: #5C9E7A; opacity: 0.35;"></div>
-                </div>
+          <!-- end slides track -->
+</div>
 
+<!-- LANDKNOT DESKTOP CONTROLS -->
+<div id="lk-controls" style="
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #122B1E;
+  border-top: 1px solid #1a4a2e;
+">
+
+  <button id="lk-prev" style="
+    background: rgba(92,158,122,0.15);
+    border: 1px solid rgba(92,158,122,0.35);
+    color: #5C9E7A;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  ">
+    ← Prev
+  </button>
+
+
+  <!-- existing dots stay here -->
+  <div id="lk-dots" style="
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  ">
+    <div data-idx="0" style="
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background:#5C9E7A;
+    "></div>
+
+    <div data-idx="1" style="
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background:#5C9E7A;
+      opacity:0.35;
+    "></div>
+
+    <div data-idx="2" style="
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background:#5C9E7A;
+      opacity:0.35;
+    "></div>
+  </div>
+
+
+  <button id="lk-next" style="
+    background: rgba(92,158,122,0.15);
+    border: 1px solid rgba(92,158,122,0.35);
+    color: #5C9E7A;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  ">
+    Next →
+  </button>
+
+</div>
+      
               </div><!-- end viewport -->
             </div><!-- end browser chrome -->
 
@@ -5089,6 +5250,37 @@ animateAurora
     }, { passive: true });
   })();
 
+  const track =
+document.getElementById("narrative-track");
+
+let startX=0;
+
+track.addEventListener(
+"touchstart",
+e=>{
+startX=e.touches[0].clientX;
+});
+
+
+track.addEventListener(
+"touchend",
+e=>{
+
+let diff =
+startX-e.changedTouches[0].clientX;
+
+if(Math.abs(diff)>40){
+
+track.scrollBy({
+left:
+diff>0 ? 450 : -450,
+behavior:"smooth"
+});
+
+}
+
+});
+  
   // 2. SAMPLE COPIES
   const goldenCopies = [
     "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
@@ -5126,7 +5318,7 @@ animateAurora
   };
 
 
-// 1. YOUR EXPANDED NARRATIVE ARCHIVE
+// 4. EXPANDED NARRATIVE ARCHIVE
 const archive = {
   "workflow": {
     before: "Our AI-native, multi-tenant infrastructure with sub-10ms latency enables cross-functional workflow orchestration.",
@@ -5154,7 +5346,7 @@ const archive = {
   }
 };
 
-// 2. THE INTERFACE CONTROLLERS
+// 5. THE INTERFACE CONTROLLERS
 let currentSelection = null;
 
 window.loadArchive = function(id) {
@@ -5180,7 +5372,7 @@ window.revealNarrative = function() {
   }, 300);
 };
 
-// 5. CTA HANDLER
+// 6. CTA HANDLER
 
 window.handleCtaClick = function(e) {
   // Allow mailto link to work normally
@@ -5274,7 +5466,77 @@ window.handleCtaClick = function(e) {
   };
 
 
-  // 10. MANIFESTO READER (within view-our-manifesto)
+  // 10. LANDKNOT SLIDES
+
+  const lk =
+document.getElementById("lk-slides");
+
+document
+.getElementById("lk-next")
+.onclick=()=>{
+
+lk.scrollBy({
+left:lk.offsetWidth,
+behavior:"smooth"
+});
+
+};
+
+
+document
+.getElementById("lk-prev")
+.onclick=()=>{
+
+lk.scrollBy({
+left:-lk.offsetWidth,
+behavior:"smooth"
+});
+
+};
+
+
+  const lkTrack = document.getElementById("lk-slides");
+const lkPrev = document.getElementById("lk-prev");
+const lkNext = document.getElementById("lk-next");
+
+if(lkTrack && lkPrev && lkNext){
+
+  function updateLKDots(){
+    const index = Math.round(
+      lkTrack.scrollLeft / lkTrack.offsetWidth
+    );
+
+    document.querySelectorAll("#lk-dots [data-idx]")
+    .forEach((dot,i)=>{
+      dot.style.opacity = i === index ? "1" : "0.35";
+    });
+  }
+
+
+  lkNext.onclick = ()=>{
+    lkTrack.scrollBy({
+      left: lkTrack.offsetWidth,
+      behavior:"smooth"
+    });
+  };
+
+
+  lkPrev.onclick = ()=>{
+    lkTrack.scrollBy({
+      left:-lkTrack.offsetWidth,
+      behavior:"smooth"
+    });
+  };
+
+
+  lkTrack.addEventListener(
+    "scroll",
+    updateLKDots,
+    {passive:true}
+  );
+}
+  
+  // 11. MANIFESTO READER (within view-our-manifesto)
 
   window.openManifestoReader = function() {
     const cover = document.querySelector('.manifesto-cover');
