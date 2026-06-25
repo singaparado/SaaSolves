@@ -3010,64 +3010,53 @@ a, a:visited, a:hover, a:active {
     }
 }
 
-@media (max-width:899px){
-  #lk-controls button{
-    display:none;
-  }
+/* LANDKNOT CONTROLS */
 
-  #lk-controls{
-    justify-content:center !important;
-  }
-}
-
-/* ── LANDKNOT SLIDE CONTROLS ───────────── */
-
-#lk-controls {
+#lk-controls{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:12px 18px;
+  width:100%;
+  padding:14px 20px;
   background:#122B1E;
-  border-bottom:1px solid #1a4a2e;
+  border-top:1px solid #1a4a2e;
+  box-sizing:border-box;
 }
 
-#lk-controls button {
-  width:34px;
-  height:28px;
-  border-radius:8px;
-  border:1px solid rgba(92,158,122,.45);
-  background:rgba(92,158,122,.12);
+#lk-controls button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(92,158,122,.15);
+  border:1px solid rgba(92,158,122,.35);
   color:#5C9E7A;
 
   font-family:var(--mono);
-  font-size:.8rem;
+  font-size:.7rem;
+  letter-spacing:.06em;
+
+  padding:6px 14px;
+  border-radius:6px;
 
   cursor:pointer;
-  transition:
-    background .2s ease,
-    transform .2s ease;
 }
 
-#lk-controls button:hover {
+#lk-controls button:hover{
   background:rgba(92,158,122,.28);
-  transform:translateY(-2px);
+}
+
+#lk-dots{
+  display:flex;
+  gap:8px;
+  align-items:center;
 }
 
 
-#lk-control-label {
-  font-family:var(--mono);
-  font-size:.58rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:#5C9E7A;
-  opacity:.7;
-}
-
-
-/* Hide on mobile because swipe already works */
+/* only hide on tiny screens if you really want swipe only */
 @media(max-width:899px){
-  #lk-controls {
-    display:none;
+  #lk-controls{
+    display:flex;
   }
 }
     
@@ -4061,68 +4050,53 @@ a, a:visited, a:hover, a:active {
           <!-- end slides track -->
 </div>
 
-<!-- LANDKNOT DESKTOP CONTROLS -->
- <div id="lk-controls">
+<!-- LANDKNOT CONTROLS -->
+<div id="lk-controls">
 
-  <button id="lk-prev" style="
-    background: rgba(92,158,122,0.15);
-    border: 1px solid rgba(92,158,122,0.35);
-    color: #5C9E7A;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-  ">
-    ← Prev
-  </button>
+<button id="lk-prev">
+← Prev
+</button>
 
 
-  <!-- existing dots stay here -->
-  <div id="lk-dots" style="
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  ">
-    <div data-idx="0" style="
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background:#5C9E7A;
-    "></div>
+<div id="lk-dots">
 
-    <div data-idx="1" style="
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background:#5C9E7A;
-      opacity:0.35;
-    "></div>
-
-    <div data-idx="2" style="
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background:#5C9E7A;
-      opacity:0.35;
-    "></div>
-  </div>
+<div data-idx="0"
+style="
+width:6px;
+height:6px;
+border-radius:50%;
+background:#5C9E7A;
+transition:.2s;">
+</div>
 
 
-  <button id="lk-next" style="
-    background: rgba(92,158,122,0.15);
-    border: 1px solid rgba(92,158,122,0.35);
-    color: #5C9E7A;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-  ">
-    Next →
-  </button>
+<div data-idx="1"
+style="
+width:6px;
+height:6px;
+border-radius:50%;
+background:#5C9E7A;
+opacity:.35;
+transition:.2s;">
+</div>
+
+
+<div data-idx="2"
+style="
+width:6px;
+height:6px;
+border-radius:50%;
+background:#5C9E7A;
+opacity:.35;
+transition:.2s;">
+</div>
+
+</div>
+
+
+<button id="lk-next">
+Next →
+</button>
 
 </div>
       
@@ -5516,45 +5490,58 @@ const lkTrack = document.getElementById("lk-slides");
 const lkPrev = document.getElementById("lk-prev");
 const lkNext = document.getElementById("lk-next");
 
+
 if(lkTrack && lkPrev && lkNext){
 
-  function updateLKDots(){
 
-    const index = Math.round(
-      lkTrack.scrollLeft / lkTrack.offsetWidth
-    );
+function updateLKDots(){
 
-    document
-    .querySelectorAll("#lk-dots [data-idx]")
-    .forEach((dot,i)=>{
-      dot.style.opacity =
-      i === index ? "1" : "0.35";
-    });
-
-  }
+const index = Math.round(
+lkTrack.scrollLeft / lkTrack.offsetWidth
+);
 
 
-  lkNext.onclick = ()=>{
-    lkTrack.scrollBy({
-      left: lkTrack.offsetWidth,
-      behavior:"smooth"
-    });
-  };
+document
+.querySelectorAll("#lk-dots [data-idx]")
+.forEach((dot,i)=>{
+
+dot.style.opacity =
+i === index ? "1" : ".35";
+
+});
+
+}
 
 
-  lkPrev.onclick = ()=>{
-    lkTrack.scrollBy({
-      left:-lkTrack.offsetWidth,
-      behavior:"smooth"
-    });
-  };
+
+lkNext.onclick = ()=>{
+
+lkTrack.scrollBy({
+left: lkTrack.offsetWidth,
+behavior:"smooth"
+});
+
+};
 
 
-  lkTrack.addEventListener(
-    "scroll",
-    updateLKDots,
-    {passive:true}
-  );
+
+lkPrev.onclick = ()=>{
+
+lkTrack.scrollBy({
+left:-lkTrack.offsetWidth,
+behavior:"smooth"
+});
+
+};
+
+
+
+lkTrack.addEventListener(
+"scroll",
+updateLKDots,
+{passive:true}
+);
+
 
 }
   
