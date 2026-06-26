@@ -3123,64 +3123,83 @@ a, a:visited, a:hover, a:active {
     #arch-pips { display: none; }
   }
 
+/* ─────────────────────────────────────────────────────────────
+   LANDKNOT FINAL LAYOUT FIX
+   Mobile: untouched stack
+   Desktop: cards left / browser right
+───────────────────────────────────────────────────────────── */
 
-    /* ── LANDKNOT DESKTOP LAYOUT ─────────────────────────
-   Mobile: single column stack (unchanged)
-   Desktop (min-width: 900px): 2-column grids
-─────────────────────────────────────────────────────── */
+/* Prevent page overflow */
+#landknot {
+  overflow-x: hidden;
+}
 
-/* BEFORE grid: mock left (55%), breakdown cards right (45%) */
+/* ─────────────────────────────────────────────────────────────
+   BEFORE SAASOLVES
+───────────────────────────────────────────────────────────── */
 @media (min-width: 900px) {
   .landknot-before-grid {
+    display: grid !important;
     grid-template-columns: 1.1fr 0.9fr !important;
-    gap: 40px !important;
+    gap: 50px !important;
+    align-items: center !important;
   }
 }
 
-/* AFTER grid: transformation cards left (40%), browser right (60%) */
+/* ─────────────────────────────────────────────────────────────
+   AFTER SAASOLVES
+───────────────────────────────────────────────────────────── */
 .landknot-after-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* mobile: stack */
-  gap: 32px;
-  align-items: start;
-  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 @media (min-width: 900px) {
   .landknot-after-grid {
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 40px;
-    align-items: start;
+    display: grid !important;
+    grid-template-columns: 0.85fr 1.15fr !important;
+    gap: 56px !important;
+    align-items: start !important;
+    max-width: 1180px;
+    margin: 0 auto;
   }
 }
 
-/* Transformation cards column */
+/* ─────────────────────────────────────────────────────────────
+   TRANSFORMATION CARDS
+───────────────────────────────────────────────────────────── */
 .lk-transformation-col {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Individual transformation card */
+@media (min-width: 900px) {
+  .lk-transformation-col {
+    max-width: 430px;
+  }
+}
+
 .lk-transform-card {
   background: linear-gradient(135deg, var(--ink) 0%, var(--cobalt) 100%);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(92,158,122,0.22);
-  padding: 24px 24px;
+  border: 1px solid rgba(92, 158, 122, 0.22);
+  padding: 24px;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.2s;
 }
-.lk-transform-card:hover {
-  border-color: rgba(92,158,122,0.45);
-}
+
 .lk-transform-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(92,158,122,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(92, 158, 122, 0.4), transparent);
 }
+
 .lk-transform-card-label {
   font-family: var(--mono);
   font-size: 0.58rem;
@@ -3192,14 +3211,15 @@ a, a:visited, a:hover, a:active {
   align-items: center;
   gap: 8px;
 }
+
 .lk-transform-card-label::before {
   content: '';
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: #5C9E7A;
-  flex-shrink: 0;
 }
+
 .lk-transform-card h4 {
   font-family: var(--serif-title);
   font-size: 1rem;
@@ -3207,8 +3227,8 @@ a, a:visited, a:hover, a:active {
   font-style: italic;
   color: var(--ivory);
   margin-bottom: 10px;
-  line-height: 1.35;
 }
+
 .lk-transform-card p {
   font-family: var(--serif-body);
   font-size: 0.88rem;
@@ -3217,76 +3237,53 @@ a, a:visited, a:hover, a:active {
   margin: 0;
 }
 
-/* Browser mock column — constrain max-width on desktop */
+/* ─────────────────────────────────────────────────────────────
+   BROWSER FIX (THIS FIXES THE TINY BOX)
+───────────────────────────────────────────────────────────── */
 .lk-browser-col {
-  /* no max-width constraint — fills the right column naturally */
+  width: 100%;
 }
-.lk-browser-col .lk-after-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-    /* LANDKNOT DESKTOP RHYTHMIC GRID + MOBILE PROTECTION */
 
 @media (min-width: 900px) {
-
-  /* overall containment */
-  #landknot > div {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-
-  /* BEFORE SAASOLVES */
-  .landknot-before-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 0.8fr !important;
-    gap: 60px !important;
-    align-items: center !important;
-  }
-
-
-  /* AFTER SAASOLVES */
-  .landknot-after-grid {
-    display: grid !important;
-    grid-template-columns: 0.8fr 1.2fr !important;
-    gap: 56px !important;
-    align-items: start !important;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
-
-  /* transformation cards */
-  .lk-transformation-col {
-    max-width: 430px;
-  }
-
-
-  /* browser mock */
   .lk-browser-col {
     width: 100% !important;
-    max-width: 640px !important;
+    max-width: none !important;
     justify-self: end;
   }
+}
 
+.lk-browser-frame {
+  width: 100% !important;
+  min-height: 520px;
+  overflow: hidden;
+}
 
-  /* prevent browser from becoming a giant block */
-  .lk-browser-col > div {
-    width: 100%;
+#lk-slides {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 430px;
+  display: flex !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* each slide keeps full browser width */
+#lk-slides > div {
+  min-width: 100% !important;
+  flex-shrink: 0;
+}
+
+/* mobile safety */
+@media (max-width: 899px) {
+  .lk-browser-frame {
+    min-height: 520px;
   }
-
-
+  #lk-slides {
+    min-height: 430px;
+  }
 }
 
-
-/* prevent horizontal explosion on mobile */
-#landknot {
-  overflow-x: hidden;
-}
-    
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -4515,12 +4512,7 @@ a, a:visited, a:hover, a:active {
       <div style="font-family: var(--mono); font-size: 0.65rem; color: #5C9E7A; letter-spacing: 0.08em; text-transform: uppercase;">← swipe slides to read →</div>
     </div>
 
-<div class="landknot-after-grid" style="
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  width: 100%;
-;">
+<div class="landknot-after-grid">
 
       <!-- LEFT: Transformation cards (desktop only in this position) -->
       <div class="lk-transformation-col">
@@ -4546,15 +4538,11 @@ a, a:visited, a:hover, a:active {
       </div>
 
       <!-- RIGHT: After browser mock with 3 slides -->
-<div class="lk-browser-col" data-aos="fade-left" data-aos-delay="100" style="
-  width: 100%;
-  max-width: 680px;
-  margin: 0 auto;
-">
+     <div class="lk-browser-col" data-aos="fade-left" data-aos-delay="100">
 
-        <div class="lk-browser-frame" style="
+       <div class="lk-browser-frame" style="
           width: 100%;
-          aspect-ratio: 16 / 11;
+          min-height: 560px;
           overflow: hidden;
           background: var(--deep);
           border: 4px solid #5C9E7A;
@@ -4576,11 +4564,16 @@ a, a:visited, a:hover, a:active {
             <div style="width: 64px; height: 22px; background: #5C9E7A; opacity: 0.9;"></div>
           </div>
 
-          <div style="overflow: hidden; position: relative;">
+          <div style="
+              overflow: hidden;
+              position: relative;
+              height: 430px;
+          ">
           <div id="lk-slides" style="
               display: flex;
               width: 100%;
               height: 100%;
+              min-height: 430px;
               overflow-x: auto;
               scroll-snap-type: x mandatory;
               -webkit-overflow-scrolling: touch;
