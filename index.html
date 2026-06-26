@@ -3284,6 +3284,33 @@ a, a:visited, a:hover, a:active {
   }
 }
 
+    /* LANDKNOT SLIDE VIEWPORT FINAL FIX */
+
+.lk-slides-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 430px;
+}
+
+
+#lk-slides {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+#lk-slides > div { 
+  min-width: 100% !important; 
+  flex: 0 0 100% !important; }
+@media (max-width: 899px) {
+  .lk-slides-viewport { 
+    height: 430px;  
+  } }
+    
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -4564,11 +4591,7 @@ a, a:visited, a:hover, a:active {
             <div style="width: 64px; height: 22px; background: #5C9E7A; opacity: 0.9;"></div>
           </div>
 
-          <div style="
-              overflow: hidden;
-              position: relative;
-              height: 430px;
-          ">
+         <div class="lk-slides-viewport">
           <div id="lk-slides" style="
               display: flex;
               width: 100%;
@@ -6016,7 +6039,6 @@ updateLKDots,
     if (cover) cover.style.display = "block";
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
 
 });
   
