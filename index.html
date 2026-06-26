@@ -852,11 +852,13 @@ pointer-events:none;
    HERO TO NEXT SECTION TRANSITION
    ===================================================== */
 
+
+
 .bridge-section {
 
 position:relative;
 overflow:hidden;
-
+padding:8vh 6vw;
 background:
 linear-gradient(
 180deg,
@@ -865,17 +867,11 @@ var(--navy)
 );
 
 }
-
+    
 .bridge-section::before {
-
-
 content:"";
-
 position:absolute;
-
 inset:0;
-
-
 background-image:
 radial-gradient(
 white 1px,
@@ -885,27 +881,17 @@ transparent 1px
 
 background-size:
 120px 120px;
-
-
 opacity:.12;
-
-
 animation:
 starsDrift 35s linear infinite;
-
-
 pointer-events:none;
-
-
-z-index:0;
-
+z-index:0;  
 }
 
-   .bridge-section > * {
-
+ 
+.bridge-section > * {
 position:relative;
 z-index:2;
-
 } 
     
     /* ── NARRATIVE CAROUSEL TRACK ───────────────────── */
@@ -3057,7 +3043,8 @@ a, a:visited, a:hover, a:active {
 </style>
 
 <!-- ══════════════ HOME VIEW ══════════════ -->
-  <section class="hero" id="top">
+<section class="view-panel active-view" id="view-home">
+<section class="hero" id="top">
 
     <!-- AURORA LAYER STACK — order matters -->
     <div class="hero-bg" aria-hidden="true"></div>
@@ -3146,7 +3133,7 @@ a, a:visited, a:hover, a:active {
   </section>
   
 <!-- RESTRUCTURED BRIDGE SECTION -->
-<section style="padding: 8vh 6vw; background: transparent; position: relative; overflow: hidden;">
+<section class="bridge-section">
 
   <!-- Star continuation from hero -->
   <div aria-hidden="true" style="
@@ -3233,6 +3220,7 @@ a, a:visited, a:hover, a:active {
     </div>
 
   </div>
+</section>
 </section>
 
   <!-- ── AI DISTINCTION — between bridge section and sandbox ── -->
