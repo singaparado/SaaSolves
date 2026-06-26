@@ -620,90 +620,148 @@ pointer-events:none;
   pointer-events: none;
 }
 
-/* ── AURORA LEFT VEIL ─────────────────────────────── */
-/* Teal-cyan-green band rising from bottom-left */
+/* ── AURORA RIBBON LAYER 1: Left sweep (teal-cyan-white) ── */
 .hero-aurora-left {
   position: absolute;
   z-index: 1;
   pointer-events: none;
-  bottom: -30%;
-  left: -20%;
-  width: 65%;
-  height: 110%;
-  background: radial-gradient(
-    ellipse 60% 80% at 20% 100%,
-    rgba(30, 200, 140, 0.32) 0%,
-    rgba(20, 160, 200, 0.22) 30%,
-    rgba(60, 100, 200, 0.12) 55%,
-    transparent 72%
-  );
-  filter: blur(38px);
-  animation: aurora-left 20s ease-in-out infinite alternate;
+  top: -20%;
+  left: -30%;
+  width: 80%;
+  height: 130%;
+  background:
+    /* White-silver ribbon core */
+    radial-gradient(ellipse 12% 80% at 28% 45%,
+      rgba(255,255,255,0.55) 0%,
+      rgba(180,255,240,0.45) 20%,
+      rgba(40,220,180,0.35) 45%,
+      transparent 68%
+    ),
+    /* Teal halo */
+    radial-gradient(ellipse 35% 90% at 22% 50%,
+      rgba(30,200,160,0.40) 0%,
+      rgba(20,160,220,0.28) 40%,
+      transparent 70%
+    ),
+    /* Cyan outer glow */
+    radial-gradient(ellipse 55% 100% at 15% 55%,
+      rgba(60,180,220,0.22) 0%,
+      transparent 65%
+    );
+  filter: blur(12px);
+  opacity: 0.9;
+  animation: aurora-left 22s ease-in-out infinite alternate;
   will-change: transform, opacity;
+  transform-origin: center bottom;
 }
 
 @keyframes aurora-left {
-  0%   { transform: translateX(-8%) translateY(4%) scaleY(0.9); opacity: 0.75; }
-  35%  { transform: translateX(4%) translateY(-3%) scaleY(1.08); opacity: 1; }
-  70%  { transform: translateX(-4%) translateY(2%) scaleY(0.95); opacity: 0.85; }
-  100% { transform: translateX(6%) translateY(-5%) scaleY(1.1); opacity: 0.9; }
+  0%   { transform: rotate(-8deg) translateX(-5%) translateY(3%) scaleY(0.88); opacity: 0.75; filter: blur(14px) saturate(130%); }
+  30%  { transform: rotate(-4deg) translateX(5%) translateY(-4%) scaleY(1.08); opacity: 1; filter: blur(10px) saturate(180%); }
+  70%  { transform: rotate(-10deg) translateX(-3%) translateY(2%) scaleY(0.94); opacity: 0.88; filter: blur(12px) saturate(150%); }
+  100% { transform: rotate(-6deg) translateX(7%) translateY(-6%) scaleY(1.12); opacity: 0.95; filter: blur(11px) saturate(170%); }
 }
 
-/* ── AURORA RIGHT VEIL ────────────────────────────── */
-/* Gold-amber-green band rising from bottom-right */
+/* ── AURORA RIBBON LAYER 2: Right sweep (gold-green-white) ── */
 .hero-aurora-right {
   position: absolute;
   z-index: 1;
   pointer-events: none;
-  bottom: -25%;
-  right: -25%;
-  width: 60%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse 55% 75% at 80% 100%,
-    rgba(200, 164, 60, 0.25) 0%,
-    rgba(140, 200, 100, 0.20) 30%,
-    rgba(60, 180, 160, 0.14) 55%,
-    transparent 72%
-  );
-  filter: blur(42px);
-  animation: aurora-right 24s ease-in-out infinite alternate;
-  animation-delay: -8s;
+  top: -15%;
+  right: -35%;
+  width: 85%;
+  height: 120%;
+  background:
+    /* White-silver ribbon core */
+    radial-gradient(ellipse 10% 75% at 72% 40%,
+      rgba(255,255,255,0.50) 0%,
+      rgba(255,255,200,0.40) 18%,
+      rgba(180,220,80,0.32) 42%,
+      transparent 65%
+    ),
+    /* Gold-yellow halo */
+    radial-gradient(ellipse 32% 85% at 78% 45%,
+      rgba(200,180,60,0.38) 0%,
+      rgba(140,200,100,0.28) 38%,
+      transparent 68%
+    ),
+    /* Green outer glow */
+    radial-gradient(ellipse 52% 100% at 85% 50%,
+      rgba(80,200,140,0.20) 0%,
+      transparent 62%
+    );
+  filter: blur(11px);
+  opacity: 0.88;
+  animation: aurora-right 26s ease-in-out infinite alternate;
+  animation-delay: -10s;
   will-change: transform, opacity;
+  transform-origin: center bottom;
 }
 
 @keyframes aurora-right {
-  0%   { transform: translateX(6%) translateY(2%) scaleY(1.05); opacity: 0.8; }
-  40%  { transform: translateX(-5%) translateY(-4%) scaleY(0.92); opacity: 1; }
-  80%  { transform: translateX(8%) translateY(3%) scaleY(1.12); opacity: 0.78; }
-  100% { transform: translateX(-3%) translateY(-2%) scaleY(0.98); opacity: 0.92; }
+  0%   { transform: rotate(6deg) translateX(4%) translateY(2%) scaleY(1.04); opacity: 0.82; filter: blur(13px) saturate(120%); }
+  35%  { transform: rotate(2deg) translateX(-6%) translateY(-5%) scaleY(0.90); opacity: 1; filter: blur(9px) saturate(175%); }
+  75%  { transform: rotate(8deg) translateX(5%) translateY(4%) scaleY(1.10); opacity: 0.86; filter: blur(12px) saturate(145%); }
+  100% { transform: rotate(4deg) translateX(-4%) translateY(-3%) scaleY(0.96); opacity: 0.92; filter: blur(10px) saturate(160%); }
 }
 
-/* ── AURORA BOTTOM BAND ───────────────────────────── */
-/* The bright horizon glow — where aurora meets earth */
+/* ── AURORA HORIZON: The bright band where aurora meets sky ── */
 .hero-aurora-bottom {
   position: absolute;
   z-index: 2;
   pointer-events: none;
-  bottom: -10%;
-  left: -10%;
-  right: -10%;
-  height: 55%;
+  bottom: -5%;
+  left: -5%;
+  right: -5%;
+  height: 50%;
   background:
-    radial-gradient(ellipse 35% 50% at 15% 100%, rgba(50, 220, 160, 0.40) 0%, transparent 55%),
-    radial-gradient(ellipse 30% 45% at 40% 100%, rgba(80, 200, 120, 0.28) 0%, transparent 50%),
-    radial-gradient(ellipse 35% 55% at 65% 100%, rgba(120, 220, 200, 0.32) 0%, transparent 55%),
-    radial-gradient(ellipse 28% 40% at 85% 100%, rgba(200, 160, 80, 0.24) 0%, transparent 48%);
-  filter: blur(28px);
-  animation: aurora-bottom 16s ease-in-out infinite alternate;
-  animation-delay: -4s;
+    radial-gradient(ellipse 22% 60% at 10% 100%, rgba(40,220,160,0.55) 0%, transparent 58%),
+    radial-gradient(ellipse 18% 50% at 28% 100%, rgba(255,255,255,0.30) 0%, rgba(60,220,180,0.40) 25%, transparent 55%),
+    radial-gradient(ellipse 22% 65% at 50% 100%, rgba(80,210,140,0.48) 0%, transparent 60%),
+    radial-gradient(ellipse 18% 55% at 72% 100%, rgba(255,255,255,0.28) 0%, rgba(180,220,80,0.35) 22%, transparent 55%),
+    radial-gradient(ellipse 20% 60% at 90% 100%, rgba(200,170,60,0.42) 0%, transparent 58%);
+  filter: blur(16px);
+  opacity: 0.95;
+  animation: aurora-bottom 14s ease-in-out infinite alternate;
+  animation-delay: -5s;
   will-change: transform;
 }
 
 @keyframes aurora-bottom {
-  0%   { transform: scaleX(0.92) translateX(-4%); opacity: 0.85; }
-  50%  { transform: scaleX(1.06) translateX(3%); opacity: 1; }
-  100% { transform: scaleX(0.96) translateX(-2%); opacity: 0.88; }
+  0%   { transform: scaleX(0.90) translateX(-3%); opacity: 0.88; }
+  50%  { transform: scaleX(1.08) translateX(4%); opacity: 1; }
+  100% { transform: scaleX(0.94) translateX(-2%); opacity: 0.92; }
+}
+
+/* ── NEBULA LAYER (subtle, doesn't compete with aurora) ── */
+/* Added between stars and aurora — deep purple-navy color shift */
+.hero-nebula {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  background:
+    radial-gradient(ellipse 40% 35% at 75% 20%,
+      rgba(80,40,120,0.18) 0%,
+      rgba(40,20,80,0.12) 40%,
+      transparent 70%
+    ),
+    radial-gradient(ellipse 35% 30% at 20% 30%,
+      rgba(30,60,100,0.15) 0%,
+      transparent 65%
+    );
+  filter: blur(50px);
+  opacity: 0.7;
+  animation: nebula-shift 35s ease-in-out infinite alternate;
+}
+
+@keyframes nebula-shift {
+  0%   { transform: scale(1) translate(0, 0); opacity: 0.6; }
+  50%  { transform: scale(1.08) translate(2%, -3%); opacity: 0.8; }
+  100% { transform: scale(0.96) translate(-2%, 2%); opacity: 0.65; }
 }
 
 /* ── STAR FIELD — small bright points ────────────── */
@@ -2940,7 +2998,112 @@ a, a:visited, a:hover, a:active {
     }
     #arch-pips { display: none; }
   }
- 
+
+
+    /* ── LANDKNOT DESKTOP LAYOUT ─────────────────────────
+   Mobile: single column stack (unchanged)
+   Desktop (min-width: 900px): 2-column grids
+─────────────────────────────────────────────────────── */
+
+/* BEFORE grid: mock left (55%), breakdown cards right (45%) */
+@media (min-width: 900px) {
+  .landknot-before-grid {
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: 40px !important;
+  }
+}
+
+/* AFTER grid: transformation cards left (40%), browser right (60%) */
+.landknot-after-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: stack */
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .landknot-after-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 40px;
+    align-items: start;
+  }
+}
+
+/* Transformation cards column */
+.lk-transformation-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual transformation card */
+.lk-transform-card {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--cobalt) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(92,158,122,0.22);
+  padding: 24px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.lk-transform-card:hover {
+  border-color: rgba(92,158,122,0.45);
+}
+.lk-transform-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(92,158,122,0.4), transparent);
+}
+.lk-transform-card-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5C9E7A;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lk-transform-card-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5C9E7A;
+  flex-shrink: 0;
+}
+.lk-transform-card h4 {
+  font-family: var(--serif-title);
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ivory);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+.lk-transform-card p {
+  font-family: var(--serif-body);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--ivory2);
+  margin: 0;
+}
+
+/* Browser mock column — constrain max-width on desktop */
+.lk-browser-col {
+  /* no max-width constraint — fills the right column naturally */
+}
+.lk-browser-col .lk-after-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -3048,6 +3211,7 @@ a, a:visited, a:hover, a:active {
 
     <!-- AURORA LAYER STACK — order matters -->
     <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-nebula" aria-hidden="true"></div>
     <div class="hero-aurora-left" aria-hidden="true"></div>
     <div class="hero-aurora-right" aria-hidden="true"></div>
     <div class="hero-aurora-bottom" aria-hidden="true"></div>
@@ -3055,7 +3219,7 @@ a, a:visited, a:hover, a:active {
     <div class="hero-stars-2" aria-hidden="true"></div>
     <div class="hero-veil" aria-hidden="true"></div>
     <div class="hero-container">
-      <div class="hero-inner">
+    <div class="hero-inner">
         
         <div 
           class="hero-kicker"
@@ -3196,13 +3360,19 @@ a, a:visited, a:hover, a:active {
           <p>The more advanced your product becomes, the easier communication gets trapped inside the builder’s worldview. Technical accuracy rises only to suffocate human recognition that drives a purchase.</p>
         </div>
 
-        <!-- CARD 4 -->
+        <!-- CARD 3 -->
         <div class="narrative-card" data-aos="fade-up" data-aos-delay="180">
-          <h4>The Sales Leak</h4>
-          <p>Your product solves an expensive problem, but your market has not yet internalized the cost of remaining unchanged. When the urgency remains unclear, even the right solution struggles to move from interest to adoption.</p>
+          <h4>The Stagnation Cost</h4>
+          <p>Your product addresses an expensive problem, but your market has not yet internalized the cost of remaining unchanged. When the consequences of inaction remain undefined, the problem loses its weight and the solution becomes easier to postpone.</p>
         </div>
 
-        <!-- CARD 4 -->
+           <!-- CARD 4-->
+        <div class="narrative-card" data-aos="fade-up" data-aos-delay="180">
+          <h4>The Urgency Trap</h4>
+          <p>Even when the need exists, unclear urgency prevents the right solution from becoming the immediate choice. We crystallize the cost of delay, transforming your software from an option into an operational necessity.</p>
+        </div>
+        
+        <!-- CARD 5 -->
         <div class="narrative-card" data-aos="fade-up" data-aos-delay="240">
           <h4>The Narrative Bridge</h4>
           <p>SaaSolves eliminates the distance between what you built and what buyers recognize. We translate cold architecture into a resonant, human rhythm that intercepts the buyer’s psychological state.</p>
@@ -3755,65 +3925,46 @@ a, a:visited, a:hover, a:active {
   style="padding: 10vh 6vw; background: var(--navy); border-top: var(--border);">
   <div style="max-width: 1200px; margin: 0 auto;">
 
-    <!-- FULL-WIDTH HEADER -->
+    <!-- ── SECTION HEADER ── full width ─────────────── -->
     <div data-aos="fade-up" style="margin-bottom: 48px; border-bottom: var(--border); padding-bottom: 24px;">
       <div data-aos="fade-down" style="
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-family: var(--mono);
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--ivory);
-        background: var(--rust);
-        padding: 4px 12px;
-        margin-bottom: 20px;
-        border: 2px solid var(--ivory);
+        display: inline-flex; align-items: center; gap: 8px;
+        font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--ivory); background: var(--rust);
+        padding: 4px 12px; margin-bottom: 20px; border: 2px solid var(--ivory);
       ">DIAGNOSTIC · LANDKNOT</div>
 
       <h2 data-aos="fade-up" data-aos-delay="80" style="
-        font-family: var(--serif-title);
-        font-size: clamp(2rem, 4vw, 3.2rem);
-        font-weight: 800;
-        line-height: 1.05;
-        color: var(--ivory);
-        margin-bottom: 16px;
-        text-transform: uppercase;
+        font-family: var(--serif-title); font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 800; line-height: 1.05; color: var(--ivory);
+        margin-bottom: 16px; text-transform: uppercase;
       ">WHAT BROKEN LINE<br>LOOKS LIKE IN THE WILD.</h2>
 
       <p data-aos="fade-up" data-aos-delay="120" style="
-        font-family: var(--serif-body);
-        font-size: 1rem;
-        color: var(--ivory2);
-        line-height: 1.75;
-        max-width: 680px;
-        margin: 0;
+        font-family: var(--serif-body); font-size: 1rem; color: var(--ivory2);
+        line-height: 1.75; max-width: 680px; margin: 0;
       ">A before/after translation of LandKnot — a governance-tech platform whose meticulous architecture was rendering it invisible to the stakeholders it was purpose-built for. This is what we did for others. This is what we can build for you.</p>
     </div>
 
-    <!-- 2-COL: Before mock LEFT, Diagnosis cards RIGHT -->
+    <!-- ══════════════════════════════════════════════
+         BEFORE SAASOLVES
+         Mobile: stack. Desktop: mock LEFT, cards RIGHT
+    ══════════════════════════════════════════════ -->
     <div style="
       display: grid;
-      grid-template-columns:1fr;
+      grid-template-columns: 1fr;
       gap: 32px;
-      margin-bottom: 48px;
+      margin-bottom: 60px;
       align-items: start;
     " class="landknot-before-grid">
 
       <!-- LEFT: Before browser mock -->
       <div data-aos="zoom-in" data-aos-delay="200">
         <div style="
-          font-family: var(--mono);
-          font-size: 0.62rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--rust);
-          margin-bottom: 14px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
+          font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em;
+          text-transform: uppercase; color: var(--rust); margin-bottom: 14px;
+          display: flex; align-items: center; gap: 8px;
         ">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--rust);display:inline-block;"></span>
           Before SaaSolves
@@ -3849,19 +4000,13 @@ a, a:visited, a:hover, a:active {
         </div>
       </div>
 
-      <!-- RIGHT: Diagnosis cards -->
+      <!-- RIGHT: Breakdown cards -->
       <div style="display: flex; flex-direction: column; gap: 20px;">
 
         <div style="
-          font-family: var(--mono);
-          font-size: 0.62rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--gold);
-          margin-bottom: 4px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
+          font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em;
+          text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+          display: flex; align-items: center; gap: 8px;
         ">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;"></span>
           Narrative Failure Points
@@ -3885,228 +4030,139 @@ a, a:visited, a:hover, a:active {
       </div>
     </div><!-- end landknot-before-grid -->
 
-    <!-- AFTER SAASOLVES — full width, max-width 720px -->
-    <div data-aos="fade-up" data-aos-duration="1100" style="margin-bottom: 32px;">
+    <!-- ══════════════════════════════════════════════
+         AFTER SAASOLVES
+         Mobile: stack (browser first, then cards).
+         Desktop: transformation cards LEFT, browser RIGHT
+    ══════════════════════════════════════════════ -->
 
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-        <div style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ivory); background: #1A3D2E; padding: 4px 12px; border: 2px solid #5C9E7A;">AFTER SAASOLVES</div>
-        <div style="font-family: var(--mono); font-size: 0.65rem; color: #5C9E7A; letter-spacing: 0.08em; text-transform: uppercase;">← swipe to read →</div>
+    <!-- Section label -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 28px;" data-aos="fade-up">
+      <div style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ivory); background: #1A3D2E; padding: 4px 12px; border: 2px solid #5C9E7A;">AFTER SAASOLVES</div>
+      <div style="font-family: var(--mono); font-size: 0.65rem; color: #5C9E7A; letter-spacing: 0.08em; text-transform: uppercase;">← swipe slides to read →</div>
+    </div>
+
+    <div class="landknot-after-grid">
+
+      <!-- LEFT: Transformation cards (desktop only in this position) -->
+      <div class="lk-transformation-col">
+
+        <div class="lk-transform-card" data-aos="fade-right" data-aos-delay="80">
+          <div class="lk-transform-card-label">From Extractive to Inclusive</div>
+          <h4>Stakeholder Recognition</h4>
+          <p>Indigenous communities repositioned as essential participants — not obstacles. Every audience reads a platform built with them, not around them. Trust becomes the product's first feature.</p>
+        </div>
+
+        <div class="lk-transform-card" data-aos="fade-right" data-aos-delay="160">
+          <div class="lk-transform-card-label">From Statistics to Story</div>
+          <h4>Data Becomes Context</h4>
+          <p>FAO data arrives after a coordinating framework is established. Numbers now confirm a solution rather than announce a problem. The reader understands why this matters before they encounter scale.</p>
+        </div>
+
+        <div class="lk-transform-card" data-aos="fade-right" data-aos-delay="240">
+          <div class="lk-transform-card-label">From Fragmented to Unified</div>
+          <h4>One Coherent Recognition Event</h4>
+          <p>Institutional, investor, and community audiences now read the same product — each from their own entry point. Every stakeholder recognizes their place in the system simultaneously.</p>
+        </div>
+
       </div>
 
-      <div style="background: var(--deep); border: 4px solid #5C9E7A; box-shadow: 8px 8px 0px 0px #1A3D2E; max-width: 720px;">
-        <div style="background: #0F2418; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #4ade80;">
-          <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A;"></div>
-          <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A; opacity: 0.5;"></div>
-          <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A; opacity: 0.25;"></div>
-          <span style="font-family: var(--mono); font-size: 0.72rem; color: #5C9E7A; margin-left: 12px;">landknot.io — hero copy, post-SaaSolves</span>
-        </div>
-        <div style="background: #122B1E; padding: 10px 20px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #1a4a2e;">
-          <div style="width: 56px; height: 10px; background: #5C9E7A; opacity: 0.8;"></div>
-          <div style="display: flex; gap: 10px; margin-left: auto;">
-            <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
-            <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
-            <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
+      <!-- RIGHT: After browser mock with 3 slides -->
+      <div class="lk-browser-col" data-aos="fade-left" data-aos-delay="100">
+        <div style="background: var(--deep); border: 4px solid #5C9E7A; box-shadow: 8px 8px 0px 0px #1A3D2E;">
+          <div style="background: #0F2418; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #4ade80;">
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A;"></div>
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A; opacity: 0.5;"></div>
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #5C9E7A; opacity: 0.25;"></div>
+            <span style="font-family: var(--mono); font-size: 0.72rem; color: #5C9E7A; margin-left: 12px;">landknot.io — hero copy, post-SaaSolves</span>
           </div>
-          <div style="width: 64px; height: 22px; background: #5C9E7A; opacity: 0.9;"></div>
-        </div>
+          <div style="background: #122B1E; padding: 10px 20px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #1a4a2e;">
+            <div style="width: 56px; height: 10px; background: #5C9E7A; opacity: 0.8;"></div>
+            <div style="display: flex; gap: 10px; margin-left: auto;">
+              <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
+              <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
+              <span style="width: 40px; height: 7px; background: #1A3D2E;"></span>
+            </div>
+            <div style="width: 64px; height: 22px; background: #5C9E7A; opacity: 0.9;"></div>
+          </div>
 
-        <!-- KEEP ALL THREE EXISTING SLIDES EXACTLY AS THEY ARE -->
-        <div style="overflow: hidden; position: relative;">
-          <div id="lk-slides" style="
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-          ">
-             <!-- SLIDE 1: Hero Copy -->
-                  <div style="
-                    min-width: 100%;
-                    scroll-snap-align: start;
-                    padding: 32px 24px;
-                    box-sizing: border-box;
-                    background: var(--deep);
-                  ">
-                    <!-- Simulated headline -->
-                    <div style="font-family: var(--serif-title); font-size: 0.8rem; font-weight: 700; color: #5C9E7A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; line-height: 1;">LANDKNOT</div>
-                    <div style="font-family: var(--serif-title); font-size: clamp(1.1rem, 3.5vw, 1.6rem); font-weight: 700; color: var(--ivory); line-height: 1.2; margin-bottom: 16px;">
-                      As three billions hectares of global rangeland lie dormant,<br>
-                      <span style="color: #5C9E7A; ">LandKnot weave them into constellation. We relinquish the knotty, and knotting the living.</span>
-                    </div>
-                    <div style="font-family: var(--serif-body); font-size: 0.82rem; color: var(--ivory2); line-height: 1.7; border-left: 3px solid #5C9E7A; padding-left: 14px; margin-bottom: 20px;">
-                      Across emerging economies — with 60% of the world's uncultivated arable land cradled in Africa — vast territories sit trapped in a cycle of contention and paradoxical institutional bureaucracy.
-                    </div>
-                    <!-- Simulated CTA row -->
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                      <div style="background: #5C9E7A; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; font-weight: 700; color: #122B1E; letter-spacing: 0.06em;">Enter the Network →</div>
-                      <div style="border: 1px solid #9DC183; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; color: #5C9E7A; letter-spacing: 0.06em;">Our Approach</div>
-                    </div>
-                    <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">01 / 03</div>
-                  </div>
+          <div style="overflow: hidden; position: relative;">
+            <div id="lk-slides" style="
+              display: flex;
+              overflow-x: auto;
+              scroll-snap-type: x mandatory;
+              -webkit-overflow-scrolling: touch;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            ">
+              <!-- SLIDE 1: Hero Copy -->
+              <div style="min-width: 100%; scroll-snap-align: start; padding: 32px 24px; box-sizing: border-box; background: var(--deep);">
+                <div style="font-family: var(--serif-title); font-size: 0.8rem; font-weight: 700; color: #5C9E7A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; line-height: 1;">LANDKNOT</div>
+                <div style="font-family: var(--serif-title); font-size: clamp(1.1rem, 3.5vw, 1.6rem); font-weight: 700; color: var(--ivory); line-height: 1.2; margin-bottom: 16px;">
+                  As three billions hectares of global rangeland lie dormant,<br>
+                  <span style="color: #5C9E7A;">LandKnot weave them into constellation. We relinquish the knotty, and knotting the living.</span>
+                </div>
+                <div style="font-family: var(--serif-body); font-size: 0.82rem; color: var(--ivory2); line-height: 1.7; border-left: 3px solid #5C9E7A; padding-left: 14px; margin-bottom: 20px;">
+                  Across emerging economies — with 60% of the world's uncultivated arable land cradled in Africa — vast territories sit trapped in a cycle of contention and paradoxical institutional bureaucracy.
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <div style="background: #5C9E7A; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; font-weight: 700; color: #122B1E; letter-spacing: 0.06em;">Enter the Network →</div>
+                  <div style="border: 1px solid #9DC183; padding: 8px 18px; font-family: var(--mono); font-size: 0.68rem; color: #5C9E7A; letter-spacing: 0.06em;">Our Approach</div>
+                </div>
+                <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">01 / 03</div>
+              </div>
 
-     <!-- SLIDE 2: Infrastructure -->
-                  <div style="
-                    min-width: 100%;
-                    scroll-snap-align: start;
-                    padding: 32px 24px;
-                    box-sizing: border-box;
-                    background: #122B1E;
-                  ">
-                    <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 14px;">The Architecture</div>
-                    <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.25rem); font-weight: 400; color: var(--ivory); line-height: 1.55; margin-bottom: 16px; font-style: italic;">
-                      LandKnot installs the infrastructure for structural peace.
-                    </div>
-                    <div style="font-family: var(--display); font-size: 0.88rem; color: var(--ivory2); line-height: 1.8;">
-                      We entwined together fragmented stakeholders and extractive corridors through a governance-tech architecture whose function mirrors the spider-web intelligence of the indigenous stewardship. One amplified another.
-                    </div>
-                    <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">02 / 03</div>
+              <!-- SLIDE 2: Infrastructure -->
+              <div style="min-width: 100%; scroll-snap-align: start; padding: 32px 24px; box-sizing: border-box; background: #122B1E;">
+                <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 14px;">The Architecture</div>
+                <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.25rem); font-weight: 400; color: var(--ivory); line-height: 1.55; margin-bottom: 16px; font-style: italic;">
+                  LandKnot installs the infrastructure for structural peace.
+                </div>
+                <div style="font-family: var(--display); font-size: 0.88rem; color: var(--ivory2); line-height: 1.8;">
+                  We entwined together fragmented stakeholders and extractive corridors through a governance-tech architecture whose function mirrors the spider-web intelligence of the indigenous stewardship. One amplified another.
+                </div>
+                <div style="margin-top: 18px; font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">02 / 03</div>
+              </div>
+
+              <!-- SLIDE 3: Closing Copy -->
+              <div style="min-width: 100%; scroll-snap-align: start; padding: 32px 24px; box-sizing: border-box; background: var(--deep); display: flex; flex-direction: column; justify-content: space-between; min-height: 260px;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 16px;">The Living System</div>
+                  <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.2rem); font-weight: 400; color: var(--ivory); line-height: 1.6; font-style: italic; margin-bottom: 16px;">
+                    By bridging disputed territories into a coordinated land system, we catalyze everlasting harmony that excels beyond mere administrative protocol into a living knot of sustainable growth.
                   </div>
-                  
-       <!-- SLIDE 3: Closing Copy -->
-                  <div style="
-                    min-width: 100%;
-                    scroll-snap-align: start;
-                    padding: 32px 24px;
-                    box-sizing: border-box;
-                    background: var(--deep);
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    min-height: 260px;
-                  ">
-                    <div>
-                      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5C9E7A; margin-bottom: 16px;">The Living System</div>
-                      <div style="font-family: var(--serif-title); font-size: clamp(0.95rem, 3vw, 1.2rem); font-weight: 400; color: var(--ivory); line-height: 1.6; font-style: italic; margin-bottom: 16px;">
-                        By bridging disputed territories into a coordinated land system, we catalyze everlasting harmony that excels beyond mere administrative protocol into a living knot of sustainable growth.
-                      </div>
-                    </div>
-                    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #1A3D2E; display: flex; justify-content: space-between; align-items: center;">
-                      <div style="font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.7;">landknot.io</div>
-                      <div style="font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">03 / 03</div>
-                    </div>
-                  </div>
+                </div>
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #1A3D2E; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.7;">landknot.io</div>
+                  <div style="font-family: var(--mono); font-size: 0.6rem; color: #5C9E7A; opacity: 0.5; text-align: right;">03 / 03</div>
+                </div>
+              </div>
 
             </div><!-- end lk-slides -->
+          </div><!-- end viewport -->
 
-        </div><!-- end viewport -->
+          <!-- Controls -->
+          <div id="lk-controls">
+            <button id="lk-prev">← Prev</button>
+            <div id="lk-dots">
+              <div data-idx="0" style="width:6px;height:6px;border-radius:50%;background:#5C9E7A;transition:.2s;"></div>
+              <div data-idx="1" style="width:6px;height:6px;border-radius:50%;background:#5C9E7A;opacity:.35;transition:.2s;"></div>
+              <div data-idx="2" style="width:6px;height:6px;border-radius:50%;background:#5C9E7A;opacity:.35;transition:.2s;"></div>
+            </div>
+            <button id="lk-next">Next →</button>
+          </div>
 
-<!-- LANDKNOT CONTROLS -->
-<div id="lk-controls">
+        </div><!-- end browser chrome -->
 
-<button id="lk-prev">
-← Prev
-</button>
+        <p style="font-family: var(--mono); font-size: 0.72rem; color: var(--ivory2); font-style: italic; margin-top: 16px; padding-left: 4px; opacity: 0.8;">Three slides. One reorientation.</p>
 
+      </div><!-- end lk-browser-col -->
 
-<div id="lk-dots">
-
-<div data-idx="0"
-style="
-width:6px;
-height:6px;
-border-radius:50%;
-background:#5C9E7A;
-transition:.2s;">
-</div>
-
-
-<div data-idx="1"
-style="
-width:6px;
-height:6px;
-border-radius:50%;
-background:#5C9E7A;
-opacity:.35;
-transition:.2s;">
-</div>
-
-
-<div data-idx="2"
-style="
-width:6px;
-height:6px;
-border-radius:50%;
-background:#5C9E7A;
-opacity:.35;
-transition:.2s;">
-</div>
-
-</div>
-
-
-<button id="lk-next">
-Next →
-</button>
-
-</div><!-- end lk-controls -->
-
-            </div><!-- end browser chrome -->
- <!-- Caption below mockup -->
-            <p style="font-family: var(--mono); font-size: 0.72rem; color: var(--ivory2); font-style: italic; margin-top: 16px; padding-left: 4px; opacity: 0.8;"> Three slides. One reorientation.
-            </p>
-    </div>
-    <!-- THE TRANSFORMATION CARD -->
-    <div data-aos="fade-up" style="
-      max-width: 900px;
-      margin: 64px auto 0;
-      background: linear-gradient(135deg, var(--ink) 0%, var(--cobalt) 100%);
-      border-radius: var(--radius-lg);
-      border: var(--border-thin);
-      box-shadow: var(--shadow);
-      padding: clamp(28px,5vw,56px);
-    ">
-
-      <div style="
-        font-family: var(--mono);
-        font-size: 0.6rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color:#5C9E7A;
-        margin-bottom:16px;
-        display:flex;
-        align-items:center;
-        gap:8px;
-      ">
-        <span style="
-          width:6px;
-          height:6px;
-          border-radius:50%;
-          background:#5C9E7A;
-          display:inline-block;
-        "></span>
-        The Transformation
-      </div>
-
-
-      <p style="
-        font-family:var(--serif-title);
-        font-size:clamp(1.1rem,3vw,1.5rem);
-        font-style:italic;
-        color:var(--ivory);
-        line-height:1.6;
-        border-left:3px solid #5C9E7A;
-        padding-left:18px;
-        margin-bottom:20px;
-      ">
-        "As every stakeholder recognizes their entry point simultaneously, the data becomes context that exceed mere claim."
-      </p>
-
-
-      <p style="
-        font-family:var(--display);
-        font-size:0.95rem;
-        color:var(--ivory2);
-        line-height:1.75;
-        margin:0;
-      ">
-        Three audiences — institutional, investor, community — reading one coherent recognition event. It completely removes signal lost and prevents stakeholder alienation.
-      </p>
-
-    </div>
+    </div><!-- end landknot-after-grid -->
 
   </div>
 </section>
+
 
   <!-- THIS IS THE SPACER DIV TO PREVENT GLUING -->
   <div style="height: 60px;"></div>
