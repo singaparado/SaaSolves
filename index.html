@@ -3566,210 +3566,79 @@ a, a:visited, a:hover, a:active {
         scroll-snap-align: start;
     } }
 
-    /* ==========================================================
-   FINAL MOBILE ARCHITECTURE OVERRIDE
-   Translation + Perception + Linguistic
-   Paste LAST
+/* ==========================================================
+   FINAL CLEAN OVERRIDE — MOBILE CARDS
 ========================================================== */
 
 @media (max-width: 899px) {
 
+  .perception-section,
+  .linguistic-block,
+  .positioning-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
 
-/* -------------------------------
-   TRANSLATION PRINCIPLE FIX
--------------------------------- */
+  /* KEEP REAL CARD GEOMETRY */
+  .kinetic-grid,
+  .loop-grid,
+  .linguistic-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
 
-section[data-aos="fade-up"] {
-    overflow:hidden;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    gap: 16px !important;
+    padding: 0 0 20px 0 !important;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .perception-card,
+  .loop-card,
+  .linguistic-card {
+    flex: 0 0 86vw !important;
+
+    width: 86vw !important;
+    max-width: 86vw !important;
+    min-width: 86vw !important;
+
+    box-sizing: border-box !important;
+    padding: 28px 24px !important;
+
+    scroll-snap-align: start;
+  }
+
+  .perception-card h3,
+  .loop-card h4,
+  .linguistic-card h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .perception-card p,
+  .loop-card p,
+  .linguistic-card p {
+    font-size: 0.9rem !important;
+    line-height: 1.75 !important;
+  }
+
+  /* REMOVE HOVER TRANSFORM MOBILE */
+  .perception-card:hover,
+  .loop-card:hover,
+  .linguistic-card:hover {
+    transform: none !important;
+  }
 }
 
-
-#arch-carousel-wrap {
-    width:100%;
-    overflow:hidden;
+/* FIX TYPO */
+.linguistic-card:hover {
+  transform: translateY(-6px);
 }
 
-
-#arch-track {
-    width:100%;
-    padding-left:0;
-    padding-right:0;
-    gap:16px;
-}
-
-
-.arch-card {
-    min-width:88vw !important;
-    max-width:88vw !important;
-    padding:28px 24px !important;
-    box-sizing:border-box;
-}
-
-
-.arch-card h4 {
-    font-size:1.15rem !important;
-}
-
-
-.arch-card p {
-    font-size:0.9rem !important;
-    line-height:1.75 !important;
-}
-
-
-/* -------------------------------
-   PERCEPTION SECTION
--------------------------------- */
-
-.perception-section {
-    padding:80px 5vw;
-    overflow:hidden;
-}
-
-
-.perception-container {
-    width:100%;
-}
-
-
-.perception-header {
-    width:100%;
-    margin-bottom:45px;
-}
-
-
-.perception-header h2,
-.positioning-wrapper h2,
-.linguistic-header h2 {
-    font-size:clamp(2rem,10vw,3rem);
-    line-height:1.1;
-    word-break:normal;
-}
-
-
-.perception-header p,
-.linguistic-header p {
-    font-size:0.95rem;
-    line-height:1.8;
-}
-
-
-/* -------------------------------
-   PERCEPTION CARDS
--------------------------------- */
-
-
-.kinetic-grid {
-    display:flex !important;
-    overflow-x:auto;
-    gap:18px;
-    scroll-snap-type:x mandatory;
-    padding-bottom:20px;
-}
-
-
-.perception-card {
-    min-width:82vw;
-    scroll-snap-align:start;
-    min-height:auto;
-    padding:30px 25px;
-}
-
-
-/* -------------------------------
-   POSITIONING LOOP
--------------------------------- */
-
-
-.positioning-wrapper {
-    margin-top:70px;
-}
-
-
-.loop-grid {
-    display:flex !important;
-    overflow-x:auto;
-    gap:18px;
-    scroll-snap-type:x mandatory;
-}
-
-
-.loop-card {
-    min-width:82vw;
-    scroll-snap-align:start;
-    padding:28px;
-}
-
-
-
-/* -------------------------------
-   LINGUISTIC REALITY FIX
--------------------------------- */
-
-
-.linguistic-block {
-    width:100%;
-    overflow:hidden;
-}
-
-
-.linguistic-header {
-    width:100%;
-    max-width:none;
-    margin-bottom:35px;
-}
-
-
-.linguistic-grid {
-    display:flex !important;
-    overflow-x:auto;
-    gap:18px;
-    scroll-snap-type:x mandatory;
-    width:100%;
-}
-
-
-.linguistic-card {
-    min-width:82vw !important;
-    max-width:82vw !important;
-    flex:none !important;
-    scroll-snap-align:start;
-    padding:28px 24px;
-    box-sizing:border-box;
-}
-
-
-.linguistic-card h3 {
-    font-size:1.1rem;
-    line-height:1.5;
-}
-
-
-.linguistic-card p {
-    font-size:0.9rem;
-    line-height:1.75;
-}
-
-
-}
-
-
-/* ==========================================================
-   DESKTOP SAFETY
-========================================================== */
-
-
-.linguistic-card:hover,
-.perception-card:hover,
-.loop-card:hover {
-    transform:translateY(-6px);
-}
-
-
-.linguistic-card: hover {
-    transform:none;
-}
-    
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
