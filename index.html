@@ -3186,7 +3186,130 @@ a, a:visited, a:hover, a:active {
     height: 430px;  
   } }
 
-    
+
+    /* ==========================================================
+   PERCEPTION SYSTEM FINAL GEOMETRY LOCK
+   Prevent nested section collapse / overflow
+========================================================== */
+
+/* ROOT CONTAINMENT */
+.perception-section {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.perception-section *,
+.perception-section *::before,
+.perception-section *::after {
+  box-sizing: border-box;
+}
+
+.perception-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* REMOVE INNER SECTION DAMAGE */
+.perception-container > section {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* INNER WRAPPERS */
+.perception-container > section > div {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ALL INLINE GRIDS NORMALIZATION */
+.perception-section [style*="display:grid"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.perception-section [style*="grid-template-columns"] {
+  align-items: stretch;
+}
+
+/* CARD STABILITY */
+.perception-section [style*="border-radius:26px"],
+.perception-section [style*="border-radius:24px"] {
+  width: 100%;
+  overflow: hidden;
+}
+
+.perception-section h2,
+.perception-section h3,
+.perception-section h4,
+.perception-section p {
+  max-width: 100%;
+}
+
+/* TRANSLATION CAROUSEL */
+.perception-section [style*="overflow-x:auto"] {
+  display: flex !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.perception-section [style*="overflow-x:auto"] > div {
+  flex: 0 0 78vw;
+  max-width: 78vw;
+}
+
+/* DESKTOP GRID CONTROL */
+@media(min-width: 900px) {
+  .perception-section [style*="grid-template-columns:repeat(3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .perception-section [style*="grid-template-columns:repeat(2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* MOBILE */
+@media(max-width: 899px) {
+  .perception-section {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .perception-section .perception-container {
+    width: 100%;
+  }
+
+  .perception-section [style*="grid-template-columns"] {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 18px !important;
+    scroll-snap-type: x mandatory;
+  }
+
+  .perception-section [style*="grid-template-columns"] > div {
+    flex: 0 0 82vw !important;
+    min-width: 82vw !important;
+    scroll-snap-align: start;
+  }
+
+  .perception-section [style*="overflow-x:auto"] > div {
+    flex: 0 0 82vw;
+    max-width: 82vw;
+  }
+}
+
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
