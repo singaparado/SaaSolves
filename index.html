@@ -1136,131 +1136,6 @@ z-index:2;
     --mouse-y: 60%; 
   }
 }
-
-
-  /* ═══════════════════════════════════════
-   PERCEPTION ENGINE
-   ═══════════════════════════════════════ */
-
-.perception-section {
-
-padding: 12vh 6vw;
-background:
-linear-gradient(
-180deg,
-var(--navy),
-#03101f
-);
-
-position:relative;
-overflow:hidden;
-
-}
-
-
-.perception-container {
-
-max-width:1200px;
-margin:0 auto;
-
-}
-
-
-
-.perception-header {
-
-max-width:760px;
-margin-bottom:70px;
-
-}
-
-
-.section-label {
-
-font-family:var(--mono);
-font-size:.65rem;
-letter-spacing:.16em;
-text-transform:uppercase;
-color:var(--gold);
-
-display:flex;
-align-items:center;
-gap:12px;
-
-margin-bottom:18px;
-
-}
-
-
-.section-label span {
-
-width:25px;
-height:1px;
-background:var(--gold);
-
-}
-
-.perception-header h2,
-.positioning-wrapper h2,
-.linguistic-header h2 {
-
-font-family:var(--serif-title);
-font-size:clamp(2rem,4vw,3.2rem);
-font-weight:500;
-color:var(--ivory);
-
-letter-spacing:-.03em;
-
-}
-
-
-
-.perception-header p,
-.linguistic-header p {
-
-font-family:var(--serif-body);
-line-height:1.9;
-font-size:1.05rem;
-color:var(--ivory2); }
-
-/* CARDS */
-.kinetic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:110px; }
-.perception-card { padding:38px 32px; background: rgba(255,255,255,.035); border: 1px solid rgba(200,164,93,.18); border-radius:24px; transition:.35s ease; }
-.perception-card:hover { transform:translateY(-8px); border-color:var(--gold); background: rgba(200,164,93,.08); box-shadow: 0 0 35px rgba(200,164,93,.15); }
-.card-meta,
-.roman { font-family:var(--mono); color:var(--gold); font-size:.8rem; letter-spacing:.15em; margin-bottom:20px; }
-.perception-card h3,
-.linguistic-card h3,
-.loop-card h4 { font-family:var(--serif-title); color:var(--ivory); font-weight:500; }
-
-.perception-card p,
-.loop-card p,
-.linguistic-card p { font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78); }
-    
-/* LOOP */
-.positioning-wrapper { margin-bottom:110px; }
-.loop-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-.loop-card { padding:30px; border-left: 1px solid rgba(200,164,93,.35); background: rgba(255,255,255,.025); }
-.loop-card span { font-family:var(--mono); color:var(--gold); }
-
-/* LINGUISTIC */
-.linguistic-header { max-width:850px; margin-bottom:50px; }
-.linguistic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.linguistic-card { padding:35px; border-radius:24px; 
-                  background: linear-gradient( 145deg,
-                  rgba(58,109,148,.16), 
-                  rgba(255,255,255,.03) ); border: 1px solid rgba(58,109,148,.25); transition:.3s ease; }
-.linguistic-card: hover { transform:translateY(-6px); border-color:var(--aegean); }
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-.kinetic-grid,
-.loop-grid,
-.linguistic-grid { grid-template-columns:1fr; }
-.positioning-wrapper { overflow:hidden; }
-.loop-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; }
-.loop-card { min-width:80vw; scroll-snap-align:start; } }
     
     /* --- NARRATIVE HEADER STYLING --- */
     .sandbox-narrative-wrapper { max-width: 800px; border-left: 3px solid var(--gold); padding-left: 24px; }
@@ -3312,83 +3187,80 @@ a, a:visited, a:hover, a:active {
   } }
 
 
-    /* =========================================================
-   SAASOLVES FINAL SYSTEM OVERRIDE
-   LANDKNOT + PERCEPTION + LOOP + LINGUISTIC
-   Paste LAST in style
-========================================================= */
+  /* ═══════════════════════════════════════════════
+   SAASOLVES INTELLIGENCE SYSTEM FINAL
+   Perception Engine
+   Loop Positioning
+   Linguistic Reality
+═══════════════════════════════════════════════ */
 
 
-/* =========================================================
-   GLOBAL SECTION ORNAMENT SYSTEM
-========================================================= */
+/* =========================
+   SHARED SECTION ORNAMENT
+========================= */
 
 .perception-section,
 .positioning-wrapper,
-.linguistic-block {
-    position: relative;
+.linguistic-system {
+
+    position:relative;
 }
+
 
 .perception-section::before,
 .positioning-wrapper::before,
-.linguistic-block::before {
+.linguistic-system::before {
 
     content:"";
     display:block;
-    height:1px;
+
     width:100%;
-    margin:0 auto 70px;
+    height:1px;
+
+    margin-bottom:72px;
 
     background:
     linear-gradient(
         90deg,
         transparent,
         var(--gold),
-        rgba(200,164,93,.2),
+        rgba(200,164,93,.25),
         transparent
     );
 
-    opacity:.8;
+    opacity:.85;
 }
 
 
-/* shared section label */
+/* =========================
+   SHARED TYPOGRAPHY
+========================= */
 
-.section-label {
+.perception-section .section-label,
+.linguistic-system .section-label {
+
+    font-family:var(--mono);
+    font-size:.65rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+
+    color:var(--gold);
 
     display:flex;
     align-items:center;
     gap:12px;
 
-    font-family:var(--mono);
-    font-size:.62rem;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-
-    color:var(--gold-light);
-
+    margin-bottom:18px;
 }
 
 
-.section-label span {
+.perception-section .section-label span,
+.linguistic-system .section-label span {
 
     width:34px;
     height:1px;
+
     background:var(--gold);
-
-}
-
-
-
-/* =========================================================
-   PERCEPTION ENGINE
-========================================================= */
-
-
-.perception-header {
-
-    max-width:900px;
-    margin-bottom:50px;
 
 }
 
@@ -3397,16 +3269,46 @@ a, a:visited, a:hover, a:active {
 .positioning-wrapper h2,
 .linguistic-header h2 {
 
-    font-family:var(--display);
+    font-family:var(--serif-title);
+
     color:var(--ivory);
 
+    font-size:
+    clamp(2rem,4vw,3.2rem);
+
+    font-weight:500;
+
+    letter-spacing:-.03em;
 }
+
+
+.perception-header p,
+.linguistic-header p {
+
+    font-family:var(--serif-body);
+
+    color:var(--ivory2);
+
+    line-height:1.9;
+
+    max-width:800px;
+
+}
+
+
+
+/* =========================
+   PERCEPTION ENGINE
+========================= */
 
 
 .kinetic-grid {
 
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+    repeat(3,1fr);
+
     gap:24px;
 
 }
@@ -3416,29 +3318,27 @@ a, a:visited, a:hover, a:active {
 
     position:relative;
 
+    min-height:300px;
+
     padding:38px 32px;
 
-    min-height:300px;
+    overflow:hidden;
 
     background:
     linear-gradient(
         145deg,
         rgba(200,164,93,.12),
-        rgba(255,255,255,.025)
+        rgba(255,255,255,.035)
     );
 
-    border:
-
-    1px solid rgba(200,164,93,.25);
+    border:1px solid rgba(200,164,93,.25);
 
     border-radius:26px;
 
-    overflow:hidden;
-
     transition:
     transform .35s ease,
-    border-color .35s ease,
-    box-shadow .35s ease;
+    box-shadow .35s ease,
+    border-color .35s ease;
 
 }
 
@@ -3458,9 +3358,11 @@ a, a:visited, a:hover, a:active {
     background:
     radial-gradient(
         circle,
-        rgba(200,164,93,.25),
+        rgba(200,164,93,.22),
         transparent 70%
     );
+
+    pointer-events:none;
 
 }
 
@@ -3477,68 +3379,116 @@ a, a:visited, a:hover, a:active {
 }
 
 
-.card-meta {
+.card-meta,
+.roman {
 
     font-family:var(--mono);
 
     color:var(--gold);
 
-    letter-spacing:.2em;
+    letter-spacing:.18em;
 
-    margin-bottom:20px;
+    font-size:.75rem;
 
 }
 
 
-/* =========================================================
-   POSITIONING LOOP
-   Versatility Matrix inspired
-========================================================= */
+
+/* =========================
+   LOOP POSITIONING
+   Versatility Matrix behavior
+========================= */
 
 
-.loop-grid {
+.loop-wrapper {
+
+    margin-top:110px;
+
+}
+
+
+.loop-tabs {
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+
+}
+
+
+.loop-tab {
+
+    font-family:var(--mono);
+
+    font-size:.68rem;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+    padding:10px 16px;
+
+    color:var(--ivory2);
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(200,164,93,.25);
+
+}
+
+
+.loop-tab.active {
+
+    color:var(--gold);
+
+    border-color:var(--gold);
+
+    background:
+    rgba(200,164,93,.12);
+
+}
+
+
+.loop-panel {
+
+    display:none;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+.loop-panel.active {
 
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:22px;
 
 }
 
 
 .loop-card {
 
-    position:relative;
+    padding:30px;
 
-    padding:34px;
-
-    min-height:210px;
+    min-height:220px;
 
     background:
-
     linear-gradient(
         135deg,
         rgba(255,255,255,.035),
         rgba(200,164,93,.08)
     );
 
+    border-left:
+    1px solid var(--gold);
 
-    border:
-
-    1px solid rgba(200,164,93,.22);
-
-    border-radius:24px;
-
-
-    transition:.3s ease;
-
-}
-
-
-.loop-card:hover {
-
-    transform:translateY(-6px);
-
-    border-color:var(--gold);
+    border-radius:0 20px 20px 0;
 
 }
 
@@ -3552,23 +3502,68 @@ a, a:visited, a:hover, a:active {
 }
 
 
-/* =========================================================
+
+/* =========================
    LINGUISTIC REALITY
-========================================================= */
+========================= */
+
+
+.linguistic-system {
+
+    display:grid;
+
+    grid-template-columns:
+
+    .9fr 1.1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+}
+
+
+.linguistic-visual {
+
+    height:360px;
+
+    border:1px solid rgba(200,164,93,.25);
+
+    background:
+
+    radial-gradient(
+        circle,
+        rgba(200,164,93,.22),
+        transparent 60%
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-family:var(--mono);
+
+    color:var(--gold);
+
+    letter-spacing:.18em;
+
+}
 
 
 .linguistic-grid {
 
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
+
+    gap:18px;
 
 }
 
 
 .linguistic-card {
 
-    padding:38px;
+    padding:28px;
 
     background:
 
@@ -3578,42 +3573,33 @@ a, a:visited, a:hover, a:active {
         rgba(255,255,255,.035)
     );
 
+    border:1px solid rgba(200,164,93,.25);
 
-    border:
+    border-radius:22px;
 
-    1px solid rgba(200,164,93,.25);
-
-    border-radius:26px;
-
-    transition:.35s ease;
+    transition:.3s ease;
 
 }
 
 
 .linguistic-card:hover {
 
-    transform:translateY(-7px);
+    transform:translateY(-6px);
 
     border-color:var(--gold);
-
-    box-shadow:
-    0 25px 70px rgba(200,164,93,.15);
 
 }
 
 
 
-/* =========================================================
-   SWIPE PHYSICS FIX
-   Bridge + Translation
-========================================================= */
+/* =========================
+   SWIPE FIX
+========================= */
 
 
 .narrative-carousel-track,
 #translation-track,
 #lk-slides {
-
-    scroll-behavior:auto !important;
 
     overscroll-behavior-x:contain;
 
@@ -3630,175 +3616,30 @@ a, a:visited, a:hover, a:active {
 }
 
 
-/* kill excessive bounce scaling */
 
-.narrative-card,
-.translation-card {
+/* =========================
+   MOBILE
+========================= */
 
-    transform:none !important;
 
-    transition:
-    border-color .25s ease,
-    background .25s ease;
-
-}
-
-
-
-/* =========================================================
-   LANDKNOT FINAL GEOMETRY
-========================================================= */
-
-
-.landknot-after-grid {
-
-    display:grid !important;
-
-    grid-template-columns:
-
-    420px minmax(500px,1fr) !important;
-
-
-    gap:56px !important;
-
-    align-items:start !important;
-
-    max-width:1180px;
-
-    margin:auto;
-
-}
-
-
-
-.transformed-label {
-
-    font-family:var(--mono);
-
-    font-size:.62rem;
-
-    letter-spacing:.16em;
-
-    text-transform:uppercase;
-
-    color:#5C9E7A;
-
-    margin-bottom:20px;
-
-}
-
-
-.transformed-label::before {
-
-    content:"";
-
-    display:inline-block;
-
-    width:34px;
-
-    height:1px;
-
-    background:#5C9E7A;
-
-    margin-right:12px;
-
-}
-
-
-
-.lk-browser-col {
-
-    width:100% !important;
-
-    max-width:none !important;
-
-}
-
-
-
-.lk-browser-frame {
-
-    width:100% !important;
-
-    min-height:560px;
-
-}
-
-
-
-.lk-slides-viewport {
-
-    height:430px;
-
-    overflow:hidden;
-
-}
-
-
-#lk-slides {
-
-    width:100% !important;
-
-    height:430px !important;
-
-}
-
-
-
-#lk-slides > div {
-
-    min-width:100% !important;
-
-}
-
-
-
-/* mobile */
-
-@media(max-width:899px){
-
-
-.landknot-after-grid {
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    gap:40px !important;
-
-}
-
-
-
-.lk-browser-col {
-
-    width:100% !important;
-
-}
-
-
-
-.lk-browser-frame {
-
-    width:100% !important;
-
-}
+@media(max-width:900px){
 
 
 .kinetic-grid,
-.loop-grid,
+.loop-panel,
 .linguistic-grid {
 
     display:flex;
 
     overflow-x:auto;
 
-    scroll-snap-type:x mandatory;
-
     gap:18px;
 
-}
+    scroll-snap-type:x mandatory;
 
+    -webkit-overflow-scrolling:touch;
+
+}
 
 
 .perception-card,
@@ -3808,6 +3649,13 @@ a, a:visited, a:hover, a:active {
     min-width:82vw;
 
     scroll-snap-align:start;
+
+}
+
+
+.linguistic-system {
+
+    grid-template-columns:1fr;
 
 } }
     
