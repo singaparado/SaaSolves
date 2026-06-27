@@ -3441,16 +3441,49 @@ a, a:visited, a:hover, a:active {
     content:""; width:34px; height:1px; 
     background:#5C9E7A; } 
 
-#narrative-track,
-#translation-track,
-.loop-grid { 
-  scroll-behavior:smooth;             
-  overscroll-behavior-x:contain; }
 
-#narrative-track > *,
-#translation-track > * {
- flex:none; }
+    /* ─────────────────────────────
+   LANDKNOT AFTER SAASOLVES
+   Mobile: browser first
+   Desktop: cards left / browser right
+───────────────────────────── */
 
+/* MOBILE */
+@media (max-width: 899px) {
+  .landknot-after-grid {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* browser moves to top */
+  .lk-browser-col {
+    order: 1 !important;
+    width: 100%;
+  }
+
+  /* cards move below */
+  .lk-transformation-col {
+    order: 2 !important;
+    width: 100%;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 900px) {
+  .landknot-after-grid {
+    display: grid !important;
+    grid-template-columns: 0.85fr 1.15fr !important;
+    gap: 56px !important;
+  }
+
+  .lk-transformation-col {
+    order: 1 !important;
+  }
+
+  .lk-browser-col {
+    order: 2 !important;
+  }
+}
 
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
