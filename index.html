@@ -1137,131 +1137,6 @@ z-index:2;
   }
 }
 
-
-  /* ═══════════════════════════════════════
-   PERCEPTION ENGINE
-   ═══════════════════════════════════════ */
-
-.perception-section {
-
-padding: 12vh 6vw;
-background:
-linear-gradient(
-180deg,
-var(--navy),
-#03101f
-);
-
-position:relative;
-overflow:hidden;
-
-}
-
-
-.perception-container {
-
-max-width:1200px;
-margin:0 auto;
-
-}
-
-
-
-.perception-header {
-
-max-width:760px;
-margin-bottom:70px;
-
-}
-
-
-.section-label {
-
-font-family:var(--mono);
-font-size:.65rem;
-letter-spacing:.16em;
-text-transform:uppercase;
-color:var(--gold);
-
-display:flex;
-align-items:center;
-gap:12px;
-
-margin-bottom:18px;
-
-}
-
-
-.section-label span {
-
-width:25px;
-height:1px;
-background:var(--gold);
-
-}
-
-.perception-header h2,
-.positioning-wrapper h2,
-.linguistic-header h2 {
-
-font-family:var(--serif-title);
-font-size:clamp(2rem,4vw,3.2rem);
-font-weight:500;
-color:var(--ivory);
-
-letter-spacing:-.03em;
-
-}
-
-
-
-.perception-header p,
-.linguistic-header p {
-
-font-family:var(--serif-body);
-line-height:1.9;
-font-size:1.05rem;
-color:var(--ivory2); }
-
-/* CARDS */
-.kinetic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:110px; }
-.perception-card { padding:38px 32px; background: rgba(255,255,255,.035); border: 1px solid rgba(200,164,93,.18); border-radius:24px; transition:.35s ease; }
-.perception-card:hover { transform:translateY(-8px); border-color:var(--gold); background: rgba(200,164,93,.08); box-shadow: 0 0 35px rgba(200,164,93,.15); }
-.card-meta,
-.roman { font-family:var(--mono); color:var(--gold); font-size:.8rem; letter-spacing:.15em; margin-bottom:20px; }
-.perception-card h3,
-.linguistic-card h3,
-.loop-card h4 { font-family:var(--serif-title); color:var(--ivory); font-weight:500; }
-
-.perception-card p,
-.loop-card p,
-.linguistic-card p { font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78); }
-    
-/* LOOP */
-.positioning-wrapper { margin-bottom:110px; }
-.loop-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-.loop-card { padding:30px; border-left: 1px solid rgba(200,164,93,.35); background: rgba(255,255,255,.025); }
-.loop-card span { font-family:var(--mono); color:var(--gold); }
-
-/* LINGUISTIC */
-.linguistic-header { max-width:850px; margin-bottom:50px; }
-.linguistic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.linguistic-card { padding:35px; border-radius:24px; 
-                  background: linear-gradient( 145deg,
-                  rgba(58,109,148,.16), 
-                  rgba(255,255,255,.03) ); border: 1px solid rgba(58,109,148,.25); transition:.3s ease; }
-.linguistic-card: hover { transform:translateY(-6px); border-color:var(--aegean); }
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-.kinetic-grid,
-.loop-grid,
-.linguistic-grid { grid-template-columns:1fr; }
-.positioning-wrapper { overflow:hidden; }
-.loop-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; }
-.loop-card { min-width:80vw; scroll-snap-align:start; } }
-    
     /* --- NARRATIVE HEADER STYLING --- */
     .sandbox-narrative-wrapper { max-width: 800px; border-left: 3px solid var(--gold); padding-left: 24px; }
 
@@ -3311,505 +3186,6 @@ a, a:visited, a:hover, a:active {
     height: 430px;  
   } }
 
-
-    /* =========================================================
-   SAASOLVES FINAL SYSTEM OVERRIDE
-   LANDKNOT + PERCEPTION + LOOP + LINGUISTIC
-   Paste LAST in style
-========================================================= */
-
-
-/* =========================================================
-   GLOBAL SECTION ORNAMENT SYSTEM
-========================================================= */
-
-.perception-section,
-.positioning-wrapper,
-.linguistic-block {
-    position: relative;
-}
-
-.perception-section::before,
-.positioning-wrapper::before,
-.linguistic-block::before {
-
-    content:"";
-    display:block;
-    height:1px;
-    width:100%;
-    margin:0 auto 70px;
-
-    background:
-    linear-gradient(
-        90deg,
-        transparent,
-        var(--gold),
-        rgba(200,164,93,.2),
-        transparent
-    );
-
-    opacity:.8;
-}
-
-
-/* shared section label */
-
-.section-label {
-
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    font-family:var(--mono);
-    font-size:.62rem;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-
-    color:var(--gold-light);
-
-}
-
-
-.section-label span {
-
-    width:34px;
-    height:1px;
-    background:var(--gold);
-
-}
-
-
-
-/* =========================================================
-   PERCEPTION ENGINE
-========================================================= */
-
-
-.perception-header {
-
-    max-width:900px;
-    margin-bottom:50px;
-
-}
-
-
-.perception-header h2,
-.positioning-wrapper h2,
-.linguistic-header h2 {
-
-    font-family:var(--display);
-    color:var(--ivory);
-
-}
-
-
-.kinetic-grid {
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-
-}
-
-
-.perception-card {
-
-    position:relative;
-
-    padding:38px 32px;
-
-    min-height:300px;
-
-    background:
-    linear-gradient(
-        145deg,
-        rgba(200,164,93,.12),
-        rgba(255,255,255,.025)
-    );
-
-    border:
-
-    1px solid rgba(200,164,93,.25);
-
-    border-radius:26px;
-
-    overflow:hidden;
-
-    transition:
-    transform .35s ease,
-    border-color .35s ease,
-    box-shadow .35s ease;
-
-}
-
-
-.perception-card::after {
-
-    content:"";
-
-    position:absolute;
-
-    width:220px;
-    height:220px;
-
-    right:-100px;
-    top:-100px;
-
-    background:
-    radial-gradient(
-        circle,
-        rgba(200,164,93,.25),
-        transparent 70%
-    );
-
-}
-
-
-.perception-card:hover {
-
-    transform:translateY(-8px);
-
-    border-color:var(--gold);
-
-    box-shadow:
-    0 25px 70px rgba(200,164,93,.18);
-
-}
-
-
-.card-meta {
-
-    font-family:var(--mono);
-
-    color:var(--gold);
-
-    letter-spacing:.2em;
-
-    margin-bottom:20px;
-
-}
-
-
-/* =========================================================
-   POSITIONING LOOP
-   Versatility Matrix inspired
-========================================================= */
-
-
-.loop-grid {
-
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:22px;
-
-}
-
-
-.loop-card {
-
-    position:relative;
-
-    padding:34px;
-
-    min-height:210px;
-
-    background:
-
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.035),
-        rgba(200,164,93,.08)
-    );
-
-
-    border:
-
-    1px solid rgba(200,164,93,.22);
-
-    border-radius:24px;
-
-
-    transition:.3s ease;
-
-}
-
-
-.loop-card:hover {
-
-    transform:translateY(-6px);
-
-    border-color:var(--gold);
-
-}
-
-
-.loop-card span {
-
-    font-family:var(--mono);
-
-    color:var(--gold);
-
-}
-
-
-/* =========================================================
-   LINGUISTIC REALITY
-========================================================= */
-
-
-.linguistic-grid {
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-
-}
-
-
-.linguistic-card {
-
-    padding:38px;
-
-    background:
-
-    linear-gradient(
-        145deg,
-        rgba(58,109,148,.22),
-        rgba(255,255,255,.035)
-    );
-
-
-    border:
-
-    1px solid rgba(200,164,93,.25);
-
-    border-radius:26px;
-
-    transition:.35s ease;
-
-}
-
-
-.linguistic-card:hover {
-
-    transform:translateY(-7px);
-
-    border-color:var(--gold);
-
-    box-shadow:
-    0 25px 70px rgba(200,164,93,.15);
-
-}
-
-
-
-/* =========================================================
-   SWIPE PHYSICS FIX
-   Bridge + Translation
-========================================================= */
-
-
-.narrative-carousel-track,
-#translation-track,
-#lk-slides {
-
-    scroll-behavior:auto !important;
-
-    overscroll-behavior-x:contain;
-
-    scroll-snap-stop:always;
-
-}
-
-
-.narrative-card,
-.translation-card {
-
-    flex:none !important;
-
-}
-
-
-/* kill excessive bounce scaling */
-
-.narrative-card,
-.translation-card {
-
-    transform:none !important;
-
-    transition:
-    border-color .25s ease,
-    background .25s ease;
-
-}
-
-
-
-/* =========================================================
-   LANDKNOT FINAL GEOMETRY
-========================================================= */
-
-
-.landknot-after-grid {
-
-    display:grid !important;
-
-    grid-template-columns:
-
-    420px minmax(500px,1fr) !important;
-
-
-    gap:56px !important;
-
-    align-items:start !important;
-
-    max-width:1180px;
-
-    margin:auto;
-
-}
-
-
-
-.transformed-label {
-
-    font-family:var(--mono);
-
-    font-size:.62rem;
-
-    letter-spacing:.16em;
-
-    text-transform:uppercase;
-
-    color:#5C9E7A;
-
-    margin-bottom:20px;
-
-}
-
-
-.transformed-label::before {
-
-    content:"";
-
-    display:inline-block;
-
-    width:34px;
-
-    height:1px;
-
-    background:#5C9E7A;
-
-    margin-right:12px;
-
-}
-
-
-
-.lk-browser-col {
-
-    width:100% !important;
-
-    max-width:none !important;
-
-}
-
-
-
-.lk-browser-frame {
-
-    width:100% !important;
-
-    min-height:560px;
-
-}
-
-
-
-.lk-slides-viewport {
-
-    height:430px;
-
-    overflow:hidden;
-
-}
-
-
-#lk-slides {
-
-    width:100% !important;
-
-    height:430px !important;
-
-}
-
-
-
-#lk-slides > div {
-
-    min-width:100% !important;
-
-}
-
-
-
-/* mobile */
-
-@media(max-width:899px){
-
-
-.landknot-after-grid {
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    gap:40px !important;
-
-}
-
-
-
-.lk-browser-col {
-
-    width:100% !important;
-
-}
-
-
-
-.lk-browser-frame {
-
-    width:100% !important;
-
-}
-
-
-.kinetic-grid,
-.loop-grid,
-.linguistic-grid {
-
-    display:flex;
-
-    overflow-x:auto;
-
-    scroll-snap-type:x mandatory;
-
-    gap:18px;
-
-}
-
-
-
-.perception-card,
-.loop-card,
-.linguistic-card {
-
-    min-width:82vw;
-
-    scroll-snap-align:start;
-
-} }
     
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
@@ -4099,295 +3475,6 @@ a, a:visited, a:hover, a:active {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     THE PERCEPTION ENGINE
-════════════════════════════════════════════════ -->
-
-<section class="perception-section">
-
-  <div class="perception-container">
-
-    <!-- HEADER -->
-    <div class="perception-header" data-aos="fade-up">
-
-      <div class="section-label">
-        <span></span>
-        Strategic Perception Architecture
-      </div>
-
-      <h2>
-        THE PERCEPTION ENGINE
-      </h2>
-
-      <p>
-        A product occupies two realms: the architecture of your build and the mental model of your market. Growth is a direct byproduct of those two realities aligning.
-      </p>
-
-    </div>
-
-
-    <!-- KINETIC TRACK -->
-    <div class="kinetic-grid">
-
-
-      <article class="perception-card"
-      data-aos="fade-up"
-      data-aos-delay="100">
-
-        <div class="card-meta">01</div>
-
-        <h3>
-          Architecting Value
-        </h3>
-
-        <p>
-          Technical features remain static until defined by a narrative. We exert control over how your product is intepreted, transforming abstract capability into a mandatory operational requirement.
-        </p>
-
-      </article>
-
-
-
-      <article class="perception-card"
-      data-aos="fade-up"
-      data-aos-delay="200">
-
-        <div class="card-meta">02</div>
-
-        <h3>
-          Governing Perception
-        </h3>
-
-        <p>
-          Market reality is a variable choice under your command. Through precise positioning, we reframe unresolved friction as a persistent strategic constraint—ensuring your software is recognized as the only bridge to a future state they cannot otherwise reach.
-        </p>
-
-      </article>
-
-
-
-      <article class="perception-card"
-      data-aos="fade-up"
-      data-aos-delay="300">
-
-        <div class="card-meta">03</div>
-
-        <h3>
-          Securing Indispensability
-        </h3>
-
-        <p>
-          Language dictates utility. By embedding your narrative into the buyer's workflow, your software evolves into a foundational system. Returning to old methods becomes a clear choice to remain stagnant.
-        </p>
-
-      </article>
-
-
-    </div>
-
-
-
-    <!-- POSITIONING LOOP -->
-
-    <div class="positioning-wrapper"
-    data-aos="fade-up">
-
-
-      <div class="section-label">
-        <span></span>
-        Strategic Logic
-      </div>
-
-
-      <h2>
-        THE POSITIONING LOOP
-      </h2>
-
-
-
-      <div class="loop-grid">
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="100">
-
-          <span>01</span>
-
-          <h4>
-            Recognition
-          </h4>
-
-          <p>
-            The buyer identifies their operational friction through a narrative meticulously calibrated to their specific reality.
-          </p>
-
-        </div>
-
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="200">
-
-          <span>02</span>
-
-          <h4>
-            Reframing
-          </h4>
-
-          <p>
-            We elevate that friction from minor inconvenience into a strategic bottleneck, shifting the buyer’s urgency from passive interest to absolute requirement.
-          </p>
-
-        </div>
-
-
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="300">
-
-          <span>03</span>
-
-          <h4>
-            Resolution
-          </h4>
-
-          <p>
-            Your software is established as the primary environment where that bottleneck is permanently dissolved.
-          </p>
-
-        </div>
-
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="400">
-
-          <span>04</span>
-
-          <h4>
-            Integration
-          </h4>
-
-          <p>
-            Because your product is now the defined standard for their operational success, it becomes the permanent, inseparable anchor of their daily performance.
-          </p>
-
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-
-
-
-
-    <!-- LINGUISTIC REALITY -->
-
-    <div class="linguistic-block"
-    data-aos="fade-up">
-
-
-      <div class="linguistic-header">
-
-        <div class="section-label">
-          <span></span>
-          Language Systems
-        </div>
-
-
-        <h2>
-          THE LINGUISTIC REALITY
-        </h2>
-
-
-        <p>
-          Language governs the mental model through which software is evaluated, trusted, and adopted. The narrative surrounding your product determines how the market interprets its value, urgency, and role within the customer’s operational reality.
-        </p>
-
-      </div>
-
-
-
-
-      <div class="linguistic-grid">
-
-
-        <article class="linguistic-card"
-        data-aos="fade-up"
-        data-aos-delay="100">
-
-          <div class="roman">
-            I
-          </div>
-
-          <h3>
-            CONSTRUCTING THE MENTAL MODEL
-          </h3>
-
-          <p>
-            Every product is interpreted before it is adopted. We engineer the language layer that frames your customer’s problems, priorities, and expectations, ensuring your software is understood through the outcomes it creates.
-          </p>
-
-        </article>
-
-
-        <article class="linguistic-card"
-        data-aos="fade-up"
-        data-aos-delay="200">
-
-          <div class="roman">
-            II
-          </div>
-
-          <h3>
-            SHAPING MARKET PERCEPTION
-          </h3>
-
-          <p>
-            Markets move toward clarity. We align your product narrative with the customer’s existing friction and desired future state, transforming technical complexity into a position of relevance, confidence, and strategic importance.
-          </p>
-
-        </article>
-
-
-
-
-        <article class="linguistic-card"
-        data-aos="fade-up"
-        data-aos-delay="300">
-
-          <div class="roman">
-            III
-          </div>
-
-          <h3>
-            SOLIDIFYING OPERATIONAL RELEVANCE
-          </h3>
-
-          <p>
-            Adoption becomes durable when value is connected to recurring needs. We build narratives that anchor your software into the customer’s workflow, positioning your platform as an essential environment for ongoing performance.
-          </p>
-
-        </article>
-
-
-      </div>
-
-
-    </div>
-
-
-  </div>
-
-</section>
   
   <!-- ── AI DISTINCTION — between bridge section and sandbox ── -->
 <section 
@@ -4763,91 +3850,290 @@ a, a:visited, a:hover, a:active {
   </div>
 </section>
 
+<section class="perception-section" style="--local-section:true;">
+  <style>
+    /* ==========================================================
+       PERCEPTION + LINGUISTIC + LOOP SYSTEM
+       SELF CONTAINED
+    ========================================================== */
 
-<section 
-  data-aos="fade-up"
-  data-aos-duration="900"
-  style="max-width: 1200px; margin: 40px auto; padding: 0 6vw;">
-  <h3 
-    data-aos="fade-right"
-    data-aos-delay="200"
-    style="color: var(--gold); font-family: var(--mono); margin-bottom: 20px;">
-    OUR TRANSLATION PRINCIPLE 
-  </h3>
+    .perception-section {
+      padding: 12vh 6vw;
+      background: linear-gradient(180deg, var(--navy), #03101f);
+      position: relative;
+      overflow: hidden;
+    }
 
-<!-- ARCHITECTURE CARDS: Infinite swipe carousel with bounce -->
-<div style="position: relative; margin-top: 32px;" id="arch-carousel-wrap">
+    .perception-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-  <div id="arch-track" style="
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    gap: 16px;
-    padding-bottom: 20px;
-    cursor: grab;
-  ">
+    .section-label {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
 
-    <!-- CARD 1 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(200,164,93,0.09), rgba(7,27,51,0.7));
-      border: 1px solid rgba(200,164,93,0.2);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">01 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: var(--gold-light); margin-bottom: 14px; font-style: italic;">Tangibility</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We anchor every narrative in the user’s priorities and immediate needs, transforming software capabilities into tangible outcomes and measurable value aligned with real-world objectives.</p>
-    </div>
+    .section-label span {
+      width: 34px;
+      height: 1px;
+      background: var(--gold);
+    }
 
-    <!-- CARD 2 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(65,107,154,0.12), rgba(7,27,51,0.7));
-      border: 1px solid rgba(65,107,154,0.22);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 16px;">02 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: var(--aegean-light); margin-bottom: 14px; font-style: italic;">Intuitiveness</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We translate technical complexity into intuitive experiences through human-centered understanding, replacing machine-led language with narratives that reduce friction and accelerate natural adoption.</p>
-    </div>
+    .perception-header,
+    .linguistic-header {
+      max-width: 850px;
+      margin-bottom: 60px;
+    }
 
-    <!-- CARD 3 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(72,199,142,0.08), rgba(7,27,51,0.7));
-      border: 1px solid rgba(72,199,142,0.16);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: #5CC49A; margin-bottom: 16px;">03 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: #5CC49A; margin-bottom: 14px; font-style: italic;">Sustainability</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We position software as a dynamic environment for sustained operations, evolving products from one-time solutions into essential systems within customers’ ongoing workflows.</p>
-    </div>
+    .perception-header h2,
+    .linguistic-header h2,
+    .positioning-wrapper h2 {
+      font-family: var(--serif-title);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 500;
+      color: var(--ivory);
+      letter-spacing: -.03em;
+    }
 
+    .perception-header p,
+    .linguistic-header p {
+      font-family: var(--serif-body);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--ivory2);
+    }
+
+    /* GRID */
+    .kinetic-grid,
+    .linguistic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 110px;
+    }
+
+    .perception-card,
+    .linguistic-card {
+      position: relative;
+      padding: 38px 32px;
+      min-height: 300px;
+      background: linear-gradient(145deg, rgba(200, 164, 93, .12), rgba(255, 255, 255, .035));
+      border: 1px solid rgba(200, 164, 93, .25);
+      border-radius: 26px;
+      overflow: hidden;
+      transition: .35s ease;
+    }
+
+    .perception-card:hover,
+    .linguistic-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 25px 70px rgba(200, 164, 93, .18);
+    }
+
+    .card-meta,
+    .roman {
+      font-family: var(--mono);
+      color: var(--gold);
+      letter-spacing: .2em;
+      margin-bottom: 20px;
+    }
+
+    .perception-card h3,
+    .linguistic-card h3,
+    .loop-card h4 {
+      font-family: var(--serif-title);
+      font-weight: 500;
+      color: var(--ivory);
+    }
+
+    .perception-card p,
+    .linguistic-card p,
+    .loop-card p {
+      font-family: var(--serif-body);
+      line-height: 1.85;
+      color: rgba(247, 241, 227, .78);
+    }
+
+    /* LOOP */
+    .positioning-wrapper {
+      margin-top: 40px;
+    }
+
+    .loop-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .loop-card {
+      padding: 34px;
+      min-height: 210px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .035), rgba(200, 164, 93, .08));
+      border: 1px solid rgba(200, 164, 93, .22);
+      border-radius: 24px;
+      transition: .3s ease;
+    }
+
+    .loop-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+
+    .loop-card span {
+      font-family: var(--mono);
+      color: var(--gold);
+    }
+
+    /* MOBILE */
+    @media(max-width: 899px) {
+      .kinetic-grid,
+      .linguistic-grid,
+      .loop-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 18px;
+      }
+
+      .perception-card,
+      .linguistic-card,
+      .loop-card {
+        min-width: 82vw;
+        scroll-snap-align: start;
+      }
+
+      .perception-card:hover,
+      .linguistic-card:hover,
+      .loop-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+
+  <div class="perception-container">
+    <section data-aos="fade-up" style="width:100%; padding:12vh 6vw; background:linear-gradient(180deg,var(--navy),#03101f); overflow:hidden;">
+      <div style="max-width:1200px; margin:0 auto;">
+        
+        <div style="max-width:820px; margin-bottom:60px;">
+          <div style="display:flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.65rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">
+            <span style="width:34px; height:1px; background:var(--gold); display:block;"></span>
+            Language Systems
+          </div>
+          <h2 style="font-family:var(--serif-title); font-size:clamp(2rem,4vw,3.2rem); line-height:1.1; letter-spacing:-.03em; color:var(--ivory); margin-bottom:22px;">
+            THE LINGUISTIC REALITY
+          </h2>
+          <p style="font-family:var(--serif-body); font-size:1.05rem; line-height:1.9; color:var(--ivory2); max-width:760px;">
+            Language governs the mental model through which software is evaluated, trusted, and adopted. The narrative surrounding your product determines the framework through which the market assigns value, urgency, and relevance.
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin-bottom:90px;">
+          <div style="min-height:320px; padding:38px; border-radius:26px; background:linear-gradient(145deg,rgba(58,109,148,.22),rgba(255,255,255,.035)); border:1px solid rgba(200,164,93,.25);">
+            <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.2em; margin-bottom:20px;">I</div>
+            <h3 style="font-family:var(--serif-title); color:var(--ivory); font-size:1.25rem; margin-bottom:18px;">CONSTRUCTING THE MENTAL MODEL</h3>
+            <p style="font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78);">Every product is interpreted before it is adopted. We engineer the language layer that defines how customers understand their problems, priorities, and desired outcomes.</p>
+          </div>
+          <div style="min-height:320px; padding:38px; border-radius:26px; background:linear-gradient(145deg,rgba(58,109,148,.22),rgba(255,255,255,.035)); border:1px solid rgba(200,164,93,.25);">
+            <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.2em; margin-bottom:20px;">II</div>
+            <h3 style="font-family:var(--serif-title); color:var(--ivory); font-size:1.25rem; margin-bottom:18px;">SHAPING MARKET PERCEPTION</h3>
+            <p style="font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78);">Markets organize around clarity. We structure your narrative around customer reality, transforming complexity into relevance and authority.</p>
+          </div>
+          <div style="min-height:320px; padding:38px; border-radius:26px; background:linear-gradient(145deg,rgba(58,109,148,.22),rgba(255,255,255,.035)); border:1px solid rgba(200,164,93,.25);">
+            <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.2em; margin-bottom:20px;">III</div>
+            <h3 style="font-family:var(--serif-title); color:var(--ivory); font-size:1.25rem; margin-bottom:18px;">SOLIDIFYING OPERATIONAL RELEVANCE</h3>
+            <p style="font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78);">Durable adoption emerges when value remains connected to recurring needs and workflows.</p>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--mono); color:var(--gold); letter-spacing:.16em; font-size:.65rem; margin-bottom:20px;">OUR TRANSLATION PRINCIPLE</h3>
+        <p style="font-family:var(--serif-body); line-height:1.8; color:var(--ivory2); max-width:720px; margin-bottom:32px;">We translate product complexity into market clarity by aligning technical capability with the language customers use to recognize value, urgency, and relevance.</p>
+
+        <div style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:16px; padding-bottom:20px; scrollbar-width:none;">
+          <div style="min-width:78vw; scroll-snap-align:start; padding:36px 30px; border-radius:26px; background:linear-gradient(145deg,rgba(200,164,93,.12),rgba(255,255,255,.035)); border:1px solid rgba(200,164,93,.25);">
+            <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.18em;">01 / 03</div>
+            <h4 style="font-family:var(--serif-title); color:var(--gold-light); font-size:1.4rem;">Tangibility</h4>
+            <p style="font-family:var(--serif-body); line-height:1.85; color:var(--ivory2);">We connect software capabilities to outcomes customers measure.</p>
+          </div>
+          <div style="min-width:78vw; scroll-snap-align:start; padding:36px 30px; border-radius:26px; background:linear-gradient(145deg,rgba(65,107,154,.16),rgba(255,255,255,.035)); border:1px solid rgba(65,107,154,.25);">
+            <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.18em;">02 / 03</div>
+            <h4 style="font-family:var(--serif-title); color:var(--aegean-light);">Intuitiveness</h4>
+            <p style="font-family:var(--serif-body); line-height:1.85; color:var(--ivory2);">We simplify complex systems into natural language structures.</p>
+          </div>
+          <div style="min-width:78vw; scroll-snap-align:start; padding:36px 30px; border-radius:26px; background:linear-gradient(145deg,rgba(72,199,142,.1),rgba(255,255,255,.035)); border:1px solid rgba(72,199,142,.2);">
+            <div style="font-family:var(--mono); color:#5CC49A; letter-spacing:.18em;">03 / 03</div>
+            <h4 style="font-family:var(--serif-title); color:#5CC49A;">Sustainability</h4>
+            <p style="font-family:var(--serif-body); line-height:1.85; color:var(--ivory2);">We position products around recurring workflows and long-term adoption.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:120px;">
+          <div style="display:flex; gap:12px; align-items:center; font-family:var(--mono); font-size:.65rem; color:var(--gold); letter-spacing:.16em; margin-bottom:20px;">
+            <span style="width:34px; height:1px; background:var(--gold);"></span>
+            Strategic Perception Architecture
+          </div>
+          <h2 style="font-family:var(--serif-title); font-size:clamp(2rem,4vw,3.2rem); color:var(--ivory); margin-bottom:22px;">THE PERCEPTION ENGINE</h2>
+          <p style="font-family:var(--serif-body); line-height:1.9; color:var(--ivory2); max-width:760px; margin-bottom:60px;">A product occupies two realms: the architecture of your build and the mental model of your market. Growth emerges when the language surrounding your product accurately transfers its value into customer perception.</p>
+
+          <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin-bottom:110px;">
+            <div style="padding:38px 32px; min-height:320px; border-radius:26px; background:linear-gradient(145deg,rgba(200,164,93,.12),rgba(255,255,255,.035)); border:1px solid rgba(200,164,93,.22);">
+              <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.18em;">01</div>
+              <h3 style="font-family:var(--serif-title); color:var(--ivory); margin:16px 0;">Architecting Value</h3>
+              <p style="font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78);">Technical specs become valuable when translated into customer reality.</p>
+            </div>
+            <div style="padding:38px 32px; min-height:320px; border-radius:26px; background:linear-gradient(145deg,rgba(200,164,93,.12),rgba(255,255,255,.035)); border:1px solid rgba(200,164,93,.22);">
+              <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.18em;">02</div>
+              <h3 style="font-family:var(--serif-title); color:var(--ivory); margin:16px 0;">Governing Perception</h3>
+              <p style="font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78);">Positioning shapes how customers interpret problems and solutions.</p>
+            </div>
+            <div style="padding:38px 32px; min-height:320px; border-radius:26px; background:linear-gradient(145deg,rgba(200,164,93,.12),rgba(255,255,255,.035)); border:1px solid rgba(200,164,93,.22);">
+              <div style="font-family:var(--mono); color:var(--gold); letter-spacing:.18em;">03</div>
+              <h3 style="font-family:var(--serif-title); color:var(--ivory); margin:16px 0;">Securing Indispensability</h3>
+              <p style="font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78);">Your narrative becomes embedded inside operational thinking.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:40px;">
+            <div style="display:flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.65rem; letter-spacing:.16em; color:var(--gold); margin-bottom:20px;">
+              <span style="width:34px; height:1px; background:var(--gold); display:block;"></span>
+              Strategic Logic
+            </div>
+            <h2 style="font-family:var(--serif-title); font-size:clamp(2rem,4vw,3.2rem); color:var(--ivory); margin-bottom:40px;">THE POSITIONING LOOP</h2>
+            <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px;">
+              <div style="min-height:220px; padding:34px; border-radius:24px; background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(200,164,93,.08)); border:1px solid rgba(200,164,93,.22);">
+                <span style="font-family:var(--mono); color:var(--gold);">01</span>
+                <h4 style="font-family:var(--serif-title); color:var(--ivory); margin:16px 0;">Recognition</h4>
+                <p style="font-family:var(--serif-body); line-height:1.8; color:rgba(247,241,227,.78);">The buyer identifies their operational friction through a narrative calibrated to their exact reality.</p>
+              </div>
+              <div style="min-height:220px; padding:34px; border-radius:24px; background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(200,164,93,.08)); border:1px solid rgba(200,164,93,.22);">
+                <span style="font-family:var(--mono); color:var(--gold);">02</span>
+                <h4 style="font-family:var(--serif-title); color:var(--ivory); margin:16px 0;">Reframing</h4>
+                <p style="font-family:var(--serif-body); line-height:1.8; color:rgba(247,241,227,.78);">We elevate friction into a strategic bottleneck, creating urgency around the operational reality.</p>
+              </div>
+              <div style="min-height:220px; padding:34px; border-radius:24px; background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(200,164,93,.08)); border:1px solid rgba(200,164,93,.22);">
+                <span style="font-family:var(--mono); color:var(--gold);">03</span>
+                <h4 style="font-family:var(--serif-title); color:var(--ivory); margin:16px 0;">Resolution</h4>
+                <p style="font-family:var(--serif-body); line-height:1.8; color:rgba(247,241,227,.78);">Your software becomes the primary environment where the bottleneck is permanently dissolved.</p>
+              </div>
+              <div style="min-height:220px; padding:34px; border-radius:24px; background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(200,164,93,.08)); border:1px solid rgba(200,164,93,.22);">
+                <span style="font-family:var(--mono); color:var(--gold);">04</span>
+                <h4 style="font-family:var(--serif-title); color:var(--ivory); margin:16px 0;">Integration</h4>
+                <p style="font-family:var(--serif-body); line-height:1.8; color:rgba(247,241,227,.78);">Your product becomes the inseparable anchor of the customer’s daily performance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-
-  <!-- Pip indicators -->
-  <div style="display: flex; gap: 6px; margin-top: 8px;" id="arch-pips">
-    <div class="narrative-pip active" onclick="scrollToArchCard(0)"></div>
-    <div class="narrative-pip" onclick="scrollToArchCard(1)"></div>
-    <div class="narrative-pip" onclick="scrollToArchCard(2)"></div>
-  </div>
-
-</div>
 </section>
   
 <!-- ══ WHY IT MATTERS: THE COMPLEXITY TAX ══════════ -->
