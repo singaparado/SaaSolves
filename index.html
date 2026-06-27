@@ -945,12 +945,34 @@ starsDrift 35s linear infinite;
 pointer-events:none;
 z-index:0;  
 }
-
  
 .bridge-section > * {
 position:relative;
 z-index:2;
 } 
+
+
+.bridge-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.bridge-section::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 30% 20%, rgba(200, 164, 93, .18), transparent 35%),
+              radial-gradient(circle at 80% 60%, rgba(91, 150, 255, .18), transparent 40%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bridge-section > * {
+  position: relative;
+  z-index: 2;
+}
+
     
     /* ── NARRATIVE CAROUSEL TRACK ───────────────────── */
     .narrative-carousel-wrap { position: relative; }
@@ -3405,7 +3427,31 @@ a, a:visited, a:hover, a:active {
   .lk-slides-viewport { 
     height: 430px;  
   } }
-    
+
+
+  .landknot-transform-label {
+   font-family:var(--mono);
+    font-size:.62rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#5C9E7A; display:flex; 
+    align-items:center; 
+    gap:12px; margin-bottom:20px; }
+  .landknot-transform-label::before { 
+    content:""; width:34px; height:1px; 
+    background:#5C9E7A; } 
+
+#narrative-track,
+#translation-track,
+.loop-grid { 
+  scroll-behavior:smooth;             
+  overscroll-behavior-x:contain; }
+
+#narrative-track > *,
+#translation-track > * {
+ flex:none; }
+
+
   </style>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head> 
@@ -4400,18 +4446,16 @@ a, a:visited, a:hover, a:active {
          Mobile: stack (browser first, then cards).
          Desktop: transformation cards LEFT, browser RIGHT
     ══════════════════════════════════════════════ -->
-
-    <!-- Section label -->
-    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 28px;" data-aos="fade-up">
-      <div style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ivory); background: #1A3D2E; padding: 4px 12px; border: 2px solid #5C9E7A;">AFTER SAASOLVES</div>
-      <div style="font-family: var(--mono); font-size: 0.65rem; color: #5C9E7A; letter-spacing: 0.08em; text-transform: uppercase;">← swipe slides to read →</div>
-    </div>
-
-<div class="landknot-after-grid">
+    
+     <div class="landknot-after-grid">
 
       <!-- LEFT: Transformation cards (desktop only in this position) -->
       <div class="lk-transformation-col">
 
+    <div class="transformed-label">
+      TRANSFORMED NARRATIVE POINTS
+        </div>
+        
         <div class="lk-transform-card" data-aos="fade-right" data-aos-delay="80">
           <div class="lk-transform-card-label">From Extractive to Inclusive</div>
           <h4>Stakeholder Recognition</h4>
@@ -4434,7 +4478,14 @@ a, a:visited, a:hover, a:active {
 
       <!-- RIGHT: After browser mock with 3 slides -->
      <div class="lk-browser-col" data-aos="fade-left" data-aos-delay="100">
-
+    <div class="after-browser-label">
+      
+    <!-- Section label -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 28px;" data-aos="fade-up">
+      <div style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ivory); background: #1A3D2E; padding: 4px 12px; border: 2px solid #5C9E7A;">AFTER SAASOLVES</div>
+      <div style="font-family: var(--mono); font-size: 0.65rem; color: #5C9E7A; letter-spacing: 0.08em; text-transform: uppercase;">← swipe slides to read →</div>
+    </div>
+       
        <div class="lk-browser-frame" style="
           width: 100%;
           min-height: 560px;
@@ -4604,7 +4655,7 @@ a, a:visited, a:hover, a:active {
 
   <div class="services-head" data-aos="fade-up">
     <div style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px;">// Available Execution Tiers</div>
-    <h2>Choose Your<br>Transformation Level</h2>
+    <h2>CHOOSE YOUR<br>TRANSFORMATION LEVEL</h2>
     <p>Every tier is a state transition that exceed a service purchase. You are installing the infrastructure that allows your market to understand what you built.</p>
   </div>
 
