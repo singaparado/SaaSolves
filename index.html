@@ -1138,129 +1138,224 @@ z-index:2;
 }
 
 
-  /* ═══════════════════════════════════════
-   PERCEPTION ENGINE
-   ═══════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   STRATEGIC PERCEPTION SYSTEM
+   Unified Visual Architecture
+═══════════════════════════════════════════════════════ */
+
+/* ======================================================
+   GLOBAL SECTION FIELD
+====================================================== */
 
 .perception-section {
-
-padding: 12vh 6vw;
-background:
-linear-gradient(
-180deg,
-var(--navy),
-#03101f
-);
-
-position:relative;
-overflow:hidden;
-
+  width: 100%;
+  padding: 12vh 6vw;
+  background: linear-gradient(180deg, var(--navy), #03101f 50%, #061426);
+  position: relative;
+  overflow: hidden;
 }
 
+.perception-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 10%, rgba(200, 164, 93, .10), transparent 35%),
+              radial-gradient(circle at 80% 70%, rgba(58, 109, 148, .10), transparent 35%);
+  pointer-events: none;
+}
 
 .perception-container {
-
-max-width:1200px;
-margin:0 auto;
-
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* ======================================================
+   SECTION RHYTHM
+====================================================== */
 
-
-.perception-header {
-
-max-width:760px;
-margin-bottom:70px;
-
+.system-section {
+  margin-bottom: 120px;
+  position: relative;
 }
 
+.system-section + .system-section::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 110px;
+  background: linear-gradient(90deg, transparent, rgba(200, 164, 93, .35), transparent);
+}
+
+/* ======================================================
+   TYPOGRAPHY
+====================================================== */
 
 .section-label {
-
-font-family:var(--mono);
-font-size:.65rem;
-letter-spacing:.16em;
-text-transform:uppercase;
-color:var(--gold);
-
-display:flex;
-align-items:center;
-gap:12px;
-
-margin-bottom:18px;
-
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
-
 
 .section-label span {
-
-width:25px;
-height:1px;
-background:var(--gold);
-
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
 }
 
-.perception-header h2,
-.positioning-wrapper h2,
-.linguistic-header h2 {
-
-font-family:var(--serif-title);
-font-size:clamp(2rem,4vw,3.2rem);
-font-weight:500;
-color:var(--ivory);
-
-letter-spacing:-.03em;
-
+.system-header {
+  max-width: 820px;
+  margin-bottom: 60px;
 }
 
+.system-header h2 {
+  margin: 0 0 22px;
+  font-family: var(--serif-title);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: var(--ivory);
+}
 
+.system-header p {
+  font-family: var(--serif-body);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--ivory2);
+}
 
-.perception-header p,
-.linguistic-header p {
+/* ======================================================
+   UNIVERSAL CARD DNA
+====================================================== */
 
-font-family:var(--serif-body);
-line-height:1.9;
-font-size:1.05rem;
-color:var(--ivory2); }
+.system-card {
+  position: relative;
+  padding: 38px 32px;
+  min-height: 300px;
+  background: linear-gradient(145deg, rgba(200, 164, 93, .12), rgba(255, 255, 255, .035));
+  border: 1px solid rgba(200, 164, 93, .22);
+  border-radius: 26px;
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
 
-/* CARDS */
-.kinetic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:110px; }
-.perception-card { padding:38px 32px; background: rgba(255,255,255,.035); border: 1px solid rgba(200,164,93,.18); border-radius:24px; transition:.35s ease; }
-.perception-card:hover { transform:translateY(-8px); border-color:var(--gold); background: rgba(200,164,93,.08); box-shadow: 0 0 35px rgba(200,164,93,.15); }
-.card-meta,
-.roman { font-family:var(--mono); color:var(--gold); font-size:.8rem; letter-spacing:.15em; margin-bottom:20px; }
-.perception-card h3,
-.linguistic-card h3,
-.loop-card h4 { font-family:var(--serif-title); color:var(--ivory); font-weight:500; }
+.system-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 25px 70px rgba(200, 164, 93, .18);
+}
 
-.perception-card p,
-.loop-card p,
-.linguistic-card p { font-family:var(--serif-body); line-height:1.85; color:rgba(247,241,227,.78); }
-    
-/* LOOP */
-.positioning-wrapper { margin-bottom:110px; }
-.loop-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-.loop-card { padding:30px; border-left: 1px solid rgba(200,164,93,.35); background: rgba(255,255,255,.025); }
-.loop-card span { font-family:var(--mono); color:var(--gold); }
+.system-card h3,
+.system-card h4 {
+  font-family: var(--serif-title);
+  font-weight: 500;
+  color: var(--ivory);
+}
 
-/* LINGUISTIC */
-.linguistic-header { max-width:850px; margin-bottom:50px; }
-.linguistic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.linguistic-card { padding:35px; border-radius:24px; 
-                  background: linear-gradient( 145deg,
-                  rgba(58,109,148,.16), 
-                  rgba(255,255,255,.03) ); border: 1px solid rgba(58,109,148,.25); transition:.3s ease; }
-.linguistic-card: hover { transform:translateY(-6px); border-color:var(--aegean); }
+.system-card p {
+  font-family: var(--serif-body);
+  line-height: 1.85;
+  color: rgba(247, 241, 227, .78);
+}
 
-/* RESPONSIVE */
+.card-number {
+  font-family: var(--mono);
+  letter-spacing: .2em;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
 
-@media(max-width:900px){
-.kinetic-grid,
-.loop-grid,
-.linguistic-grid { grid-template-columns:1fr; }
-.positioning-wrapper { overflow:hidden; }
-.loop-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; }
-.loop-card { min-width:80vw; scroll-snap-align:start; } }
+/* ======================================================
+   LINGUISTIC REALITY
+====================================================== */
+
+.linguistic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ======================================================
+   TRANSLATION PRINCIPLE
+====================================================== */
+
+.translation-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+
+.translation-track::-webkit-scrollbar {
+  display: none;
+}
+
+.translation-card {
+  min-width: 360px;
+  scroll-snap-align: start;
+}
+
+/* ======================================================
+   PERCEPTION ENGINE
+====================================================== */
+
+.perception-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ======================================================
+   POSITIONING LOOP
+====================================================== */
+
+.loop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.loop-card {
+  min-height: 220px;
+}
+
+/* ======================================================
+   MOBILE SYSTEM
+====================================================== */
+
+@media(max-width: 900px) {
+  .linguistic-grid,
+  .perception-grid,
+  .loop-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 18px;
+  }
+
+  .system-card {
+    min-width: 82vw;
+    scroll-snap-align: start;
+  }
+
+  .translation-card {
+    min-width: 82vw;
+  }
+
+  .system-card:hover {
+    transform: none;
+  }
+}
+
     
     /* --- NARRATIVE HEADER STYLING --- */
     .sandbox-narrative-wrapper { max-width: 800px; border-left: 3px solid var(--gold); padding-left: 24px; }
@@ -3595,300 +3690,11 @@ a, a:visited, a:hover, a:active {
         <div class="narrative-pip" onclick="scrollToCard(3)"></div>
       </div>
     </div>
-
+    
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     THE PERCEPTION ENGINE
-════════════════════════════════════════════════ -->
 
-<section class="perception-section">
-
-  <div class="perception-container">
-
-    <!-- HEADER -->
-    <div class="perception-header" data-aos="fade-up">
-
-      <div class="section-label">
-        <span></span>
-        Strategic Perception Architecture
-      </div>
-
-      <h2>
-        THE PERCEPTION ENGINE
-      </h2>
-
-      <p>
-        A product occupies two realms: the architecture of your build and the mental model of your market. Growth is a direct byproduct of those two realities aligning.
-      </p>
-
-    </div>
-
-
-    <!-- KINETIC TRACK -->
-    <div class="kinetic-grid">
-
-
-      <article class="perception-card"
-      data-aos="fade-up"
-      data-aos-delay="100">
-
-        <div class="card-meta">01</div>
-
-        <h3>
-          Architecting Value
-        </h3>
-
-        <p>
-          Technical features remain static until defined by a narrative. We exert control over how your product is intepreted, transforming abstract capability into a mandatory operational requirement.
-        </p>
-
-      </article>
-
-
-
-      <article class="perception-card"
-      data-aos="fade-up"
-      data-aos-delay="200">
-
-        <div class="card-meta">02</div>
-
-        <h3>
-          Governing Perception
-        </h3>
-
-        <p>
-          Market reality is a variable choice under your command. Through precise positioning, we reframe unresolved friction as a persistent strategic constraint—ensuring your software is recognized as the only bridge to a future state they cannot otherwise reach.
-        </p>
-
-      </article>
-
-
-
-      <article class="perception-card"
-      data-aos="fade-up"
-      data-aos-delay="300">
-
-        <div class="card-meta">03</div>
-
-        <h3>
-          Securing Indispensability
-        </h3>
-
-        <p>
-          Language dictates utility. By embedding your narrative into the buyer's workflow, your software evolves into a foundational system. Returning to old methods becomes a clear choice to remain stagnant.
-        </p>
-
-      </article>
-
-
-    </div>
-
-
-
-    <!-- POSITIONING LOOP -->
-
-    <div class="positioning-wrapper"
-    data-aos="fade-up">
-
-
-      <div class="section-label">
-        <span></span>
-        Strategic Logic
-      </div>
-
-
-      <h2>
-        THE POSITIONING LOOP
-      </h2>
-
-
-
-      <div class="loop-grid">
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="100">
-
-          <span>01</span>
-
-          <h4>
-            Recognition
-          </h4>
-
-          <p>
-            The buyer identifies their operational friction through a narrative meticulously calibrated to their specific reality.
-          </p>
-
-        </div>
-
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="200">
-
-          <span>02</span>
-
-          <h4>
-            Reframing
-          </h4>
-
-          <p>
-            We elevate that friction from minor inconvenience into a strategic bottleneck, shifting the buyer’s urgency from passive interest to absolute requirement.
-          </p>
-
-        </div>
-
-
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="300">
-
-          <span>03</span>
-
-          <h4>
-            Resolution
-          </h4>
-
-          <p>
-            Your software is established as the primary environment where that bottleneck is permanently dissolved.
-          </p>
-
-        </div>
-
-
-
-        <div class="loop-card"
-        data-aos="fade-up"
-        data-aos-delay="400">
-
-          <span>04</span>
-
-          <h4>
-            Integration
-          </h4>
-
-          <p>
-            Because your product is now the defined standard for their operational success, it becomes the permanent, inseparable anchor of their daily performance.
-          </p>
-
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-
-
-
-
-    <!-- LINGUISTIC REALITY -->
-
-    <div class="linguistic-block"
-    data-aos="fade-up">
-
-
-      <div class="linguistic-header">
-
-        <div class="section-label">
-          <span></span>
-          Language Systems
-        </div>
-
-
-        <h2>
-          THE LINGUISTIC REALITY
-        </h2>
-
-
-        <p>
-          Language governs the mental model through which software is evaluated, trusted, and adopted. The narrative surrounding your product determines how the market interprets its value, urgency, and role within the customer’s operational reality.
-        </p>
-
-      </div>
-
-
-
-
-      <div class="linguistic-grid">
-
-
-        <article class="linguistic-card"
-        data-aos="fade-up"
-        data-aos-delay="100">
-
-          <div class="roman">
-            I
-          </div>
-
-          <h3>
-            CONSTRUCTING THE MENTAL MODEL
-          </h3>
-
-          <p>
-            Every product is interpreted before it is adopted. We engineer the language layer that frames your customer’s problems, priorities, and expectations, ensuring your software is understood through the outcomes it creates.
-          </p>
-
-        </article>
-
-
-        <article class="linguistic-card"
-        data-aos="fade-up"
-        data-aos-delay="200">
-
-          <div class="roman">
-            II
-          </div>
-
-          <h3>
-            SHAPING MARKET PERCEPTION
-          </h3>
-
-          <p>
-            Markets move toward clarity. We align your product narrative with the customer’s existing friction and desired future state, transforming technical complexity into a position of relevance, confidence, and strategic importance.
-          </p>
-
-        </article>
-
-
-
-
-        <article class="linguistic-card"
-        data-aos="fade-up"
-        data-aos-delay="300">
-
-          <div class="roman">
-            III
-          </div>
-
-          <h3>
-            SOLIDIFYING OPERATIONAL RELEVANCE
-          </h3>
-
-          <p>
-            Adoption becomes durable when value is connected to recurring needs. We build narratives that anchor your software into the customer’s workflow, positioning your platform as an essential environment for ongoing performance.
-          </p>
-
-        </article>
-
-
-      </div>
-
-
-    </div>
-
-
-  </div>
-
-</section>
-  
   <!-- ── AI DISTINCTION — between bridge section and sandbox ── -->
 <section 
   data-aos="fade-up"
@@ -4263,92 +4069,154 @@ a, a:visited, a:hover, a:active {
   </div>
 </section>
 
+<div style="height: 60px;"></div>
 
-<section 
-  data-aos="fade-up"
-  data-aos-duration="900"
-  style="max-width: 1200px; margin: 40px auto; padding: 0 6vw;">
-  <h3 
-    data-aos="fade-right"
-    data-aos-delay="200"
-    style="color: var(--gold); font-family: var(--mono); margin-bottom: 20px;">
-    OUR TRANSLATION PRINCIPLE 
-  </h3>
+<section class="perception-section">
+  <div class="perception-container">
+    
+    <section class="system-section" data-aos="fade-up">
+      <div class="system-header">
+        <div class="section-label">
+          <span></span>
+          Language Systems
+        </div>
+        <h2>THE LINGUISTIC REALITY</h2>
+        <p>
+          Language governs the mental model through which software is evaluated, trusted, and adopted. The narrative surrounding your product dictates the market’s interpretation of its urgency and its role within the customer’s operational reality.
+        </p>
+      </div>
 
-<!-- ARCHITECTURE CARDS: Infinite swipe carousel with bounce -->
-<div style="position: relative; margin-top: 32px;" id="arch-carousel-wrap">
+      <div class="linguistic-grid">
+        <div class="system-card">
+          <div class="card-number">I</div>
+          <h3>CONSTRUCTING THE MENTAL MODEL</h3>
+          <p>
+            Every product is interpreted before it is evaluated. We engineer the language layer that frames customer problems and expectations, ensuring your software is understood only through the outcomes it creates.
+          </p>
+        </div>
 
-  <div id="arch-track" style="
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    gap: 16px;
-    padding-bottom: 20px;
-    cursor: grab;
-  ">
+        <div class="system-card">
+          <div class="card-number">II</div>
+          <h3>SHAPING MARKET PERCEPTION</h3>
+          <p>
+            Markets move toward clarity. We align your product narrative with existing friction and desired future states, transforming technical complexity into a position of strategic confidence.
+          </p>
+        </div>
 
-    <!-- CARD 1 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(200,164,93,0.09), rgba(7,27,51,0.7));
-      border: 1px solid rgba(200,164,93,0.2);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">01 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: var(--gold-light); margin-bottom: 14px; font-style: italic;">Tangibility</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We anchor every narrative in the user’s priorities and immediate needs, transforming software capabilities into tangible outcomes and measurable value aligned with real-world objectives.</p>
-    </div>
+        <div class="system-card">
+          <div class="card-number">III</div>
+          <h3>SOLIDIFYING OPERATIONAL RELEVANCE</h3>
+          <p>
+            Adoption becomes durable only when value connects to recurring needs. We anchor your software into the customer’s workflow as the essential environment for ongoing performance.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <!-- CARD 2 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(65,107,154,0.12), rgba(7,27,51,0.7));
-      border: 1px solid rgba(65,107,154,0.22);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--aegean-light); margin-bottom: 16px;">02 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: var(--aegean-light); margin-bottom: 14px; font-style: italic;">Intuitiveness</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We translate technical complexity into intuitive experiences through human-centered understanding, replacing machine-led language with narratives that reduce friction and accelerate natural adoption.</p>
-    </div>
+    <section class="system-section" data-aos="fade-up">
+      <div class="system-header">
+        <div class="section-label">
+          <span></span>
+          OUR TRANSLATION PRINCIPLE
+        </div>
+        <p>
+          We translate product complexity into market clarity by aligning technical capability with the language customers use to recognize value and urgency.
+        </p>
+      </div>
 
-    <!-- CARD 3 -->
-    <div class="arch-card" style="
-      min-width: 78vw; max-width: 78vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, rgba(72,199,142,0.08), rgba(7,27,51,0.7));
-      border: 1px solid rgba(72,199,142,0.16);
-      border-radius: 20px;
-      padding: 36px 30px;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    ">
-      <div style="font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: #5CC49A; margin-bottom: 16px;">03 / 03</div>
-      <h4 style="font-family: var(--serif-title); font-size: 1.3rem; color: #5CC49A; margin-bottom: 14px; font-style: italic;">Sustainability</h4>
-      <p style="font-family: var(--serif-body); font-size: 0.95rem; line-height: 1.85; color: var(--ivory2);">We position software as a dynamic environment for sustained operations, evolving products from one-time solutions into essential systems within customers’ ongoing workflows.</p>
-    </div>
+      <div class="translation-track">
+        <div class="system-card translation-card">
+          <div class="card-number">01 / 03</div>
+          <h4>Tangibility</h4>
+          <p>We anchor narratives in immediate priorities, converting technical features into measurable, real-world outcomes.</p>
+        </div>
+
+        <div class="system-card translation-card">
+          <div class="card-number">02 / 03</div>
+          <h4>Intuitiveness</h4>
+          <p>We replace machine-led jargon with the rhythm of natural thought, reducing friction and accelerating adoption.</p>
+        </div>
+
+        <div class="system-card translation-card">
+          <div class="card-number">03 / 03</div>
+          <h4>Sustainability</h4>
+          <p>We evolve software from a one-time utility into a dynamic environment essential to ongoing operations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="system-section" data-aos="fade-up">
+      <div class="system-header">
+        <div class="section-label">
+          <span></span>
+          THE GROWTH MECHANICS
+        </div>
+        <h2>THE PERCEPTION ENGINE</h2>
+        <p>
+          A product occupies two realms: the architecture of your build and the mental model of your market. Growth emerges when these two realities align.
+        </p>
+      </div>
+
+      <div class="perception-grid">
+        <div class="system-card">
+          <div class="card-number">01</div>
+          <h3>Architecting Value</h3>
+          <p>Technical specs remain static until defined by a narrative. We transform abstract capability into a mandatory requirement for operational success.</p>
+        </div>
+
+        <div class="system-card">
+          <div class="card-number">02</div>
+          <h3>Governing Perception</h3>
+          <p>Market reality is a choice. We command your positioning variables, reshaping how customers define their problems so your software becomes the only viable bridge forward.</p>
+        </div>
+
+        <div class="system-card">
+          <div class="card-number">03</div>
+          <h3>Securing Indispensability</h3>
+          <p>We embed your narrative into the buyer’s mental model. Reverting to old methods is perceived as a choice to remain stagnant.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="system-section positioning-wrapper" data-aos="fade-up">
+      <div class="system-header">
+        <div class="section-label">
+          <span></span>
+          THE CONVERSION SEQUENCE
+        </div>
+        <h2>THE POSITIONING LOOP</h2>
+      </div>
+
+      <div class="loop-grid">
+        <div class="system-card loop-card">
+          <div class="card-number">01</div>
+          <h4>Recognition</h4>
+          <p>The buyer identifies operational friction through a narrative meticulously calibrated to their exact reality.</p>
+        </div>
+
+        <div class="system-card loop-card">
+          <div class="card-number">02</div>
+          <h4>Reframing</h4>
+          <p>We elevate friction into a strategic bottleneck, forcing a shift from passive interest to absolute urgency.</p>
+        </div>
+
+        <div class="system-card loop-card">
+          <div class="card-number">03</div>
+          <h4>Resolution</h4>
+          <p>Your software becomes the primary environment where the bottleneck is permanently dissolved.</p>
+        </div>
+
+        <div class="system-card loop-card">
+          <div class="card-number">04</div>
+          <h4>Integration</h4>
+          <p>Your product becomes the inseparable anchor of the customer’s daily performance.</p>
+        </div>
+      </div>
+    </section>
 
   </div>
-
-  <!-- Pip indicators -->
-  <div style="display: flex; gap: 6px; margin-top: 8px;" id="arch-pips">
-    <div class="narrative-pip active" onclick="scrollToArchCard(0)"></div>
-    <div class="narrative-pip" onclick="scrollToArchCard(1)"></div>
-    <div class="narrative-pip" onclick="scrollToArchCard(2)"></div>
-  </div>
-
-</div>
 </section>
+
   
 <!-- ══ WHY IT MATTERS: THE COMPLEXITY TAX ══════════ -->
 <section id="work" style="padding: 10vh 6vw; background: var(--navy); border-top: var(--border);">
