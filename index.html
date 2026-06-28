@@ -3304,7 +3304,7 @@ a, a:visited, a:hover, a:active {
       0%   { transform: translate(0, 0); opacity: 0.8; }
       100% { transform: translate(-3vw, 6vh); opacity: 1; }
     }
-    
+
     /* ── Narrative Carousel (Walrus-style) ──────────── */
 
     /* TRACK — the scrollable container */
@@ -3537,6 +3537,177 @@ a, a:visited, a:hover, a:active {
       .od-roman { min-width: 24px; font-size: 1.05rem; }
       .od-body-inner { padding: 0 20px 26px 20px; }
       .od-body-inner p { padding-left: 14px; }
+    }
+
+    /* ══════════════════════════════════════════════════════
+       FAQ — Two-column desktop, single accordion on mobile
+       ══════════════════════════════════════════════════════ */
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 48px;
+      align-items: start;
+    }
+
+    .faq-item {
+      position: relative;
+      border-bottom: 1px solid rgba(200,164,93,0.15);
+      padding-bottom: 0;
+      transition: border-color 0.3s ease;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    /* On desktop 2-col, left column items are even, right are odd */
+    @media (min-width: 900px) {
+      /* Remove bottom border on items that are "last" in their column */
+      .faq-item:nth-last-child(-n+2) {
+        border-bottom: none;
+      }
+    }
+
+    .faq-item.faq-open {
+      border-color: rgba(200,164,93,0.30);
+    }
+
+    /* Gold left accent on open */
+    .faq-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(200,164,93,0.50), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .faq-item.faq-open::before {
+      opacity: 1;
+    }
+
+    .faq-trigger {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 28px 0 28px 16px;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-q-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .faq-num {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(200,164,93,0.45);
+      text-transform: uppercase;
+      min-width: 24px;
+      padding-top: 3px;
+      flex-shrink: 0;
+      transition: color 0.3s ease;
+    }
+    .faq-item.faq-open .faq-num {
+      color: var(--gold);
+    }
+
+    .faq-question {
+      font-family: var(--serif-title);
+      font-size: clamp(0.95rem, 1.8vw, 1.12rem);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--ivory);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      transition: color 0.3s ease;
+    }
+    .faq-item.faq-open .faq-question {
+      color: var(--gold-light);
+    }
+
+    .faq-icon {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: rgba(200,164,93,0.55);
+      flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), color 0.3s ease;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .faq-item.faq-open .faq-icon {
+      transform: rotate(45deg);
+      color: var(--gold);
+    }
+
+    .faq-answer-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-item.faq-open .faq-answer-wrap {
+      max-height: 900px;
+    }
+
+    .faq-answer {
+      padding: 0 0 32px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-answer p {
+      font-family: var(--serif-body);
+      font-size: 0.96rem;
+      line-height: 1.9;
+      color: rgba(247,241,227,0.76);
+      margin: 0;
+    }
+
+    .faq-answer p strong {
+      color: var(--ivory);
+      font-weight: 600;
+    }
+
+    /* First paragraph in each answer is slightly larger — reads as the thesis line */
+    .faq-answer p:first-child {
+      font-size: 1.0rem;
+      color: rgba(247,241,227,0.88);
+      font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .faq-item:last-child {
+        border-bottom: 1px solid rgba(200,164,93,0.15);
+      }
+      .faq-item:nth-last-child(-n+2) {
+        border-bottom: 1px solid rgba(200,164,93,0.15);
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .faq-trigger { padding: 22px 0 22px 12px; }
+      .faq-answer { padding: 0 0 24px 28px; }
+      .faq-num { min-width: 20px; }
     }
     @media (min-width: 900px) {
       .narrative-card {
@@ -3774,7 +3945,6 @@ a, a:visited, a:hover, a:active {
     #arch-pips { display: none; }
   }
 
-    
 /* ─────────────────────────────────────────────────────────────
    LANDKNOT FINAL LAYOUT FIX
    Mobile: untouched stack
@@ -5241,6 +5411,196 @@ a, a:visited, a:hover, a:active {
 
   </div>
 </section>
+
+<!-- ══════════════ FREQUENTLY ASKED ══════════════ -->
+<section id="faq" style="
+  padding: 10vh 6vw;
+  background: linear-gradient(180deg, var(--navy) 0%, #040e1c 100%);
+  border-top: var(--border);
+  position: relative;
+  overflow: hidden;
+">
+
+  <!-- Ambient field -->
+  <div aria-hidden="true" style="
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 35% at 100% 20%, rgba(200,164,93,0.055), transparent 55%),
+      radial-gradient(ellipse 45% 30% at 0% 75%, rgba(58,109,148,0.065), transparent 50%);
+  "></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+
+    <!-- Section header -->
+    <div data-aos="fade-up" style="margin-bottom: 64px;">
+      <div style="
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      ">
+        <span style="display:inline-block;width:32px;height:1px;background:var(--gold);flex-shrink:0;"></span>
+        Frequently Asked
+        <span style="display:inline-block;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg);flex-shrink:0;"></span>
+      </div>
+      <h2 style="
+        font-family: var(--serif-title);
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 500;
+        color: var(--ivory);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        margin: 0 0 18px;
+        max-width: 680px;
+      ">Questions founders ask<br><em style="color:var(--gold-light);font-style:italic;">before they commission.</em></h2>
+      <p style="
+        font-family: var(--serif-body);
+        font-size: 1.0rem;
+        line-height: 1.85;
+        color: var(--ivory2);
+        max-width: 520px;
+        margin: 0;
+      ">Answered with the same precision we bring to every engagement.</p>
+    </div>
+
+    <!-- Two-column FAQ layout -->
+    <div class="faq-grid">
+
+      <!-- Q1 -->
+      <div class="faq-item faq-open" id="faq-0" data-aos="fade-up" data-aos-delay="60">
+        <button class="faq-trigger" onclick="toggleFAQ(0)">
+          <div class="faq-q-wrap">
+            <span class="faq-num">01</span>
+            <span class="faq-question">What do I actually receive at the end of an engagement?</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            <p>Every tier produces a specific, documented artifact — not a deck of observations or a strategy mood board.</p>
+            <p><strong>SaaScan</strong> delivers a written Narrative Audit: a structured diagnosis of where your current messaging breaks down, which cognitive pathways it fails to activate, and the precise language patterns that are creating friction at first contact. <strong>SaaSketch</strong> delivers a complete Narrative Blueprint — a homepage copy system, positioning statement, value architecture, and buyer-language map. <strong>SaaStories</strong> delivers the full Narrative Imprint: copy across every touchpoint, from homepage through sales collateral and outbound sequences. <strong>SaaScription</strong> is an ongoing retainer that keeps your narrative infrastructure calibrated as your product and market evolve.</p>
+            <p>In every case, you receive a deployable document, not a presentation about a document.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="faq-item" id="faq-1" data-aos="fade-up" data-aos-delay="80">
+        <button class="faq-trigger" onclick="toggleFAQ(1)">
+          <div class="faq-q-wrap">
+            <span class="faq-num">02</span>
+            <span class="faq-question">Is this fully async? Do I need to be on calls?</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            <p>Yes, entirely. Every engagement is designed to be completed without a single synchronous call.</p>
+            <p>You complete a structured intake document — a diagnostic instrument rather than a standard brief — that surfaces the information most founders cannot articulate in a live conversation anyway. From there, all communication happens asynchronously through a shared document environment. This is a deliberate design choice: the written exchange produces more precise, considered responses than a call, and creates a written record that becomes part of your deliverable.</p>
+            <p>If you want a call, that can be arranged — but it is never required and rarely more useful than the written process.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="faq-item" id="faq-2" data-aos="fade-up" data-aos-delay="100">
+        <button class="faq-trigger" onclick="toggleFAQ(2)">
+          <div class="faq-q-wrap">
+            <span class="faq-num">03</span>
+            <span class="faq-question">Our product is still changing. Is it too early for this work?</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            <p>The inverse is more likely true: early-stage is precisely when narrative infrastructure matters most.</p>
+            <p>Before product-market fit is confirmed, your messaging is doing active market research. The way your current homepage frames the problem determines which customers self-select, how they evaluate urgency, and whether they see your product as a nice-to-have or an operational requirement. Getting that framing wrong compounds — each cycle of outreach, funding conversation, and early-user onboarding runs through a broken language layer.</p>
+            <p>The SaaScan audit is specifically designed for products in motion. It does not require a finished product. It requires a product with a hypothesis about who suffers without it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="faq-item" id="faq-3" data-aos="fade-up" data-aos-delay="120">
+        <button class="faq-trigger" onclick="toggleFAQ(3)">
+          <div class="faq-q-wrap">
+            <span class="faq-num">04</span>
+            <span class="faq-question">We already use AI tools for copy. What does SaaSolves do that they can't?</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            <p>Large Language Models optimize for probability. They generate the most statistically likely next word given a context — which produces fluent, structurally competent text that carries no diagnostic intelligence about your market.</p>
+            <p>AI cannot map the uncodified authority hierarchies in your buyer's organization that decide procurement before the RFP stage. It cannot identify the symbolic subcultures that determine whether your message lands as authoritative or alienating. It cannot locate the systemic relational friction points where trust erodes between product and audience — because those things require forensic analysis of a specific market, not pattern-matching across training data.</p>
+            <p>We use AI as a production layer after the diagnostic work is complete. The intellectual infrastructure — the market mapping, the positioning architecture, the buyer psychology diagnosis — cannot be generated. It is engineered.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="faq-item" id="faq-4" data-aos="fade-up" data-aos-delay="140">
+        <button class="faq-trigger" onclick="toggleFAQ(4)">
+          <div class="faq-q-wrap">
+            <span class="faq-num">05</span>
+            <span class="faq-question">How do you learn enough about my product to write accurately about it?</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            <p>The intake process is a diagnostic instrument. It is not a standard creative brief.</p>
+            <p>Before any writing begins, we run the RAFU process — Recording and Analyzing Fundamental Unwritten Systems — which maps the invisible organizational structures, uncodified authority hierarchies, and symbolic economies that govern how your specific market evaluates and adopts new software. This is primary research conducted through structured analysis of your product, your category, your competitors' language patterns, and the documented behavior of your target buyer's decision environment.</p>
+            <p>The result is that the copy we produce is not a restatement of your existing messaging. It is built from a structural understanding of what your buyer needs to hear, and why.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="faq-item" id="faq-5" data-aos="fade-up" data-aos-delay="160">
+        <button class="faq-trigger" onclick="toggleFAQ(5)">
+          <div class="faq-q-wrap">
+            <span class="faq-num">06</span>
+            <span class="faq-question">Where should I start — SaaScan or SaaSketch?</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            <p>Start with SaaScan if you have any uncertainty about where your current messaging is failing. The audit identifies the specific points of collapse before any rewriting begins — which means the Blueprint that follows, if you choose to continue, is built on a confirmed diagnostic rather than a hypothesis.</p>
+            <p>Start with SaaSketch directly if you already have clear evidence of where your narrative is breaking down — from user interviews, sales call recordings, or direct feedback — and what you need is the replacement architecture.</p>
+            <p>The SaaScan + SaaSketch early-bird bundle ($3,500 total) makes the sequenced approach accessible and removes the decision entirely. The audit fee is credited toward the Blueprint if you commission both.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="faq-item" id="faq-6" data-aos="fade-up" data-aos-delay="180">
+        <button class="faq-trigger" onclick="toggleFAQ(6)">
+          <div class="faq-q-wrap">
+            <span class="faq-num">07</span>
+            <span class="faq-question">What if I'm not satisfied with what you produce?</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer-wrap">
+          <div class="faq-answer">
+            <p>Every engagement includes a defined revision cycle — not an open-ended feedback loop, but a structured round of targeted revisions based on your specific objections after receiving the deliverable.</p>
+            <p>Satisfaction concerns almost always trace back to one of two sources: a mismatch between what you expected and what was scoped, or a gap in the intake information that led the work in a direction that felt off-register. Both are resolvable. The former is addressed in the scoping conversation before payment. The latter is addressed in revision.</p>
+            <p>What we do not offer is a refund after completed work. What we do offer is accountability for the quality of the diagnostic and the craft of the output — and a track record of work that can be evaluated before you commission.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
   
 <!-- ══════════════ EXECUTION TIERS ══════════════ -->
 <section class="services" id="services">
@@ -6285,8 +6645,18 @@ atmosphere.style.transform =
       }
     });
   };
-  
-  // 2. SAMPLE COPIES
+
+  // ── FAQ accordion ────────────────────────────────────────
+  window.toggleFAQ = function(index) {
+    var items = document.querySelectorAll('.faq-item');
+    items.forEach(function(item, i) {
+      if (i === index) {
+        item.classList.toggle('faq-open');
+      } else {
+        item.classList.remove('faq-open');
+      }
+    });
+  };
   const goldenCopies = [
     "Our multi-tenant spatial API architecture enables synchronized multi-layered geolocation cross-referencing parameters.",
     "A decentralized node-based client environment built to optimize personalized document productivity indexes."
