@@ -3304,7 +3304,7 @@ a, a:visited, a:hover, a:active {
       0%   { transform: translate(0, 0); opacity: 0.8; }
       100% { transform: translate(-3vw, 6vh); opacity: 1; }
     }
-
+    
     /* ── Narrative Carousel (Walrus-style) ──────────── */
 
     /* TRACK — the scrollable container */
@@ -3399,7 +3399,145 @@ a, a:visited, a:hover, a:active {
       border-radius: 4px;
     }
 
-    /* DESKTOP: show 2 cards at once, wider */
+    /* ── Card symbol + number identity ─────────────────── */
+    .nc-symbol {
+      font-size: 1.6rem;
+      color: rgba(200,164,93,0.35);
+      line-height: 1;
+      margin-bottom: 8px;
+      font-family: var(--mono);
+      transition: color 0.25s ease;
+    }
+    .narrative-card:hover .nc-symbol { color: rgba(200,164,93,0.70); }
+    .nc-num {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,164,93,0.45);
+      margin-bottom: 16px;
+    }
+    .narrative-card.nc-bridge {
+      border-left: 3px solid rgba(200,164,93,0.55);
+      background: rgba(200,164,93,0.07);
+    }
+    .narrative-card.nc-bridge .nc-symbol { color: rgba(200,164,93,0.65); }
+
+    /* ── OUR DISTINCTION Accordion ─────────────────────── */
+    .od-accordion {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(200,164,93,0.22);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .od-item {
+      position: relative;
+      border-bottom: 1px solid rgba(200,164,93,0.14);
+      background: rgba(7,27,51,0.35);
+      transition: background 0.3s ease;
+    }
+    .od-item:last-child { border-bottom: none; }
+    .od-item.od-open { background: rgba(200,164,93,0.05); }
+    .od-item::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, transparent, rgba(200,164,93,0.45), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .od-item.od-open::before { opacity: 1; }
+    .od-trigger {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 32px 36px;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+    .od-trigger-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      flex: 1;
+    }
+    .od-roman {
+      font-family: var(--serif-title);
+      font-size: 1.3rem;
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(200,164,93,0.40);
+      min-width: 32px;
+      line-height: 1.2;
+      flex-shrink: 0;
+      transition: color 0.3s ease;
+    }
+    .od-item.od-open .od-roman { color: var(--gold); }
+    .od-head-wrap { display: flex; flex-direction: column; gap: 7px; }
+    .od-archetype-label {
+      font-family: var(--serif-title);
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--ivory);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      transition: color 0.3s ease;
+    }
+    .od-item.od-open .od-archetype-label { color: var(--gold-light); }
+    .od-thesis {
+      font-family: var(--serif-body);
+      font-size: 0.92rem;
+      color: rgba(247,241,227,0.52);
+      line-height: 1.5;
+      font-style: italic;
+      transition: color 0.3s ease;
+    }
+    .od-item.od-open .od-thesis { color: rgba(247,241,227,0.72); }
+    .od-chevron {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      margin-top: 2px;
+      line-height: 1;
+    }
+    .od-item.od-open .od-chevron { transform: rotate(45deg); }
+    .od-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .od-item.od-open .od-body { max-height: 600px; }
+    .od-body-inner {
+      padding: 0 36px 36px 92px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .od-body-inner p {
+      font-family: var(--serif-body);
+      font-size: 1.0rem;
+      line-height: 1.92;
+      color: rgba(247,241,227,0.82);
+      margin: 0;
+      border-left: 2px solid rgba(200,164,93,0.28);
+      padding-left: 20px;
+    }
+    @media (max-width: 600px) {
+      .od-trigger { padding: 22px 20px; }
+      .od-trigger-left { gap: 14px; }
+      .od-roman { min-width: 24px; font-size: 1.05rem; }
+      .od-body-inner { padding: 0 20px 26px 20px; }
+      .od-body-inner p { padding-left: 14px; }
+    }
     @media (min-width: 900px) {
       .narrative-card {
         min-width: 44%;
@@ -3636,6 +3774,7 @@ a, a:visited, a:hover, a:active {
     #arch-pips { display: none; }
   }
 
+    
 /* ─────────────────────────────────────────────────────────────
    LANDKNOT FINAL LAYOUT FIX
    Mobile: untouched stack
@@ -4096,63 +4235,75 @@ a, a:visited, a:hover, a:active {
   <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
 
     <!-- Header -->
-    <div data-aos="fade-up" style="margin-bottom: 40px;">
+    <div data-aos="fade-up" style="margin-bottom: 48px;">
       <div style="
         font-family: var(--mono);
-        font-size: 0.65rem;
-        letter-spacing: 0.16em;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--gold);
-        margin-bottom: 14px;
+        margin-bottom: 16px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
       ">
-        <span style="display:inline-block;width:20px;height:1px;background:var(--gold-dim);"></span>
+        <span style="display:inline-block;width:32px;height:1px;background:var(--gold);flex-shrink:0;"></span>
         The Invisible Failure
+        <span style="display:inline-block;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg);flex-shrink:0;"></span>
       </div>
       <h2 style="
-        font-family: 'Newsreader', serif;
+        font-family: var(--serif-title);
         font-size: clamp(1.8rem, 3.5vw, 2.8rem);
         font-weight: 500;
         color: var(--ivory);
         line-height: 1.1;
         letter-spacing: -0.02em;
-      ">Why Great Products Become Invisible.</h2>
+        margin: 0;
+      ">Why Great Products <em style="font-style:italic;color:var(--gold-light);">Become Invisible.</em></h2>
     </div>
 
-    <!-- Walrus-style card carousel -->
+    <!-- Infinite loop carousel -->
     <div class="narrative-carousel-wrap">
       <div class="narrative-carousel-track" id="narrative-track">
 
         <!-- CARD 1 -->
-        <div class="narrative-card" data-aos="fade-up" data-aos-delay="60">
+        <div class="narrative-card">
+          <div class="nc-symbol">⊘</div>
+          <div class="nc-num">01 / 05</div>
           <h4>The Broken Line</h4>
           <p>Your team sees a complete system, but your customer sees fragments. The gap between product reality and customer perception is where great products become invisible.</p>
         </div>
-        
+
         <!-- CARD 2 -->
-        <div class="narrative-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="narrative-card">
+          <div class="nc-symbol">◎</div>
+          <div class="nc-num">02 / 05</div>
           <h4>The Intelligence Trap</h4>
-          <p>The more advanced your product becomes, the easier communication gets trapped inside the builder’s worldview. Technical accuracy rises only to suffocate human recognition that drives a purchase.</p>
+          <p>The more advanced your product becomes, the easier communication gets trapped inside the builder's worldview. Technical accuracy rises only to suffocate the human recognition that drives a purchase.</p>
         </div>
 
         <!-- CARD 3 -->
-        <div class="narrative-card" data-aos="fade-up" data-aos-delay="180">
+        <div class="narrative-card">
+          <div class="nc-symbol">◈</div>
+          <div class="nc-num">03 / 05</div>
           <h4>The Stagnation Cost</h4>
-          <p>Your product addresses an expensive problem, but your market has not yet internalized the cost of remaining unchanged. When the consequences of inaction remain undefined, the problem loses its weight and the solution becomes easier to postpone.</p>
+          <p>Your product addresses an expensive problem, but your market has not yet internalized the cost of remaining unchanged. When the consequences of inaction remain undefined, the solution becomes easier to postpone.</p>
         </div>
 
-           <!-- CARD 4-->
-        <div class="narrative-card" data-aos="fade-up" data-aos-delay="180">
+        <!-- CARD 4 -->
+        <div class="narrative-card">
+          <div class="nc-symbol">△</div>
+          <div class="nc-num">04 / 05</div>
           <h4>The Urgency Trap</h4>
           <p>Even when the need exists, unclear urgency prevents the right solution from becoming the immediate choice. We crystallize the cost of delay, transforming your software from an option into an operational necessity.</p>
         </div>
-        
+
         <!-- CARD 5 -->
-        <div class="narrative-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="narrative-card nc-bridge">
+          <div class="nc-symbol">✦</div>
+          <div class="nc-num">05 / 05</div>
           <h4>The Narrative Bridge</h4>
-          <p>SaaSolves eliminates the distance between what you built and what buyers recognize. We translate cold architecture into a resonant, human rhythm that intercepts the buyer’s psychological state.</p>
+          <p>SaaSolves eliminates the distance between what you built and what buyers recognize. We translate cold architecture into a resonant, human rhythm that intercepts the buyer's psychological state.</p>
         </div>
 
       </div>
@@ -4163,149 +4314,164 @@ a, a:visited, a:hover, a:active {
         <div class="narrative-pip" onclick="scrollToCard(1)"></div>
         <div class="narrative-pip" onclick="scrollToCard(2)"></div>
         <div class="narrative-pip" onclick="scrollToCard(3)"></div>
+        <div class="narrative-pip" onclick="scrollToCard(4)"></div>
       </div>
     </div>
+
     
   </div>
 </section>
 
 
-  <!-- ── AI DISTINCTION — between bridge section and sandbox ── -->
-<section 
-  data-aos="fade-up"
-  data-aos-duration="1000"
-  style="
-    padding: 8vh 6vw;
-    background: var(--void);
-    border-bottom: var(--border);
-    position: relative;
-    overflow: hidden;
-  ">
+  <!-- ── OUR DISTINCTION ── -->
+<section id="distinction" style="
+  padding: 10vh 6vw;
+  background: var(--void);
+  border-bottom: var(--border);
+  position: relative;
+  overflow: hidden;
+">
 
+  <!-- Ambient field lines -->
+  <div aria-hidden="true" style="
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 8% 50%, rgba(200,164,93,0.06), transparent 55%),
+      radial-gradient(ellipse 50% 45% at 92% 50%, rgba(58,109,148,0.07), transparent 55%),
+      radial-gradient(ellipse 40% 30% at 50% 0%, rgba(100,50,160,0.05), transparent 50%);
+  "></div>
 
-  <!-- ambient signal -->
-  <div 
-    data-aos="fade-right"
-    data-aos-delay="200"
-    style="
-      position:absolute;
-      top:50%;
-      left:-20%;
-      width:60%;
-      height:1px;
-      background:linear-gradient(90deg, transparent, var(--aegean-light), transparent);
-      opacity:0.35;
+  <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
+
+    <!-- Section eyebrow -->
+    <div style="
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     ">
-  </div>
-
-
-  <div 
-    style="
-      max-width:700px;
-      margin:0 auto;
-      position:relative;
-    ">
-
-
-    <div 
-      data-aos="zoom-in"
-      data-aos-duration="900"
-      data-aos-delay="150"
-      style="
-        padding:34px 32px;
-        border:1.5px solid var(--aegean);
-        border-left:5px solid var(--aegean-light);
-        background:
-          linear-gradient(
-            145deg,
-            rgba(48,91,124,0.16),
-            rgba(8,16,28,0.45)
-          );
-        box-shadow:
-          0 20px 50px rgba(0,0,0,0.25),
-          inset 0 0 40px rgba(58,109,148,0.08);
-        position:relative;
-      ">
-
-
-      <!-- active marker -->
-      <div
-        data-aos="pulse"
-        data-aos-delay="800"
-        style="
-          position:absolute;
-          top:18px;
-          right:18px;
-          width:8px;
-          height:8px;
-          border-radius:50%;
-          background:var(--aegean-light);
-          box-shadow:0 0 18px var(--aegean-light);
-        ">
-      </div>
-
-      <div 
-        data-aos="fade-right"
-        data-aos-delay="300"
-        style="
-          font-family:var(--mono);
-          font-size:0.58rem;
-          letter-spacing:0.18em;
-          text-transform:uppercase;
-          color:var(--aegean-light);
-          margin-bottom:18px;
-          display:flex;
-          align-items:center;
-          gap:10px;
-        ">
-
-
-        <span 
-          style="
-            display:inline-block;
-            width:28px;
-            height:1px;
-            background:var(--aegean-light);
-          ">
-        </span>
-
-        // The Distinction
-      </div>
-
-<p
-  data-aos="fade-up"
-  data-aos-delay="450"
-  style="
-    font-family: var(--serif-body);
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: var(--ivory);
-    margin: 0;
-    font-style: italic;
-  ">
-  AI can generate words.<br><br>
-  <span style="color: var(--gold-light);">It cannot understand why customers trust, hesitate, or disconnect.</span><br><br>
-  SaaSolves rebuilds the communication system behind your product.
-</p>
-
-<div
-  data-aos="fade-left"
-  data-aos-delay="700"
-  style="
-    margin-top:26px;
-    padding-top:18px;
-    border-top:1px solid rgba(58,109,148,0.35);
-    font-family:var(--mono);
-    font-size:0.65rem;
-    letter-spacing:0.12em;
-    color:var(--aegean-light);
-    text-transform:uppercase;
-  ">
-
-      </div>
+      <span style="display:inline-block;width:32px;height:1px;background:var(--gold);flex-shrink:0;"></span>
+      Our Distinction
+      <span style="display:inline-block;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg);flex-shrink:0;"></span>
     </div>
+
+    <!-- Opening thesis — always visible -->
+    <div data-aos="fade-up" style="margin-bottom: 52px;">
+      <p style="
+        font-family: var(--serif-body);
+        font-size: clamp(1.08rem, 2.2vw, 1.3rem);
+        line-height: 1.88;
+        color: var(--ivory);
+        margin: 0 0 20px;
+      ">
+        The market is currently saturated with generated syntax that mimics communication without understanding the mechanics of belief. <span style="color:var(--gold-light);font-style:italic;">Large Language Models optimize for probability</span>, producing a vacuum where trust, hesitation, and disconnection go entirely unaddressed.
+      </p>
+      <p style="
+        font-family: var(--serif-body);
+        font-size: clamp(1.0rem, 1.9vw, 1.12rem);
+        line-height: 1.88;
+        color: rgba(247,241,227,0.78);
+        margin: 0;
+      ">
+        To bridge the gap between technical architecture and human necessity, we move beyond the superficial metrics of content generation. We engineer the linguistic infrastructure that allows your software to be felt as an operational requirement.
+      </p>
+    </div>
+
+    <!-- Gold ornamental divider -->
+    <div style="
+      position: relative;
+      margin-bottom: 52px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,164,93,0.55) 20%, rgba(200,164,93,0.85) 50%, rgba(200,164,93,0.55) 80%, transparent);
+    ">
+      <span style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--void);
+        padding: 0 14px;
+        font-size: 9px;
+        color: var(--gold);
+        letter-spacing: 0.25em;
+        font-family: var(--mono);
+        white-space: nowrap;
+      ">◆ ◆ ◆</span>
+    </div>
+
+    <!-- Accordion-sequential archetype layers -->
+    <div class="od-accordion">
+
+      <!-- I. THE ILLUSION -->
+      <div class="od-item od-open" id="od-0">
+        <button class="od-trigger" onclick="toggleOD(0)">
+          <div class="od-trigger-left">
+            <span class="od-roman">I.</span>
+            <div class="od-head-wrap">
+              <span class="od-archetype-label">The Illusion</span>
+              <span class="od-thesis">AI mimics the cadence of expertise. It cannot diagnose your customer's internal bottlenecks.</span>
+            </div>
+          </div>
+          <span class="od-chevron">+</span>
+        </button>
+        <div class="od-body">
+          <div class="od-body-inner">
+            <p>AI functions by calculating the likelihood of the next word. It mimics the cadence of expertise — a surface-level fluency that customers can feel as hollow. What it cannot do is map the forensic landscape where a buyer evaluates intent, filters new information through existing biases, and decides whether a product belongs inside their operational reality.</p>
+            <p>We shift the burden from automated generation to diagnostic engineering. Every interaction serves a specific, calculated outcome in the buyer's journey — not the algorithm's probability distribution.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- II. THE RESOLUTION -->
+      <div class="od-item" id="od-1">
+        <button class="od-trigger" onclick="toggleOD(1)">
+          <div class="od-trigger-left">
+            <span class="od-roman">II.</span>
+            <div class="od-head-wrap">
+              <span class="od-archetype-label">The Resolution</span>
+              <span class="od-thesis">Technical complexity is the raw material for authority — not the barrier to adoption.</span>
+            </div>
+          </div>
+          <span class="od-chevron">+</span>
+        </button>
+        <div class="od-body">
+          <div class="od-body-inner">
+            <p>Sophisticated technical systems possess an inherent gravity that is routinely lost when collapsed into common parlance. We do not flatten your software into simplistic talking points. We construct a high-fidelity narrative layer that preserves the integrity of your product's intelligence while making it immediately actionable for diverse stakeholders.</p>
+            <p>Your product's capabilities anchor into the recurring workflows of your user — turning abstract utility into a foundational system they cannot revert from.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- III. THE ENGINEERING -->
+      <div class="od-item" id="od-2">
+        <button class="od-trigger" onclick="toggleOD(2)">
+          <div class="od-trigger-left">
+            <span class="od-roman">III.</span>
+            <div class="od-head-wrap">
+              <span class="od-archetype-label">The Engineering of Belief</span>
+              <span class="od-thesis">Belief is a byproduct of operational clarity — and it is an engineered outcome.</span>
+            </div>
+          </div>
+          <span class="od-chevron">+</span>
+        </button>
+        <div class="od-body">
+          <div class="od-body-inner">
+            <p>Disconnection in a market is rarely a failure of utility. It is a failure of consistency. When the signal emitted by your product contradicts the reality perceived by your audience, the relationship destabilizes. We calibrate every narrative and structural touchpoint to function as a unified engine.</p>
+            <p>We are not selling to a market. We are re-architecting the mental model through which your customer interprets their own reality — positioning your product as the only viable bridge to their future state.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>
+
 
         <div class="ticker-wrap">
         <div class="ticker-track">
@@ -6011,58 +6177,114 @@ atmosphere.style.transform =
 }
 })();
   
-    // ── Narrative carousel pip sync ──────────────────────
-  window.scrollToCard = function(index) {
-    var track = document.getElementById('narrative-track');
-    if (!track) return;
-    var cards = track.querySelectorAll('.narrative-card');
-    if (!cards[index]) return;
-    cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-  };
-
+  // ── Narrative carousel — infinite loop ──────────────────
   (function() {
     var track = document.getElementById('narrative-track');
-    var pips = document.querySelectorAll('#narrative-pips .narrative-pip');
-    if (!track || !pips.length) return;
+    var pipRow = document.getElementById('narrative-pips');
+    if (!track) return;
 
-    track.addEventListener('scroll', function() {
-      var cards = track.querySelectorAll('.narrative-card');
-      var scrollLeft = track.scrollLeft;
-      var cardWidth = cards[0] ? cards[0].offsetWidth + 16 : 1; // 16 = gap
-      var activeIndex = Math.round(scrollLeft / cardWidth);
-      activeIndex = Math.max(0, Math.min(activeIndex, pips.length - 1));
+    var REAL_CARDS = track.querySelectorAll('.narrative-card');
+    var TOTAL = REAL_CARDS.length; // 5
+    var GAP = 16;
+
+    // Clone first and last cards for seamless loop
+    var firstClone = REAL_CARDS[0].cloneNode(true);
+    var lastClone  = REAL_CARDS[TOTAL - 1].cloneNode(true);
+    firstClone.setAttribute('aria-hidden', 'true');
+    lastClone.setAttribute('aria-hidden', 'true');
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, REAL_CARDS[0]);
+
+    // All cards now: [lastClone, real0…real4, firstClone]
+    function getCardWidth() {
+      var allCards = track.querySelectorAll('.narrative-card');
+      return allCards[0].offsetWidth + GAP;
+    }
+
+    // Start at real card 0 (index 1 in the cloned track)
+    function init() {
+      var w = getCardWidth();
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = w; // jump to first real card
+      track.style.scrollBehavior = '';
+    }
+    // Wait for layout
+    requestAnimationFrame(function() { requestAnimationFrame(init); });
+
+    // Pip sync — maps cloned index back to real index
+    function updatePips(scrollLeft) {
+      var w = getCardWidth();
+      var idx = Math.round(scrollLeft / w) - 1; // subtract 1 for lastClone prefix
+      idx = ((idx % TOTAL) + TOTAL) % TOTAL;
+      var pips = pipRow ? pipRow.querySelectorAll('.narrative-pip') : [];
       pips.forEach(function(p, i) {
-        p.classList.toggle('active', i === activeIndex);
+        p.classList.toggle('active', i === idx);
       });
+    }
+
+    // Scroll listener: seamless jump at boundaries
+    var jumping = false;
+    track.addEventListener('scroll', function() {
+      if (jumping) return;
+      var w = getCardWidth();
+      var sl = track.scrollLeft;
+      updatePips(sl);
+
+      // Past last clone (right edge)
+      if (sl >= w * (TOTAL + 1)) {
+        jumping = true;
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft = w;
+        track.style.scrollBehavior = '';
+        requestAnimationFrame(function() { jumping = false; });
+      }
+      // Before first clone (left edge)
+      if (sl <= 0) {
+        jumping = true;
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft = w * TOTAL;
+        track.style.scrollBehavior = '';
+        requestAnimationFrame(function() { jumping = false; });
+      }
     }, { passive: true });
-  })();
 
-  // Narrative carousel — precise one-card-at-a-time touch
-  (function() {
-    var track = document.getElementById("narrative-track");
-    if (!track) return;
-
+    // Touch: precise one-card snap
     var startX = 0;
-    var startScrollLeft = 0;
-
-    track.addEventListener("touchstart", function(e) {
-      startX = e.touches[0].clientX;
-      startScrollLeft = track.scrollLeft;
+    var startSL = 0;
+    track.addEventListener('touchstart', function(e) {
+      startX  = e.touches[0].clientX;
+      startSL = track.scrollLeft;
     }, { passive: true });
 
-    track.addEventListener("touchend", function(e) {
+    track.addEventListener('touchend', function(e) {
       var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) < 30) return; // too small — ignore
-      var cards = track.querySelectorAll(".narrative-card");
-      if (!cards.length) return;
-      var cardWidth = cards[0].offsetWidth + 16; // 16 = gap
-      var currentIndex = Math.round(startScrollLeft / cardWidth);
-      var targetIndex = diff > 0
-        ? Math.min(currentIndex + 1, cards.length - 1)
-        : Math.max(currentIndex - 1, 0);
-      track.scrollTo({ left: targetIndex * cardWidth, behavior: "smooth" });
+      if (Math.abs(diff) < 28) return;
+      var w = getCardWidth();
+      var cur = Math.round(startSL / w);
+      var tgt = diff > 0 ? cur + 1 : cur - 1;
+      track.scrollTo({ left: tgt * w, behavior: 'smooth' });
     }, { passive: true });
+
+    // pip click — navigate to real card index
+    window.scrollToCard = function(realIndex) {
+      var w = getCardWidth();
+      track.scrollTo({ left: (realIndex + 1) * w, behavior: 'smooth' });
+    };
+
   })();
+
+  // ── Our Distinction accordion ────────────────────────────
+  window.toggleOD = function(index) {
+    var items = document.querySelectorAll('.od-item');
+    items.forEach(function(item, i) {
+      if (i === index) {
+        // Toggle: if already open, close it
+        item.classList.toggle('od-open');
+      } else {
+        item.classList.remove('od-open');
+      }
+    });
+  };
   
   // 2. SAMPLE COPIES
   const goldenCopies = [
