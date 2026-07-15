@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Legibility Score — Zordere</title>
+<meta name="description" content="Score your hero copy against the Three Laws of Translation — Tangibility, Intuitiveness, Sustainability — and the 5-second Interpretation Window. A free narrative diagnostic from Zordere.">
+<link rel="canonical" href="https://zordere.vercel.app/legibility-score.html">
+<meta property="og:title" content="The Legibility Score — Zordere">
+<meta property="og:description" content="Paste your hero copy. Get a 0–100 legibility score and see exactly where your narrative fractures — in seconds, free.">
+<meta property="og:url" content="https://zordere.vercel.app/legibility-score.html">
+<meta name="author" content="Mahdi Singaparado">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Proza+Libre:ital,wght@0,400;0,500;0,600;0,700;0,800&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #071B33; --cobalt: #071B33; --deep: #00152E; --void: #0B223F;
+    --ivory: #F7F1E3; --ivory2: #D8CCB8;
+    --gold: #C8A45D; --gold-light: #E2C98C; --gold-dim: #5A4826; --gold-glow: rgba(200,164,93,0.12);
+    --serif-title: 'Newsreader', serif; --serif-body: 'Proza Libre', sans-serif; --mono: 'DM Mono', monospace;
+    --border: 1px solid rgba(200,164,93,0.22); --border-thin: 1px solid rgba(247,241,227,0.12);
+    --radius: 12px; --radius-lg: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body {
+    background: var(--navy); color: var(--ivory); font-family: var(--serif-body);
+    font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--serif-title); }
+
+  nav {
+    position: sticky; top: 0; z-index: 300; display: flex; justify-content: space-between;
+    align-items: center; padding: 16px 6vw; background: rgba(4,6,17,0.88);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: var(--border-thin);
+  }
+  .logo-wrap { display: flex; align-items: center; text-decoration: none; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-main { font-family: var(--serif-title); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ivory); }
+  .logo-sub { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.16em; text-transform: uppercase; color: #274C77; margin-top: 4px; }
+  .nav-cta {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--navy); background: var(--gold); text-decoration: none;
+    padding: 9px 18px; border-radius: var(--radius); border: 1px solid var(--gold);
+  }
+
+  main { max-width: 900px; margin: 0 auto; padding: 8vh 6vw 12vh; }
+
+  .kicker {
+    display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono);
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .kicker::before { content: ""; width: 32px; height: 1px; background: var(--gold); }
+
+  h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 500; line-height: 1.12;
+    letter-spacing: -0.02em; color: var(--ivory); margin-bottom: 18px;
+  }
+  main > p.lede {
+    font-size: 1.02rem; line-height: 1.85; color: var(--ivory2); max-width: 620px; margin-bottom: 52px;
+  }
+
+  .panel {
+    border: 1px solid rgba(200,164,93,0.22); background: var(--cobalt);
+    border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: 0 4px 28px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.25);
+  }
+  .panel-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; border-bottom: var(--border-thin); background: var(--deep);
+  }
+  .panel-header span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); }
+  .panel-header button {
+    background: none; border: none; font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,241,227,0.5); cursor: pointer;
+  }
+  .panel-header button:hover { color: var(--gold-light); }
+
+  .panel-body { padding: 28px 24px; }
+  textarea {
+    width: 100%; min-height: 110px; padding: 14px 16px; background: rgba(11,34,63,0.6);
+    border: 1px solid rgba(200,164,93,0.25); border-radius: var(--radius); color: var(--ivory);
+    font-family: var(--mono); font-size: 0.9rem; line-height: 1.6; resize: vertical;
+  }
+  textarea:focus { outline: none; border-color: var(--gold-dim); }
+  textarea::placeholder { color: rgba(247,241,227,0.35); }
+
+  .action-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-top: 18px; }
+  .word-count { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,241,227,0.4); }
+  .run-btn {
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--navy); background: var(--gold); border: 1px solid var(--gold-light);
+    padding: 12px 24px; border-radius: var(--radius); cursor: pointer; transition: all 0.2s;
+  }
+  .run-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .results { margin-top: 40px; display: none; }
+  .results.show { display: block; }
+
+  .score-row { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 20px; margin-bottom: 24px; }
+  @media (max-width: 700px) { .score-row { grid-template-columns: 1fr; } }
+
+  .score-box { border: 1px solid; border-radius: var(--radius); padding: 28px; background: var(--void); }
+  .score-box .label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,241,227,0.5); margin-bottom: 10px; }
+  .score-box .num-row { display: flex; align-items: flex-end; gap: 6px; }
+  .score-box .num { font-family: var(--serif-title); font-size: 3.4rem; font-weight: 700; line-height: 1; }
+  .score-box .out-of { font-size: 1.3rem; color: rgba(247,241,227,0.4); margin-bottom: 4px; }
+  .score-box .tier-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 10px; }
+
+  .window-box { border: var(--border-thin); border-left: 5px solid var(--gold); border-radius: var(--radius); padding: 24px; background: var(--cobalt); }
+  .window-box .label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; }
+  .window-box .verdict { font-family: var(--serif-title); font-style: italic; font-size: 1.15rem; color: var(--ivory); line-height: 1.5; }
+  .window-box .verdict small { font-style: normal; font-size: 0.85rem; color: rgba(247,241,227,0.65); }
+
+  .laws-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 700px) { .laws-grid { grid-template-columns: 1fr; } }
+  .law-card { border: 1px solid rgba(200,164,93,0.2); border-radius: var(--radius); padding: 22px; background: var(--void); }
+  .law-card .law-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .law-card .law-head span:first-child { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ivory); }
+  .law-card .law-head span:last-child { font-family: var(--serif-title); font-weight: 700; font-size: 1.15rem; }
+  .bar-track { height: 5px; width: 100%; background: rgba(200,164,93,0.12); border-radius: 3px; margin-bottom: 14px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+  .law-card p { font-size: 0.85rem; line-height: 1.65; color: rgba(247,241,227,0.75); }
+
+  .cta-row {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;
+    margin-top: 24px; padding: 24px; border: 1px solid rgba(200,164,93,0.22); border-radius: var(--radius);
+  }
+  .cta-row p { font-size: 0.85rem; color: rgba(247,241,227,0.7); max-width: 480px; }
+  .cta-row a {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--navy); background: var(--gold); text-decoration: none; padding: 12px 22px; border-radius: var(--radius);
+    white-space: nowrap;
+  }
+
+  footer { padding: 24px 6vw; border-top: var(--border-thin); text-align: center; }
+  footer p { font-family: var(--mono); font-size: 0.65rem; color: rgba(247,241,227,0.35); text-transform: uppercase; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo-wrap" href="/">
+    <div class="logo-text">
+      <span class="logo-main">Zordere</span>
+      <span class="logo-sub">Linguistic Systems Engineering</span>
+    </div>
+  </a>
+  <a href="/#contact" class="nav-cta">Commission an Audit</a>
+</nav>
+
+<main>
+  <div class="kicker">The Legibility Score</div>
+  <h1>Score your hero copy against the Three Laws.</h1>
+  <p class="lede">Paste the first thing a visitor reads on your homepage. We grade it the way the market does — in seconds, against Tangibility, Intuitiveness, and Sustainability — and name exactly where the narrative fractures.</p>
+
+  <div class="panel">
+    <div class="panel-header">
+      <span>Submit Your Interface</span>
+      <button id="load-sample">Load a broken sample →</button>
+    </div>
+    <div class="panel-body">
+      <textarea id="copy-input" placeholder="Paste your homepage hero copy — the headline and first line a stranger reads..."></textarea>
+      <div class="action-row">
+        <span class="word-count" id="word-count">// Awaiting narrative input</span>
+        <button class="run-btn" id="run-btn">Run Diagnostic →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="results" id="results">
+    <div class="score-row">
+      <div class="score-box" id="score-box">
+        <div class="label">Legibility Score</div>
+        <div class="num-row">
+          <span class="num" id="overall-num">0</span>
+          <span class="out-of">/100</span>
+        </div>
+        <div class="tier-label" id="tier-label"></div>
+      </div>
+      <div class="window-box">
+        <div class="label" id="window-status">The Interpretation Window</div>
+        <div class="verdict"><span id="window-headline">5s</span> <small id="window-verdict"></small></div>
+      </div>
+    </div>
+
+    <div class="laws-grid" id="laws-grid"></div>
+
+    <div class="cta-row">
+      <p>This is the automated read. A Narrative Audit goes forensic — mapping the uncodified buyer psychology this scanner can't see, and returning a written diagnosis.</p>
+      <a href="mailto:hello@zordere.com?subject=Narrative%20Audit%20Request&body=Hi%20Mahdi.%20I%20ran%20the%20Legibility%20Score%20and%20want%20the%20forensic%20read.%0A%0A-%20Website%20URL%3A%0A-%20My%20current%20hero%20copy%3A">Commission an Audit →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Zordere. Built for the ceiling, never the gutter.</p>
+</footer>
+
+<script>
+  /**
+   * SCORING ENGINE — directly recovered from the compiled Ploy bundle,
+   * verified line-by-line against the original minified source.
+   * All formulas, thresholds, and signal arrays preserved exactly.
+   */
+  const JARGON_SIGNALS = ["leverage","synerg","robust","seamless","scalable","cutting-edge","next-generation","next generation","revolutionary","ecosystem","paradigm","holistic","end-to-end","best-in-class","turnkey","enterprise-grade","multi-tenant","orchestrat","streamlin","empower","disrupt","decentralized","granular","frictionless","bandwidth","mission-critical","hyper-","cross-functional","actionable","utilize","facilitate","optimiz","architected","purpose-built","cloud-native"];
+  const OUTCOME_SIGNALS = ["save","faster","reduce","less","fewer","without","so you","so your","in minutes","in seconds","stop","avoid","ship","launch","cut","boost","win","close","grow","double","instantly","today","get paid","no more"];
+  const WORKFLOW_SIGNALS = ["workflow","every day","daily","your team","integrat","natively","existing","ongoing","keep","stay","continuous","each week","routine","in your","already use","day-to-day","over time"];
+  const BROKEN_SAMPLE = "Our decentralized, multi-tenant orchestration platform leverages a granular API architecture to optimize cross-functional workflow synergy at enterprise scale.";
+
+  function countSignals(text, signals) {
+    return signals.reduce((count, s) => text.includes(s) ? count + 1 : count, 0);
+  }
+  function clampScore(raw) {
+    return Math.max(4, Math.min(98, Math.round(raw)));
+  }
+  function getFractureMessage(law, score, m) {
+    if (law === "tangibility") {
+      if (score >= 72) return "Outcomes are legible — a stranger can name what changes for them.";
+      if (!m.hasNumber && m.outcome === 0) return "No concrete outcome or number. The reader learns what it is, never what it does for them.";
+      return "Capability is stated but the payoff stays abstract. Anchor each claim to a result the buyer already wants.";
+    }
+    if (law === "intuitiveness") {
+      if (score >= 72) return "Reads at the speed of thought — low jargon, natural sentence rhythm.";
+      if (m.jargon >= 2) return m.jargon + " jargon signals detected. Machine-led syntax raises the cognitive floor before meaning lands.";
+      if (m.longSentences) return "Sentences run long. The first read demands effort the visitor won't spend.";
+      return "Phrasing leans on category language instead of how the buyer actually talks.";
+    }
+    if (score >= 72) return "Anchored to recurring use — the product reads as an ongoing environment, not a one-time tool.";
+    if (m.workflow === 0) return "No link to a recurring workflow. Value reads as a one-off, not a system embedded in daily performance.";
+    if (m.we > m.you) return "The copy talks about you more than the reader. Reframe around their standing workflow.";
+    return "Relevance is momentary. Tie the product to something the buyer returns to every week.";
+  }
+
+  function scoreInput(rawCopy) {
+    const normalized = rawCopy.toLowerCase().replace(/\s+/g, " ").trim();
+    const wordCount = normalized.split(" ").filter(Boolean).length;
+    const sentences = rawCopy.split(/[.!?]+/).map(s => s.trim()).filter(Boolean);
+    const avgWords = sentences.length ? wordCount / sentences.length : wordCount;
+    const firstSentence = (sentences[0] || rawCopy).toLowerCase();
+    const firstWordCount = firstSentence.split(/\s+/).filter(Boolean).length;
+
+    const jargon = countSignals(normalized, JARGON_SIGNALS);
+    const outcome = countSignals(normalized, OUTCOME_SIGNALS);
+    const workflow = countSignals(normalized, WORKFLOW_SIGNALS);
+    const hasNumber = /\d/.test(rawCopy);
+    const you = countSignals(normalized, ["you", "your"]);
+    const we = countSignals(normalized, ["we ", "our ", "we're", "we've"]);
+    const jargonDensity = wordCount ? jargon / wordCount : 0;
+    const longSentences = avgWords > 24;
+
+    const m = { jargon, outcome, workflow, hasNumber, longSentences, you, we };
+
+    const tangibility = clampScore(46 + outcome * 9 + (hasNumber ? 16 : 0) - jargon * 6 + (you > we ? 6 : 0));
+    const intuitiveness = clampScore(98 - jargonDensity * 900 - jargon * 6 - (longSentences ? 18 : 0) - Math.max(0, avgWords - 16) * 1.4);
+    const sustainability = clampScore(42 + workflow * 13 + (you > we ? 10 : -4) + (outcome > 0 ? 6 : 0));
+    const overall = Math.round(tangibility * 0.34 + intuitiveness * 0.40 + sustainability * 0.26);
+
+    const firstJargon = countSignals(firstSentence, JARGON_SIGNALS);
+    const windowLegible = firstWordCount <= 18 && firstJargon < 2;
+
+    return {
+      overall, wordCount,
+      window: {
+        legible: windowLegible,
+        verdict: windowLegible
+          ? "Legible inside the 5-second window. The first line resolves before the visitor decides to leave."
+          : "Silent exit likely. The opening line is too dense to resolve in 5 seconds — most visitors leave before the value surfaces."
+      },
+      laws: [
+        { key: "tangibility", label: "Tangibility", score: tangibility, fracture: getFractureMessage("tangibility", tangibility, m) },
+        { key: "intuitiveness", label: "Intuitiveness", score: intuitiveness, fracture: getFractureMessage("intuitiveness", intuitiveness, m) },
+        { key: "sustainability", label: "Sustainability", score: sustainability, fracture: getFractureMessage("sustainability", sustainability, m) }
+      ]
+    };
+  }
+
+  function getScoreColor(score) {
+    if (score >= 72) return "rgb(92,158,122)";
+    if (score >= 50) return "rgb(226,201,140)";
+    return "rgb(184,100,62)";
+  }
+  function getScoreLabel(score) {
+    if (score >= 72) return "Recognition-grade";
+    if (score >= 50) return "Clear, not yet magnetic";
+    return "Fractured — the market can't feel it";
+  }
+
+  // ── UI WIRING ──────────────────────────────────────
+  const input = document.getElementById("copy-input");
+  const wordCountEl = document.getElementById("word-count");
+  const runBtn = document.getElementById("run-btn");
+  const loadSampleBtn = document.getElementById("load-sample");
+  const results = document.getElementById("results");
+
+  input.addEventListener("input", () => {
+    const wc = input.value.trim() ? input.value.trim().split(/\s+/).filter(Boolean).length : 0;
+    wordCountEl.textContent = wc ? wc + " words analyzed" : "// Awaiting narrative input";
+  });
+
+  loadSampleBtn.addEventListener("click", () => {
+    input.value = BROKEN_SAMPLE;
+    input.dispatchEvent(new Event("input"));
+    results.classList.remove("show");
+  });
+
+  runBtn.addEventListener("click", () => {
+    const wc = input.value.trim().split(/\s+/).filter(Boolean).length;
+    if (wc < 3) return;
+    const result = scoreInput(input.value);
+    renderResults(result);
+  });
+
+  function renderResults(result) {
+    const color = getScoreColor(result.overall);
+    document.getElementById("overall-num").textContent = result.overall;
+    document.getElementById("overall-num").style.color = color;
+    document.getElementById("score-box").style.borderColor = color;
+    const tierLabel = document.getElementById("tier-label");
+    tierLabel.textContent = getScoreLabel(result.overall);
+    tierLabel.style.color = color;
+
+    document.getElementById("window-status").textContent = "The Interpretation Window · " + (result.window.legible ? "Passed" : "Failed");
+    document.getElementById("window-verdict").textContent = "— " + result.window.verdict;
+
+    const lawsGrid = document.getElementById("laws-grid");
+    lawsGrid.innerHTML = "";
+    result.laws.forEach(law => {
+      const lawColor = getScoreColor(law.score);
+      const card = document.createElement("div");
+      card.className = "law-card";
+      card.innerHTML =
+        '<div class="law-head"><span>' + law.label + '</span><span style="color:' + lawColor + '">' + law.score + '</span></div>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + law.score + '%;background:' + lawColor + '"></div></div>' +
+        '<p>' + law.fracture + '</p>';
+      lawsGrid.appendChild(card);
+    });
+
+    results.classList.add("show");
+    results.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+</script>
+
+</body>
+</html>
