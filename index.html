@@ -410,180 +410,135 @@ footer {
     .mobile-menu-cta a { display:block; background:var(--aegean); color:var(--ivory); font-family:var(--display); font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; padding:18px 24px; text-align:center; cursor:pointer; }
 
     /* ── HERO ───────────────────────────────────────── */
+/* ── HERO ───────────────────────────────────────── */
 .hero {
   padding: 12vh 6vw 10vh;
   border-bottom: var(--border-thin);
   background: var(--navy);
   position: relative;
   isolation: isolate;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .hero-container {
-
-  max-width:1150px;
-  margin:0 auto;
-  padding:0 40px;
-
-  display:grid;
-  grid-template-columns:1.2fr 0.8fr;
-  gap:80px;
-  align-items:center;
-
-  position:relative;
-  z-index:5;
-
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  min-height: 82vh;
+  position: relative;
+  z-index: 5;
 }
+
+.hero-inner {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .hero-container::before {
-
-content:"";
-
-position:absolute;
-
-inset:-30px;
-
-background:
-rgba(2,6,18,.25);
-
-filter:
-blur(25px);
-
-border-radius:32px;
-
-z-index:-1;
-
-pointer-events:none;
-
+  content: "";
+  position: absolute;
+  inset: -30px;
+  background: rgba(2, 6, 18, 0.25);
+  filter: blur(25px);
+  border-radius: 32px;
+  z-index: -1;
+  pointer-events: none;
 }
-    @media(max-width:940px) {
-      .hero-container { grid-template-columns: 1fr; gap: 40px; }
-    }
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      background: var(--gold-glow);
-      padding: 6px 14px;
-      border-radius: 100px;
-      border: 1px solid rgba(201,148,58,0.25);
-      margin-bottom: 28px;
-    }
-    .kicker-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: pulse-dot 2.5s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.4; transform: scale(0.7); }
-    }
-    .hero h1 {
-      font-family: var(--serif-title);
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 500;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-      margin-bottom: 24px;
-    }
-    .hero h1,
-    .hero p,
-    .hero span,
-    .hero button,
-    .hero-thesis {
 
-      position:relative;
-      z-index:6;
-    }
-    .hero h1 .ae {
-      color: var(--gold-light);
-      font-style: italic;
-      font-weight: 400;
-    }
-    
-    .hero h1, .hero-body {
-  text-rendering: optimizeLegibility;
-  /* Add a tiny, dark drop-shadow to make text 'pop' off the light background */
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(201, 148, 58, 0.08);
+  border: 1px solid rgba(201, 148, 58, 0.22);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 18px;
+}
+
+.kicker-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero h1 {
+  font-family: var(--serif-title);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  margin: 18px 0 34px;
+  max-width: 900px;
+  color: var(--ivory);
+  text-wrap: balance;
+  position: relative;
+  z-index: 6;
+}
+
+.hero h1 .ae {
+  color: var(--gold-light);
+  font-style: italic;
+  font-weight: 400;
 }
 
 .hero-body {
   font-family: var(--serif-body);
-  font-size: 1.05rem;
-  font-weight: 400;
-  color: var(--ivory2);
-  line-height: 1.85;
-  background: rgba(2, 6, 18, 0.18);
-  backdrop-filter: blur(10px);
-  
-  /* Adjusted padding: 24px top/bottom, 24px right, 18px left */
-  padding: 24px 24px 24px 18px; 
-  
-  border-radius: 8px;
-  max-width: 560px;
-  margin-bottom: 36px;
-  
-  /* The border-left is what gives it that 'architectural' feel */
-  border-left: 4px solid var(--gold-dim); 
-}
-
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-
-.hero-thesis {
-    max-width: 600px;
-    margin: 32px 0;
-    padding-left: 24px;
-    border-left: 1px solid rgba(255,255,255,0.1);
-}
-
-.hero-thesis-context {
-  font-family: var(--serif);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  letter-spacing: 0.03em;
-  color: var(--ivory2);
-  opacity: 0.85;
-  margin-bottom: 18px;
-}
-
-.hero-thesis-break {
-  font-family: var(--serif-title);
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  line-height: 1.45;
+  font-size: 1.18rem;
+  line-height: 1.75;
+  max-width: 700px;
   color: var(--ivory);
-  margin-bottom: 24px;
+  margin-bottom: 18px;
+  opacity: 0.94;
+  position: relative;
+  z-index: 6;
 }
 
-.hero-thesis-break span {
-  color: var(--aegean-light);
-}
-
-.hero-thesis-solution {
-  font-family: var(--alt-serif);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.7rem;
+.hero-support {
+  font-family: var(--serif-body);
+  font-size: 1rem;
   line-height: 1.8;
-  color: var(--aegean-light);
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 42px;
+  position: relative;
+  z-index: 6;
 }
 
-    .hero-cta-note {
-  margin-top: 14px;
-  font-family: var(--serif-alt);
-  font-size: 0.6rem;
+.hero-actions {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 6;
+}
+
+.hero-cta-note {
+  font-family: var(--mono);
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
-  text-transform: uppercase;    
-  color: var(--ivory2);
-  opacity: 0.7;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  position: relative;
+  z-index: 6;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -4307,80 +4262,39 @@ a, a:visited, a:hover, a:active {
     <div class="hero-stars-2" aria-hidden="true"></div>
     <div class="hero-veil" aria-hidden="true"></div>
     <div class="hero-container">
-    <div class="hero-inner">
-        
-        <div 
-          class="hero-kicker"
-          data-aos="fade-down"
-          data-aos-duration="800">
-          <span class="kicker-dot"></span>
-          POSITIONING & MESSAGING FOR COMPLEX PRODUCTS // ZORDERE
-        </div>  
-        
-        <h1 data-aos="fade-up" data-aos-delay="100">
-        You built a masterpiece of engineering. Now let's make the market <span class="ae">agree.</span></h1>
+<div class="hero-inner">
+  <!-- Kicker -->
+  <div class="hero-kicker" data-aos="fade-down">
+    <span class="kicker-dot"></span>
+    STRATEGIC POSITIONING & MESSAGING FOR COMPLEX PRODUCTS
+  </div>
 
-       <!-- Zordere hero thesis — visible before the CTA -->
-       <!-- Founder provenance line — visible before the CTA -->
-       <div
-          data-aos="fade-up"
-          data-aos-delay="200"
-          style="
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-          ">
-          <span style="
-            font-family: var(--serif-alt);
-            font-size: 0.6rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--ivory2);
-          ">From AI and enterprise software to industrial systems, infrastructure and advanced technology.</span>
-          <span style="
-            display: inline-block;
-            width: 1px; height: 12px;
-            background: var(--ivory2);
-         "></span>
-         <span style="
-           font-family: var(--serif-alt); 
-           font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
-           color: var(--ivory2);
-        ">Zordere helps organizations sharpen positioning, messaging and strategic communication that accelerates market understanding and commercial adoption.</span>
-        </div>
+  <!-- Headline -->
+  <h1 data-aos="fade-up" data-aos-delay="100">
+    You built an exceptional product.<br>
+    Now make the market <span class="ae">understand why it matters.</span>
+  </h1>
 
-<div 
-  data-aos="fade-up"
-  data-aos-delay="250"
-  class="hero-actions"
-  style="margin-bottom: 20px;">
+  <!-- Thesis Statements -->
+  <p class="hero-body" data-aos="fade-up" data-aos-delay="180">
+    Helping AI, enterprise software, industrial technology, infrastructure, robotics, manufacturing and deep-tech companies communicate what makes them valuable.
+  </p>
 
-  <!-- Redirects to the index.html file within the legibility-score directory -->
-  <a href="/legibility-score/" 
-     class="btn btn-dark">
-     Submit Your Interface →
-  </a>
+  <p class="hero-support" data-aos="fade-up" data-aos-delay="240">
+    We help leadership teams sharpen positioning, messaging and strategic communication so sophisticated products become easier to understand, easier to buy and easier to champion.
+  </p>
 
-  <a data-aos="fade-up"
-     data-aos-delay="250"
-     class="btn btn-outline"
-     onclick="goToAnchor('services');return false;">
-     Review Tiers
-  </a>
+  <!-- CTA Group -->
+  <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+    <a href="/legibility-score/" class="btn btn-dark">Request Diagnostic →</a>
+    <a href="#" class="btn btn-outline" onclick="goToAnchor('services'); return false;">View Services</a>
+  </div>
+
+  <!-- Footer Note -->
+  <p class="hero-cta-note" data-aos="fade-up" data-aos-delay="360">
+    Positioning. Messaging. Strategic communication.
+  </p>
 </div>
-
-
-<p 
-  class="hero-cta-note"
-  data-aos="fade-up"
-  data-aos-delay="350">
-  Before your competitors explain the problem better than you do.
-    </p>
-     </div>
-    </div> 
-  </section>
   
 <!-- RESTRUCTURED BRIDGE SECTION -->
 <section class="bridge-section">
